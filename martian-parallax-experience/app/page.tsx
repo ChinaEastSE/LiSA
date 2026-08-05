@@ -175,7 +175,7 @@ export default function Page() {
           top: "-15%",
         }}
       >
-        <Image src="/images/earth-1.png" alt="Earth from space" fill className="object-cover" priority />
+        <Image src="/images/earth-1.jpg" alt="Earth from space" fill className="object-cover" priority />
       </div>
 
       <div
@@ -203,7 +203,7 @@ export default function Page() {
           top: "-15%",
         }}
       >
-        <Image src="/images/mars-2.png" alt="Spacecraft interior window" fill className="object-cover" />
+        <Image src="/images/mars-2.jpg" alt="Spacecraft interior window" fill className="object-cover" />
       </div>
 
       <div
@@ -252,7 +252,7 @@ export default function Page() {
           top: "calc(-5% + 150px)",
         }}
       >
-        <Image src="/images/mars-3.png" alt="Astronaut in orange spacesuit" fill className="object-cover" />
+        <Image src="/images/mars-3.jpg" alt="Astronaut in orange spacesuit" fill className="object-cover" />
       </div>
 
       {/* ===== Access login overlay ===== */}
