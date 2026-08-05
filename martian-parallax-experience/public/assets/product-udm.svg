@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="udm-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c1a"/>
+      <stop offset="100%" stop-color="#0a0e22"/>
+    </linearGradient>
+    <linearGradient id="title-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3df0ff"/>
+      <stop offset="50%" stop-color="#8b7bff"/>
+      <stop offset="100%" stop-color="#f5c87a"/>
+    </linearGradient>
+    <linearGradient id="platform" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a3050"/>
+      <stop offset="100%" stop-color="#151a30"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#3df0ff" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="500" rx="16" fill="none"/>
+
+  <!-- ===== Connection lines to center platform ===== -->
+  <g stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- DATA QUERY → CENTER -->
+    <line x1="140" y1="210" x2="290" y2="325" stroke="rgba(61,240,255,0.55)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="1.8s" repeatCount="indefinite"/>
+    </line>
+    <!-- DATA ANALYSIS → CENTER -->
+    <line x1="460" y1="210" x2="310" y2="325" stroke="rgba(139,123,255,0.55)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- DATA FLOW → CENTER -->
+    <line x1="140" y1="360" x2="290" y2="345" stroke="rgba(61,240,255,0.55)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="1.9s" repeatCount="indefinite"/>
+    </line>
+    <!-- DATA ARCHIVING → CENTER -->
+    <line x1="460" y1="360" x2="310" y2="345" stroke="rgba(245,200,122,0.55)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2.1s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- ===== Outer closed-loop connection between modules ===== -->
+  <g stroke-width="2.5" fill="none" stroke-linecap="round">
+    <!-- Top: DATA QUERY → DATA ANALYSIS -->
+    <path d="M 145,225 Q 300,165 455,225" stroke="rgba(61,240,255,0.5)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <!-- Right: DATA ANALYSIS → DATA ARCHIVING -->
+    <path d="M 455,225 Q 525,290 455,355" stroke="rgba(139,123,255,0.5)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    <!-- Bottom: DATA ARCHIVING → DATA FLOW -->
+    <path d="M 455,355 Q 300,415 145,355" stroke="rgba(245,200,122,0.5)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2.2s" repeatCount="indefinite"/>
+    </path>
+    <!-- Left: DATA FLOW → DATA QUERY -->
+    <path d="M 145,355 Q 75,290 145,225" stroke="rgba(61,240,255,0.5)" stroke-dasharray="6 5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="2.3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- ===== Central Platform / LISA UDM ===== -->
+  <!-- Platform glow (pulsing) -->
+  <ellipse cx="300" cy="335" rx="100" ry="18" fill="#3df0ff" filter="url(#soft-glow)">
+    <animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+  <!-- Platform base -->
+  <ellipse cx="300" cy="335" rx="85" ry="14" fill="#1a2040" stroke="rgba(61,240,255,0.4)" stroke-width="1"/>
+  <!-- Platform top -->
+  <path d="M 215,335 L 215,305 Q 215,295 225,295 L 375,295 Q 385,295 385,305 L 385,335" fill="url(#platform)" stroke="rgba(61,240,255,0.5)" stroke-width="1"/>
+  <!-- Platform rim light -->
+  <path d="M 220,300 L 380,300" stroke="rgba(61,240,255,0.3)" stroke-width="1"/>
+  <!-- Platform pillars (pulsing) -->
+  <rect x="240" y="310" width="4" height="25" fill="rgba(61,240,255,0.4)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="298" y="310" width="4" height="25" fill="rgba(139,123,255,0.4)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="356" y="310" width="4" height="25" fill="rgba(245,200,122,0.4)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ===== DATA QUERY (top-left) ===== -->
+  <g transform="translate(120, 190)">
+    <!-- Icon: magnifying glass (pulsing ring) -->
+    <circle cx="0" cy="0" r="22" fill="none" stroke="rgba(61,240,255,0.5)" stroke-width="2">
+      <animate attributeName="r" values="22;26;22" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="14" fill="rgba(61,240,255,0.08)" stroke="rgba(61,240,255,0.4)" stroke-width="1"/>
+    <line x1="10" y1="10" x2="24" y2="24" stroke="rgba(61,240,255,0.6)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Binary code decoration (blinking) -->
+    <g font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(61,240,255,0.3)">
+      <text x="-38" y="-28">0101010</text>
+      <text x="-38" y="-18">0011001</text>
+      <text x="-38" y="-8">0101010</text>
+      <text x="-38" y="2">0011001</text>
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/>
+    </g>
+    <!-- Label -->
+    <text x="0" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3df0ff" letter-spacing="2">DATA QUERY</text>
+  </g>
+
+  <!-- ===== DATA ANALYSIS (top-right) ===== -->
+  <g transform="translate(480, 190)">
+    <!-- Icon: bar chart -->
+    <rect x="-20" y="10" width="40" height="32" rx="3" fill="rgba(139,123,255,0.1)" stroke="rgba(139,123,255,0.4)" stroke-width="1"/>
+    <!-- Bars (growing animation) -->
+    <rect x="-14" y="-4" width="6" height="18" rx="1" fill="#3df0ff">
+      <animate attributeName="height" values="18;22;18" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="-4;-8;-4" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-4" y="-12" width="6" height="26" rx="1" fill="#8b7bff">
+      <animate attributeName="height" values="26;30;26" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="-12;-16;-12" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="6" y="-16" width="6" height="30" rx="1" fill="#f5c87a">
+      <animate attributeName="height" values="30;34;30" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="-16;-20;-16" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+    </rect>
+    <!-- Chart lines -->
+    <line x1="-20" y1="10" x2="20" y2="10" stroke="rgba(139,123,255,0.3)" stroke-width="0.5"/>
+    <!-- Label -->
+    <text x="0" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#8b7bff" letter-spacing="2">DATA ANALYSIS</text>
+  </g>
+
+  <!-- ===== DATA FLOW (bottom-left) ===== -->
+  <g transform="translate(120, 380)">
+    <!-- Icon: circular flow arrows (rotating) -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="rgba(61,240,255,0.4)" stroke-width="2" stroke-dasharray="4 3">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Arrow 1 -->
+    <path d="M -18,-8 A 20 20 0 0 1 18,-8" fill="none" stroke="#3df0ff" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="18,-8 13,-12 13,-4" fill="#3df0ff"/>
+    <!-- Arrow 2 -->
+    <path d="M -10,14 A 20 20 0 0 0 14,-14" fill="none" stroke="#8b7bff" stroke-width="2" stroke-linecap="round"/>
+    <!-- Label -->
+    <text x="0" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3df0ff" letter-spacing="2">DATA FLOW</text>
+  </g>
+
+  <!-- ===== DATA ARCHIVING (bottom-right) ===== -->
+  <g transform="translate(480, 380)">
+    <!-- Icon: storage server -->
+    <rect x="-16" y="-16" width="32" height="32" rx="3" fill="rgba(245,200,122,0.1)" stroke="rgba(245,200,122,0.4)" stroke-width="1"/>
+    <!-- Server layers -->
+    <line x1="-12" y1="-8" x2="12" y2="-8" stroke="rgba(245,200,122,0.4)" stroke-width="1"/>
+    <line x1="-12" y1="-2" x2="12" y2="-2" stroke="rgba(245,200,122,0.4)" stroke-width="1"/>
+    <line x1="-12" y1="4" x2="12" y2="4" stroke="rgba(245,200,122,0.4)" stroke-width="1"/>
+    <!-- Dots (blinking) -->
+    <circle cx="8" cy="-8" r="1.5" fill="#f5c87a">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="8" cy="-2" r="1.5" fill="#f5c87a">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="8" cy="4" r="1.5" fill="#f5c87a">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Lock icon -->
+    <rect x="-4" y="10" width="8" height="6" rx="1" fill="rgba(245,200,122,0.3)"/>
+    <path d="M -2,10 L -2,7 Q -2,3 0,3 Q 2,3 2,7 L 2,10" fill="none" stroke="#f5c87a" stroke-width="1"/>
+    <!-- Label -->
+    <text x="0" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#f5c87a" letter-spacing="2">DATA ARCHIVING</text>
+  </g>
+
+  <!-- ===== Decorative floating nodes (blinking) ===== -->
+  <g fill="#3df0ff">
+    <circle cx="80" cy="100" r="3">
+      <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="540" cy="80" r="2">
+      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="70" cy="460" r="2">
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="470" r="3">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="60" r="1.5">
+      <animate attributeName="opacity" values="0.2;0.7;0.2" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="70" r="1.5">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
