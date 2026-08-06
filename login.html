@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>LiSA · Access</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -215,7 +218,7 @@
       try{ sessionStorage.setItem("lisa-auth","1"); }catch(_){}
       loginWrap.classList.add("hide");
       flash.classList.add("on");
-      setTimeout(function(){ window.location.href="index_0806.html"; },900);
+      setTimeout(function(){ window.location.href="index.html"; },900);
     }else{
       errMsg.textContent="Incorrect access code. Please try again.";
       pwd.classList.add("err");
