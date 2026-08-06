@@ -124,7 +124,7 @@ export default function Page() {
   useEffect(() => {
     if (unlocked) {
       const t = setTimeout(() => {
-        window.location.href = "/index_0806.html"
+        window.location.href = "/index.html"
       }, 900)
       return () => clearTimeout(t)
     }
