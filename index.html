@@ -2536,7 +2536,7 @@
               <text x="348" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">MES</text>
             </g>
 
-            <!-- 连线 -->
+            <!-- 连线（与案例二统一：虚线路径 + 虚线，无箭头） -->
             <line x1="146" y1="46" x2="158" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
             <line x1="186" y1="46" x2="236" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
 
@@ -2547,9 +2547,10 @@
             <!-- ===== ROW 2: LiSA 平台 ===== -->
             <rect x="30" y="100" width="460" height="32" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="1.2"/>
             <text x="260" y="121" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA</text>
-            <line x1="308" y1="90" x2="260" y2="100" stroke="var(--cyan)" stroke-width="1.2" class="flow-line"/>
+            <path d="M308 90 L260 100" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
 
             <!-- LiSA 数据点 -->
+            <circle cx="308" cy="90" r="3" class="pulse-node" fill="var(--cyan)"/>
             <circle cx="260" cy="116" r="4" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- ===== ROW 3: 存储迁移时间线 ===== -->
@@ -2582,10 +2583,10 @@
               <text x="160" y="213" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust2</text>
             </g>
 
-            <!-- 箭头 + 流动动画 -->
-            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
-            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
-            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <!-- 连线（纯虚线 + 流动粒子，无箭头） -->
+            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
+            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
+            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
 
             <!-- 数据点 -->
             <circle cx="112" cy="190" r="3" class="pulse-node" fill="var(--cyan)"/>
@@ -2601,8 +2602,8 @@
               <text x="342" y="200" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="700">DXN Ultra 存储集群</text>
             </g>
 
-            <path d="M198 172 L252 172" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
-            <path d="M198 208 L252 208" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <path d="M198 172 L252 172" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
+            <path d="M198 208 L252 208" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
 
             <!-- DXN 数据点 -->
             <circle cx="198" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
@@ -2620,7 +2621,7 @@
               <text x="528" y="222" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">电信云</text>
             </g>
 
-            <path d="M432 194 L478 194" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <path d="M432 194 L478 194" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
 
             <!-- 电信云数据点 -->
             <circle cx="432" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
@@ -2657,25 +2658,19 @@
               <text x="554" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">CIFS</text>
             </g>
 
-            <!-- 连线: 老机台 → DXN Ultra (Agent/S3) -->
-            <path d="M321 248 L321 234 L441 234 L441 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <!-- 连线: 老机台 → DXN Ultra (Agent/S3) （无箭头，纯路径+流动粒子） -->
+            <path d="M321 248 L321 234 L441 234 L441 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
             <text x="376" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">Agent / S3</text>
             <circle cx="321" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
             <circle cx="441" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
 
-            <!-- 连线: 老机台 → 电信云 (CIFS) -->
-            <path d="M372 248 L372 234 L554 234 L554 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <!-- 连线: 老机台 → 电信云 (CIFS) （无箭头） -->
+            <path d="M372 248 L372 234 L554 234 L554 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
             <text x="463" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">CIFS</text>
             <circle cx="372" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
             <circle cx="554" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
 
-            <defs>
-              <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#3df0ff"/>
-              </marker>
-            </defs>
-
-            <!-- 流动粒子 -->
+            <!-- 流动粒子（与案例二一致：6条线 × 节奏 3s/4s/5s） -->
             <circle class="flow-particle">
               <animateMotion dur="3s" repeatCount="indefinite" path="M146 46 L158 46"/>
             </circle>
@@ -2683,10 +2678,10 @@
               <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M186 46 L236 46"/>
             </circle>
             <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M308 90 L260 100"/>
+              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M308 90 L260 100"/>
             </circle>
             <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M112 190 L122 190"/>
+              <animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M112 190 L122 190"/>
             </circle>
             <circle class="flow-particle">
               <animateMotion dur="3.5s" repeatCount="indefinite" begin=".7s" path="M112 190 L116 190 L116 172 L122 172"/>
@@ -2695,13 +2690,13 @@
               <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.3s" path="M112 190 L116 190 L116 208 L122 208"/>
             </circle>
             <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M198 172 L252 172"/>
+              <animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M198 172 L252 172"/>
             </circle>
             <circle class="flow-particle">
               <animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M198 208 L252 208"/>
             </circle>
             <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" path="M432 194 L478 194"/>
+              <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s" path="M432 194 L478 194"/>
             </circle>
             <circle class="flow-particle">
               <animateMotion dur="5s" repeatCount="indefinite" begin=".5s" path="M321 248 L321 234 L441 234 L441 220"/>
