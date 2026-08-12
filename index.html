@@ -1000,10 +1000,10 @@
   /* 时间分析：趋势图SVG，按比例缩放 */
   .data-tab-panel[data-panel="time"] .chart-svg-wrap{flex-shrink:0}
   .data-tab-panel[data-panel="time"] .chart-svg-wrap svg{width:100%;height:auto;max-height:240px}
-  /* 热度分析：双图适度大小，不撑满整个面板 */
+  /* 热度分析：双图适度大小，不撑满整个面板，且完整显示不被裁切 */
   .data-tab-panel[data-panel="heat"] .dual-chart{flex:0 0 auto}
-  .data-tab-panel[data-panel="heat"] .dual-chart .chart-svg-wrap{flex-shrink:0}
-  .data-tab-panel[data-panel="heat"] .dual-chart .chart-svg-wrap svg{width:100%;height:auto;max-height:280px}
+  .data-tab-panel[data-panel="heat"] .dual-chart .chart-svg-wrap{flex-shrink:0;overflow:visible}
+  .data-tab-panel[data-panel="heat"] .dual-chart .chart-svg-wrap svg{width:100%;height:auto;max-height:200px}
 
   /* ====== data analysis web app ====== */
   .web-app{
