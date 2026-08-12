@@ -985,17 +985,23 @@
   .data-tab-panel .kpi-grid{flex-shrink:0}
   .data-tab-panel .chart-row{flex-shrink:0;grid-template-rows:auto}
   .data-tab-panel .table-card{flex-shrink:0}
-  .data-tab-panel .dual-chart{flex:1;min-height:0;grid-template-rows:1fr}
+  .data-tab-panel .dual-chart{flex:1;min-height:0}
   .data-tab-panel .chart-card{display:flex;flex-direction:column;padding:12px 14px}
   .data-tab-panel>.chart-card{flex-shrink:0}
   .data-tab-panel .chart-card .c-hd{flex-shrink:0;margin-bottom:6px}
-  .data-tab-panel .chart-card .chart-svg-wrap{flex-shrink:0;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;padding-top:2px}
+  .data-tab-panel .chart-card .chart-svg-wrap{flex:1;min-height:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
   .data-tab-panel .chart-card .chart-legend{flex-shrink:0;margin-top:4px}
   .data-tab-panel .chart-controls{flex-shrink:0}
-  /* 饼图SVG：固定高度并上对齐，减少下方空白 */
-  .data-tab-panel .chart-row .chart-svg-wrap svg{width:100%;height:auto;max-height:190px}
-  /* 趋势图SVG：按比例缩放，不要过大 */
-  .data-tab-panel[data-panel="time"] .chart-svg-wrap svg{width:100%;height:auto;max-height:220px}
+  /* 资产概览：饼图SVG，缩小一些避免过高 */
+  .data-tab-panel[data-panel="asset"] .chart-row .chart-svg-wrap{flex-shrink:0}
+  .data-tab-panel[data-panel="asset"] .chart-row .chart-svg-wrap svg{width:100%;height:auto;max-height:200px}
+  /* 时间分析：趋势图SVG，按比例缩放 */
+  .data-tab-panel[data-panel="time"] .chart-svg-wrap{flex-shrink:0}
+  .data-tab-panel[data-panel="time"] .chart-svg-wrap svg{width:100%;height:auto;max-height:240px}
+  /* 热度分析：双图撑满可用高度，去掉 svg scale(0.8) 导致的内缩空白 */
+  .data-tab-panel[data-panel="heat"] .dual-chart{flex:1;min-height:0}
+  .data-tab-panel[data-panel="heat"] .dual-chart .chart-card{height:100%}
+  .data-tab-panel[data-panel="heat"] .dual-chart .chart-svg-wrap svg{width:auto;height:100%;max-height:none;max-width:100%}
 
   /* ====== data analysis web app ====== */
   .web-app{
@@ -2227,19 +2233,19 @@
                   <div class="c-hd"><span class="ctitle v3">文件热度分布</span><span>热度等级</span></div>
                   <div class="chart-svg-wrap">
                     <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(130 130) scale(.8)">
-                        <circle r="90" fill="rgba(245,200,122,.03)"/>
+                      <g transform="translate(130 130)">
+                        <circle r="108" fill="rgba(245,200,122,.03)"/>
                         <!-- Cold 40% 144deg -->
-                        <path d="M0 -90 A90 90 0 0 1 52.9 72.8 Z" fill="rgba(61,240,255,.55)"/>
+                        <path d="M0 -108 A108 108 0 0 1 63.5 87.4 Z" fill="rgba(61,240,255,.55)"/>
                         <!-- Warm 20% 72deg -->
-                        <path d="M52.9 72.8 A90 90 0 0 1 -52.9 72.8 Z" fill="rgba(245,200,122,.55)"/>
+                        <path d="M63.5 87.4 A108 108 0 0 1 -63.5 87.4 Z" fill="rgba(245,200,122,.55)"/>
                         <!-- Archive 20% 72deg -->
-                        <path d="M-52.9 72.8 A90 90 0 0 1 -90 0 Z" fill="rgba(100,220,180,.55)"/>
+                        <path d="M-63.5 87.4 A108 108 0 0 1 -108 0 Z" fill="rgba(100,220,180,.55)"/>
                         <!-- Hot 20% 72deg -->
-                        <path d="M-90 0 A90 90 0 0 1 0 -90 Z" fill="rgba(255,90,120,.6)"/>
-                        <circle r="46" fill="rgba(7,9,18,.98)"/>
-                        <text y="-6" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">总容量</text>
-                        <text y="12" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700" font-family="Syne">50 GB</text>
+                        <path d="M-108 0 A108 108 0 0 1 0 -108 Z" fill="rgba(255,90,120,.6)"/>
+                        <circle r="54" fill="rgba(7,9,18,.98)"/>
+                        <text y="-8" text-anchor="middle" font-size="10" fill="#9aa3c4" font-family="JetBrains Mono">总容量</text>
+                        <text y="16" text-anchor="middle" font-size="22" fill="#eef2ff" font-weight="700" font-family="Syne">50 GB</text>
                       </g>
                     </svg>
                   </div>
@@ -2256,30 +2262,31 @@
                   <div class="c-hd"><span class="ctitle v2">目录热度分布</span><span style="color:var(--ink-faint)">根目录 / storage</span></div>
                   <div class="chart-svg-wrap">
                     <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(52 24) scale(.8)">
-                        <!-- data 32.84GB ≈ 55% -->
-                        <rect x="10" y="10" width="280" height="160" rx="6" fill="rgba(255,90,120,.55)" stroke="rgba(255,90,120,.7)"/>
-                        <text x="150" y="90" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">data</text>
-                        <text x="150" y="110" text-anchor="middle" font-size="16" fill="#eef2ff" font-weight="700" font-family="Syne">32.84 GB</text>
-                        <!-- media 9.93GB ≈ 16.6% -->
-                        <rect x="296" y="10" width="130" height="100" rx="6" fill="rgba(61,240,255,.55)" stroke="rgba(61,240,255,.7)"/>
-                        <text x="361" y="58" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">media</text>
-                        <text x="361" y="76" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" font-family="Syne">9.93 GB</text>
-                        <!-- installer 8.00GB ≈ 13.4% -->
-                        <rect x="432" y="10" width="78" height="100" rx="6" fill="rgba(139,123,255,.55)" stroke="rgba(139,123,255,.7)"/>
-                        <text x="471" y="52" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600" font-family="Syne">installer</text>
-                        <text x="471" y="68" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="700" font-family="Syne">8.00</text>
-                        <!-- archive 6.00GB ≈ 10% -->
-                        <rect x="296" y="116" width="130" height="54" rx="6" fill="rgba(245,200,122,.55)" stroke="rgba(245,200,122,.7)"/>
-                        <text x="361" y="148" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">archive 6.00 GB</text>
+                      <g transform="translate(8 8)">
+                        <!-- viewBox 可用: 504 x 212 (留出 margin 8+8=16, 下方总容量标签 12px) -->
+                        <!-- data 32.84GB ≈ 55%: 左列大区块 -->
+                        <rect x="0" y="0" width="300" height="170" rx="8" fill="rgba(255,90,120,.55)" stroke="rgba(255,90,120,.7)"/>
+                        <text x="150" y="88" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="600" font-family="Syne">data</text>
+                        <text x="150" y="112" text-anchor="middle" font-size="20" fill="#eef2ff" font-weight="700" font-family="Syne">32.84 GB</text>
+                        <!-- media 9.93GB ≈ 16.6%: 右上 -->
+                        <rect x="308" y="0" width="120" height="104" rx="8" fill="rgba(61,240,255,.55)" stroke="rgba(61,240,255,.7)"/>
+                        <text x="368" y="56" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">media</text>
+                        <text x="368" y="76" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" font-family="Syne">9.93 GB</text>
+                        <!-- installer 8.00GB ≈ 13.4%: 右中 -->
+                        <rect x="432" y="0" width="72" height="104" rx="8" fill="rgba(139,123,255,.55)" stroke="rgba(139,123,255,.7)"/>
+                        <text x="468" y="52" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">installer</text>
+                        <text x="468" y="72" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" font-family="Syne">8.00</text>
+                        <!-- archive 6.00GB ≈ 10%: 右中 -->
+                        <rect x="308" y="108" width="120" height="62" rx="8" fill="rgba(245,200,122,.55)" stroke="rgba(245,200,122,.7)"/>
+                        <text x="368" y="144" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">archive 6.00 GB</text>
                         <!-- tools 1GB ≈ 1.7% -->
-                        <rect x="432" y="116" width="38" height="54" rx="6" fill="rgba(100,220,180,.55)" stroke="rgba(100,220,180,.7)"/>
-                        <text x="451" y="148" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">tools</text>
+                        <rect x="432" y="108" width="36" height="62" rx="6" fill="rgba(100,220,180,.55)" stroke="rgba(100,220,180,.7)"/>
+                        <text x="450" y="144" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">tools</text>
                         <!-- logs 1GB ≈ 1.7% -->
-                        <rect x="476" y="116" width="34" height="54" rx="6" fill="rgba(200,140,240,.55)" stroke="rgba(200,140,240,.7)"/>
-                        <text x="493" y="148" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">logs</text>
+                        <rect x="472" y="108" width="32" height="62" rx="6" fill="rgba(200,140,240,.55)" stroke="rgba(200,140,240,.7)"/>
+                        <text x="488" y="144" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">logs</text>
                         <!-- Total -->
-                        <text x="510" y="228" text-anchor="end" font-size="9" fill="#9aa3c4" font-family="JetBrains Mono">总容量：59.77 GB</text>
+                        <text x="496" y="200" text-anchor="end" font-size="10" fill="#9aa3c4" font-family="JetBrains Mono">总容量：59.77 GB</text>
                       </g>
                     </svg>
                   </div>
