@@ -597,10 +597,7 @@
     50%{opacity:1;transform:translateX(-50%) scaleX(1.05)}
   }
   /* 红绿灯 */
-  .lb-traffic{
-    position:absolute;top:14px;left:20px;z-index:5;
-    display:flex;gap:10px;align-items:center;
-  }
+  .lb-traffic{display:none !important}
   .lb-dot{width:12px;height:12px;border-radius:50%;position:relative}
   .lb-dot::after{
     content:"";position:absolute;inset:2px;border-radius:50%;
@@ -1824,7 +1821,6 @@
           <div class="func-label">优势</div>
           <ul>
             <li><b>并发传输</b>：支持并发传输，提高数据迁移的效率</li>
-            <li><b>高性能</b>：</li>
             <li><b>跨存储迁移</b>：支持各类源存储和目的存储</li>
             <li><b>精细化筛选</b>：通过精细化筛选确定数据范围</li>
             <li><b>灵活扩展</b>：可灵活增加新任务类型</li>
@@ -3457,12 +3453,6 @@
     </svg>
 
     <div class="lb-window">
-      <!-- 红绿灯 -->
-      <div class="lb-traffic">
-        <div class="lb-dot r"></div>
-        <div class="lb-dot y"></div>
-        <div class="lb-dot g"></div>
-      </div>
       <!-- HUD 状态 -->
       <div class="lb-hud">
         <span class="dot"></span>
