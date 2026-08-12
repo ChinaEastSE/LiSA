@@ -7,7 +7,7 @@
 <meta name="description" content="LiSA — 联想存储智能体。面向企业级本地、混合云与公有云的智能数据管理平台，无缝集成 ONTAP、DXN 及第三方非结构化数据存储，千亿条目秒级检索。">
 <script>
   // Prevent theme flash: apply saved theme before CSS renders
-  (function(){var t=localStorage.getItem('lisa-theme')||'dark';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');})();
+  (function(){var t=localStorage.getItem('lisa-theme')||'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -914,7 +914,7 @@
   .section-tab-panel[data-panel^="case-"].active{display:block}
   .section-tab-panel>.func-module{height:950px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;margin-bottom:0}
   .section-tab-panel>.func-module>.func-header{flex-shrink:0}
-  .section-tab-panel>.func-module>.func-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .section-tab-panel>.func-module>.func-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow:auto}
   .section-tab-panel>.func-module>.func-body::-webkit-scrollbar{width:8px}
   .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:4px}
   .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.3);border-radius:4px}
