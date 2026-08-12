@@ -136,6 +136,9 @@
 <div class="login-wrap" id="loginWrap">
   <div class="login-dim"></div>
   <form class="login-card" id="loginCard" autocomplete="off">
+    <!-- 隐藏的假字段，骗浏览器自动填充到这里 -->
+    <input type="text" name="username" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off">
+    <input type="password" name="password" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off">
     <div class="lock-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -144,7 +147,7 @@
     </div>
     <div class="login-title">Access Required</div>
     <div class="login-hint">Enter access code to continue</div>
-    <input class="pwd-input" id="pwd" type="password" placeholder="••••••" autocomplete="off" spellcheck="false">
+    <input class="pwd-input" id="pwd" type="password" placeholder="••••••" autocomplete="new-password" spellcheck="false" readonly onfocus="this.removeAttribute('readonly')">
     <div class="err-msg" id="errMsg"></div>
     <button class="enter-btn" id="enterBtn" type="submit">Enter</button>
     <div class="foot-note">LiSA · Confidential</div>
