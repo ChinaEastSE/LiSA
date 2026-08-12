@@ -910,6 +910,8 @@
   .section-tab.active .sn-n{opacity:1}
   .section-tab-panel{display:none;height:950px;overflow:hidden}
   .section-tab-panel.active{display:flex;flex-direction:column;animation:fadeUp .4s ease}
+  .section-tab-panel[data-panel^="case-"]{height:auto;overflow:visible}
+  .section-tab-panel[data-panel^="case-"].active{display:block}
   .section-tab-panel>.func-module{height:950px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;margin-bottom:0}
   .section-tab-panel>.func-module>.func-header{flex-shrink:0}
   .section-tab-panel>.func-module>.func-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
@@ -2828,7 +2830,7 @@
 <!-- ============ DEPLOYMENT & LICENSE ============ -->
 <section id="configs-sec">
   <!-- 典型配置四档 -->
-  <div class="sec-head reveal" style="margin-top:50px">
+  <div class="sec-head reveal" style="margin-top:24px">
     <div>
       <div class="sec-tag"><span class="n">06</span> Typical Configurations</div>
       <h2 class="sec-title">四档典配<span class="accent"> 弹性进阶</span></h2>
