@@ -921,7 +921,7 @@
   .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-thumb:hover{background:rgba(var(--cyan-rgb),.5)}
   #func-analytics .func-arch{flex:1;padding:0;border-bottom:none;width:100%;min-height:0;position:relative;display:block}
   #func-analytics .func-arch .web-app{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;border:none;border-radius:0}
-  #func-analytics .func-info{flex-shrink:0}
+  #func-analytics .func-info{flex-shrink:0;max-width:1200px;margin:0 auto;width:100%}
   @media (max-width:760px){
     .section-tabs{flex-wrap:wrap}
     .section-tab{flex:1 1 45%;border-right:none;border-bottom:1px solid var(--line-strong)}
@@ -980,6 +980,8 @@
   .data-tab-panel.active{display:flex;flex-direction:column;gap:12px}
   /* 资产概览：内容多，允许竖向滚动 */
   .data-tab-panel[data-panel="asset"]{overflow-y:auto}
+  /* 热度分析：允许卡片底部溢出显示图例文字（不裁切），仍不出现滚动条 */
+  .data-tab-panel[data-panel="heat"]{overflow:visible}
   .data-tab-panel::-webkit-scrollbar{width:6px}
   .data-tab-panel::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:3px}
   .data-tab-panel::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.35);border-radius:3px}
