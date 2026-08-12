@@ -974,23 +974,26 @@
     background:linear-gradient(90deg,transparent,var(--cyan),transparent);
     border-radius:2px;
   }
-  .data-tab-panel{display:none;width:100%;grid-row:3;overflow-y:auto}
+  .data-tab-panel{display:none;width:100%;grid-row:3;overflow-y:hidden}
   .data-tab-panel.active{display:flex;flex-direction:column;gap:12px}
   .data-tab-panel::-webkit-scrollbar{width:6px}
   .data-tab-panel::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:3px}
   .data-tab-panel::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.35);border-radius:3px}
   .data-tab-panel::-webkit-scrollbar-thumb:hover{background:rgba(var(--cyan-rgb),.55)}
   .data-tab-panel .kpi-grid{flex-shrink:0}
-  .data-tab-panel .chart-row{flex:1;min-height:0;grid-template-rows:1fr}
+  .data-tab-panel .chart-row{flex-shrink:0;grid-template-rows:auto}
   .data-tab-panel .table-card{flex-shrink:0}
   .data-tab-panel .dual-chart{flex:1;min-height:0;grid-template-rows:1fr}
   .data-tab-panel .chart-card{display:flex;flex-direction:column;padding:12px 14px}
-  .data-tab-panel>.chart-card{flex:1;min-height:0}
+  .data-tab-panel>.chart-card{flex-shrink:0}
   .data-tab-panel .chart-card .c-hd{flex-shrink:0;margin-bottom:6px}
-  .data-tab-panel .chart-card .chart-svg-wrap{flex:1;min-height:340px;display:flex;justify-content:center;align-items:center;overflow:hidden}
-  .data-tab-panel .chart-card .chart-legend{flex-shrink:0;margin-top:8px}
+  .data-tab-panel .chart-card .chart-svg-wrap{flex-shrink:0;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;padding-top:2px}
+  .data-tab-panel .chart-card .chart-legend{flex-shrink:0;margin-top:4px}
   .data-tab-panel .chart-controls{flex-shrink:0}
-  .data-tab-panel .chart-svg-wrap svg{width:100%;height:100%;max-height:none}
+  /* 饼图SVG：固定高度并上对齐，减少下方空白 */
+  .data-tab-panel .chart-row .chart-svg-wrap svg{width:100%;height:auto;max-height:190px}
+  /* 趋势图SVG：按比例缩放，不要过大 */
+  .data-tab-panel[data-panel="time"] .chart-svg-wrap svg{width:100%;height:auto;max-height:220px}
 
   /* ====== data analysis web app ====== */
   .web-app{
