@@ -11,7 +11,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   /* ====== DARK (default) ====== */
   :root{
@@ -32,6 +32,7 @@
     --ff-display:"Syne","Noto Serif SC",serif;
     --ff-body:"DM Sans","Noto Sans SC",system-ui,sans-serif;
     --ff-mono:"JetBrains Mono",monospace;
+    --ff-num:"DM Mono","JetBrains Mono",monospace;
     --nav-bg:rgba(7,9,18,.72);
     --hero-overlay:rgba(7,9,18,.85);
     --hero-grad-1:rgba(7,9,18,.4);
@@ -104,6 +105,12 @@
     --feat-ico-bg:var(--surface-2);
     --cyan-rgb:0,113,227;
   }
+  /* unified numeric font for all figures */
+  *{font-variant-numeric:tabular-nums}
+  .hero-stats .num,.func-num,.pillar .pnum,.case .scale .v,
+  .kpi-card .kval,.table-card .fsize,.table-card .rank,
+  .cfg .spec,.cfg .nm,.tier-c .tperiod,.deploy-card .dc-sub,
+  .web-app svg text{font-family:var(--ff-num)!important}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
   body{
@@ -112,7 +119,6 @@
     font-family:var(--ff-body);
     line-height:1.6;
     overflow-x:hidden;
-    cursor:none;
   }
   ::selection{background:var(--cyan);color:var(--selection-text)}
   a{color:inherit;text-decoration:none}
@@ -171,12 +177,12 @@
   header.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 5vw 80px;overflow:hidden}
   header.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:160px;background:linear-gradient(180deg,transparent 0%,#050710 100%);z-index:1;pointer-events:none}
   [data-theme="light"] header.hero::after{background:linear-gradient(180deg,transparent 0%,#f1f4f9 100%)}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:url('assets/hero-bg.jpg') center/cover no-repeat;filter:contrast(1.15) saturate(1.1) brightness(.58)}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:url('assets/hero-bg.jpg') center/cover no-repeat;filter:contrast(1.1) saturate(1.05) brightness(.5)}
   .hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.02) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.015) 0%,transparent 55%)}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.08) 0%,rgba(5,7,16,.18) 25%,rgba(6,8,18,.32) 55%,rgba(8,10,24,.48) 78%,#050710 100%)}
-  [data-theme="light"] .hero-bg{filter:contrast(1.02) saturate(1) brightness(.72)}
-  [data-theme="light"] .hero-bg::before{background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.04) 0%,transparent 55%)}
-  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(20,20,30,.65) 0%,rgba(18,18,28,.72) 25%,rgba(15,15,24,.8) 55%,rgba(12,12,22,.88) 80%,#f1f4f9 100%)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.15) 0%,rgba(5,7,16,.3) 25%,rgba(6,8,18,.5) 55%,rgba(8,10,24,.7) 78%,#050710 100%)}
+  [data-theme="light"] .hero-bg{filter:contrast(1.05) saturate(1.08) brightness(.9)}
+  [data-theme="light"] .hero-bg::before{background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.05) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.03) 0%,transparent 55%)}
+  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(20,20,30,.35) 0%,rgba(18,18,28,.45) 25%,rgba(15,15,24,.55) 55%,rgba(12,12,22,.65) 80%,#f1f4f9 100%)}
   [data-theme="light"] .hero-cn{color:#fff;border-top-color:rgba(255,255,255,.35);text-shadow:0 2px 20px rgba(0,0,0,.55)}
   [data-theme="light"] .hero-sub{color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(0,0,0,.45)}
   [data-theme="light"] .hero-sub b{color:#fff}
@@ -196,7 +202,7 @@
   .hero-sub{max-width:620px;margin-top:32px;font-size:clamp(14px,1.2vw,17px);color:rgba(255,255,255,.88);line-height:1.8;opacity:0;animation:fadeUp .9s 1s forwards;text-shadow:0 1px 12px rgba(0,0,0,.45)}
   .hero-sub b{color:rgba(255,255,255,.98);font-weight:600}
   .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s 1.2s forwards}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:50px;font-family:var(--ff-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:.35s;cursor:none}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:50px;font-family:var(--ff-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:.35s;cursor:pointer}
   .btn-primary{background:var(--grad);color:var(--btn-text);font-weight:600}
   .btn-primary:hover{transform:translateY(-3px)}
   .btn-ghost{border:1px solid rgba(255,255,255,.28);color:#fff;background:rgba(245,200,122,.12)}
@@ -309,12 +315,12 @@
   .arch-legend{display:flex;gap:24px;flex-wrap:wrap;padding:22px 28px 8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
   .arch-legend .lg{display:flex;align-items:center;gap:8px}
   .arch-legend .sw{width:14px;height:14px;border-radius:4px}
-  .arch-svg-box{position:relative;width:100%;overflow-x:auto;padding:8px 20px 24px}
-  .arch-svg-box svg{display:block;width:100%;min-width:980px;height:auto;font-family:var(--ff-body)}
+  .arch-svg-box{position:relative;width:100%;overflow-x:auto;padding:8px 20px 24px;display:flex;justify-content:center}
+  .arch-svg-box svg{display:block;width:100%;min-width:980px;max-width:1200px;height:auto;font-family:var(--ff-body)}
   .arch-note{padding:0 28px 22px;color:var(--ink-faint);font-size:12px;font-family:var(--ff-mono);letter-spacing:.05em}
   .arch-layer{transition:.3s}
   .arch-layer:hover .layer-bg{fill:rgba(var(--cyan-rgb),.04)}
-  .arch-node{transition:.25s;cursor:none}
+  .arch-node{transition:.25s;cursor:pointer}
   .arch-node:hover{filter:brightness(1.3)}
   .arch-node:hover .node-rect{stroke:var(--cyan);stroke-width:1.4}
 
@@ -350,17 +356,407 @@
   .cfg .cap .row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;color:var(--ink-dim)}
   .cfg .cap .row b{color:var(--ink);font-weight:500}
 
+  /* ====== screenshots ====== */
+  #screenshots{padding:100px 5vw 80px;position:relative}
+  #screenshots .sec-head{margin-bottom:48px}
+  .shot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .shot-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    transition:transform .3s,box-shadow .3s;
+    cursor:pointer;
+  }
+  .shot-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4);border-color:var(--cyan)}
+  .shot-img-wrap{aspect-ratio:16/10;overflow:hidden;background:rgba(255,255,255,.02)}
+  .shot-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .shot-card:hover .shot-img-wrap img{transform:scale(1.03)}
+  .shot-meta{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line)}
+  .shot-label{font-family:var(--ff-mono);font-size:12px;color:var(--ink-dim);letter-spacing:.05em}
+  .shot-tag{font-family:var(--ff-mono);font-size:10px;color:var(--cyan);border:1px solid var(--cyan);padding:2px 8px;border-radius:4px}
+  @media (max-width:980px){.shot-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.shot-grid{grid-template-columns:1fr}}
+
+  /* ====== lightbox ====== */
+  /* ====== LIGHTBOX 深空科技感（严格模仿参考图） ====== */
+  .lightbox{
+    position:fixed;inset:0;z-index:9999;
+    /* 纯黑深空背景 + 微弱暗角 */
+    background:
+      radial-gradient(ellipse at center,#06080f 0%,#030409 60%,#010204 100%);
+    display:none;
+    align-items:center;justify-content:center;
+    opacity:0;
+    transition:opacity .5s cubic-bezier(.4,0,.2,1);
+    overflow:hidden;
+  }
+  /* 左上+右下两个非常暗的暗角，增强深邃感 */
+  .lightbox::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 10% 0%,rgba(255,255,255,.02) 0%,transparent 50%),
+      radial-gradient(circle at 95% 100%,rgba(0,80,180,.04) 0%,transparent 55%);
+  }
+  /* 左下弧形青绿光弧 + 右下侧微弱蓝光（严格按图） */
+  .lightbox::after{
+    content:"";position:absolute;z-index:1;pointer-events:none;
+    inset:0;
+    background:
+      /* 左下：青绿色弧形光（图片左下位置的大弧形） */
+      radial-gradient(ellipse 70% 60% at 18% 100%,
+        rgba(0,180,160,.14) 0%,
+        rgba(0,150,200,.06) 25%,
+        transparent 55%),
+      /* 右侧偏下：蓝色光晕（图片右侧位置的蓝色扩散光） */
+      radial-gradient(ellipse 55% 55% at 88% 82%,
+        rgba(20,80,200,.18) 0%,
+        rgba(0,120,220,.09) 20%,
+        rgba(0,100,180,.04) 35%,
+        transparent 60%);
+    filter:blur(10px);
+  }
+  /* 底部地平线 + 透视地面网格 */
+  .lb-horizon{
+    position:absolute;left:0;right:0;bottom:18%;z-index:2;pointer-events:none;
+    height:1px;
+  }
+  /* 地平线：右到左倾斜的亮线（图片效果），右亮左淡 */
+  .lb-horizon::before{
+    content:"";position:absolute;left:38%;right:0;top:0;
+    height:1px;
+    background:linear-gradient(90deg,
+      transparent 0%,
+      rgba(0,200,255,.35) 5%,
+      rgba(0,220,255,.8) 25%,
+      rgba(180,240,255,1) 50%,
+      rgba(0,220,255,.8) 75%,
+      rgba(0,160,255,.5) 100%);
+    box-shadow:
+      0 0 8px rgba(0,220,255,.35),
+      0 0 24px rgba(0,180,255,.18);
+  }
+  /* 地平线下方：透视网格地面（严格模仿图中效果） */
+  .lb-horizon::after{
+    content:"";position:absolute;left:0;right:0;top:1px;
+    height:30%;
+    /* 水平线：越往下间距越大（透视） */
+    background-image:
+      repeating-linear-gradient(180deg,
+        rgba(0,160,255,.14) 0 1px,
+        transparent 1px 48px,
+        rgba(0,140,240,.09) 48px 49px,
+        transparent 49px 108px,
+        rgba(0,120,220,.06) 108px 109px,
+        transparent 109px 180px,
+        rgba(0,100,200,.04) 180px 181px,
+        transparent 181px 270px);
+    mask-image:linear-gradient(180deg,
+      rgba(0,0,0,.9) 0%,
+      rgba(0,0,0,.5) 40%,
+      transparent 100%);
+    -webkit-mask-image:linear-gradient(180deg,
+      rgba(0,0,0,.9) 0%,
+      rgba(0,0,0,.5) 40%,
+      transparent 100%);
+  }
+  /* 右侧光晕：图中右半部分的蓝色柔光 */
+  .lb-glow-right{
+    position:absolute;right:-80px;top:auto;bottom:12%;z-index:1;pointer-events:none;
+    width:700px;height:500px;
+    background:radial-gradient(ellipse 60% 80% at 80% 70%,
+      rgba(30,100,220,.12) 0%,
+      rgba(20,80,180,.06) 30%,
+      transparent 65%);
+    filter:blur(30px);
+  }
+  .lb-glow-right.b{display:none}
+
+  /* SVG 流动光线层 */
+  .lb-svg-layer{
+    position:absolute;inset:0;z-index:2;pointer-events:none;
+    width:100%;height:100%;
+  }
+
+  /* 漂浮粒子：非常微弱、稀疏 */
+  .lightbox-particles{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+  .lb-particle{
+    position:absolute;width:1.5px;height:1.5px;border-radius:50%;
+    background:#b0eaff;box-shadow:0 0 5px rgba(160,220,255,.8);
+    opacity:0;animation:lbFloat 14s linear infinite;
+  }
+  @keyframes lbFloat{
+    0%{opacity:0;transform:translateY(100vh) translateX(0) scale(.4)}
+    15%{opacity:.35}
+    50%{transform:translateY(45vh) translateX(10px)}
+    85%{opacity:.2}
+    100%{opacity:0;transform:translateY(-15vh) translateX(-4px) scale(.9)}
+  }
+
+  .lightbox.open{display:flex;opacity:1}
+
+  /* 关闭按钮 */
+  .lightbox-close{
+    position:absolute;top:24px;right:24px;z-index:10001;
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(20,30,50,.4);
+    border:1px solid rgba(0,200,220,.3);
+    color:rgba(200,240,255,.85);font-size:22px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    backdrop-filter:blur(10px);
+  }
+  .lightbox-close:hover{
+    background:rgba(0,200,220,.2);border-color:rgba(0,255,240,.6);
+    color:#fff;transform:rotate(90deg) scale(1.1);
+    box-shadow:0 0 24px rgba(0,200,220,.4);
+  }
+  /* 导航按钮 */
+  .lightbox-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:60px;height:60px;border-radius:50%;
+    background:rgba(15,25,45,.45);
+    border:1px solid rgba(0,180,220,.25);
+    color:rgba(200,240,255,.85);font-size:32px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .35s cubic-bezier(.4,0,.2,1);z-index:10001;
+    backdrop-filter:blur(12px);
+  }
+  .lightbox-nav:hover{
+    background:rgba(0,200,240,.18);border-color:rgba(0,255,240,.55);
+    color:#8ff;transform:translateY(-50%) scale(1.12);
+    box-shadow:0 0 30px rgba(0,200,240,.35),0 0 70px rgba(0,150,255,.15);
+    text-shadow:0 0 10px rgba(0,255,255,.6);
+  }
+  .lightbox-prev{left:28px}
+  .lightbox-prev:hover{left:20px}
+  .lightbox-next{right:28px}
+  .lightbox-next:hover{right:20px}
+
+  /* 主内容容器 */
+  .lightbox-content{
+    position:relative;z-index:10;
+    max-width:92vw;max-height:85vh;
+    display:flex;flex-direction:column;align-items:center;
+    transform:scale(.88) translateY(20px);
+    opacity:0;
+    transition:all .6s cubic-bezier(.16,1,.3,1);
+  }
+  /* 大图底部环绕光束 - 背后层 */
+  .lb-img-glow-back{
+    position:absolute;left:-14%;right:-14%;bottom:-5%;
+    width:128%;height:55%;
+    z-index:1;pointer-events:none;
+  }
+  .lb-window{position:relative;z-index:2}
+  .lightbox-caption{position:relative;z-index:3}
+  .lightbox.open .lightbox-content{transform:scale(1) translateY(0);opacity:1}
+
+  /* === 毛玻璃窗口 === */
+  .lb-window{
+    position:relative;
+    background:rgba(12,16,28,.75);
+    border:1px solid rgba(0,200,220,.2);
+    border-radius:16px;
+    padding:44px 22px 22px;
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04) inset,
+      0 0 0 1px rgba(0,200,220,.08) inset,
+      0 30px 80px rgba(0,0,0,.6),
+      0 0 80px rgba(0,150,220,.08),
+      0 0 160px rgba(0,100,200,.04);
+    overflow:hidden;
+  }
+  /* 窗口顶部光线 */
+  .lb-window::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,
+      transparent 10%,
+      rgba(0,255,240,.3) 30%,
+      rgba(0,200,255,.5) 50%,
+      rgba(0,255,240,.3) 70%,
+      transparent 90%);
+    animation:lbTopLight 4s ease-in-out infinite;
+  }
+  @keyframes lbTopLight{
+    0%,100%{opacity:.6;transform:scaleX(.95)}
+    50%{opacity:1;transform:scaleX(1)}
+  }
+  /* 窗口底部反光 */
+  .lb-window::after{
+    content:"";position:absolute;left:50%;bottom:-44px;width:75%;height:80px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse at center,rgba(0,180,255,.25) 0%,rgba(0,120,220,.12) 40%,transparent 70%);
+    filter:blur(12px);pointer-events:none;z-index:-1;
+    animation:lbReflect 3s ease-in-out infinite;
+  }
+  @keyframes lbReflect{
+    0%,100%{opacity:.6;transform:translateX(-50%) scaleX(.95)}
+    50%{opacity:1;transform:translateX(-50%) scaleX(1.05)}
+  }
+  /* 红绿灯 */
+  .lb-traffic{
+    position:absolute;top:14px;left:20px;z-index:5;
+    display:flex;gap:10px;align-items:center;
+  }
+  .lb-dot{width:12px;height:12px;border-radius:50%;position:relative}
+  .lb-dot::after{
+    content:"";position:absolute;inset:2px;border-radius:50%;
+    background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.45),transparent 60%);
+  }
+  .lb-dot.r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.5)}
+  .lb-dot.y{background:#febc2e;box-shadow:0 0 6px rgba(254,188,46,.5)}
+  .lb-dot.g{background:#28c840;box-shadow:0 0 6px rgba(40,200,64,.5)}
+  /* HUD 状态 */
+  .lb-hud{
+    position:absolute;top:12px;right:18px;z-index:5;
+    display:flex;gap:12px;align-items:center;
+    font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;
+    color:rgba(0,220,255,.55);text-transform:uppercase;
+  }
+  .lb-hud .dot{width:6px;height:6px;border-radius:50%;background:#00e0a0;box-shadow:0 0 6px rgba(0,220,160,.7);animation:lbHudBlink 1.5s ease-in-out infinite}
+  @keyframes lbHudBlink{
+    0%,100%{opacity:1}
+    50%{opacity:.3}
+  }
+  /* 窗口标题 */
+  .lb-title{
+    position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:5;
+    font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;
+    color:rgba(180,230,255,.4);text-transform:uppercase;
+  }
+  /* 图片 */
+  .lb-img-wrap{position:relative;overflow:hidden;border-radius:10px}
+  .lightbox-img{
+    display:block;
+    max-width:calc(92vw - 44px);
+    max-height:calc(78vh - 90px);
+    object-fit:contain;
+    border-radius:10px;
+    border:1px solid rgba(0,180,220,.12);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.03) inset,
+      0 8px 32px rgba(0,0,0,.5),
+      0 0 40px rgba(0,150,220,.06);
+    background:#080c14;
+  }
+  /* 底部描述 */
+  .lightbox-caption{
+    margin-top:26px;padding:12px 28px;
+    background:rgba(10,20,40,.5);
+    border:1px solid rgba(0,180,220,.18);
+    border-radius:12px;
+    color:rgba(220,240,255,.9);font-family:var(--ff-mono);font-size:13px;
+    letter-spacing:.05em;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(0,150,220,.06);
+  }
+  /* 计数器 */
+  .lightbox-counter{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:10px;
+    color:rgba(0,220,255,.6);font-family:var(--ff-mono);font-size:12px;
+    letter-spacing:.18em;z-index:10001;
+    padding:6px 16px;border-radius:999px;
+    background:rgba(10,20,40,.5);
+    border:1px solid rgba(0,180,220,.15);
+    backdrop-filter:blur(10px);
+  }
+  .lightbox-counter::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:#00e0a0;
+    box-shadow:0 0 8px rgba(0,224,160,.8);animation:lbHudBlink 1.5s ease-in-out infinite;
+  }
+  .shot-card{cursor:zoom-in}
+
+  @media (max-width:760px){
+    .lightbox-close{top:14px;right:14px;width:40px;height:40px;font-size:18px}
+    .lightbox-nav{width:46px;height:46px;font-size:22px}
+    .lightbox-prev{left:10px}.lightbox-next{right:10px}
+    .lightbox-prev:hover,.lightbox-next:hover{left:10px;right:10px}
+    .lb-window{padding:38px 12px 14px;border-radius:12px}
+    .lb-traffic{top:10px;left:12px;gap:7px}
+    .lb-dot{width:10px;height:10px}
+    .lb-hud{display:none}
+    .lb-title{top:10px;font-size:9px;letter-spacing:.12em}
+    .lightbox-img{max-width:calc(96vw - 24px);max-height:calc(70vh - 70px)}
+    .lightbox-caption{margin-top:18px;padding:10px 18px;font-size:11px}
+    .lightbox-counter{bottom:16px;font-size:10px;padding:4px 12px}
+    .lb-horizon{display:none}
+    .lb-glow-right{display:none}
+  }
+
   /* ====== footer ====== */
-  footer{border-top:1px solid var(--line);padding:80px 5vw 50px;margin-top:60px;position:relative}
-  .foot-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  footer{padding:20px 5vw 40px;margin-top:60px;position:relative}
+  .foot-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:900px;margin:0 auto}
+  .foot-col{text-align:center}
   @media (max-width:860px){.foot-inner{grid-template-columns:1fr}}
   .foot-brand{font-family:var(--ff-display);font-weight:800;font-size:42px;line-height:1}
   .foot-brand .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .foot-brand p{font-family:var(--ff-body);font-size:14px;color:var(--ink-dim);margin-top:18px;max-width:380px;line-height:1.8;font-weight:300}
   .foot-col h5{font-family:var(--ff-mono);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:20px}
   .foot-col a{display:block;color:var(--ink-dim);font-size:14px;padding:6px 0;transition:.3s}
-  .foot-col a:hover{color:var(--cyan);padding-left:6px}
-  .foot-bottom{margin:60px 0 0;padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--ff-mono);font-size:11px;color:var(--ink-faint);letter-spacing:.1em;flex-wrap:wrap;gap:14px}
+  .foot-col a:hover{color:var(--cyan);transform:translateX(4px)}
+  .foot-bottom{
+    margin:0 auto;padding:0;max-width:900px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    gap:24px;text-align:center;
+    position:relative;
+  }
+  .foot-bottom::before{
+    content:"";position:absolute;top:-20px;left:-5vw;right:-5vw;
+    border-top:1px solid var(--line);
+  }
+  .foot-home{
+    margin-top:20px;
+    font-family:var(--ff-body);font-size:13px;letter-spacing:.05em;
+    color:var(--cyan);opacity:.85;text-decoration:none;
+    padding:8px 20px;border-radius:10px;
+    border:1px solid rgba(0,180,220,.28);
+    background:rgba(0,180,220,.06);
+    transition:.3s;
+  }
+  .foot-home:hover{opacity:1;transform:translateY(-2px);background:rgba(0,180,220,.12);border-color:rgba(0,180,220,.55)}
+  .foot-bottom > span:last-child{
+    padding-bottom:0;
+    font-family:var(--ff-mono);font-size:11px;color:var(--ink-faint);letter-spacing:.1em;
+  }
+
+  /* 返回顶部按钮 */
+  .back-to-top{
+    position:fixed;right:32px;bottom:32px;z-index:999;
+    width:54px;height:54px;
+    border-radius:16px;
+    border:1.5px solid rgba(0,180,220,.45);
+    background:
+      radial-gradient(circle at 30% 20%,rgba(80,220,255,.25),transparent 60%),
+      linear-gradient(145deg,#0e2540,#061224);
+    color:#4fd8ff;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:
+      0 10px 30px rgba(0,20,50,.55),
+      0 0 0 1px rgba(80,210,255,.15) inset,
+      0 0 30px rgba(0,180,230,.25),
+      0 0 0 6px rgba(0,180,230,.06);
+    opacity:0;visibility:hidden;
+    transform:translateY(20px) scale(.9);
+    transition:all .4s cubic-bezier(.16,1,.3,1);
+  }
+  .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .back-to-top svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;filter:drop-shadow(0 0 6px rgba(80,210,255,.7))}
+  .back-to-top:hover{
+    color:#fff;
+    transform:translateY(-5px) scale(1.04);
+    border-color:rgba(120,230,255,.75);
+    box-shadow:
+      0 14px 38px rgba(0,20,50,.6),
+      0 0 0 1px rgba(120,230,255,.25) inset,
+      0 0 48px rgba(0,200,255,.45),
+      0 0 0 8px rgba(0,200,255,.08);
+  }
+  .back-to-top:active{transform:translateY(0) scale(.97)}
 
   /* counter */
   .counter{display:inline-block}
@@ -373,15 +769,19 @@
   .flow-svg .faint{fill:var(--ink-faint)}
 
   /* flowing dash */
-  .flow-line{stroke-dasharray:6 6;animation:dash 1.2s linear infinite}
+  .flow-line{stroke-dasharray:6 6;animation:dash 1s linear infinite;filter:drop-shadow(0 0 4px rgba(61,240,255,.5))}
   @keyframes dash{to{stroke-dashoffset:-24}}
 
   /* moving data dots */
   .data-dot{r:3.5;fill:var(--cyan);filter:drop-shadow(0 0 6px var(--cyan))}
 
+  /* flowing particles */
+  @keyframes flowParticle{0%{opacity:0;offset-distance:0%}10%{opacity:1}90%{opacity:1}100%{opacity:0;offset-distance:100%}}
+  .flow-particle{r:2.5;fill:#fff;filter:drop-shadow(0 0 8px var(--cyan))}
+
   /* pulse node */
-  .pulse-node{transform-origin:center;transform-box:fill-box;animation:pulseNode 2.4s ease-in-out infinite}
-  @keyframes pulseNode{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+  .pulse-node{transform-origin:center;transform-box:fill-box;animation:pulseNode 2s ease-in-out infinite}
+  @keyframes pulseNode{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 
   /* glow ring */
   .glow-ring{transform-origin:center;transform-box:fill-box;animation:glowRing 2.6s ease-out infinite}
@@ -392,20 +792,21 @@
   .feat-diagram svg{width:100%;height:100%}
 
   /* scenario arch diagram */
-  .case-arch{margin-top:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--surface-2),var(--bg));padding:24px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+  .case-arch{margin-top:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--surface-2),var(--bg));padding:24px;position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center}
   .case-arch::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(var(--cyan-rgb),.06),transparent);pointer-events:none}
-  .case-arch .ttl{font-family:var(--ff-body);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;position:relative;z-index:2;text-align:center}
-  .case-arch svg{position:relative;z-index:2;display:block;width:100%;max-width:880px;height:auto;margin:0 auto}
-  .case-arch .scroll-x{padding-bottom:10px;display:flex;justify-content:center;align-items:center;width:100%}
-  .case-arch .scroll-x svg{width:100%;max-width:880px;margin:0 auto}
+  .case-arch .ttl{font-family:var(--ff-body);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:20px;margin-top:28px;position:relative;z-index:2;text-align:center}
+  .case-arch svg{position:relative;z-index:2;display:block;width:100%;height:auto;margin:0 auto}
+  .case-arch .scroll-x{padding-bottom:10px;display:block;width:100%;overflow-x:auto}
+  .case-arch .scroll-x svg{width:100%;height:auto;margin:0 auto;display:block}
   .case-arch .scroll-x::-webkit-scrollbar{height:8px}
   .case-arch .scroll-x::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:4px}
   .case-arch .scroll-x::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.35);border-radius:4px}
   .case-arch .scroll-x::-webkit-scrollbar-thumb:hover{background:rgba(var(--cyan-rgb),.55)}
   /* ======= case study diagrams only (NOT function modules) ======= */
   .case .case-arch{padding:10px 4px;margin-top:18px;justify-content:center}
-  .case .case-arch svg{max-width:none;width:100%;height:auto;display:block;margin:0 auto}
-  .case .case-arch .scroll-x svg{max-width:none;width:100%;display:block;margin:0 auto}
+  .case .case-arch svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .case .case-arch .scroll-x{display:flex;justify-content:center}
+  .case .case-arch .scroll-x svg{max-width:100%;display:block;margin:0 auto}
   .arch-leg{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:-56px;position:relative;z-index:2;justify-content:center}
   .arch-leg .lg{display:flex;align-items:center;gap:6px}
   .arch-leg .sw{width:10px;height:10px;border-radius:3px}
@@ -442,9 +843,47 @@
   .stagger5{animation-delay:2.4s}
 
   /* node hover in diagrams */
-  .arch-svg-node{transition:.25s;cursor:none}
+  .arch-svg-node{transition:.25s;cursor:pointer}
   .arch-svg-node:hover{filter:brightness(1.4)}
   .arch-svg-node:hover rect{stroke:var(--cyan)!important;stroke-width:1.5!important}
+
+  /* ====== function sub-nav (sticky anchor chips) ====== */
+  .func-subnav{
+    position:sticky;
+    top:70px;
+    z-index:50;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    padding:14px 16px;
+    margin:0 0 50px;
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+  }
+  [data-theme="light"] .func-subnav{background:#fff;border-color:var(--line)}
+  .func-subnav a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 18px;
+    border-radius:40px;
+    border:1px solid var(--line-strong);
+    font-family:var(--ff-mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--ink-dim);
+    transition:.3s;
+    white-space:nowrap;
+  }
+  .func-subnav a .sn-n{font-weight:700;color:var(--cyan);font-size:11px}
+  .func-subnav a:hover{border-color:var(--cyan);color:var(--ink);background:rgba(var(--cyan-rgb),.08)}
+  .func-subnav a.active{border-color:var(--cyan);color:var(--cyan);background:rgba(var(--cyan-rgb),.12)}
+  @media (max-width:860px){
+    .func-subnav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;top:56px;border-radius:12px}
+    .func-subnav::-webkit-scrollbar{display:none}
+  }
 
   /* ====== function modules ====== */
   .func-module{border:1px solid var(--line-strong);border-radius:24px;background:linear-gradient(180deg,rgba(20,26,46,.95),rgba(11,15,29,.95));overflow:visible;margin-bottom:40px;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.4)}
@@ -454,12 +893,410 @@
   .func-title h3{font-family:var(--ff-display);font-weight:700;font-size:30px;line-height:1.2;margin-bottom:4px}
   .func-title .func-en{font-family:var(--ff-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
   .func-body{display:flex;flex-direction:column;gap:0}
-  .func-arch{padding:0 0 40px;border-bottom:1px solid var(--line);width:100%;overflow:visible}
-  .func-arch .case-arch{margin-top:0;padding:0;overflow:visible;border:none;background:transparent;display:block}
+  .func-arch{padding:0 0 40px;border-bottom:1px solid var(--line);width:100%;overflow:visible;display:flex;justify-content:center}
+  .func-arch .case-arch{margin-top:0;padding:0;overflow:visible;border:none;background:transparent;display:block;width:100%;max-width:1200px}
+
+  /* ====== section tabs (functions/scenarios) ====== */
+  .section-tabs{display:flex;gap:0;margin:32px 0 24px;border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;width:100%;background:var(--surface)}
+  .section-tab{
+    flex:1;padding:14px 20px;font-family:var(--ff-body);font-size:14px;font-weight:600;letter-spacing:.02em;
+    background:transparent;color:var(--ink-dim);border:none;cursor:pointer;transition:.3s;
+    border-right:1px solid var(--line-strong);white-space:nowrap;
+  }
+  .section-tab:last-child{border-right:none}
+  .section-tab:hover{color:var(--ink);background:rgba(var(--cyan-rgb),.04)}
+  .section-tab.active{color:var(--cyan);background:rgba(var(--cyan-rgb),.08);font-weight:700}
+  .section-tab .sn-n{font-family:var(--ff-num);font-size:13px;margin-right:8px;opacity:.7}
+  .section-tab.active .sn-n{opacity:1}
+  .section-tab-panel{display:none;height:950px;overflow:hidden}
+  .section-tab-panel.active{display:flex;flex-direction:column;animation:fadeUp .4s ease}
+  .section-tab-panel>.func-module{height:950px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;margin-bottom:0}
+  .section-tab-panel>.func-module>.func-header{flex-shrink:0}
+  .section-tab-panel>.func-module>.func-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .section-tab-panel>.func-module>.func-body::-webkit-scrollbar{width:8px}
+  .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:4px}
+  .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.3);border-radius:4px}
+  .section-tab-panel>.func-module>.func-body::-webkit-scrollbar-thumb:hover{background:rgba(var(--cyan-rgb),.5)}
+  #func-analytics .func-arch{flex:1;padding:0;border-bottom:none;width:100%;min-height:0;position:relative;display:block}
+  #func-analytics .func-arch .web-app{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;border:none;border-radius:0}
+  #func-analytics .func-info{flex-shrink:0}
+  @media (max-width:760px){
+    .section-tabs{flex-wrap:wrap}
+    .section-tab{flex:1 1 45%;border-right:none;border-bottom:1px solid var(--line-strong)}
+    .section-tab:nth-last-child(-n+2){border-bottom:none}
+    .section-tab-panel{height:auto;overflow:visible}
+    .section-tab-panel.active{display:block}
+    .section-tab-panel>.func-module{height:auto;overflow:visible;margin-bottom:40px}
+    .section-tab-panel>.func-module>.func-body{overflow:visible;padding:0}
+    #func-analytics .func-arch{width:auto;height:auto}
+    #func-analytics .func-arch .web-app{position:static;inset:auto;width:100%;height:auto;border:1px solid var(--line-strong);border-radius:16px}
+  }
+
+  /* ====== accordion (config cards) ====== */
+  .accordion-card{border:1px solid var(--line-strong);border-radius:16px;background:linear-gradient(180deg,var(--surface),var(--bg));overflow:hidden;transition:box-shadow .3s}
+  .accordion-card.open{box-shadow:0 8px 40px rgba(0,0,0,.35)}
+  .accordion-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;user-select:none}
+  .accordion-head:hover{background:rgba(var(--cyan-rgb),.04)}
+  .accordion-head .ah-title{font-family:var(--ff-body);font-size:16px;font-weight:700;color:var(--ink)}
+  .accordion-head .ah-meta{font-family:var(--ff-mono);font-size:11px;color:var(--ink-faint);letter-spacing:.06em}
+  .accordion-head .ah-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);transition:transform .3s;font-size:14px}
+  .accordion-card.open .accordion-head .ah-icon{transform:rotate(45deg);color:var(--cyan)}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px}
+  .accordion-card.open .accordion-body{max-height:3000px;padding:0 20px 20px}
+  .accordion-wrap{display:flex;flex-direction:column;gap:16px}
+  .accordion-body .dc-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .accordion-body .dc-row:last-child{border-bottom:none}
+  .accordion-body .dc-row span{color:var(--ink-dim)}
+  .accordion-body .dc-row b{color:var(--ink);font-weight:500}
+
+  /* ====== data analysis tabs ====== */
+  .data-tabs{grid-row:2;display:flex;gap:0;margin-bottom:0;border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;width:100%;background:rgba(18,24,38,.6)}
+  .data-tab{
+    flex:1;padding:14px 28px;font-family:var(--ff-mono);font-size:14px;letter-spacing:.08em;
+    background:transparent;color:var(--ink-dim);border:none;cursor:pointer;transition:.3s;
+    border-right:1px solid var(--line-strong);white-space:nowrap;
+    position:relative;overflow:hidden;
+  }
+  .data-tab:last-child{border-right:none}
+  .data-tab:hover{color:var(--ink);background:rgba(var(--cyan-rgb),.1);transform:translateY(-1px);box-shadow:inset 0 -1px 0 rgba(0,200,230,.3)}
+  .data-tab:hover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,200,230,.08),transparent 60%);pointer-events:none}
+  .data-tab:active{transform:translateY(0) scale(.99)}
+  .data-tab.active{
+    background:rgba(var(--cyan-rgb),.18);color:var(--cyan);font-weight:700;
+    box-shadow:
+      inset 0 0 0 1px rgba(0,200,230,.45),
+      inset 0 -2px 0 rgba(0,220,255,.8),
+      0 0 18px rgba(0,200,230,.18);
+    text-shadow:0 0 10px rgba(0,200,230,.5);
+  }
+  .data-tab.active::after{
+    content:"";position:absolute;left:16px;right:16px;bottom:3px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    border-radius:2px;
+  }
+  .data-tab-panel{display:none;width:100%;grid-row:3;overflow-y:auto}
+  .data-tab-panel.active{display:flex;flex-direction:column;gap:12px}
+  .data-tab-panel::-webkit-scrollbar{width:6px}
+  .data-tab-panel::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:3px}
+  .data-tab-panel::-webkit-scrollbar-thumb{background:rgba(var(--cyan-rgb),.35);border-radius:3px}
+  .data-tab-panel::-webkit-scrollbar-thumb:hover{background:rgba(var(--cyan-rgb),.55)}
+  .data-tab-panel .kpi-grid{flex-shrink:0}
+  .data-tab-panel .chart-row{flex:1;min-height:0;grid-template-rows:1fr}
+  .data-tab-panel .table-card{flex-shrink:0}
+  .data-tab-panel .dual-chart{flex:1;min-height:0;grid-template-rows:1fr}
+  .data-tab-panel .chart-card{display:flex;flex-direction:column;padding:12px 14px}
+  .data-tab-panel>.chart-card{flex:1;min-height:0}
+  .data-tab-panel .chart-card .c-hd{flex-shrink:0;margin-bottom:6px}
+  .data-tab-panel .chart-card .chart-svg-wrap{flex:1;min-height:340px;display:flex;justify-content:center;align-items:center;overflow:hidden}
+  .data-tab-panel .chart-card .chart-legend{flex-shrink:0;margin-top:8px}
+  .data-tab-panel .chart-controls{flex-shrink:0}
+  .data-tab-panel .chart-svg-wrap svg{width:100%;height:100%;max-height:none}
+
+  /* ====== data analysis web app ====== */
+  .web-app{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:0;
+    border:1px solid var(--line-strong);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--bg-2);
+  }
+  .web-sidebar{
+    background:rgba(7,9,18,.6);
+    border-right:1px solid var(--line-strong);
+    padding:20px 0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  [data-theme="light"] .web-sidebar{background:#f0f2f5}
+  [data-theme="light"] .data-tabs{background:#fff;border-color:var(--line-strong);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  [data-theme="light"] .data-tab{color:var(--ink-dim);border-right-color:var(--line-strong)}
+  [data-theme="light"] .data-tab:hover{color:var(--ink);background:rgba(0,113,227,.06);box-shadow:inset 0 -1px 0 rgba(0,113,227,.25)}
+  [data-theme="light"] .data-tab:hover::before{background:linear-gradient(180deg,rgba(0,113,227,.06),transparent 60%)}
+  [data-theme="light"] .data-tab.active{
+    background:rgba(0,113,227,.1);color:#0071e3;
+    box-shadow:
+      inset 0 0 0 1px rgba(0,113,227,.35),
+      inset 0 -2px 0 rgba(0,113,227,.7),
+      0 0 12px rgba(0,113,227,.12);
+    text-shadow:none;
+  }
+  [data-theme="light"] .data-tab.active::after{background:linear-gradient(90deg,transparent,#0071e3,transparent)}
+  .web-logo{
+    font-family:var(--ff-display);
+    font-weight:700;
+    font-size:16px;
+    color:var(--cyan);
+    letter-spacing:.05em;
+  }
+  .web-logo-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px 14px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4px;
+  }
+  .web-collapse{
+    width:20px;height:20px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;line-height:1;
+    color:var(--ink-faint);
+    cursor:pointer;
+    border-radius:4px;
+    transition:.2s;
+  }
+  .web-collapse:hover{color:var(--ink);background:rgba(var(--cyan-rgb),.08)}
+  .web-nav-group{
+    font-family:var(--ff-body);
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--ink);
+    padding:10px 16px 6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .web-nav-group em{
+    font-style:normal;
+    font-size:10px;
+    color:var(--ink-faint);
+  }
+  .web-nav-item{
+    padding:6px 16px 6px 32px;
+    font-size:12px;
+    color:var(--ink-dim);
+    cursor:pointer;
+    transition:.2s;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .web-nav-item::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:currentColor;opacity:.4;
+  }
+  .web-nav-item:hover{color:var(--ink);background:rgba(var(--cyan-rgb),.05)}
+  .web-nav-item.active{
+    color:var(--cyan);
+    background:rgba(var(--cyan-rgb),.08);
+    font-weight:600;
+  }
+  .web-nav-item.active::before{opacity:1}
+  .web-main{
+    padding:20px 24px 24px;
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto 1fr;
+    gap:16px;
+    height:100%;
+    overflow:hidden;
+  }
+  .web-header{
+    grid-row:1;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:var(--ff-mono);
+    font-size:11px;
+    color:var(--ink-dim);
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .web-header .wb-val{color:var(--ink)}
+  .web-filter{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .web-filter-chip{
+    padding:5px 12px;
+    font-size:11px;
+    font-family:var(--ff-mono);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--ink-dim);
+    background:var(--surface);
+  }
+  .web-filter-chip.active{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    background:rgba(var(--cyan-rgb),.1);
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+  .kpi-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .kpi-card .klbl{
+    font-family:var(--ff-mono);
+    font-size:10px;
+    letter-spacing:.08em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+  .kpi-card .kval{
+    font-family:var(--ff-display);
+    font-weight:700;
+    font-size:22px;
+    color:var(--cyan);
+    letter-spacing:-.01em;
+  }
+  .kpi-card.v2 .kval{color:var(--violet)}
+  .kpi-card.v3 .kval{color:var(--gold)}
+  .kpi-card.v4 .kval{color:#ff5a78}
+  .kpi-card.v5 .kval{color:var(--ink)}
+  .kpi-card.v6 .kval{color:var(--ink)}
+  .kpi-card.v7 .kval{color:var(--ink);font-size:12px;font-family:var(--ff-mono);font-weight:500}
+  .kpi-card.date .kval{color:var(--ink);font-size:14px;font-family:var(--ff-num);font-weight:500}
+  .chart-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .chart-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .chart-card .c-hd{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:var(--ff-mono);
+    font-size:11px;
+    color:var(--ink-dim);
+    letter-spacing:.08em;
+  }
+  .chart-card .c-hd .ctitle{color:var(--cyan);font-weight:600}
+  .chart-card .c-hd .ctitle.v2{color:var(--violet)}
+  .chart-card .c-hd .ctitle.v3{color:var(--gold)}
+  .chart-card .c-hd .tab-hl{color:var(--cyan);font-weight:600;border:1px solid var(--cyan);padding:1px 8px;border-radius:4px;font-size:10px}
+  .chart-svg-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex:1;
+    min-height:220px;
+  }
+  .chart-svg-wrap svg{width:100%;height:auto;max-height:240px}
+  .chart-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 14px;
+    font-size:11px;
+    color:var(--ink-dim);
+  }
+  .chart-legend .l-item{display:flex;align-items:center;gap:5px}
+  .chart-legend .l-sq{width:9px;height:9px;border-radius:2px}
+  .table-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .table-card .tc-hd{
+    padding:12px 16px;
+    font-family:var(--ff-mono);
+    font-size:11px;
+    color:var(--gold);
+    letter-spacing:.08em;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .table-card table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px;
+  }
+  .table-card th{
+    text-align:left;
+    padding:8px 16px;
+    font-family:var(--ff-mono);
+    font-size:10px;
+    letter-spacing:.1em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  .table-card td{
+    padding:7px 16px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+  }
+  .table-card tr:last-child td{border-bottom:none}
+  .table-card .rank{color:var(--violet);font-weight:600}
+  .table-card .fname{font-family:var(--ff-mono);font-size:11px}
+  .table-card .fsize{font-family:var(--ff-mono);font-size:11px;color:var(--cyan);text-align:right}
+  .table-card .ftype{color:var(--ink-dim);font-family:var(--ff-mono);font-size:10px}
+  .table-card .fpath{color:var(--ink-faint);font-family:var(--ff-mono);font-size:10px}
+  .table-card tr:hover td{background:rgba(var(--cyan-rgb),.04)}
+  .chart-controls{
+    display:flex;
+    gap:8px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4px;
+  }
+  .chart-controls .cc-chip{
+    padding:5px 12px;
+    font-size:11px;
+    font-family:var(--ff-mono);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--ink-dim);
+    background:transparent;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .chart-controls .cc-chip:hover{color:var(--ink);border-color:var(--ink-dim)}
+  .chart-controls .cc-chip.active{border-color:var(--cyan);color:var(--cyan);background:rgba(var(--cyan-rgb),.1)}
+  .dual-chart{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  @media (max-width:860px){
+    .web-app{grid-template-columns:1fr;height:auto}
+    .web-sidebar{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--line-strong)}
+    .web-nav-group{display:none}
+    .web-nav-item{white-space:nowrap;border-left:none;border-bottom:2px solid transparent}
+    .web-nav-item.active{border-bottom-color:var(--cyan);border-left-color:transparent}
+    .kpi-grid{grid-template-columns:repeat(2,1fr)}
+    .chart-row{grid-template-columns:1fr}
+    .dual-chart{grid-template-columns:1fr}
+  }
+  @media (max-width:860px){
+    .data-tabs{flex-direction:column;border-radius:12px}
+    .data-tab{border-right:none;border-bottom:1px solid var(--line-strong)}
+    .data-tab:last-child{border-bottom:none}
+  }
   .func-arch .case-arch::before{display:none}
-  .func-arch .case-arch .scroll-x{overflow:visible;display:block}
-  .func-arch .case-arch svg{width:90%;height:auto;display:block;margin:6px auto 32px;max-width:none}
-  .func-arch .case-arch .ttl{margin-bottom:2px;font-size:16px}
+  .func-arch .case-arch .scroll-x{overflow-x:auto;display:flex;justify-content:center}
+  .func-arch .case-arch svg{width:1100px;max-width:100%;height:auto;display:block;margin:6px auto 32px}
+  .func-arch .case-arch .ttl{margin-bottom:2px;margin-top:32px;font-size:16px}
   .func-arch .case-arch .arch-leg{margin-top:-48px}
   .func-info{padding:48px 40px 36px;display:grid;grid-template-columns:1fr 1fr;gap:32px 48px}
   @media (max-width:980px){.func-info{grid-template-columns:1fr}
@@ -564,6 +1401,9 @@
   [data-theme="light"] .cfg{background:linear-gradient(180deg,var(--surface),#fff)}
   [data-theme="light"] .cfg.featured{background:linear-gradient(180deg,rgba(0,113,227,.04),#fff)}
   [data-theme="light"] .deploy-card{background:linear-gradient(180deg,var(--surface),#fff)}
+  [data-theme="light"] .shot-card{background:#fff;border:1px solid var(--line)}
+  [data-theme="light"] .shot-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.12)}
+  [data-theme="light"] .shot-img-wrap{background:rgba(0,0,0,.02)}
   /* light mode SVG text color fixes */
   [data-theme="light"] .flow-svg [fill="#eef2ff"]{fill:#1a1a1f!important}
   [data-theme="light"] .flow-svg [fill="#9aa3c4"]{fill:#494952!important}
@@ -594,10 +1434,9 @@
   [data-theme="light"] .arch-node,[data-theme="light"] .arch-svg-node{cursor:pointer}
 </style>
 </head>
-<body>
+<body id="top">
 
-<div class="cursor"></div>
-<div class="cursor-dot"></div>
+
 <div class="bg-mesh"></div>
 <div class="grid-overlay"></div>
 <div class="noise"></div>
@@ -609,6 +1448,8 @@
     <a href="#functions">功能</a>
     <a href="#advantages">优势</a>
     <a href="#scenarios">案例</a>
+    <a href="#configs-sec">部署</a>
+    <a href="#screenshots">展示</a>
   </div>
   <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
     <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -799,8 +1640,18 @@
     <p class="sec-desc">智能数据迁移 · 数据智能分层 · 数据分析 · 工业质检数据处理 · 数据归档。源自 LiSA 整体方案架构，覆盖数据从产生、流转、分层、归档的全生命周期。</p>
   </div>
 
+  <!-- Function Tabs -->
+  <div class="section-tabs" role="tablist" aria-label="功能模块">
+    <button class="section-tab active" data-tab="func-migration" role="tab"><span class="sn-n">01</span>智能迁移</button>
+    <button class="section-tab" data-tab="func-tiering" role="tab"><span class="sn-n">02</span>数据分层</button>
+    <button class="section-tab" data-tab="func-dfs" role="tab"><span class="sn-n">03</span>工业质检 DFS</button>
+    <button class="section-tab" data-tab="func-analytics" role="tab"><span class="sn-n">04</span>数据分析</button>
+    <button class="section-tab" data-tab="func-archive" role="tab"><span class="sn-n">05</span>数据归档</button>
+  </div>
+
   <!-- ===== Module 1: 智能数据迁移 ===== -->
-  <div class="func-module reveal">
+  <div class="section-tab-panel active" data-panel="func-migration">
+  <div class="func-module reveal" id="func-migration">
     <div class="func-header">
       <div class="func-num">01</div>
       <div class="func-title">
@@ -813,7 +1664,7 @@
         <div class="case-arch">
           <div class="ttl">架构图 · Architecture</div>
           <div class="scroll-x">
-            <svg viewBox="0 0 675 250" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="g-mig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3df0ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
               </defs>
@@ -851,9 +1702,9 @@
               <text x="540" y="262" font-size="9" fill="#3df0ff" font-family="JetBrains Mono" text-anchor="middle">ENGINE ADVANTAGES · 引擎特性</text>
               <text x="540" y="282" font-size="9" fill="#9aa3c4" text-anchor="middle">▎对选定范围数据，按生命周期自动执行迁移任务</text>
               <text x="540" y="300" font-size="9" fill="#9aa3c4" text-anchor="middle">▎跨集群、跨存储品牌异构统一迁移</text>
-              <text x="540" y="318" font-size="9" fill="#9aa3c4" text-anchor="middle">▎支持并发传输</text>
-              <text x="540" y="336" font-size="9" fill="#9aa3c4" text-anchor="middle">▎丰富的迁移策略与流控配置</text>
-              <text x="540" y="354" font-size="9" fill="#9aa3c4" text-anchor="middle">▎容易部署和使用</text>
+              <text x="480" y="318" font-size="9" fill="#9aa3c4" text-anchor="start">▎支持并发传输</text>
+              <text x="480" y="336" font-size="9" fill="#9aa3c4" text-anchor="start">▎丰富的迁移策略与流控配置</text>
+              <text x="480" y="354" font-size="9" fill="#9aa3c4" text-anchor="start">▎容易部署和使用</text>
               <circle cx="540" cy="378" r="4" class="pulse-node" fill="var(--cyan)"/>
 
               <!-- LiSA -> 目标 数据流 -->
@@ -904,9 +1755,11 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- ===== Module 2: 数据智能分层 ===== -->
-  <div class="func-module reveal">
+  <div class="section-tab-panel" data-panel="func-tiering">
+  <div class="func-module reveal" id="func-tiering">
     <div class="func-header">
       <div class="func-num">02</div>
       <div class="func-title">
@@ -919,7 +1772,7 @@
         <div class="case-arch">
           <div class="ttl">架构图 · Architecture</div>
           <div class="scroll-x">
-            <svg viewBox="0 0 675 225" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
         <!-- 左：热层 ONTAP NAS -->
         <rect x="14" y="50" width="200" height="200" rx="12" fill="rgba(245,200,122,.06)" stroke="rgba(139,123,255,.3)"/>
         <text x="114" y="74" text-anchor="middle" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">HOT TIER · 热数据层</text>
@@ -936,8 +1789,8 @@
         <g class="arch-svg-node"><rect x="550" y="92" width="190" height="48" rx="6" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="645" y="113" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">智能标签引擎</text><text x="645" y="128" text-anchor="middle" fill="#3df0ff" font-size="8">按生命周期打标</text></g>
         <g class="arch-svg-node"><rect x="340" y="150" width="190" height="48" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--violet)"/><text x="435" y="171" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">迁移引擎</text><text x="435" y="186" text-anchor="middle" fill="#8b7bff" font-size="8">并发传输 · 灵活策略</text></g>
         <g class="arch-svg-node"><rect x="550" y="150" width="190" height="48" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="645" y="171" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">工作流引擎</text><text x="645" y="186" text-anchor="middle" fill="#8b7bff" font-size="8">事件/策略驱动</text></g>
-        <text x="540" y="220" text-anchor="middle" font-size="9" fill="#9aa3c4">▎对选定范围数据，按生命周期自动执行迁移/分层/归档任务</text>
-        <text x="540" y="238" text-anchor="middle" font-size="9" fill="#5d6685">可灵活增加新任务类型 · 灵活定义执行模式与周期</text>
+        <text x="445" y="220" text-anchor="start" font-size="9" fill="#9aa3c4">▎对选定范围数据，按生命周期自动执行迁移/分层/归档任务</text>
+        <text x="445" y="238" text-anchor="start" font-size="9" fill="#5d6685">可灵活增加新任务类型 · 灵活定义执行模式与周期</text>
         <circle cx="540" cy="252" r="4" class="pulse-node" fill="var(--cyan)"/>
 
         <!-- 热层 -> LiSA -->
@@ -998,9 +1851,11 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- ===== Module 3: 工业质检数据处理 DFS ===== -->
-  <div class="func-module reveal">
+  <div class="section-tab-panel" data-panel="func-dfs">
+  <div class="func-module reveal" id="func-dfs">
     <div class="func-header">
       <div class="func-num">03</div>
       <div class="func-title">
@@ -1013,7 +1868,7 @@
         <div class="case-arch">
           <div class="ttl">架构图 · Architecture</div>
           <div class="scroll-x">
-            <svg viewBox="0 0 675 275" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="g-dfs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3df0ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
               </defs>
@@ -1046,12 +1901,12 @@
               <g class="arch-svg-node"><rect x="298" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="375" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">高级检索</text><text x="375" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">全文 · 标签</text></g>
               <g class="arch-svg-node"><rect x="465" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="542" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">图像处理引擎</text><text x="542" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">缩略图 · 水印</text></g>
               <g class="arch-svg-node"><rect x="632" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="709" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">权限管理</text><text x="709" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">多租户 · RBAC</text></g>
-              <text x="540" y="252" text-anchor="middle" font-size="9" fill="#3df0ff" font-family="JetBrains Mono">FUSION CLUSTER · 融合存储集群</text>
-              <text x="540" y="270" text-anchor="middle" font-size="9" fill="#9aa3c4">▎高性能文件池 + 归档对象池融合部署</text>
-              <text x="540" y="288" text-anchor="middle" font-size="9" fill="#9aa3c4">▎跨池跨集群千亿条目秒级检索</text>
-              <text x="540" y="306" text-anchor="middle" font-size="9" fill="#9aa3c4">▎自管理 Agent 自动配置上传/备份/标签</text>
-              <text x="540" y="324" text-anchor="middle" font-size="9" fill="#9aa3c4">▎可集成联想 AI 工业质检等增值服务</text>
-              <text x="540" y="342" text-anchor="middle" font-size="9" fill="#9aa3c4">▎监控机台问题并主动告警</text>
+              <text x="460" y="252" text-anchor="start" font-size="9" fill="#3df0ff" font-family="JetBrains Mono">FUSION CLUSTER · 融合存储集群</text>
+              <text x="460" y="270" text-anchor="start" font-size="9" fill="#9aa3c4">▎高性能文件池 + 归档对象池融合部署</text>
+              <text x="460" y="288" text-anchor="start" font-size="9" fill="#9aa3c4">▎跨池跨集群千亿条目秒级检索</text>
+              <text x="460" y="306" text-anchor="start" font-size="9" fill="#9aa3c4">▎自管理 Agent 自动配置上传/备份/标签</text>
+              <text x="460" y="324" text-anchor="start" font-size="9" fill="#9aa3c4">▎可集成联想 AI 工业质检等增值服务</text>
+              <text x="460" y="342" text-anchor="start" font-size="9" fill="#9aa3c4">▎监控机台问题并主动告警</text>
               <circle cx="540" cy="366" r="4" class="pulse-node" fill="var(--cyan)"/>
 
               <!-- LiSA -> 存储池 数据流 -->
@@ -1099,9 +1954,11 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- ===== Module 4: 数据分析 ===== -->
-  <div class="func-module reveal">
+  <div class="section-tab-panel" data-panel="func-analytics">
+  <div class="func-module reveal" id="func-analytics">
     <div class="func-header">
       <div class="func-num">04</div>
       <div class="func-title">
@@ -1111,319 +1968,328 @@
     </div>
     <div class="func-body">
       <div class="func-arch">
-        <!-- Sub-View 1: 资产概览 -->
-        <div class="case-arch" style="margin-bottom:20px">
-          <div class="ttl">① 资产概览 · Asset Overview</div>
-          <div class="scroll-x">
-            <svg viewBox="0 0 675 193" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <!-- KPI Cards Row -->
-              <g class="arch-svg-node"><rect x="16" y="16" width="150" height="48" rx="6" fill="rgba(var(--cyan-rgb),.06)" stroke="rgba(var(--cyan-rgb),.3)"/><text x="91" y="34" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">文件总数</text><text x="91" y="54" text-anchor="middle" font-size="16" fill="#3df0ff" font-weight="700">10,000</text></g>
-              <g class="arch-svg-node"><rect x="176" y="16" width="150" height="48" rx="6" fill="rgba(139,123,255,.06)" stroke="rgba(245,200,122,.3)"/><text x="251" y="34" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">目录总数</text><text x="251" y="54" text-anchor="middle" font-size="16" fill="#8b7bff" font-weight="700">120</text></g>
-              <g class="arch-svg-node"><rect x="336" y="16" width="150" height="48" rx="6" fill="rgba(245,200,122,.06)" stroke="rgba(245,200,122,.3)"/><text x="411" y="34" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">总容量</text><text x="411" y="54" text-anchor="middle" font-size="16" fill="#f5c87a" font-weight="700">50.00 GB</text></g>
-              <g class="arch-svg-node"><rect x="496" y="16" width="150" height="48" rx="6" fill="rgba(255,90,120,.06)" stroke="rgba(255,90,120,.25)"/><text x="571" y="34" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">平均文件大小</text><text x="571" y="54" text-anchor="middle" font-size="16" fill="#ff5a78" font-weight="700">5.12 MB</text></g>
-              <g class="arch-svg-node"><rect x="656" y="16" width="130" height="48" rx="6" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.3)"/><text x="721" y="34" text-anchor="middle" font-size="7" fill="#9aa3c4">最大文件</text><text x="721" y="54" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600">1.00 GB</text></g>
-              <g class="arch-svg-node"><rect x="796" y="16" width="130" height="48" rx="6" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.3)"/><text x="861" y="34" text-anchor="middle" font-size="7" fill="#9aa3c4">最小文件</text><text x="861" y="54" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600">0 B</text></g>
-              <g class="arch-svg-node"><rect x="936" y="16" width="128" height="48" rx="6" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.3)"/><text x="1000" y="34" text-anchor="middle" font-size="7" fill="#9aa3c4">时间范围</text><text x="1000" y="54" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600">2023/12/31 - 2024/12/30</text></g>
+        <!-- Data Analysis Web App -->
+        <div class="web-app">
+          <!-- Left Sidebar -->
+          <aside class="web-sidebar">
+            <div class="web-logo-row">
+              <div class="web-logo">欢迎页</div>
+              <div class="web-collapse" title="折叠">‹</div>
+            </div>
+            <div class="web-nav-group"><span>数据访问</span><em>▾</em></div>
+            <div class="web-nav-group"><span>数据流转</span><em>▾</em></div>
+            <div class="web-nav-group"><span>数据洞察</span><em>▾</em></div>
+            <div class="web-nav-item">智能标签</div>
+            <div class="web-nav-item">元数据检索</div>
+            <div class="web-nav-item active">数据分析</div>
+            <div class="web-nav-group"><span>监控管理</span><em>▾</em></div>
+            <div class="web-nav-group"><span>系统管理</span><em>▾</em></div>
+          </aside>
 
-              <!-- Category Donut -->
-              <rect x="16" y="76" width="340" height="220" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.1)"/>
-              <text x="32" y="96" font-size="10" fill="#3df0ff" font-family="JetBrains Mono">文件类别分布</text>
-              <!-- Donut: video 30%, image 24%, backup 20%, doc 12%, audio 9%, log 5% -->
-              <g transform="translate(120 190)">
-                <circle r="72" fill="rgba(245,200,122,.05)"/>
-                <!-- Video: 30% = 108deg -->
-                <path d="M0 -72 A72 72 0 0 1 62.4 36 Z" fill="rgba(139,123,255,.65)"/>
-                <!-- Image: 24% = 86.4deg -->
-                <path d="M62.4 36 A72 72 0 0 1 -20.9 69.1 Z" fill="rgba(61,240,255,.55)"/>
-                <!-- Backup: 20% = 72deg -->
-                <path d="M-20.9 69.1 A72 72 0 0 1 -69.1 20.9 Z" fill="rgba(245,200,122,.6)"/>
-                <!-- Doc: 12% = 43.2deg -->
-                <path d="M-69.1 20.9 A72 72 0 0 1 -72 -1.2 Z" fill="rgba(255,90,120,.55)"/>
-                <!-- Audio: 9% = 32.4deg -->
-                <path d="M-72 -1.2 A72 72 0 0 1 -59.2 -39.1 Z" fill="rgba(100,220,180,.55)"/>
-                <!-- Log: 5% = 18deg -->
-                <path d="M-59.2 -39.1 A72 72 0 0 1 0 -72 Z" fill="rgba(200,140,240,.5)"/>
-                <circle r="36" fill="rgba(7,9,18,.98)"/>
-                <text y="-4" text-anchor="middle" font-size="8" fill="#9aa3c4">类别数</text>
-                <text y="12" text-anchor="middle" font-size="16" fill="#eef2ff" font-weight="700">10,000</text>
-              </g>
-              <!-- Legend -->
-              <g transform="translate(250 104)">
-                <g><rect width="9" height="9" rx="2" fill="rgba(139,123,255,.65)"/><text x="15" y="9" font-size="8" fill="#eef2ff">视频</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#8b7bff">3,000</text></g>
-                <g transform="translate(0 18)"><rect width="9" height="9" rx="2" fill="rgba(61,240,255,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">图片</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#3df0ff">2,400</text></g>
-                <g transform="translate(0 36)"><rect width="9" height="9" rx="2" fill="rgba(245,200,122,.6)"/><text x="15" y="9" font-size="8" fill="#eef2ff">备份</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#f5c87a">2,000</text></g>
-                <g transform="translate(0 54)"><rect width="9" height="9" rx="2" fill="rgba(255,90,120,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">文档</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#ff5a78">1,200</text></g>
-                <g transform="translate(0 72)"><rect width="9" height="9" rx="2" fill="rgba(100,220,180,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">音频</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#64dcb4">900</text></g>
-                <g transform="translate(0 90)"><rect width="9" height="9" rx="2" fill="rgba(200,140,240,.5)"/><text x="15" y="9" font-size="8" fill="#eef2ff">日志</text><text x="90" y="9" text-anchor="end" font-size="8" fill="#c88cf0">500</text></g>
-              </g>
+          <!-- Main Content -->
+          <main class="web-main">
+            <!-- Header -->
+            <div class="web-header">
+              <div>分析目录：<span class="wb-val">/LN_NETIF</span></div>
+              <div>分析时间：<span class="wb-val">2026-04-12T22:12:54</span></div>
+            </div>
 
-              <!-- Size Distribution Pie -->
-              <rect x="372" y="76" width="340" height="220" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.1)"/>
-              <text x="388" y="96" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">文件大小分布</text>
-              <g transform="translate(530 190)">
-                <!-- Big: 50% = 180deg -->
-                <circle r="72" fill="rgba(245,200,122,.05)"/>
-                <path d="M0 -72 A72 72 0 0 1 72 0 Z" fill="rgba(139,123,255,.7)"/>
-                <!-- XL: 22% = 79.2deg -->
-                <path d="M72 0 A72 72 0 0 1 25.2 67.3 Z" fill="rgba(61,240,255,.5)"/>
-                <!-- Medium: 14% = 50.4deg -->
-                <path d="M25.2 67.3 A72 72 0 0 1 -37.6 60.5 Z" fill="rgba(245,200,122,.55)"/>
-                <!-- Small: 9% = 32.4deg -->
-                <path d="M-37.6 60.5 A72 72 0 0 1 -65.7 28.6 Z" fill="rgba(100,220,180,.55)"/>
-                <!-- Tiny: 5% = 18deg -->
-                <path d="M-65.7 28.6 A72 72 0 0 1 0 -72 Z" fill="rgba(255,90,120,.55)"/>
-                <text y="6" text-anchor="middle" font-size="8" fill="#9aa3c4">总计</text>
-                <text y="22" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700">50.0 GB</text>
-              </g>
-              <g transform="translate(640 108)">
-                <g><rect width="9" height="9" rx="2" fill="rgba(139,123,255,.7)"/><text x="15" y="9" font-size="8" fill="#eef2ff">大文件 50%</text></g>
-                <g transform="translate(0 18)"><rect width="9" height="9" rx="2" fill="rgba(61,240,255,.5)"/><text x="15" y="9" font-size="8" fill="#eef2ff">超大 22%</text></g>
-                <g transform="translate(0 36)"><rect width="9" height="9" rx="2" fill="rgba(245,200,122,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">中 14%</text></g>
-                <g transform="translate(0 54)"><rect width="9" height="9" rx="2" fill="rgba(100,220,180,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">小 9%</text></g>
-                <g transform="translate(0 72)"><rect width="9" height="9" rx="2" fill="rgba(255,90,120,.55)"/><text x="15" y="9" font-size="8" fill="#eef2ff">极小 5%</text></g>
-              </g>
+            <!-- Tabs -->
+            <div class="data-tabs" role="tablist">
+              <button class="data-tab active" data-tab="asset" role="tab">资产概览</button>
+              <button class="data-tab" data-tab="time" role="tab">时间分析</button>
+              <button class="data-tab" data-tab="heat" role="tab">热度分析</button>
+            </div>
+
+            <!-- Asset Overview Panel -->
+            <div class="data-tab-panel active" data-panel="asset">
+              <!-- KPI Cards Row 1 -->
+              <div class="kpi-grid">
+                <div class="kpi-card"><div class="klbl">文件总数</div><div class="kval">10,000</div></div>
+                <div class="kpi-card v2"><div class="klbl">目录总数</div><div class="kval">120</div></div>
+                <div class="kpi-card v3"><div class="klbl">总容量</div><div class="kval">50.00 GB</div></div>
+                <div class="kpi-card v4"><div class="klbl">平均文件大小</div><div class="kval">5.12 MB</div></div>
+              </div>
+              <!-- KPI Cards Row 2 -->
+              <div class="kpi-grid">
+                <div class="kpi-card v5"><div class="klbl">最大文件</div><div class="kval">1.00 GB</div></div>
+                <div class="kpi-card v6"><div class="klbl">最小文件</div><div class="kval">0 B</div></div>
+                <div class="kpi-card date"><div class="klbl">最早创建时间</div><div class="kval">2023/12/31</div></div>
+                <div class="kpi-card date"><div class="klbl">最晚创建时间</div><div class="kval">2025/12/30</div></div>
+              </div>
+
+              <!-- Charts Row -->
+              <div class="chart-row">
+                <!-- Donut: Category Distribution -->
+                <div class="chart-card">
+                  <div class="c-hd"><span class="ctitle">文件类别分布</span>
+                    <span><span class="tab-hl">文件数量</span> · 文件大小</span>
+                  </div>
+                  <div class="chart-svg-wrap">
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(150 140)">
+                        <circle r="90" fill="rgba(245,200,122,.03)"/>
+                        <!-- 视频 500 4.76% 17.1° -->
+                        <path d="M0 -90 A90 90 0 0 1 26.3 85.9 Z" fill="rgba(139,123,255,.65)"/>
+                        <!-- 图片 3000 28.57% 102.9° -->
+                        <path d="M26.3 85.9 A90 90 0 0 1 -88.2 18 Z" fill="rgba(61,240,255,.55)"/>
+                        <!-- 压缩包 800 7.62% 27.4° -->
+                        <path d="M-88.2 18 A90 90 0 0 1 -82.3 -37.7 Z" fill="rgba(245,200,122,.6)"/>
+                        <!-- 文档 2500 23.81% 85.7° -->
+                        <path d="M-82.3 -37.7 A90 90 0 0 1 -14.3 -88.9 Z" fill="rgba(255,90,120,.55)"/>
+                        <!-- 音频 1500 14.29% 51.4° -->
+                        <path d="M-14.3 -88.9 A90 90 0 0 1 70.7 -54.5 Z" fill="rgba(100,220,180,.55)"/>
+                        <!-- 应用程序 200 1.9° 6.9° -->
+                        <path d="M70.7 -54.5 A90 90 0 0 1 79.5 -44.9 Z" fill="rgba(200,140,240,.5)"/>
+                        <!-- 其他 800 7.62% 27.4° -->
+                        <path d="M79.5 -44.9 A90 90 0 0 1 89.4 -12.1 Z" fill="rgba(140,160,200,.55)"/>
+                        <!-- 日志 1200 11.43% 41.1° -->
+                        <path d="M89.4 -12.1 A90 90 0 0 1 0 -90 Z" fill="rgba(180,200,230,.5)"/>
+                        <circle r="42" fill="rgba(7,9,18,.98)"/>
+                        <text y="-4" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">类别数</text>
+                        <text y="14" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700" font-family="Syne">10,500</text>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="l-item"><span class="l-sq" style="background:rgba(139,123,255,.65)"></span>视频 500</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.55)"></span>图片 3,000</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.6)"></span>压缩包 800</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.55)"></span>文档 2,500</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>音频 1,500</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(200,140,240,.5)"></span>应用程序 200</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(140,160,200,.55)"></span>其他 800</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(180,200,230,.5)"></span>日志 1,200</div>
+                  </div>
+                </div>
+
+                <!-- Pie: Size Distribution -->
+                <div class="chart-card">
+                  <div class="c-hd"><span class="ctitle v2">文件大小分布</span>
+                    <span><span class="tab-hl">文件大小</span></span>
+                  </div>
+                  <div class="chart-svg-wrap">
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(150 140)">
+                        <circle r="90" fill="rgba(245,200,122,.03)"/>
+                        <!-- 大文件 ~50% 180° -->
+                        <path d="M0 -90 A90 90 0 0 1 90 0 Z" fill="rgba(139,123,255,.7)"/>
+                        <!-- 超大文件 ~12% 44° -->
+                        <path d="M90 0 A90 90 0 0 1 63.3 63.3 Z" fill="rgba(61,240,255,.5)"/>
+                        <!-- 中等文件 ~9% 32° -->
+                        <path d="M63.3 63.3 A90 90 0 0 1 11.8 89.2 Z" fill="rgba(245,200,122,.55)"/>
+                        <!-- 空文件 ~25% 90° -->
+                        <path d="M11.8 89.2 A90 90 0 0 1 -90 0 Z" fill="rgba(180,190,210,.5)"/>
+                        <!-- 小文件 ~2% 7° -->
+                        <path d="M-90 0 A90 90 0 0 1 -82.3 -37.7 Z" fill="rgba(255,90,120,.55)"/>
+                        <!-- 极小文件 ~2% 7° -->
+                        <path d="M-82.3 -37.7 A90 90 0 0 1 -72.8 -54.5 Z" fill="rgba(100,220,180,.55)"/>
+                        <text y="4" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">总计</text>
+                        <text y="20" text-anchor="middle" font-size="15" fill="#eef2ff" font-weight="700" font-family="Syne">1,089.6 GB</text>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="l-item"><span class="l-sq" style="background:rgba(139,123,255,.7)"></span>大文件</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.5)"></span>超大文件</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.55)"></span>中等文件</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.55)"></span>小文件</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>极小文件</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(180,190,210,.5)"></span>空文件</div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Top 10 Table -->
-              <rect x="788" y="76" width="276" height="220" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.1)"/>
-              <text x="804" y="96" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">TOP 10 大文件</text>
-              <!-- Table header -->
-              <line x1="804" y1="104" x2="1050" y2="104" stroke="rgba(245,200,122,.3)"/>
-              <text x="810" y="116" font-size="8" fill="#9aa3c4">排名</text>
-              <text x="840" y="116" font-size="8" fill="#9aa3c4">文件名</text>
-              <text x="970" y="116" font-size="8" fill="#9aa3c4">类型</text>
-              <text x="1010" y="116" font-size="8" fill="#9aa3c4" text-anchor="end">大小</text>
-              <!-- Table rows -->
-              <text x="810" y="132" font-size="8" fill="#8b7bff">1</text><text x="840" y="132" font-size="7" fill="#eef2ff">movie_4k.mp4</text><text x="970" y="132" font-size="8" fill="#9aa3c4">mp4</text><text x="1050" y="132" font-size="8" fill="#3df0ff" text-anchor="end">1.00 GB</text>
-              <text x="810" y="146" font-size="8" fill="#8b7bff">2</text><text x="840" y="146" font-size="7" fill="#eef2ff">installer.exe</text><text x="970" y="146" font-size="8" fill="#9aa3c4">exe</text><text x="1050" y="146" font-size="8" fill="#3df0ff" text-anchor="end">1.00 GB</text>
-              <text x="810" y="160" font-size="8" fill="#8b7bff">3</text><text x="840" y="160" font-size="7" fill="#eef2ff">backup_archive.zip</text><text x="970" y="160" font-size="8" fill="#9aa3c4">zip</text><text x="1050" y="160" font-size="8" fill="#f5c87a" text-anchor="end">512.00 MB</text>
-              <text x="810" y="174" font-size="8" fill="#8b7bff">4</text><text x="840" y="174" font-size="7" fill="#eef2ff">os_image.iso</text><text x="970" y="174" font-size="8" fill="#9aa3c4">iso</text><text x="1050" y="174" font-size="8" fill="#f5c87a" text-anchor="end">512.00 MB</text>
-              <text x="810" y="188" font-size="8" fill="#8b7bff">5</text><text x="840" y="188" font-size="7" fill="#eef2ff">dataset_001.tar</text><text x="970" y="188" font-size="8" fill="#9aa3c4">tar</text><text x="1050" y="188" font-size="8" fill="#f5c87a" text-anchor="end">256.00 MB</text>
-              <text x="810" y="202" font-size="8" fill="#8b7bff">6</text><text x="840" y="202" font-size="7" fill="#eef2ff">model_weights.bin</text><text x="970" y="202" font-size="8" fill="#9aa3c4">bin</text><text x="1050" y="202" font-size="8" fill="#f5c87a" text-anchor="end">128.00 MB</text>
-              <text x="810" y="216" font-size="8" fill="#8b7bff">7</text><text x="840" y="216" font-size="7" fill="#eef2ff">report_final.pdf</text><text x="970" y="216" font-size="8" fill="#9aa3c4">pdf</text><text x="1050" y="216" font-size="8" fill="#9aa3c4" text-anchor="end">64.00 MB</text>
-              <text x="810" y="230" font-size="8" fill="#8b7bff">8</text><text x="840" y="230" font-size="7" fill="#eef2ff">audio_track.wav</text><text x="970" y="230" font-size="8" fill="#9aa3c4">wav</text><text x="1050" y="230" font-size="8" fill="#9aa3c4" text-anchor="end">32.00 MB</text>
-              <text x="810" y="244" font-size="8" fill="#8b7bff">9</text><text x="840" y="244" font-size="7" fill="#eef2ff">archive.tar.gz</text><text x="970" y="244" font-size="8" fill="#9aa3c4">gz</text><text x="1050" y="244" font-size="8" fill="#9aa3c4" text-anchor="end">16.00 MB</text>
-              <text x="810" y="258" font-size="8" fill="#8b7bff">10</text><text x="840" y="258" font-size="7" fill="#eef2ff">config_backup</text><text x="970" y="258" font-size="8" fill="#9aa3c4">bak</text><text x="1050" y="258" font-size="8" fill="#9aa3c4" text-anchor="end">8.00 MB</text>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(139,123,255,.65)"></span>视频 30%</div>
-            <div class="lg"><span class="sw" style="background:rgba(61,240,255,.55)"></span>图片 24%</div>
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.6)"></span>备份 20%</div>
-            <div class="lg"><span class="sw" style="background:rgba(255,90,120,.55)"></span>文档 12%</div>
-            <div class="lg"><span class="sw" style="background:rgba(100,220,180,.55)"></span>音频 9%</div>
-            <div class="lg"><span class="sw" style="background:rgba(200,140,240,.5)"></span>日志 5%</div>
-          </div>
-        </div>
+              <div class="table-card">
+                <div class="tc-hd">最大文件 TOP 10
+                  <select style="background:transparent;border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--ink-dim);font-size:10px;font-family:var(--ff-mono)">
+                    <option>选择类别</option>
+                  </select>
+                </div>
+                <table>
+                  <thead><tr><th style="width:50px">排名</th><th>文件名</th><th style="width:80px">类型</th><th style="width:120px">大小</th><th>路径</th></tr></thead>
+                  <tbody>
+                    <tr><td class="rank">1</td><td class="fname">movie_4k.mp4</td><td class="ftype">mp4</td><td class="fsize">1.00 GB</td><td class="fpath">/storage/media/videos/hd/movie_4k.mp4</td></tr>
+                    <tr><td class="rank">2</td><td class="fname">installer.exe</td><td class="ftype">exe</td><td class="fsize">1.00 GB</td><td class="fpath">/storage/data/projects/it/bin/installer.exe</td></tr>
+                    <tr><td class="rank">3</td><td class="fname">backup_archive.zip</td><td class="ftype">zip</td><td class="fsize">512.00 MB</td><td class="fpath">/storage/data/projects/it/src/archives/backup_archive.zip</td></tr>
+                    <tr><td class="rank">4</td><td class="fname">os_image.iso</td><td class="ftype">iso</td><td class="fsize">512.00 MB</td><td class="fpath">/storage/data/projects/it/src/images/os_image.iso</td></tr>
+                    <tr><td class="rank">5</td><td class="fname">dataset_001.tar</td><td class="ftype">tar</td><td class="fsize">256.00 MB</td><td class="fpath">/storage/data/ml/datasets/dataset_001.tar</td></tr>
+                    <tr><td class="rank">6</td><td class="fname">model_weights.bin</td><td class="ftype">bin</td><td class="fsize">128.00 MB</td><td class="fpath">/storage/data/ml/models/model_weights.bin</td></tr>
+                    <tr><td class="rank">7</td><td class="fname">report_final.pdf</td><td class="ftype">pdf</td><td class="fsize">64.00 MB</td><td class="fpath">/storage/docs/reports/report_final.pdf</td></tr>
+                    <tr><td class="rank">8</td><td class="fname">audio_track.wav</td><td class="ftype">wav</td><td class="fsize">32.00 MB</td><td class="fpath">/storage/media/audio/tracks/audio_track.wav</td></tr>
+                    <tr><td class="rank">9</td><td class="fname">archive.tar.gz</td><td class="ftype">gz</td><td class="fsize">16.00 MB</td><td class="fpath">/storage/data/backups/archive.tar.gz</td></tr>
+                    <tr><td class="rank">10</td><td class="fname">config_backup</td><td class="ftype">bak</td><td class="fsize">8.00 MB</td><td class="fpath">/storage/etc/config_backup</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-        <!-- Sub-View 2: 时间分析 -->
-        <div class="case-arch" style="margin-bottom:20px">
-          <div class="ttl">② 时间分析 · Time Analytics</div>
-          <div class="scroll-x">
-            <svg viewBox="0 0 675 175" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <!-- Header -->
-              <text x="20" y="24" font-size="9" fill="#9aa3c4" font-family="JetBrains Mono">分析目录：/LN_NETIF  分析时间：2026-04-12T22:12:54</text>
-              <!-- Tabs -->
-              <rect x="20" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
-              <text x="55" y="49" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">资产概览</text>
-              <rect x="96" y="34" width="70" height="22" rx="4" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/>
-              <text x="131" y="49" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">时间分析</text>
-              <rect x="172" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.1)" stroke="rgba(255,255,255,.2)"/>
-              <text x="207" y="49" text-anchor="middle" font-size="8" fill="#9aa3c4">热度分析</text>
-              <!-- Filters -->
-              <rect x="260" y="34" width="80" height="22" rx="4" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.3)"/>
-              <text x="300" y="49" text-anchor="middle" font-size="8" fill="#9aa3c4">时间范围：全部</text>
-              <rect x="344" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.3)"/>
-              <text x="379" y="49" text-anchor="middle" font-size="8" fill="#9aa3c4">单位：天</text>
+            <!-- Time Analysis Panel -->
+            <div class="data-tab-panel" data-panel="time">
+              <div class="chart-controls">
+                <button class="cc-chip active">时间范围：全部</button>
+                <button class="cc-chip">单位：天</button>
+              </div>
+              <div class="chart-card">
+                <div class="c-hd"><span class="ctitle">文件创建趋势</span>
+                  <span><span style="display:inline-block;width:10px;height:10px;background:#8b7bff;border-radius:2px;margin-right:4px"></span>新增大小（柱状）
+                  <span style="display:inline-block;width:14px;height:2px;background:#f5c87a;margin:0 4px 0 10px"></span>累计大小（折线）</span>
+                </div>
+                <div class="chart-svg-wrap">
+                  <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Grid -->
+                    <line x1="50" y1="40" x2="870" y2="40" stroke="rgba(245,200,122,.1)"/>
+                    <line x1="50" y1="80" x2="870" y2="80" stroke="rgba(245,200,122,.08)"/>
+                    <line x1="50" y1="120" x2="870" y2="120" stroke="rgba(245,200,122,.08)"/>
+                    <line x1="50" y1="160" x2="870" y2="160" stroke="rgba(245,200,122,.08)"/>
+                    <line x1="50" y1="200" x2="870" y2="200" stroke="rgba(245,200,122,.08)"/>
+                    <line x1="50" y1="240" x2="870" y2="240" stroke="rgba(245,200,122,.12)"/>
+                    <!-- Left Y labels -->
+                    <text x="46" y="44" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">167.8</text>
+                    <text x="46" y="84" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">137.6</text>
+                    <text x="46" y="124" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">111.8</text>
+                    <text x="46" y="164" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">83.8</text>
+                    <text x="46" y="204" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">55.9</text>
+                    <text x="46" y="244" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">27.9</text>
+                    <!-- Right Y labels -->
+                    <text x="876" y="244" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">0 GB</text>
+                    <text x="876" y="164" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">11.2</text>
+                    <text x="876" y="84" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">14 GB</text>
+                    <!-- Bars: 12 months, bar width ~38 -->
+                    <!-- Mar: 2GB -->
+                    <rect x="70" y="236" width="30" height="8" fill="rgba(139,123,255,.5)" rx="1"/>
+                    <!-- Apr: 2.5GB -->
+                    <rect x="140" y="233" width="30" height="11" fill="rgba(139,123,255,.55)" rx="1"/>
+                    <!-- May: 3.5GB -->
+                    <rect x="210" y="223" width="30" height="21" fill="rgba(139,123,255,.55)" rx="1"/>
+                    <!-- Jun: 3GB -->
+                    <rect x="280" y="226" width="30" height="18" fill="rgba(139,123,255,.5)" rx="1"/>
+                    <!-- Jul: 5GB -->
+                    <rect x="350" y="206" width="30" height="38" fill="rgba(139,123,255,.6)" rx="1"/>
+                    <!-- Aug: 4GB -->
+                    <rect x="420" y="216" width="30" height="28" fill="rgba(139,123,255,.55)" rx="1"/>
+                    <!-- Sep: 7GB -->
+                    <rect x="490" y="188" width="30" height="56" fill="rgba(139,123,255,.65)" rx="1"/>
+                    <!-- Oct: 6GB -->
+                    <rect x="560" y="196" width="30" height="48" fill="rgba(139,123,255,.6)" rx="1"/>
+                    <!-- Nov: 8GB -->
+                    <rect x="630" y="176" width="30" height="68" fill="rgba(139,123,255,.65)" rx="1"/>
+                    <!-- Dec: 10GB -->
+                    <rect x="700" y="158" width="30" height="86" fill="rgba(139,123,255,.7)" rx="1"/>
+                    <!-- Jan: 12GB -->
+                    <rect x="770" y="140" width="30" height="104" fill="rgba(139,123,255,.75)" rx="1"/>
+                    <!-- Feb: 14GB -->
+                    <rect x="840" y="122" width="30" height="122" fill="rgba(139,123,255,.8)" rx="1"/>
+                    <!-- Line -->
+                    <polyline points="85,228 155,222 225,208 295,198 365,180 435,168 505,148 575,134 645,116 715,98 785,78 855,60" fill="none" stroke="#f5c87a" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="85" cy="228" r="3" fill="#f5c87a"/>
+                    <circle cx="155" cy="222" r="3" fill="#f5c87a"/>
+                    <circle cx="225" cy="208" r="3" fill="#f5c87a"/>
+                    <circle cx="295" cy="198" r="3" fill="#f5c87a"/>
+                    <circle cx="365" cy="180" r="3" fill="#f5c87a"/>
+                    <circle cx="435" cy="168" r="3" fill="#f5c87a"/>
+                    <circle cx="505" cy="148" r="3" fill="#f5c87a"/>
+                    <circle cx="575" cy="134" r="3" fill="#f5c87a"/>
+                    <circle cx="645" cy="116" r="3" fill="#f5c87a"/>
+                    <circle cx="715" cy="98" r="3" fill="#f5c87a"/>
+                    <circle cx="785" cy="78" r="3" fill="#f5c87a"/>
+                    <circle cx="855" cy="60" r="4" fill="#f5c87a" filter="drop-shadow(0 0 6px rgba(245,200,122,.8))"/>
+                    <!-- X labels -->
+                    <text x="85" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-03</text>
+                    <text x="155" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-05</text>
+                    <text x="225" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-07</text>
+                    <text x="295" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-08</text>
+                    <text x="365" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-09</text>
+                    <text x="435" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-10</text>
+                    <text x="505" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-11</text>
+                    <text x="575" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-12</text>
+                    <text x="645" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-01</text>
+                    <text x="715" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-01</text>
+                    <text x="785" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-02</text>
+                    <text x="855" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-02</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
 
-              <!-- Chart Area -->
-              <text x="20" y="80" font-size="9" fill="#3df0ff" font-family="JetBrains Mono">文件创建趋势</text>
-              <!-- Legend -->
-              <rect x="820" y="70" width="10" height="10" rx="2" fill="#8b7bff"/>
-              <text x="835" y="79" font-size="8" fill="#9aa3c4">新增大小</text>
-              <rect x="900" y="70" width="10" height="10" rx="2" fill="none" stroke="#f5c87a" stroke-width="1.5"/>
-              <text x="915" y="79" font-size="8" fill="#9aa3c4">累计大小</text>
+            <!-- Heat Analysis Panel -->
+            <div class="data-tab-panel" data-panel="heat">
+              <div class="dual-chart">
+                <!-- Pie: Heat Distribution -->
+                <div class="chart-card">
+                  <div class="c-hd"><span class="ctitle v3">文件热度分布</span><span>热度等级</span></div>
+                  <div class="chart-svg-wrap">
+                    <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(130 130) scale(.8)">
+                        <circle r="90" fill="rgba(245,200,122,.03)"/>
+                        <!-- Cold 40% 144deg -->
+                        <path d="M0 -90 A90 90 0 0 1 52.9 72.8 Z" fill="rgba(61,240,255,.55)"/>
+                        <!-- Warm 20% 72deg -->
+                        <path d="M52.9 72.8 A90 90 0 0 1 -52.9 72.8 Z" fill="rgba(245,200,122,.55)"/>
+                        <!-- Archive 20% 72deg -->
+                        <path d="M-52.9 72.8 A90 90 0 0 1 -90 0 Z" fill="rgba(100,220,180,.55)"/>
+                        <!-- Hot 20% 72deg -->
+                        <path d="M-90 0 A90 90 0 0 1 0 -90 Z" fill="rgba(255,90,120,.6)"/>
+                        <circle r="46" fill="rgba(7,9,18,.98)"/>
+                        <text y="-6" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">总容量</text>
+                        <text y="12" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700" font-family="Syne">50 GB</text>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.6)"></span>热 10 GB</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.55)"></span>温 10 GB</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.55)"></span>冷 20 GB</div>
+                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>沉 10 GB</div>
+                  </div>
+                </div>
 
-              <!-- Chart plot area: x=40..1020, y=90..240 -->
-              <!-- Y-axis gridlines + labels -->
-              <line x1="40" y1="90" x2="1040" y2="90" stroke="rgba(245,200,122,.12)"/>
-              <text x="36" y="93" font-size="7" fill="#5d6685" text-anchor="end">167.8 GB</text>
-              <line x1="40" y1="120" x2="1040" y2="120" stroke="rgba(245,200,122,.1)"/>
-              <text x="36" y="123" font-size="7" fill="#5d6685" text-anchor="end">137.6 GB</text>
-              <line x1="40" y1="150" x2="1040" y2="150" stroke="rgba(245,200,122,.1)"/>
-              <text x="36" y="153" font-size="7" fill="#5d6685" text-anchor="end">111.8 GB</text>
-              <line x1="40" y1="180" x2="1040" y2="180" stroke="rgba(245,200,122,.1)"/>
-              <text x="36" y="183" font-size="7" fill="#5d6685" text-anchor="end">83.8 GB</text>
-              <line x1="40" y1="210" x2="1040" y2="210" stroke="rgba(245,200,122,.1)"/>
-              <text x="36" y="213" font-size="7" fill="#5d6685" text-anchor="end">55.9 GB</text>
-              <line x1="40" y1="240" x2="1040" y2="240" stroke="rgba(245,200,122,.15)"/>
-              <text x="36" y="243" font-size="7" fill="#5d6685" text-anchor="end">27.9 GB</text>
-              <text x="36" y="255" font-size="7" fill="#5d6685" text-anchor="end">0 GB</text>
-
-              <!-- Extra y-axis labels for 累计大小 on right -->
-              <text x="1048" y="93" font-size="7" fill="#f5c87a">15 GB</text>
-              <text x="1048" y="143" font-size="7" fill="#f5c87a">14 GB</text>
-              <text x="1048" y="193" font-size="7" fill="#f5c87a">11.2 GB</text>
-              <text x="1048" y="243" font-size="7" fill="#f5c87a">0 GB</text>
-
-              <!-- Bars (新增大小) - 12 months -->
-              <!-- Scale: plot height = 150px for 167.8 GB, so 1GB = 0.894px -->
-              <!-- Mar 2024: ~2GB -->
-              <rect x="60" y="238" width="18" height="12" fill="rgba(139,123,255,.5)" rx="1"/>
-              <!-- Apr: ~2.5GB -->
-              <rect x="140" y="235" width="18" height="15" fill="rgba(139,123,255,.55)" rx="1"/>
-              <!-- May: ~3.5GB -->
-              <rect x="220" y="225" width="18" height="25" fill="rgba(139,123,255,.55)" rx="1"/>
-              <!-- Jun: ~3GB -->
-              <rect x="300" y="228" width="18" height="22" fill="rgba(139,123,255,.5)" rx="1"/>
-              <!-- Jul: ~5GB -->
-              <rect x="380" y="208" width="18" height="42" fill="rgba(139,123,255,.6)" rx="1"/>
-              <!-- Aug: ~4GB -->
-              <rect x="460" y="218" width="18" height="32" fill="rgba(139,123,255,.55)" rx="1"/>
-              <!-- Sep: ~7GB -->
-              <rect x="540" y="190" width="18" height="60" fill="rgba(139,123,255,.65)" rx="1"/>
-              <!-- Oct: ~6GB -->
-              <rect x="620" y="198" width="18" height="52" fill="rgba(139,123,255,.6)" rx="1"/>
-              <!-- Nov: ~8GB -->
-              <rect x="700" y="178" width="18" height="72" fill="rgba(139,123,255,.65)" rx="1"/>
-              <!-- Dec: ~10GB -->
-              <rect x="780" y="160" width="18" height="90" fill="rgba(139,123,255,.7)" rx="1"/>
-              <!-- Jan: ~12GB -->
-              <rect x="860" y="142" width="18" height="108" fill="rgba(139,123,255,.75)" rx="1"/>
-              <!-- Feb: ~14GB -->
-              <rect x="940" y="124" width="18" height="126" fill="rgba(139,123,255,.8)" rx="1"/>
-
-              <!-- Line (累计大小) -->
-              <polyline points="69,230 149,224 229,210 309,200 389,182 469,170 549,150 629,136 709,118 789,100 869,80 949,62" 
-                        fill="none" stroke="#f5c87a" stroke-width="2" stroke-linejoin="round"/>
-              <!-- Line dots -->
-              <circle cx="69" cy="230" r="3" fill="#f5c87a"/>
-              <circle cx="149" cy="224" r="3" fill="#f5c87a"/>
-              <circle cx="229" cy="210" r="3" fill="#f5c87a"/>
-              <circle cx="309" cy="200" r="3" fill="#f5c87a"/>
-              <circle cx="389" cy="182" r="3" fill="#f5c87a"/>
-              <circle cx="469" cy="170" r="3" fill="#f5c87a"/>
-              <circle cx="549" cy="150" r="3" fill="#f5c87a"/>
-              <circle cx="629" cy="136" r="3" fill="#f5c87a"/>
-              <circle cx="709" cy="118" r="3" fill="#f5c87a"/>
-              <circle cx="789" cy="100" r="3" fill="#f5c87a"/>
-              <circle cx="869" cy="80" r="3" fill="#f5c87a"/>
-              <circle cx="949" cy="62" r="4" fill="#f5c87a" filter="drop-shadow(0 0 6px rgba(245,200,122,.8))"/>
-
-              <!-- X-axis date labels -->
-              <text x="69" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-03-01</text>
-              <text x="149" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-05-01</text>
-              <text x="229" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-07-01</text>
-              <text x="309" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-08-01</text>
-              <text x="389" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-09-01</text>
-              <text x="469" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-10-01</text>
-              <text x="549" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-11-01</text>
-              <text x="629" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2024-12-01</text>
-              <text x="709" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2025-01-01</text>
-              <text x="789" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2025-01-01</text>
-              <text x="869" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2025-02-01</text>
-              <text x="949" y="262" font-size="6" fill="#5d6685" text-anchor="middle">2025-02-01</text>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:#8b7bff"></span>新增大小（柱状）</div>
-            <div class="lg"><span class="sw" style="background:none;border-top:2px solid #f5c87a"></span>累计大小（折线）</div>
-            <div class="lg" style="color:#64dcb4;font-size:9px">数据单位：GB</div>
-          </div>
-        </div>
-
-        <!-- Sub-View 3: 热度分析 -->
-        <div class="case-arch" style="margin-bottom:20px">
-          <div class="ttl">③ 热度分析 · Heat Analysis</div>
-          <div class="scroll-x">
-            <svg viewBox="0 0 675 175" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <!-- Header -->
-              <text x="20" y="24" font-size="9" fill="#9aa3c4" font-family="JetBrains Mono">分析目录：/LN_NETIF  分析时间：2026-04-12T22:12:54</text>
-              <!-- Tabs -->
-              <rect x="96" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.1)" stroke="rgba(255,255,255,.2)"/>
-              <text x="131" y="49" text-anchor="middle" font-size="8" fill="#9aa3c4">资产概览</text>
-              <rect x="172" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.1)" stroke="rgba(255,255,255,.2)"/>
-              <text x="207" y="49" text-anchor="middle" font-size="8" fill="#9aa3c4">时间分析</text>
-              <rect x="248" y="34" width="70" height="22" rx="4" fill="rgba(245,200,122,.15)" stroke="var(--violet)"/>
-              <text x="283" y="49" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">热度分析</text>
-
-              <!-- 文件热度分布 Pie -->
-              <rect x="20" y="70" width="360" height="190" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.1)"/>
-              <text x="36" y="90" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">文件热度分布</text>
-              <!-- Pie: 冷20GB(40%), 温10GB(20%), 热10GB(20%), 沉10GB(20%) -->
-              <g transform="translate(140 170)">
-                <circle r="60" fill="rgba(245,200,122,.05)"/>
-                <!-- 冷 Cold: 40% = 144deg -->
-                <path d="M0 -60 A60 60 0 0 1 35.3 48.5 Z" fill="rgba(61,240,255,.55)"/>
-                <!-- 温 Warm: 20% = 72deg -->
-                <path d="M35.3 48.5 A60 60 0 0 1 -35.3 48.5 Z" fill="rgba(245,200,122,.55)"/>
-                <!-- 沉 Archive: 20% = 72deg -->
-                <path d="M-35.3 48.5 A60 60 0 0 1 -60 0 Z" fill="rgba(100,220,180,.55)"/>
-                <!-- 热 Hot: 20% = 72deg -->
-                <path d="M-60 0 A60 60 0 0 1 0 -60 Z" fill="rgba(255,90,120,.6)"/>
-                <circle r="30" fill="rgba(7,9,18,.98)"/>
-                <text y="-3" text-anchor="middle" font-size="7" fill="#9aa3c4">总容量</text>
-                <text y="12" text-anchor="middle" font-size="13" fill="#eef2ff" font-weight="700">50 GB</text>
-              </g>
-              <!-- Legend -->
-              <g transform="translate(220 110)">
-                <g><rect width="10" height="10" rx="2" fill="rgba(255,90,120,.6)"/><text x="16" y="9" font-size="8" fill="#eef2ff">热</text><text x="80" y="9" text-anchor="end" font-size="8" fill="#ff5a78">10.00 GB</text></g>
-                <g transform="translate(0 18)"><rect width="10" height="10" rx="2" fill="rgba(245,200,122,.55)"/><text x="16" y="9" font-size="8" fill="#eef2ff">温</text><text x="80" y="9" text-anchor="end" font-size="8" fill="#f5c87a">10.00 GB</text></g>
-                <g transform="translate(0 36)"><rect width="10" height="10" rx="2" fill="rgba(61,240,255,.55)"/><text x="16" y="9" font-size="8" fill="#eef2ff">冷</text><text x="80" y="9" text-anchor="end" font-size="8" fill="#3df0ff">20.00 GB</text></g>
-                <g transform="translate(0 54)"><rect width="10" height="10" rx="2" fill="rgba(100,220,180,.55)"/><text x="16" y="9" font-size="8" fill="#eef2ff">沉</text><text x="80" y="9" text-anchor="end" font-size="8" fill="#64dcb4">10.00 GB</text></g>
-              </g>
-
-              <!-- 目录热度分布 Treemap -->
-              <rect x="400" y="70" width="660" height="190" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.1)"/>
-              <text x="416" y="90" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">目录热度分布</text>
-              <text x="1040" y="90" font-size="8" fill="#9aa3c4" text-anchor="end">根目录 / storage</text>
-
-              <!-- Treemap blocks: data 32.84, media 9.93, installer 8.00, archive 6.00, tools 1.00, logs 1.00 -->
-              <!-- data: 32.84/59.77 ≈ 55%, big red block -->
-              <rect x="416" y="100" width="360" height="130" rx="4" fill="rgba(255,90,120,.55)" stroke="rgba(255,90,120,.7)"/>
-              <text x="596" y="168" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600">data</text>
-              <text x="596" y="185" text-anchor="middle" font-size="13" fill="#eef2ff" font-weight="700">32.84 GB</text>
-
-              <!-- media: 9.93/59.77 ≈ 16.6% -->
-              <rect x="784" y="100" width="140" height="86" rx="4" fill="rgba(61,240,255,.55)" stroke="rgba(61,240,255,.7)"/>
-              <text x="854" y="140" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">media</text>
-              <text x="854" y="158" text-anchor="middle" font-size="11" fill="#eef2ff" font-weight="700">9.93 GB</text>
-
-              <!-- installer: 8.00/59.77 ≈ 13.4% -->
-              <rect x="928" y="100" width="124" height="86" rx="4" fill="rgba(139,123,255,.55)" stroke="rgba(139,123,255,.7)"/>
-              <text x="990" y="140" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">installer</text>
-              <text x="990" y="158" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="700">8.00 GB</text>
-
-              <!-- archive: 6.00/59.77 ≈ 10% -->
-              <rect x="784" y="190" width="140" height="40" rx="4" fill="rgba(245,200,122,.55)" stroke="rgba(245,200,122,.7)"/>
-              <text x="854" y="215" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">archive</text>
-
-              <!-- tools: 1.00/59.77 ≈ 1.7% -->
-              <rect x="928" y="190" width="60" height="40" rx="4" fill="rgba(100,220,180,.55)" stroke="rgba(100,220,180,.7)"/>
-              <text x="958" y="215" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">tools</text>
-
-              <!-- logs: 1.00/59.77 ≈ 1.7% -->
-              <rect x="992" y="190" width="60" height="40" rx="4" fill="rgba(200,140,240,.55)" stroke="rgba(200,140,240,.7)"/>
-              <text x="1022" y="215" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">logs</text>
-
-              <!-- Total -->
-              <text x="1040" y="252" text-anchor="end" font-size="8" fill="#9aa3c4">总容量：59.77 GB</text>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(255,90,120,.55)"></span>热（30天内）</div>
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.55)"></span>温（30-90天）</div>
-            <div class="lg"><span class="sw" style="background:rgba(61,240,255,.55)"></span>冷（90天+）</div>
-            <div class="lg"><span class="sw" style="background:rgba(100,220,180,.55)"></span>沉（归档）</div>
-          </div>
+                <!-- Treemap: Directory Heat -->
+                <div class="chart-card">
+                  <div class="c-hd"><span class="ctitle v2">目录热度分布</span><span style="color:var(--ink-faint)">根目录 / storage</span></div>
+                  <div class="chart-svg-wrap">
+                    <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(52 24) scale(.8)">
+                        <!-- data 32.84GB ≈ 55% -->
+                        <rect x="10" y="10" width="280" height="160" rx="6" fill="rgba(255,90,120,.55)" stroke="rgba(255,90,120,.7)"/>
+                        <text x="150" y="90" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">data</text>
+                        <text x="150" y="110" text-anchor="middle" font-size="16" fill="#eef2ff" font-weight="700" font-family="Syne">32.84 GB</text>
+                        <!-- media 9.93GB ≈ 16.6% -->
+                        <rect x="296" y="10" width="130" height="100" rx="6" fill="rgba(61,240,255,.55)" stroke="rgba(61,240,255,.7)"/>
+                        <text x="361" y="58" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">media</text>
+                        <text x="361" y="76" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" font-family="Syne">9.93 GB</text>
+                        <!-- installer 8.00GB ≈ 13.4% -->
+                        <rect x="432" y="10" width="78" height="100" rx="6" fill="rgba(139,123,255,.55)" stroke="rgba(139,123,255,.7)"/>
+                        <text x="471" y="52" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600" font-family="Syne">installer</text>
+                        <text x="471" y="68" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="700" font-family="Syne">8.00</text>
+                        <!-- archive 6.00GB ≈ 10% -->
+                        <rect x="296" y="116" width="130" height="54" rx="6" fill="rgba(245,200,122,.55)" stroke="rgba(245,200,122,.7)"/>
+                        <text x="361" y="148" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">archive 6.00 GB</text>
+                        <!-- tools 1GB ≈ 1.7% -->
+                        <rect x="432" y="116" width="38" height="54" rx="6" fill="rgba(100,220,180,.55)" stroke="rgba(100,220,180,.7)"/>
+                        <text x="451" y="148" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">tools</text>
+                        <!-- logs 1GB ≈ 1.7% -->
+                        <rect x="476" y="116" width="34" height="54" rx="6" fill="rgba(200,140,240,.55)" stroke="rgba(200,140,240,.7)"/>
+                        <text x="493" y="148" text-anchor="middle" font-size="8" fill="#eef2ff" font-weight="600">logs</text>
+                        <!-- Total -->
+                        <text x="510" y="228" text-anchor="end" font-size="9" fill="#9aa3c4" font-family="JetBrains Mono">总容量：59.77 GB</text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
       <div class="func-info">
         <div class="func-block">
           <div class="func-label">架构说明 · Architecture</div>
           <p>LiSA 数据分析模块基于 ClickHouse 列式引擎与元数据采集 Agent，对文件/对象做多维度洞察：<br><br>
-          ① <b>资产概览</b>（类别分布 · 大小分布 · Top10 大文件）<br>
-          ② <b>时间分析</b>（新增大小 · 累计大小趋势）<br>
-          ③ <b>热度分析</b>（热·温·冷·沉四等级 · 目录热度分布）<br><br>
+          <b>资产分析</b>（类别分布 · 大小分布 · Top10 大文件）<br>
+          <b>时间分析</b>（新增大小 · 累计大小趋势）<br>
+          <b>热度分析</b>（热·温·冷·沉四等级 · 目录热度分布）<br><br>
           Agent 以标准协议扫描任意异构存储，采集的元数据写入 ClickHouse，支持 API / SDK 对接企业内部平台。</p>
         </div>
         <div class="func-block">
@@ -1438,9 +2304,11 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- ===== Module 5: 数据归档 ===== -->
-  <div class="func-module reveal">
+  <div class="section-tab-panel" data-panel="func-archive">
+  <div class="func-module reveal" id="func-archive">
     <div class="func-header">
       <div class="func-num">05</div>
       <div class="func-title">
@@ -1453,7 +2321,7 @@
         <div class="case-arch">
           <div class="ttl">架构图 · Architecture</div>
           <div class="scroll-x">
-            <svg viewBox="0 0 675 262" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="g-arc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5c87a"/><stop offset="1" stop-color="#8b7bff"/></linearGradient>
               </defs>
@@ -1479,8 +2347,8 @@
               <g class="arch-svg-node"><rect x="300" y="78" width="340" height="44" rx="6" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="470" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">元数据筛选</text><text x="470" y="111" text-anchor="middle" fill="#3df0ff" font-size="8">基于元数据引擎精确确定归档范围</text></g>
               <g class="arch-svg-node"><rect x="300" y="132" width="340" height="44" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--violet)"/><text x="470" y="151" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">策略引擎</text><text x="470" y="165" text-anchor="middle" fill="#8b7bff" font-size="8">事件/策略驱动 · 生命周期自动归档</text></g>
               <g class="arch-svg-node"><rect x="300" y="186" width="340" height="44" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--gold)"/><text x="470" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">迁移服务</text><text x="470" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">并发传输 · 灵活策略 · 易于部署</text></g>
-              <text x="470" y="250" text-anchor="middle" font-size="9" fill="#9aa3c4">▎低成本长期留存 · 可检索归档</text>
-              <text x="470" y="268" text-anchor="middle" font-size="9" fill="#9aa3c4">▎归档数据仍纳入元数据检索范围</text>
+              <text x="410" y="250" text-anchor="start" font-size="9" fill="#9aa3c4">▎低成本长期留存 · 可检索归档</text>
+              <text x="410" y="268" text-anchor="start" font-size="9" fill="#9aa3c4">▎归档数据仍纳入元数据检索范围</text>
               <circle cx="470" cy="286" r="4" class="pulse-node" fill="var(--cyan)"/>
 
               <!-- LiSA -> 归档目标 -->
@@ -1539,6 +2407,7 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ============ ADVANTAGES ============ -->
@@ -1588,7 +2457,12 @@
     <p class="sec-desc">从制造业工业质检到医疗影像、教育科研，LiSA 已在多行业千亿级数据规模的真实场景中连续稳定运行。</p>
   </div>
   <div class="scenarios reveal">
-    <div class="case-num">案例一 · 工业质检数据全生命周期治理</div>
+    <div class="section-tabs" role="tablist" aria-label="客户案例">
+      <button class="section-tab active" data-tab="case-1" role="tab"><span class="sn-n">01</span>案例一 · 工业质检</button>
+      <button class="section-tab" data-tab="case-2" role="tab"><span class="sn-n">02</span>案例二 · 多机台管理</button>
+      <button class="section-tab" data-tab="case-3" role="tab"><span class="sn-n">03</span>案例三 · 异构迁移</button>
+    </div>
+    <div class="section-tab-panel active" data-panel="case-1">
     <div class="case">
       <h4>工业质检数据全生命周期治理</h4>
       <div class="pains">
@@ -1602,7 +2476,7 @@
       <div class="case-arch">
         <div class="ttl">方案架构</div>
         <div class="scroll-x">
-          <svg viewBox="0 0 700 340" class="flow-svg" style="max-width:560px" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 700 340" class="flow-svg" style="max-width:720px" xmlns="http://www.w3.org/2000/svg">
             <!-- ===== ROW 1: 用户审计 + 机台 + MES/APP ===== -->
             <g class="arch-svg-node">
               <circle cx="42" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
@@ -1646,13 +2520,20 @@
             </g>
 
             <!-- 连线 -->
-            <line x1="146" y1="46" x2="158" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3"/>
-            <line x1="186" y1="46" x2="236" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <line x1="146" y1="46" x2="158" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+            <line x1="186" y1="46" x2="236" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+
+            <!-- 数据点 -->
+            <circle cx="146" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="186" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- ===== ROW 2: LiSA 平台 ===== -->
-            <rect x="18" y="98" width="664" height="36" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="1.2"/>
-            <text x="350" y="122" text-anchor="middle" font-size="16" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA</text>
-            <line x1="350" y1="90" x2="350" y2="98" stroke="var(--cyan)" stroke-width="1.2"/>
+            <rect x="30" y="100" width="460" height="32" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="1.2"/>
+            <text x="260" y="121" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA</text>
+            <line x1="308" y1="90" x2="260" y2="100" stroke="var(--cyan)" stroke-width="1.2" class="flow-line"/>
+
+            <!-- LiSA 数据点 -->
+            <circle cx="260" cy="116" r="4" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- ===== ROW 3: 存储迁移时间线 ===== -->
             <!-- XSKY sdk -->
@@ -1684,83 +2565,139 @@
               <text x="160" y="213" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust2</text>
             </g>
 
-            <!-- 箭头 -->
-            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)"/>
-            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)"/>
-            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)"/>
+            <!-- 箭头 + 流动动画 -->
+            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+
+            <!-- 数据点 -->
+            <circle cx="112" cy="190" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="122" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="122" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- 6-12个月 -->
-            <text x="270" y="226" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">6-12个月</text>
+            <text x="342" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">6-12个月</text>
 
             <!-- DXN Ultra 存储集群 -->
             <g class="arch-svg-node">
-              <rect x="222" y="158" width="232" height="72" rx="8" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)" stroke-width="1.2"/>
-              <text x="338" y="200" text-anchor="middle" font-size="14" fill="#8b7bff" font-weight="700">DXN Ultra 存储集群</text>
+              <rect x="252" y="168" width="180" height="52" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)" stroke-width="1.2"/>
+              <text x="342" y="200" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="700">DXN Ultra 存储集群</text>
             </g>
 
-            <path d="M198 172 L222 172" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)"/>
-            <path d="M198 208 L222 208" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)"/>
+            <path d="M198 172 L252 172" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <path d="M198 208 L252 208" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+
+            <!-- DXN 数据点 -->
+            <circle cx="198" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="252" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="198" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="252" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- 1年+ -->
-            <text x="590" y="226" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">1年+</text>
+            <text x="528" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">1年+</text>
 
             <!-- 电信云 -->
             <g class="arch-svg-node">
-              <rect x="510" y="168" width="106" height="54" rx="8" fill="rgba(var(--cyan-rgb),.08)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2"/>
-              <path d="M536 188 Q536 176 552 176 Q560 166 576 170 Q592 170 596 186 Q608 188 608 202 Q608 214 596 214 L536 214 Q526 214 526 202 Q526 188 536 188 Z" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="563" y="224" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">电信云</text>
+              <rect x="478" y="168" width="100" height="52" rx="8" fill="rgba(var(--cyan-rgb),.08)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2"/>
+              <path d="M500 188 Q500 176 516 176 Q524 166 540 170 Q556 170 560 186 Q572 188 572 202 Q572 214 560 214 L500 214 Q490 214 490 202 Q490 188 500 188 Z" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.9"/>
+              <text x="528" y="222" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">电信云</text>
             </g>
 
-            <path d="M454 190 L510 190" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)"/>
+            <path d="M432 194 L478 194" stroke="var(--cyan)" stroke-width="1.4" marker-end="url(#arrowCyan)" class="flow-line"/>
+
+            <!-- 电信云数据点 -->
+            <circle cx="432" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="478" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
 
             <!-- ===== ROW 4: 老机台 + Agent/S3 + CIFS ===== -->
-            <rect x="222" y="248" width="148" height="52" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
+            <rect x="252" y="248" width="138" height="52" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
             <g class="arch-svg-node">
-              <rect x="230" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="232" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="232" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
+              <rect x="260" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
+              <rect x="262" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
+              <rect x="262" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
             </g>
             <g class="arch-svg-node">
-              <rect x="256" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="258" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="258" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
+              <rect x="286" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
+              <rect x="288" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
+              <rect x="288" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
             </g>
-            <text x="294" y="274" text-anchor="middle" font-size="10" fill="#9aa3c4">…</text>
+            <text x="324" y="274" text-anchor="middle" font-size="10" fill="#9aa3c4">…</text>
             <g class="arch-svg-node">
-              <rect x="316" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="318" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="318" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
+              <rect x="346" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
+              <rect x="348" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
+              <rect x="348" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
             </g>
-            <text x="294" y="290" text-anchor="middle" font-size="8" fill="#f5c87a">老机台</text>
+            <text x="321" y="290" text-anchor="middle" font-size="8" fill="#f5c87a">老机台</text>
 
             <!-- Agent / S3 -->
             <g>
-              <rect x="398" y="246" width="66" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="431" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">Agent / S3</text>
+              <rect x="410" y="246" width="62" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
+              <text x="441" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">Agent / S3</text>
             </g>
             <!-- CIFS -->
             <g>
-              <rect x="522" y="246" width="50" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="547" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">CIFS</text>
+              <rect x="530" y="246" width="48" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
+              <text x="554" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">CIFS</text>
             </g>
 
-            <!-- 连线: 老机台 → DXN Ultra -->
-            <path d="M294 248 L294 234 L431 234 L431 224" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)"/>
-            <text x="344" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">Agent / S3</text>
+            <!-- 连线: 老机台 → DXN Ultra (Agent/S3) -->
+            <path d="M321 248 L321 234 L441 234 L441 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <text x="376" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">Agent / S3</text>
+            <circle cx="321" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="441" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
 
-            <path d="M346 248 L346 238 L522 238 L522 224" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)"/>
-            <text x="420" y="234" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">CIFS</text>
+            <!-- 连线: 老机台 → 电信云 (CIFS) -->
+            <path d="M372 248 L372 234 L554 234 L554 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" marker-end="url(#arrowCyan)" class="flow-line"/>
+            <text x="463" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">CIFS</text>
+            <circle cx="372" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="554" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
 
             <defs>
               <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
                 <path d="M0,0 L0,6 L8,3 z" fill="#3df0ff"/>
               </marker>
             </defs>
+
+            <!-- 流动粒子 -->
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M146 46 L158 46"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M186 46 L236 46"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" path="M308 90 L260 100"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M112 190 L122 190"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3.5s" repeatCount="indefinite" begin=".7s" path="M112 190 L116 190 L116 172 L122 172"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.3s" path="M112 190 L116 190 L116 208 L122 208"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" path="M198 172 L252 172"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M198 208 L252 208"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3.5s" repeatCount="indefinite" path="M432 194 L478 194"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="5s" repeatCount="indefinite" begin=".5s" path="M321 248 L321 234 L441 234 L441 220"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="5s" repeatCount="indefinite" begin="2s" path="M372 248 L372 234 L554 234 L554 220"/>
+            </circle>
           </svg>
         </div>
       </div>
     </div>
-    <div class="case-num">案例二 · 多机台统一管理千亿秒级检索</div>
+    </div>
+    <div class="section-tab-panel" data-panel="case-2">
     <div class="case">
       <h4>多机台统一管理千亿秒级检索</h4>
       <div class="pains">
@@ -1774,7 +2711,7 @@
       <div class="case-arch">
         <div class="ttl">方案架构</div>
         <div class="scroll-x">
-          <svg viewBox="0 0 760 320" class="flow-svg" style="max-width:792px" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 760 320" class="flow-svg" style="max-width:680px" xmlns="http://www.w3.org/2000/svg">
             <!-- ===== 上方：机台 + MES/APP ===== -->
             <g class="arch-svg-node"><rect x="30" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="60" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
             <g class="arch-svg-node"><rect x="110" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="140" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
@@ -1808,11 +2745,43 @@
             <path d="M130 238 Q200 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
             <path d="M220 238 Q260 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
             <path d="M330 238 Q340 210 380 180" class="flow-line" stroke="var(--gold)" fill="none"/>
+
+            <!-- 数据点 -->
+            <circle cx="350" cy="70" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="380" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="220" cy="135" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="500" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="560" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="130" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="220" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="330" cy="238" r="3" class="pulse-node" fill="var(--gold)"/>
+            <circle cx="380" cy="180" r="4" class="pulse-node" fill="var(--cyan)"/>
+
+            <!-- 流动粒子 -->
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M350 70 L380 70 L380 140"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M220 135 L380 135"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M500 140 L560 140"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" path="M130 238 Q200 200 380 180"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M220 238 Q260 200 380 180"/>
+            </circle>
+            <circle class="flow-particle">
+              <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M330 238 Q340 210 380 180"/>
+            </circle>
           </svg>
         </div>
       </div>
     </div>
-    <div class="case-num">案例三 · 异构对象存储迁移私有格式数据解析</div>
+    </div>
+    <div class="section-tab-panel" data-panel="case-3">
     <div class="case">
       <h4>异构对象存储迁移私有格式数据解析</h4>
       <div class="pains">
@@ -1847,6 +2816,7 @@
           </svg>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -2044,37 +3014,51 @@
   </div>
 
   <!-- DFS 部署要求 & 推荐硬件 -->
-  <div class="deploy-grid reveal" style="margin-top:40px">
-    <div class="deploy-card">
-      <h4>DFS 部署要求</h4>
-      <div class="dc-sub">Deployment Requirements · Slide 13</div>
-      <div class="dc-row"><span>部署模式</span><b>最小 3 节点 · 最大 32 节点</b></div>
-      <div class="dc-row"><span>部署方式</span><b>纯软部署（Rocky 9.4 OS + bin）</b></div>
-      <div class="dc-row"><span>元数据副本</span><b>2 副本 · 宕机 1 节点不影响业务</b></div>
-      <div class="dc-row"><span>单节点 CPU</span><b>最低 8 core</b></div>
-      <div class="dc-row"><span>单节点内存</span><b>最低 32G</b></div>
-      <div class="dc-row"><span>OS 盘</span><b>150G</b></div>
-      <div class="dc-row"><span>索引盘</span><b>200G</b></div>
-      <div class="dc-row"><span>前端网</span><b>10G × 2 port</b></div>
-      <div class="dc-row"><span>后端网</span><b>10G × 2 port（建议独立交换机）</b></div>
-      <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
-      <div class="dc-row"><span>能力基线</span><b>1 亿索引 · 50 agent · 5 并发迁移</b></div>
+  <div class="accordion-wrap reveal" style="margin-top:40px">
+    <div class="accordion-card">
+      <div class="accordion-head">
+        <div>
+          <div class="ah-title">DFS 部署要求</div>
+          <div class="ah-meta">Deployment Requirements</div>
+        </div>
+        <div class="ah-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="dc-row"><span>部署模式</span><b>最小 3 节点 · 最大 32 节点</b></div>
+        <div class="dc-row"><span>部署方式</span><b>纯软部署（Rocky 9.4 OS + bin）</b></div>
+        <div class="dc-row"><span>元数据副本</span><b>2 副本 · 宕机 1 节点不影响业务</b></div>
+        <div class="dc-row"><span>单节点 CPU</span><b>最低 8 core</b></div>
+        <div class="dc-row"><span>单节点内存</span><b>最低 32G</b></div>
+        <div class="dc-row"><span>OS 盘</span><b>150G</b></div>
+        <div class="dc-row"><span>索引盘</span><b>200G</b></div>
+        <div class="dc-row"><span>前端网</span><b>10G × 2 port</b></div>
+        <div class="dc-row"><span>后端网</span><b>10G × 2 port（建议独立交换机）</b></div>
+        <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
+        <div class="dc-row"><span>能力基线</span><b>1 亿索引 · 50 agent · 5 并发迁移</b></div>
+      </div>
     </div>
-    <div class="deploy-card">
-      <h4>DFS 推荐硬件</h4>
-      <div class="dc-sub">Recommended Hardware · DXN2000 G3 (7DM5)</div>
-      <div class="dc-row"><span>型号</span><b>DXN2000 G3 (7DM5)</b></div>
-      <div class="dc-row"><span>CPU</span><b>Intel Xeon Silver 4514Y 16C 150W 2.0GHz ×1</b></div>
-      <div class="dc-row"><span>内存</span><b>64GB</b></div>
-      <div class="dc-row"><span>OS 盘</span><b>480G SATA SSD ×2</b></div>
-      <div class="dc-row"><span>索引盘</span><b>1.92T NVMe ×1</b></div>
-      <div class="dc-row"><span>前端网</span><b>10G/25G × 2 port</b></div>
-      <div class="dc-row"><span>后端网</span><b>10G/25G × 2 port</b></div>
-      <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
-      <div class="dc-row"><span>网络说明</span><b>前端接入业务网，后端建议独立交换机</b></div>
-      <div class="dc-row"><span>管理网</span><b>无特殊要求</b></div>
-      <div class="dc-row" style="border-top:1px solid var(--line);margin-top:8px;padding-top:12px;justify-content:center">
-        <a href="https://www.lenovonetapp.com/products/sds/nas/dxn2000-dxn3000.html" target="_blank" rel="noopener" style="color:var(--cyan);font-size:12px;text-decoration:none;font-weight:500">点击跳转联想凌拓官网了解产品信息 →</a>
+    <div class="accordion-card">
+      <div class="accordion-head">
+        <div>
+          <div class="ah-title">DFS 推荐硬件</div>
+          <div class="ah-meta">Recommended Hardware · DXN2000 G3</div>
+        </div>
+        <div class="ah-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="dc-row"><span>型号</span><b>DXN2000 G3 (7DM5)</b></div>
+        <div class="dc-row"><span>CPU</span><b>Intel Xeon Silver 4514Y 16C 150W 2.0GHz ×1</b></div>
+        <div class="dc-row"><span>内存</span><b>64GB</b></div>
+        <div class="dc-row"><span>OS 盘</span><b>480G SATA SSD ×2</b></div>
+        <div class="dc-row"><span>索引盘</span><b>1.92T NVMe ×1</b></div>
+        <div class="dc-row"><span>前端网</span><b>10G/25G × 2 port</b></div>
+        <div class="dc-row"><span>后端网</span><b>10G/25G × 2 port</b></div>
+        <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
+        <div class="dc-row"><span>网络说明</span><b>前端接入业务网，后端建议独立交换机</b></div>
+        <div class="dc-row"><span>管理网</span><b>无特殊要求</b></div>
+        <div class="dc-row" style="border-top:1px solid var(--line);margin-top:8px;padding-top:12px;justify-content:center">
+          <a href="https://www.lenovonetapp.com/products/sds/nas/dxn2000-dxn3000.html" target="_blank" rel="noopener" style="color:var(--cyan);font-size:12px;text-decoration:none;font-weight:500">点击跳转联想凌拓官网了解产品信息 →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -2087,26 +3071,40 @@
     </div>
     <p class="sec-desc">LiSA 基础软件授权许可（必选）按节点配，最少 3 节点起配。功能模块许可按需选择，DFS 按集群授权。</p>
   </div>
-  <div class="deploy-grid reveal">
-    <div class="deploy-card">
-      <h4>LiSA 基础软件授权许可</h4>
-      <div class="dc-sub">Essential Base License · 必选 · 按节点</div>
-      <div class="dc-row"><span>4HT7B10778</span><b>LiSA Essential Base License 1 Node 3Y</b></div>
-      <div class="dc-row"><span>说明</span><b>基础软件许可授权 1 个节点，3 年服务</b></div>
-      <div class="dc-row"><span>最少配置</span><b>3 节点起配</b></div>
-      <div class="dc-row"><span>4HT7B10779</span><b>LiSA Essential Base License 1Y Expansion</b></div>
-      <div class="dc-row"><span>说明</span><b>基础软件 1 个节点 1 年延保服务</b></div>
-      <div class="dc-row"><span>计费方式</span><b>LiSA Basic 按节点（3 个起配）</b></div>
+  <div class="accordion-wrap reveal">
+    <div class="accordion-card">
+      <div class="accordion-head">
+        <div>
+          <div class="ah-title">LiSA 基础软件授权许可</div>
+          <div class="ah-meta">Essential Base License · 必选 · 按节点</div>
+        </div>
+        <div class="ah-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="dc-row"><span>4HT7B10778</span><b>LiSA Essential Base License 1 Node 3Y</b></div>
+        <div class="dc-row"><span>说明</span><b>基础软件许可授权 1 个节点，3 年服务</b></div>
+        <div class="dc-row"><span>最少配置</span><b>3 节点起配</b></div>
+        <div class="dc-row"><span>4HT7B10779</span><b>LiSA Essential Base License 1Y Expansion</b></div>
+        <div class="dc-row"><span>说明</span><b>基础软件 1 个节点 1 年延保服务</b></div>
+        <div class="dc-row"><span>计费方式</span><b>LiSA Basic 按节点（3 个起配）</b></div>
+      </div>
     </div>
-    <div class="deploy-card">
-      <h4>LiSA 功能模块许可</h4>
-      <div class="dc-sub">Function Module License · 按需选择 · 按集群</div>
-      <div class="dc-row"><span>DFS License</span><b>Lenovo LiSA for DFS License 3Y (100agents)</b></div>
-      <div class="dc-row"><span>说明</span><b>工业质检数据处理，1000 机台 agent，100 亿文件</b></div>
-      <div class="dc-row"><span>DFS 延保</span><b>LiSA for DFS License 1Y Expansion SRV</b></div>
-      <div class="dc-row"><span>原厂服务</span><b>LiSA Onsite SRV 1time（现场 1 人天）</b></div>
-      <div class="dc-row"><span>定制开发</span><b>LiSA custom Develop rate（人天报价）</b></div>
-      <div class="dc-row"><span>计费方式</span><b>DFS 功能许可按集群</b></div>
+    <div class="accordion-card">
+      <div class="accordion-head">
+        <div>
+          <div class="ah-title">LiSA 功能模块许可</div>
+          <div class="ah-meta">Function Module License · 按需选择 · 按集群</div>
+        </div>
+        <div class="ah-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="dc-row"><span>DFS License</span><b>Lenovo LiSA for DFS License 3Y (100agents)</b></div>
+        <div class="dc-row"><span>说明</span><b>工业质检数据处理，1000 机台 agent，100 亿文件</b></div>
+        <div class="dc-row"><span>DFS 延保</span><b>LiSA for DFS License 1Y Expansion SRV</b></div>
+        <div class="dc-row"><span>原厂服务</span><b>LiSA Onsite SRV 1time（现场 1 人天）</b></div>
+        <div class="dc-row"><span>定制开发</span><b>LiSA custom Develop rate（人天报价）</b></div>
+        <div class="dc-row"><span>计费方式</span><b>DFS 功能许可按集群</b></div>
+      </div>
     </div>
   </div>
 
@@ -2148,43 +3146,291 @@
   </div>
 </section>
 
+<!-- ============ SCREENSHOTS ============ -->
+<section id="screenshots">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-tag"><span class="n">06</span> UI Showcase</div>
+      <h2 class="sec-title">部分功能页面展示<span class="accent"> 界面截图</span></h2>
+    </div>
+    <p class="sec-desc">LiSA 智能存储平台各功能模块的实际操作界面，涵盖数据访问、数据流转、数据分析、监控管理等核心页面。</p>
+  </div>
+  <div class="shot-grid" id="shotGrid">
+    <div class="shot-card" data-index="0" data-src="截屏2026-08-06 11.56.53.png" data-caption="数据首页概览 · Dashboard"><div class="shot-img-wrap"><img src="截屏2026-08-06 11.56.53.png" alt="数据首页概览"></div><div class="shot-meta"><span class="shot-label">数据首页概览</span><span class="shot-tag">Dashboard</span></div></div>
+    <div class="shot-card" data-index="1" data-src="截屏2026-08-12 11.14.34.png" data-caption="数据访问 · Access"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.14.34.png" alt="数据访问"></div><div class="shot-meta"><span class="shot-label">数据访问</span><span class="shot-tag">Access</span></div></div>
+    <div class="shot-card" data-index="2" data-src="截屏2026-08-12 11.16.38.png" data-caption="数据流转 · Flow"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.16.38.png" alt="数据流转"></div><div class="shot-meta"><span class="shot-label">数据流转</span><span class="shot-tag">Flow</span></div></div>
+    <div class="shot-card" data-index="3" data-src="截屏2026-08-12 11.17.11.png" data-caption="数据采集 · Agent"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.11.png" alt="数据采集"></div><div class="shot-meta"><span class="shot-label">数据采集</span><span class="shot-tag">Agent</span></div></div>
+    <div class="shot-card" data-index="4" data-src="截屏2026-08-12 11.17.30.png" data-caption="数据迁移 · Migration"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.30.png" alt="数据迁移"></div><div class="shot-meta"><span class="shot-label">数据迁移</span><span class="shot-tag">Migration</span></div></div>
+    <div class="shot-card" data-index="5" data-src="截屏2026-08-12 11.17.48.png" data-caption="智能标签 · Tagging"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.48.png" alt="智能标签"></div><div class="shot-meta"><span class="shot-label">智能标签</span><span class="shot-tag">Tagging</span></div></div>
+    <div class="shot-card" data-index="6" data-src="截屏2026-08-12 11.18.05.png" data-caption="告警 · Alert"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.05.png" alt="告警"></div><div class="shot-meta"><span class="shot-label">告警</span><span class="shot-tag">Alert</span></div></div>
+    <div class="shot-card" data-index="7" data-src="截屏2026-08-12 11.18.14.png" data-caption="操作记录 · Log"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.14.png" alt="操作记录"></div><div class="shot-meta"><span class="shot-label">操作记录</span><span class="shot-tag">Log</span></div></div>
+    <div class="shot-card" data-index="8" data-src="截屏2026-08-12 11.18.25.png" data-caption="节点列表 · Node"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.25.png" alt="节点列表"></div><div class="shot-meta"><span class="shot-label">节点列表</span><span class="shot-tag">Node</span></div></div>
+    <div class="shot-card" data-index="9" data-src="截屏2026-08-12 11.18.35.png" data-caption="账户管理 · Account"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.35.png" alt="账户管理"></div><div class="shot-meta"><span class="shot-label">账户管理</span><span class="shot-tag">Account</span></div></div>
+    <div class="shot-card" data-index="10" data-src="截屏2026-08-12 11.18.46.png" data-caption="监控管理 · Monitor"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.46.png" alt="监控管理"></div><div class="shot-meta"><span class="shot-label">监控管理</span><span class="shot-tag">Monitor</span></div></div>
+    <div class="shot-card" data-index="11" data-src="截屏2026-08-12 11.19.53.png" data-caption="系统管理 · System"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.19.53.png" alt="系统管理"></div><div class="shot-meta"><span class="shot-label">系统管理</span><span class="shot-tag">System</span></div></div>
+  </div>
+</section>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox">
+  <!-- SVG 大气磅礴流动光线层 -->
+  <svg class="lb-svg-layer" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- 环绕光束渐变：青绿→天蓝→淡紫，两端淡出 -->
+      <linearGradient id="lbArcThin1" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00d4c0" stop-opacity="0"/>
+        <stop offset="35%" stop-color="#00c4e0" stop-opacity=".22"/>
+        <stop offset="70%" stop-color="#3aa0ff" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#6f7cff" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="lbArcThin2" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#00c4ff" stop-opacity="0"/>
+        <stop offset="30%" stop-color="#00d4ff" stop-opacity=".16"/>
+        <stop offset="55%" stop-color="#40b0ff" stop-opacity=".2"/>
+        <stop offset="80%" stop-color="#7890ff" stop-opacity=".14"/>
+        <stop offset="100%" stop-color="#a07fff" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="lbArcThin3" x1="8%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00a0c0" stop-opacity="0"/>
+        <stop offset="40%" stop-color="#2078d0" stop-opacity=".18"/>
+        <stop offset="75%" stop-color="#5070e0" stop-opacity=".12"/>
+        <stop offset="100%" stop-color="#8060ff" stop-opacity="0"/>
+      </linearGradient>
+      <!-- 环绕光束专用渐变：更柔和大范围 -->
+      <linearGradient id="lbBeamA" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00d4c0" stop-opacity="0"/>
+        <stop offset="25%" stop-color="#00c8e0" stop-opacity=".5"/>
+        <stop offset="55%" stop-color="#3aa0ff" stop-opacity=".4"/>
+        <stop offset="80%" stop-color="#6f7cff" stop-opacity=".25"/>
+        <stop offset="100%" stop-color="#9080ff" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="lbBeamB" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#7890ff" stop-opacity="0"/>
+        <stop offset="25%" stop-color="#4080e0" stop-opacity=".35"/>
+        <stop offset="60%" stop-color="#00b0d0" stop-opacity=".4"/>
+        <stop offset="100%" stop-color="#00d4c0" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="lbBeamC" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#00b0e0" stop-opacity="0"/>
+        <stop offset="35%" stop-color="#00c4e0" stop-opacity=".4"/>
+        <stop offset="65%" stop-color="#40a0ff" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#7080ff" stop-opacity="0"/>
+      </linearGradient>
+      <!-- 超柔和发光滤镜 -->
+      <filter id="lbGlow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="3" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="lbGlowSm" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="1.2"/>
+      </filter>
+      <!-- 环绕光束大模糊滤镜 -->
+      <filter id="lbBeamBlur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="12" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="lbBeamBlurSm" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="5" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- ===== 环绕光束层（有宽度的弧形光带，暗调，呼吸感） ===== -->
+    <!-- 环绕光束 A：左下→右上大弧线，外晕层 -->
+    <path d="M -40 1100 C 380 940 760 780 1120 560 S 1780 160 2000 -40"
+          fill="none" stroke="url(#lbBeamA)" stroke-width="48"
+          opacity=".12" filter="url(#lbBeamBlur)">
+      <animate attributeName="opacity" values=".08;.18;.08" dur="8s" repeatCount="indefinite"/>
+    </path>
+    <!-- 环绕光束 A：中层 -->
+    <path d="M -40 1100 C 380 940 760 780 1120 560 S 1780 160 2000 -40"
+          fill="none" stroke="url(#lbBeamA)" stroke-width="14"
+          opacity=".3" filter="url(#lbBeamBlurSm)">
+      <animate attributeName="stroke-width" values="10;18;10" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".2;.4;.2" dur="7s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- 环绕光束 B：右上→左下反向弧线，外晕层 -->
+    <path d="M 2000 180 Q 1500 500 900 660 T -40 1000"
+          fill="none" stroke="url(#lbBeamB)" stroke-width="40"
+          opacity=".1" filter="url(#lbBeamBlur)">
+      <animate attributeName="opacity" values=".06;.15;.06" dur="10s" repeatCount="indefinite"/>
+    </path>
+    <!-- 环绕光束 B：中层 -->
+    <path d="M 2000 180 Q 1500 500 900 660 T -40 1000"
+          fill="none" stroke="url(#lbBeamB)" stroke-width="12"
+          opacity=".25" filter="url(#lbBeamBlurSm)">
+      <animate attributeName="stroke-width" values="8;15;8" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".16;.32;.16" dur="9s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- 环绕光束 C：底部地平线上方弧线，外晕层 -->
+    <path d="M -60 880 Q 460 720 960 760 T 1980 740"
+          fill="none" stroke="url(#lbBeamC)" stroke-width="36"
+          opacity=".1" filter="url(#lbBeamBlur)">
+      <animate attributeName="opacity" values=".06;.14;.06" dur="9s" repeatCount="indefinite"/>
+    </path>
+    <!-- 环绕光束 C：中层 -->
+    <path d="M -60 880 Q 460 720 960 760 T 1980 740"
+          fill="none" stroke="url(#lbBeamC)" stroke-width="10"
+          opacity=".24" filter="url(#lbBeamBlurSm)">
+      <animate attributeName="stroke-width" values="7;13;7" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".15;.3;.15" dur="8s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- ===== 细核心亮线层（叠加在光束上方，提升锐度） ===== -->
+    <!-- 弧线 1：左下→右上 -->
+    <path d="M -40 1100 C 380 940 760 780 1120 560 S 1780 160 2000 -40"
+          fill="none" stroke="url(#lbArcThin1)" stroke-width="1.4"
+          opacity=".55" filter="url(#lbGlow)">
+      <animate attributeName="opacity" values=".35;.7;.35" dur="9s" repeatCount="indefinite"/>
+    </path>
+    <!-- 弧线 2：双轨偏移 -->
+    <path d="M -40 1130 C 400 960 780 800 1140 580 S 1800 180 2000 -20"
+          fill="none" stroke="url(#lbArcThin1)" stroke-width=".8"
+          opacity=".35" filter="url(#lbGlow)">
+      <animate attributeName="opacity" values=".22;.48;.22" dur="11s" repeatCount="indefinite"/>
+    </path>
+    <!-- 弧线 3：底部弧线 -->
+    <path d="M -60 880 Q 460 720 960 760 T 1980 740"
+          fill="none" stroke="url(#lbArcThin2)" stroke-width="1.2"
+          opacity=".5" filter="url(#lbGlow)">
+      <animate attributeName="opacity" values=".32;.62;.32" dur="10s" repeatCount="indefinite"/>
+    </path>
+    <!-- 弧线 4：右上→左下 -->
+    <path d="M 2000 180 Q 1500 500 900 660 T -40 1000"
+          fill="none" stroke="url(#lbArcThin3)" stroke-width="1"
+          opacity=".4" filter="url(#lbGlow)">
+      <animate attributeName="opacity" values=".25;.55;.25" dur="13s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- ===== 流动光点（克制，不刺眼） ===== -->
+    <g filter="url(#lbGlowSm)">
+      <!-- 主轨道1：沿左下→右上弧线 -->
+      <circle r="2" fill="#b0eaff">
+        <animateMotion dur="11s" repeatCount="indefinite"
+                       path="M -40 1100 C 380 940 760 780 1120 560 S 1780 160 2000 -40"/>
+        <animate attributeName="r" values="1;2.6;1" dur="11s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;.55;.55;0" keyTimes="0;.15;.85;1" dur="11s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="1.6" fill="#7cd8ff">
+        <animateMotion dur="14s" repeatCount="indefinite" begin="-6s"
+                       path="M -40 1100 C 380 940 760 780 1120 560 S 1780 160 2000 -40"/>
+        <animate attributeName="opacity" values="0;.45;.45;0" keyTimes="0;.12;.88;1" dur="14s" repeatCount="indefinite"/>
+      </circle>
+      <!-- 主轨道3：沿地平线弧线 -->
+      <circle r="1.8" fill="#a0d0ff">
+        <animateMotion dur="13s" repeatCount="indefinite" begin="-3s"
+                       path="M -60 880 Q 460 720 960 760 T 1980 740"/>
+        <animate attributeName="r" values="1;2.4;1" dur="13s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;.4;.4;0" keyTimes="0;.15;.85;1" dur="13s" repeatCount="indefinite"/>
+      </circle>
+      <!-- 右上→左下 -->
+      <circle r="1.8" fill="#90b8ff">
+        <animateMotion dur="15s" repeatCount="indefinite" begin="-9s"
+                       path="M 2000 180 Q 1500 500 900 660 T -40 1000"/>
+        <animate attributeName="opacity" values="0;.38;.38;0" keyTimes="0;.18;.82;1" dur="15s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </svg>
+
+  <!-- 底部地平线 -->
+  <div class="lb-horizon"></div>
+  <!-- 右侧光晕 -->
+  <div class="lb-glow-right"></div>
+  <div class="lb-glow-right b"></div>
+  <!-- 漂浮粒子 -->
+  <div class="lightbox-particles" id="lbParticles"></div>
+
+  <button class="lightbox-close" id="lightboxClose" aria-label="关闭">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="上一张">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="下一张">›</button>
+
+  <div class="lightbox-content">
+    <!-- 背后光晕层（窗口之下） -->
+    <svg class="lb-img-glow-back" viewBox="0 0 1200 700" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="lbImgGlow" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stop-color="#00c4e0" stop-opacity="0"/>
+          <stop offset="18%" stop-color="#00d4e8" stop-opacity=".4"/>
+          <stop offset="40%" stop-color="#40a0ff" stop-opacity=".55"/>
+          <stop offset="60%" stop-color="#40a0ff" stop-opacity=".55"/>
+          <stop offset="82%" stop-color="#00c4e0" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#6f7cff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="lbImgBlurBig" x="-30%" y="-100%" width="160%" height="300%">
+          <feGaussianBlur stdDeviation="22" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- 底部大扩散弧（背后） -->
+      <path d="M -40 600 Q 260 340 600 400 T 1240 600"
+            fill="none" stroke="url(#lbImgGlow)" stroke-width="120"
+            opacity=".2" filter="url(#lbImgBlurBig)">
+        <animate attributeName="opacity" values=".14;.28;.14" dur="5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M -20 580 Q 280 360 600 420 T 1220 580"
+            fill="none" stroke="url(#lbImgGlow)" stroke-width="42"
+            opacity=".3" filter="url(#lbImgBlurBig)">
+        <animate attributeName="stroke-width" values="32;52;32" dur="4.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".22;.4;.22" dur="4.5s" repeatCount="indefinite"/>
+      </path>
+    </svg>
+
+    <div class="lb-window">
+      <!-- 红绿灯 -->
+      <div class="lb-traffic">
+        <div class="lb-dot r"></div>
+        <div class="lb-dot y"></div>
+        <div class="lb-dot g"></div>
+      </div>
+      <!-- HUD 状态 -->
+      <div class="lb-hud">
+        <span class="dot"></span>
+        <span>LIVE · 4K</span>
+      </div>
+      <!-- 窗口标题 -->
+      <div class="lb-title" id="lbTitle">LISA · UI PREVIEW</div>
+      <!-- 图片 -->
+      <div class="lb-img-wrap">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+      </div>
+    </div>
+
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
 <!-- ============ FOOTER ============ -->
 <footer id="contact">
-  <div class="foot-inner">
-    <div class="foot-col">
-      <h5>产品模块</h5>
-      <a href="#product">LiSA Basic 基础</a>
-      <a href="#functions">LiSA DFS 工业质检</a>
-      <a href="#functions">LiSA UDM 统一管理</a>
-      <a href="#configs-sec">典型配置</a>
-    </div>
-    <div class="foot-col">
-      <h5>了解更多</h5>
-      <a href="#architecture">技术架构</a>
-      <a href="#advantages">核心优势</a>
-      <a href="#scenarios">客户案例</a>
-      
-    </div>
-  </div>
   <div class="foot-bottom">
+    <a href="#top" class="foot-home">↑ 返回首页</a>
     <span>© 2026 LENOVO · INTELLIGENT STORAGE AGENT</span>
   </div>
 </footer>
 
-<script>
-  // custom cursor
-  const cur=document.querySelector('.cursor'),dot=document.querySelector('.cursor-dot');
-  let mx=0,my=0,cx=0,cy=0;
-  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-  (function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop)})();
-  document.querySelectorAll('a,.feat,.pillar,.case,.cfg,.arch-node').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
-  });
+<!-- 返回顶部按钮 -->
+<button class="back-to-top" id="backToTop" aria-label="返回顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+  </svg>
+</button>
 
+<script>
   // nav scroll
   const nav=document.getElementById('nav');
   window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+
+  // 返回顶部按钮
+  const backBtn=document.getElementById('backToTop');
+  const toggleBackBtn=()=>backBtn.classList.toggle('show',window.scrollY>480);
+  toggleBackBtn();
+  window.addEventListener('scroll',toggleBackBtn,{passive:true});
+  backBtn.addEventListener('click',()=>{
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
 
   // reveal on scroll
   const io=new IntersectionObserver(entries=>{
@@ -2231,45 +3477,90 @@
       a.classList.toggle('active',a.getAttribute('href')==='#'+current);
     });
   }
-  window.addEventListener('scroll',setActive,{passive:true});
-  setActive();
 
-  // smooth scroll for nav clicks
-  navLinks.forEach(a=>{
+  // scroll spy - function sub-nav highlight
+  const funcLinks=document.querySelectorAll('.func-subnav a');
+  const funcModules=document.querySelectorAll('.func-module[id]');
+  function setFuncActive(){
+    if(!funcLinks.length)return;
+    const scrollY=window.pageYOffset+window.innerHeight*0.35;
+    let current='';
+    funcModules.forEach(sec=>{
+      const top=sec.offsetTop;
+      const height=sec.offsetHeight;
+      if(scrollY>=top && scrollY<top+height){
+        current=sec.id;
+      }
+    });
+    funcLinks.forEach(a=>{
+      a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+    });
+  }
+
+  window.addEventListener('scroll',()=>{setActive();setFuncActive()},{passive:true});
+  setActive();
+  setFuncActive();
+
+  // smooth scroll for nav + sub-nav clicks
+  document.querySelectorAll('.nav-links a, .func-subnav a').forEach(a=>{
     a.addEventListener('click',function(e){
       const href=this.getAttribute('href');
-      if(href.startsWith('#')){
+      if(href && href.startsWith('#')){
         e.preventDefault();
         const target=document.querySelector(href);
         if(target){
           const navH=document.getElementById('nav').offsetHeight;
-          const top=target.getBoundingClientRect().top+window.pageYOffset-navH+1;
+          const isFuncModule=target.classList && target.classList.contains('func-module');
+          const subnavH=isFuncModule?(document.querySelector('.func-subnav').offsetHeight+10):0;
+          const top=target.getBoundingClientRect().top+window.pageYOffset-navH-subnavH+1;
           window.scrollTo({top,behavior:'smooth'});
         }
       }
     });
   });
 
+  // data analysis tabs
+  const dataTabs=document.querySelectorAll('.data-tab');
+  const dataPanels=document.querySelectorAll('.data-tab-panel');
+  dataTabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const target=tab.dataset.tab;
+      dataTabs.forEach(t=>{
+        const active=t.dataset.tab===target;
+        t.classList.toggle('active',active);
+        t.setAttribute('aria-selected',active?'true':'false');
+      });
+      dataPanels.forEach(p=>{
+        p.classList.toggle('active',p.dataset.panel===target);
+      });
+    });
+  });
+
+  // web app sidebar nav
+  document.querySelectorAll('.web-nav-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      document.querySelectorAll('.web-nav-item').forEach(i=>i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // web app filter chips
+  document.querySelectorAll('.cc-chip').forEach(chip=>{
+    chip.addEventListener('click',function(){
+      const parent=this.parentElement;
+      parent.querySelectorAll('.cc-chip').forEach(c=>c.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
   // fix SVG viewBoxes to properly contain and center content
   function fixSvgViewBoxes(){
-    // function modules: keep original viewBox as fallback
-    document.querySelectorAll('.func-arch svg').forEach(svg=>{
-      try{
-        const bbox=svg.getBBox();
-        if(bbox.width>0 && bbox.height>0){
-          const pad=20;
-          const vx=Math.floor(Math.min(0,bbox.x)-pad);
-          const vy=Math.floor(Math.min(0,bbox.y)-pad);
-          const origVw=parseInt(svg.getAttribute('viewBox').split(' ')[2]);
-          const origVh=parseInt(svg.getAttribute('viewBox').split(' ')[3]);
-          const vw=Math.ceil(Math.max(bbox.x+bbox.width,origVw)+pad*2);
-          const vh=Math.ceil(Math.max(bbox.y+bbox.height,origVh)+pad*2);
-          svg.setAttribute('viewBox',`${vx} ${vy} ${vw} ${vh}`);
-        }
-      }catch(e){}
-    });
+    // function modules: skip — original viewBoxes are correct, and getBBox()
+    // returns wrong values for SVGs inside hidden tab panels (display:none)
     // case study diagrams: tight crop to content only (no original viewBox fallback)
     document.querySelectorAll('.case .case-arch svg').forEach(svg=>{
+      // skip if inside a hidden tab panel
+      if(svg.closest('.section-tab-panel') && !svg.closest('.section-tab-panel.active'))return;
       try{
         const bbox=svg.getBBox();
         if(bbox.width>0 && bbox.height>0){
@@ -2283,6 +3574,132 @@
       }catch(e){}
     });
   }
+  // ===== section tabs (function modules + cases) =====
+  document.querySelectorAll('.section-tabs').forEach(tabGroup=>{
+    const tabs=tabGroup.querySelectorAll('.section-tab');
+    const scope=tabGroup.parentElement;
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        const target=tab.dataset.tab;
+        tabs.forEach(t=>{
+          const active=t.dataset.tab===target;
+          t.classList.toggle('active',active);
+          t.setAttribute('aria-selected',active?'true':'false');
+        });
+        scope.querySelectorAll('.section-tab-panel').forEach(panel=>{
+          panel.classList.toggle('active',panel.dataset.panel===target);
+        });
+        // re-fix SVG viewBoxes for newly visible case diagrams
+        setTimeout(fixSvgViewBoxes,50);
+      });
+    });
+  });
+
+  // ===== accordion =====
+  document.querySelectorAll('.accordion-head').forEach(head=>{
+    head.addEventListener('click',()=>{
+      const card=head.closest('.accordion-card');
+      card.classList.toggle('open');
+    });
+  });
+
+  // ===== lightbox =====
+  (function(){
+    const lightbox=document.getElementById('lightbox');
+    const img=document.getElementById('lightboxImg');
+    const caption=document.getElementById('lightboxCaption');
+    const counter=document.getElementById('lightboxCounter');
+    const closeBtn=document.getElementById('lightboxClose');
+    const prevBtn=document.getElementById('lightboxPrev');
+    const nextBtn=document.getElementById('lightboxNext');
+    const lbTitle=document.getElementById('lbTitle');
+    const lbParticles=document.getElementById('lbParticles');
+    const cards=document.querySelectorAll('.shot-card');
+    let currentIndex=0;
+    let total=cards.length;
+
+    // 生成漂浮粒子（非常克制：淡蓝，稀疏）
+    function initParticles(){
+      if(!lbParticles||lbParticles.children.length)return;
+      const count=14;
+      const palettes=[
+        [160,210,255],   // 淡天蓝
+        [180,230,255],   // 更浅蓝
+        [140,200,240],   // 偏蓝
+        [200,240,255],   // 近白蓝
+      ];
+      for(let i=0;i<count;i++){
+        const p=document.createElement('div');
+        p.className='lb-particle';
+        const left=Math.random()*100;
+        const size=1+Math.random()*1.6;
+        const dur=11+Math.random()*9;
+        const delay=Math.random()*-18;
+        const hue=palettes[Math.floor(Math.random()*palettes.length)];
+        p.style.left=`${left}%`;
+        p.style.width=`${size}px`;
+        p.style.height=`${size}px`;
+        p.style.background=`rgb(${hue[0]},${hue[1]},${hue[2]})`;
+        p.style.boxShadow=`0 0 ${3+size*1.5}px rgba(${hue[0]},${hue[1]},${hue[2]},.6)`;
+        p.style.animationDuration=`${dur}s`;
+        p.style.animationDelay=`${delay}s`;
+        lbParticles.appendChild(p);
+      }
+    }
+    initParticles();
+
+    function openLightbox(index){
+      currentIndex=index;
+      const card=cards[index];
+      const capText=card.dataset.caption||'';
+      img.src=card.dataset.src;
+      img.alt=card.querySelector('img').alt;
+      caption.textContent=capText;
+      counter.textContent=`${index+1} / ${total}`;
+      // 更新窗口标题
+      const tag=capText.split('·')[1]?.trim()||'UI';
+      lbTitle.textContent=`LISA · ${tag.toUpperCase()} · PREVIEW`;
+      lightbox.classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow='';
+    }
+
+    function showPrev(){
+      currentIndex=(currentIndex-1+total)%total;
+      openLightbox(currentIndex);
+    }
+
+    function showNext(){
+      currentIndex=(currentIndex+1)%total;
+      openLightbox(currentIndex);
+    }
+
+    cards.forEach(card=>{
+      card.addEventListener('click',()=>{
+        openLightbox(parseInt(card.dataset.index));
+      });
+    });
+
+    closeBtn.addEventListener('click',closeLightbox);
+    prevBtn.addEventListener('click',showPrev);
+    nextBtn.addEventListener('click',showNext);
+
+    lightbox.addEventListener('click',e=>{
+      if(e.target===lightbox||e.target.classList.contains('lightbox-particles'))closeLightbox();
+    });
+
+    document.addEventListener('keydown',e=>{
+      if(!lightbox.classList.contains('open'))return;
+      if(e.key==='Escape')closeLightbox();
+      else if(e.key==='ArrowLeft')showPrev();
+      else if(e.key==='ArrowRight')showNext();
+    });
+  })();
+
   fixSvgViewBoxes();
   window.addEventListener('load',fixSvgViewBoxes);
 </script>
