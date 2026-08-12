@@ -175,14 +175,15 @@
 
   /* ====== hero ====== */
   header.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 5vw 80px;overflow:hidden}
-  header.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:160px;background:linear-gradient(180deg,transparent 0%,#050710 100%);z-index:1;pointer-events:none}
+  header.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:180px;background:linear-gradient(180deg,transparent 0%,#050710 100%);z-index:1;pointer-events:none}
   [data-theme="light"] header.hero::after{background:linear-gradient(180deg,transparent 0%,#f1f4f9 100%)}
   .hero-bg{position:absolute;inset:0;z-index:0;background:url('assets/111.jpg') center/cover no-repeat;filter:contrast(1.05) saturate(1.08) brightness(.72)}
   .hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.02) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.015) 0%,transparent 55%)}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.15) 0%,rgba(5,7,16,.3) 25%,rgba(6,8,18,.5) 55%,rgba(8,10,24,.7) 78%,#050710 100%)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.15) 0%,rgba(5,7,16,.3) 25%,rgba(6,8,18,.5) 55%,rgba(8,10,24,.7) 80%,#050710 100%)}
   [data-theme="light"] .hero-bg{filter:contrast(1.05) saturate(1.08) brightness(.9)}
   [data-theme="light"] .hero-bg::before{background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.05) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.03) 0%,transparent 55%)}
-  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(20,20,30,.35) 0%,rgba(18,18,28,.45) 25%,rgba(15,15,24,.55) 55%,rgba(12,12,22,.65) 80%,#f1f4f9 100%)}
+  /* 浅色模式：底部白色过渡蒙版下移，不要盖住统计数字区域，让数字落在深色蒙版上自然看清 */
+  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(20,20,30,.4) 0%,rgba(18,18,28,.52) 25%,rgba(15,15,24,.62) 55%,rgba(12,12,22,.72) 82%,rgba(12,12,22,.58) 90%,#f1f4f9 100%)}
   [data-theme="light"] .hero-cn{color:#fff;border-top-color:rgba(255,255,255,.35);text-shadow:0 2px 20px rgba(0,0,0,.55)}
   [data-theme="light"] .hero-sub{color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(0,0,0,.45)}
   [data-theme="light"] .hero-sub b{color:#fff}
@@ -214,7 +215,12 @@
   .hero-stats .s:first-child{padding-left:0}
   .hero-stats .s:last-child{border-right:none;padding-right:0}
   .hero-stats .num{font-family:var(--ff-display);font-weight:700;font-size:clamp(24px,2.2vw,40px);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;letter-spacing:-.02em}
-  .hero-stats .lbl{font-family:var(--ff-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:8px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+  .hero-stats .lbl{font-family:var(--ff-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:8px}
+  /* 浅色模式：靠蒙版下移保证统计数字落在深色背景，不改颜色不加重影 */
+  [data-theme="light"] .hero-stats{padding:0!important;background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:none!important;box-shadow:none!important;border-radius:0!important}
+  [data-theme="light"] .hero-stats .num{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+  [data-theme="light"] .hero-stats .lbl{color:rgba(255,255,255,.88);font-weight:500}
+  [data-theme="light"] .hero-stats .s{border-right-color:rgba(255,255,255,.32)}
   @media (max-width:1024px){
     .hero-stats{position:static;transform:none;flex-direction:row;gap:0;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1);padding-left:0}
     .hero-stats .s{flex:1;padding:0 24px;border-left:none;border-right:1px solid rgba(255,255,255,.1)}
@@ -320,9 +326,12 @@
   /* ====== architecture ====== */
   .arch-wrap{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--surface),var(--bg));overflow:visible;padding:10px}
   .arch-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(var(--cyan-rgb),.08),transparent);pointer-events:none}
-  .arch-legend{display:flex;gap:24px;flex-wrap:wrap;padding:22px 28px 8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
-  .arch-legend .lg{display:flex;align-items:center;gap:8px}
-  .arch-legend .sw{width:14px;height:14px;border-radius:4px}
+  .arch-legend{display:flex;gap:24px;flex-wrap:wrap;padding:22px 28px 8px;font-family:var(--ff-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2;font-weight:500}
+  .arch-legend .lg{display:flex;align-items:center;gap:10px}
+  .arch-legend .sw{width:16px;height:16px;border-radius:4px}
+  /* 浅色模式：图例文字加深，方块描边加粗增强对比 */
+  [data-theme="light"] .arch-legend{color:#2d2d3a!important;font-weight:600;letter-spacing:.1em}
+  [data-theme="light"] .arch-legend .sw{border:1.5px solid rgba(0,0,0,.25)!important;box-shadow:0 1px 2px rgba(0,0,0,.08)!important}
   .arch-svg-box{position:relative;width:100%;overflow:visible;padding:8px 20px 24px;display:flex;justify-content:center}
   .arch-svg-box svg{display:block;width:100%;min-width:980px;max-width:1200px;height:auto;font-family:var(--ff-body)}
   .arch-note{padding:0 28px 22px;color:var(--ink-faint);font-size:12px;font-family:var(--ff-mono);letter-spacing:.05em}
@@ -1490,34 +1499,145 @@
   [data-theme="light"] .shot-card{background:#fff;border:1px solid var(--line)}
   [data-theme="light"] .shot-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.12)}
   [data-theme="light"] .shot-img-wrap{background:rgba(0,0,0,.02)}
-  /* light mode SVG text color fixes */
-  [data-theme="light"] .flow-svg [fill="#eef2ff"]{fill:#1a1a1f!important}
-  [data-theme="light"] .flow-svg [fill="#9aa3c4"]{fill:#494952!important}
-  [data-theme="light"] .flow-svg [fill="#5d6685"]{fill:#63636a!important}
-  [data-theme="light"] .flow-svg [fill="#3df0ff"]{fill:#0071e3!important}
-  [data-theme="light"] .flow-svg [fill="#f5c87a"]{fill:#b8860b!important}
-  [data-theme="light"] .flow-svg [fill="#8b7bff"]{fill:#5e5ce6!important}
-  [data-theme="light"] .flow-svg [fill="#eef2ff"]{fill:#1a1a1f!important}
+  /* light mode SVG text color fixes - 加深对比度，字体加粗更清晰 */
+  [data-theme="light"] .flow-svg [fill="#eef2ff"]{fill:#0b0b10!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg [fill="#9aa3c4"]{fill:#2d2d3a!important}
+  [data-theme="light"] .flow-svg [fill="#5d6685"]{fill:#454550!important}
+  [data-theme="light"] .flow-svg [fill="#3df0ff"]{fill:#0057b8!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg [fill="#f5c87a"]{fill:#8a5f00!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg [fill="#8b7bff"]{fill:#4340c2!important;font-weight:700!important}
   [data-theme="light"] .flow-svg text{fill:var(--ink)}
-  [data-theme="light"] .flow-svg text[fill="#3df0ff"]{fill:#0071e3!important}
-  [data-theme="light"] .flow-svg text[fill="#f5c87a"]{fill:#b8860b!important}
-  [data-theme="light"] .flow-svg text[fill="#8b7bff"]{fill:#5e5ce6!important}
-  [data-theme="light"] .flow-svg text[fill="#9aa3c4"]{fill:#494952!important}
-  [data-theme="light"] .flow-svg text[fill="#5d6685"]{fill:#63636a!important}
-  [data-theme="light"] .flow-svg text[fill="#eef2ff"]{fill:#1a1a1f!important}
-  [data-theme="light"] .flow-svg text[fill="#c0c8e0"]{fill:#494952!important}
+  [data-theme="light"] .flow-svg text[fill="#3df0ff"]{fill:#0057b8!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg text[fill="#f5c87a"]{fill:#8a5f00!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg text[fill="#8b7bff"]{fill:#4340c2!important;font-weight:700!important}
+  [data-theme="light"] .flow-svg text[fill="#9aa3c4"]{fill:#2d2d3a!important;font-weight:500!important}
+  [data-theme="light"] .flow-svg text[fill="#5d6685"]{fill:#454550!important}
   [data-theme="light"] .flow-svg [fill="rgba(245,200,122,.04)"]{fill:rgba(0,0,0,.03)!important}
   [data-theme="light"] .flow-svg [fill="rgba(245,200,122,.1)"]{fill:rgba(0,0,0,.05)!important}
   [data-theme="light"] .flow-svg [fill="rgba(245,200,122,.15)"]{fill:rgba(0,0,0,.06)!important}
-  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.15)"]{stroke:rgba(0,0,0,.1)!important}
-  [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.14)"]{stroke:rgba(0,0,0,.2)!important}
-  [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.2)"]{stroke:rgba(0,0,0,.28)!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.15)"]{stroke:rgba(0,0,0,.12)!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.14)"]{stroke:rgba(0,0,0,.24)!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.2)"]{stroke:rgba(0,0,0,.32)!important}
+  /* 浅色模式：卡片边框加粗、加深，清晰可辨 */
+  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.45)"]{stroke:rgba(138,95,0,.75)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.4)"]{stroke:rgba(138,95,0,.65)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.35)"]{stroke:rgba(138,95,0,.6)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(245,200,122,.3)"]{stroke:rgba(138,95,0,.5)!important;stroke-width:1.4!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(var(--cyan-rgb),.4)"]{stroke:rgba(0,87,184,.75)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(var(--cyan-rgb),.35)"]{stroke:rgba(0,87,184,.65)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(var(--cyan-rgb),.3)"]{stroke:rgba(0,87,184,.55)!important;stroke-width:1.4!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(var(--cyan-rgb),.2)"]{stroke:rgba(0,87,184,.45)!important;stroke-width:1.4!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.45)"]{stroke:rgba(67,64,194,.8)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.4)"]{stroke:rgba(67,64,194,.7)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.35)"]{stroke:rgba(67,64,194,.6)!important;stroke-width:1.5!important}
+  [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.25)"]{stroke:rgba(67,64,194,.55)!important;stroke-width:1.4!important}
   [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.4)"]{stroke:rgba(0,0,0,.2)!important}
   [data-theme="light"] .feat-matrix th{background:var(--surface-2)}
   [data-theme="light"] body{cursor:auto}
   [data-theme="light"] .cursor,[data-theme="light"] .cursor-dot{display:none!important}
   [data-theme="light"] .btn{cursor:pointer}
   [data-theme="light"] .arch-node,[data-theme="light"] .arch-svg-node{cursor:pointer}
+
+  /* ========== 移动端适配 Mobile (≤640px) ========== */
+  @media (max-width:640px){
+    html,body{overflow-x:hidden}
+    section{padding:90px 4vw 110px}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:16px}
+    .sec-title{font-size:28px;line-height:1.25}
+    .sec-tag{font-size:10px;letter-spacing:.2em}
+    .sec-desc{font-size:13px;line-height:1.7}
+
+    /* Nav 导航栏手机端 */
+    nav{padding:14px 4vw;gap:10px}
+    nav .nav-links{display:none!important}
+    nav .logo{font-size:20px}
+
+    /* Hero 手机端 */
+    #hero{min-height:92vh;padding:120px 4vw 120px}
+    h1.title{font-size:clamp(56px,16vw,96px)!important}
+    .hero-cn{font-size:clamp(18px,5vw,24px)!important;letter-spacing:.22em}
+    .hero-sub{font-size:13px!important;line-height:1.75}
+    .eyebrow{font-size:9px;letter-spacing:.25em;margin-bottom:24px}
+    .hero-actions{flex-direction:column;width:100%;gap:12px;margin-top:28px}
+    .hero-actions .btn{width:100%;justify-content:center;padding:14px 20px}
+    .hero-stats{position:static!important;margin-top:40px;padding:18px 20px!important;flex-direction:row;flex-wrap:wrap;gap:14px 0!important;justify-content:space-between;border-radius:14px}
+    .hero-stats .s{flex:1 1 30%;padding:4px 10px!important;border-right:none!important;text-align:left}
+    .hero-stats .num{font-size:clamp(22px,7vw,30px)!important}
+    .hero-stats .lbl{font-size:9px!important;letter-spacing:.12em;margin-top:6px}
+    .scroll-hint{display:none}
+
+    /* 架构图手机端：横向滚动，字体不会小到看不清 */
+    .arch-wrap{padding:8px 4px;border-radius:16px}
+    .arch-legend{padding:16px 16px 4px;font-size:9px;gap:14px}
+    .arch-legend .sw{width:12px;height:12px}
+    .arch-svg-box{padding:8px 4px 16px;overflow-x:auto;overflow-y:visible;justify-content:flex-start;-webkit-overflow-scrolling:touch}
+    .arch-svg-box svg{min-width:900px;width:900px!important;max-width:none}
+
+    /* 四大特征手机端：2列更紧凑，间距更小 */
+    .pillars{grid-template-columns:repeat(2,1fr)!important}
+    .pillar{padding:28px 18px}
+    .pillar .tit{font-size:22px}
+    .pillar .en{font-size:9px;letter-spacing:.1em}
+    .pillar .desc{font-size:12px;line-height:1.65}
+    .pillar .pnum{font-size:18px}
+
+    /* 功能手机端：tab栏更紧凑，内部左右结构改上下 */
+    .section-tabs{gap:4px;padding:0;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch}
+    .section-tab{flex:none;padding:12px 16px;font-size:13px}
+    .func-header{flex-direction:column;align-items:flex-start;gap:12px}
+    .func-title h3{font-size:22px}
+    .func-en{font-size:11px}
+    .func-num{font-size:48px;width:60px;height:60px}
+    .func-body{grid-template-columns:1fr!important}
+    .func-info{grid-template-columns:1fr!important;gap:20px;padding:24px 20px}
+    .func-block p,.func-block li{font-size:13px;line-height:1.7}
+    .case-arch{padding:16px 12px}
+    .case-arch .ttl{font-size:12px;margin-bottom:12px}
+    .case-arch .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .case-arch svg{min-width:760px;width:760px!important}
+
+    /* 配置方案手机端：单列 */
+    .configs{grid-template-columns:1fr!important}
+    .cfg{padding:22px 18px}
+    .cfg-grid{grid-template-columns:1fr!important}
+
+    /* 展示截图手机端：单列，尺寸略缩小 */
+    .shot-grid{grid-template-columns:1fr!important;gap:16px}
+    .shot-card{border-radius:14px}
+
+    /* 部署手机端 */
+    .deploy-grid{grid-template-columns:1fr!important}
+    .deploy-card{padding:22px 18px}
+
+    /* 许可模式手机端 */
+    .license-wrap{padding:18px 16px;border-radius:16px}
+    .license-card{border-radius:14px;padding:14px 16px}
+    .license-card .lc-head{font-size:15px;padding:12px 14px}
+    .feat-matrix{font-size:12px}
+    .feat-matrix th,.feat-matrix td{padding:10px 8px}
+
+    /* 数据分层/案例/数据分析通用 */
+    .lifecycle{grid-template-columns:1fr!important}
+    .cases{grid-template-columns:1fr!important}
+    .case{padding:28px 20px;border-radius:18px}
+    .case-arch svg{min-width:680px}
+    .analytics-wrap{padding:18px 14px;border-radius:16px}
+
+    /* Footer 手机端 */
+    .foot-inner{padding:60px 4vw 30px;gap:30px}
+    .foot-brand .logo{font-size:28px}
+    .back-top{right:4vw;bottom:22px;width:44px;height:44px;font-size:18px}
+  }
+
+  /* ========== 超小屏 (≤380px) 进一步收紧 ========== */
+  @media (max-width:380px){
+    h1.title{font-size:52px!important}
+    .sec-title{font-size:24px}
+    .hero-stats .num{font-size:22px!important}
+    .pillar{padding:24px 14px}
+    .pillar .tit{font-size:18px}
+    .case{padding:24px 14px}
+  }
 </style>
 </head>
 <body id="top">
@@ -1618,11 +1738,11 @@
         <!-- ===== Layer 1: 垂直行业解决方案 ===== -->
         <g class="arch-layer">
           <rect class="layer-bg" x="20" y="20" width="1200" height="96" rx="14" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.3)"/>
-          <text x="40" y="42" font-family="JetBrains Mono" font-size="10" fill="#f5c87a" letter-spacing="2">VERTICAL INDUSTRIES · 垂直行业解决方案</text>
-          <g class="arch-svg-node"><rect x="40" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="182" y="76" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Manufacture - DFS</text><text x="182" y="94" text-anchor="middle" fill="#f5c87a" font-size="10">制造业 · 工业质检数据处理</text></g>
-          <g class="arch-svg-node"><rect x="340" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="482" y="76" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Education / Research</text><text x="482" y="94" text-anchor="middle" fill="#f5c87a" font-size="10">教育科研 · HPC / AI</text></g>
-          <g class="arch-svg-node"><rect x="640" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="782" y="76" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Health Care</text><text x="782" y="94" text-anchor="middle" fill="#f5c87a" font-size="10">医疗 · DR / BR / HA</text></g>
-          <g class="arch-svg-node"><rect x="940" y="54" width="260" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="1070" y="76" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">AI Training &amp; Inference</text><text x="1070" y="94" text-anchor="middle" fill="#f5c87a" font-size="10">AI 训练与推理</text></g>
+          <text x="40" y="42" font-family="JetBrains Mono" font-size="12" fill="#f5c87a" letter-spacing="2">VERTICAL INDUSTRIES · 垂直行业解决方案</text>
+          <g class="arch-svg-node"><rect x="40" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="182" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Manufacture - DFS</text><text x="182" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">制造业 · 工业质检数据处理</text></g>
+          <g class="arch-svg-node"><rect x="340" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="482" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Education / Research</text><text x="482" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">教育科研 · HPC / AI</text></g>
+          <g class="arch-svg-node"><rect x="640" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="782" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Health Care</text><text x="782" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">医疗 · DR / BR / HA</text></g>
+          <g class="arch-svg-node"><rect x="940" y="54" width="260" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="1070" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">AI Training &amp; Inference</text><text x="1070" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">AI 训练与推理</text></g>
         </g>
 
         <!-- connectors L1->LiSA -->
@@ -1637,21 +1757,21 @@
         <!-- ===== LiSA Platform Banner ===== -->
         <rect x="20" y="146" width="1200" height="38" rx="8" fill="url(#g-cyan2)" opacity=".15" stroke="var(--cyan)" stroke-width="1.2"/>
         <text x="620" y="170" text-anchor="middle" font-family="Syne" font-size="18" fill="#3df0ff" font-weight="800" letter-spacing="3" filter="url(#glow2)">Lenovo Intelligent Storage Agent — LiSA</text>
-        <text x="1200" y="170" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#3df0ff" opacity=".7">EMPOWER CLIENT TO MANAGE DATA &amp; MAKE DATA AI-READY</text>
+        <text x="1200" y="170" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#3df0ff" opacity=".7">EMPOWER CLIENT TO MANAGE DATA &amp; MAKE DATA AI-READY</text>
 
         <!-- ===== Layer 2A: Data Layer (Intelligent log, Tag, Search, Workflow engine, Meta data, RAG, Inference Engine) ===== -->
         <g class="arch-layer">
           <rect class="layer-bg" x="20" y="194" width="1200" height="100" rx="14" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-          <text x="40" y="216" font-family="JetBrains Mono" font-size="10" fill="#3df0ff" letter-spacing="2">DATA LAYER · 数据层</text>
-          <text x="1200" y="216" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#9aa3c4">Intelligent log · Tag · Search · Workflow engine · Meta data · RAG · Inference Engine</text>
+          <text x="40" y="216" font-family="JetBrains Mono" font-size="12" fill="#3df0ff" letter-spacing="2">DATA LAYER · 数据层</text>
+          <text x="1200" y="216" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#9aa3c4">Intelligent log · Tag · Search · Workflow engine · Meta data · RAG · Inference Engine</text>
 
-          <g class="arch-svg-node"><rect x="40" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="119" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Intelligent log</text><text x="119" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">智能日志</text><circle cx="119" cy="252" r="3" class="pulse-node" fill="var(--cyan)"/></g>
-          <g class="arch-svg-node"><rect x="212" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="291" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Tag</text><text x="291" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">智能标签</text></g>
-          <g class="arch-svg-node"><rect x="384" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="463" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Search</text><text x="463" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">智能检索</text></g>
-          <g class="arch-svg-node"><rect x="556" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="635" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Workflow engine</text><text x="635" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">工作流引擎</text></g>
-          <g class="arch-svg-node"><rect x="728" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="807" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Meta data</text><text x="807" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">元数据 / 索引</text></g>
-          <g class="arch-svg-node"><rect x="900" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="972" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">RAG</text><text x="972" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">检索增强生成</text></g>
-          <g class="arch-svg-node"><rect x="1059" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="1131" y="250" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Inference Engine</text><text x="1131" y="266" text-anchor="middle" fill="#3df0ff" font-size="9">推理引擎</text></g>
+          <g class="arch-svg-node"><rect x="40" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="119" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Intelligent log</text><text x="119" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能日志</text><circle cx="119" cy="252" r="3" class="pulse-node" fill="var(--cyan)"/></g>
+          <g class="arch-svg-node"><rect x="212" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="291" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Tag</text><text x="291" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能标签</text></g>
+          <g class="arch-svg-node"><rect x="384" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="463" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Search</text><text x="463" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能检索</text></g>
+          <g class="arch-svg-node"><rect x="556" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="635" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Workflow engine</text><text x="635" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">工作流引擎</text></g>
+          <g class="arch-svg-node"><rect x="728" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="807" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Meta data</text><text x="807" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">元数据 / 索引</text></g>
+          <g class="arch-svg-node"><rect x="900" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="972" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">RAG</text><text x="972" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">检索增强生成</text></g>
+          <g class="arch-svg-node"><rect x="1059" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="1131" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Inference Engine</text><text x="1131" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">推理引擎</text></g>
         </g>
 
         <!-- connectors L2A->L2B -->
@@ -1662,15 +1782,15 @@
         <!-- ===== Layer 2B: Storage Feature Layer (Resource mgt., Operation service, Global name space, Backup & Recovery, Tiering, Replication) ===== -->
         <g class="arch-layer">
           <rect class="layer-bg" x="20" y="320" width="1200" height="100" rx="14" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.3)"/>
-          <text x="40" y="342" font-family="JetBrains Mono" font-size="10" fill="#8b7bff" letter-spacing="2">STORAGE FEATURE LAYER · 存储功能层</text>
-          <text x="1200" y="342" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#9aa3c4">Resource mgt. · Operation service · Global name space · Backup &amp; Recovery · Tiering · Replication</text>
+          <text x="40" y="342" font-family="JetBrains Mono" font-size="12" fill="#8b7bff" letter-spacing="2">STORAGE FEATURE LAYER · 存储功能层</text>
+          <text x="1200" y="342" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#9aa3c4">Resource mgt. · Operation service · Global name space · Backup &amp; Recovery · Tiering · Replication</text>
 
-          <g class="arch-svg-node"><rect x="40" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="133" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Resource mgt.</text><text x="133" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">资源管理</text></g>
-          <g class="arch-svg-node"><rect x="240" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="333" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Operation service</text><text x="333" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">运维服务</text></g>
-          <g class="arch-svg-node"><rect x="440" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="533" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Global name space</text><text x="533" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">全局名字空间</text></g>
-          <g class="arch-svg-node"><rect x="640" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="733" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Backup &amp; Recovery</text><text x="733" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">备份恢复</text></g>
-          <g class="arch-svg-node"><rect x="840" y="354" width="175" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="927" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Tiering</text><text x="927" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">分层</text></g>
-          <g class="arch-svg-node"><rect x="1031" y="354" width="173" height="50" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="1117" y="376" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Replication</text><text x="1117" y="392" text-anchor="middle" fill="#8b7bff" font-size="9">复制</text></g>
+          <g class="arch-svg-node"><rect x="40" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="133" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Resource mgt.</text><text x="133" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">资源管理</text></g>
+          <g class="arch-svg-node"><rect x="240" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="333" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Operation service</text><text x="333" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">运维服务</text></g>
+          <g class="arch-svg-node"><rect x="440" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="533" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Global name space</text><text x="533" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">全局名字空间</text></g>
+          <g class="arch-svg-node"><rect x="640" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="733" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Backup &amp; Recovery</text><text x="733" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">备份恢复</text></g>
+          <g class="arch-svg-node"><rect x="840" y="354" width="175" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="927" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Tiering</text><text x="927" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">分层</text></g>
+          <g class="arch-svg-node"><rect x="1031" y="354" width="173" height="50" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="1117" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Replication</text><text x="1117" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">复制</text></g>
         </g>
 
         <!-- connectors L2B->L3 (data access flowing down to storage) -->
@@ -1686,27 +1806,27 @@
         <g class="arch-layer">
           <!-- On-Premise -->
           <rect class="layer-bg" x="20" y="460" width="590" height="180" rx="14" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.14)"/>
-          <text x="40" y="482" font-family="JetBrains Mono" font-size="10" fill="#9aa3c4" letter-spacing="2">STORAGE ON-PREMISE · 本地异构存储</text>
+          <text x="40" y="482" font-family="JetBrains Mono" font-size="12" fill="#9aa3c4" letter-spacing="2">STORAGE ON-PREMISE · 本地异构存储</text>
 
-          <g class="arch-svg-node"><rect x="40" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="105" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">ONTAP</text><text x="105" y="530" text-anchor="middle" fill="#f5c87a" font-size="9">FAS / AFF</text></g>
-          <g class="arch-svg-node"><rect x="180" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="245" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">DXN / CXN</text><text x="245" y="530" text-anchor="middle" fill="#f5c87a" font-size="9">分布式存储</text></g>
-          <g class="arch-svg-node"><rect x="320" y="496" width="140" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="390" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">PFS</text><text x="390" y="530" text-anchor="middle" fill="#f5c87a" font-size="9">GPFS / Lustre</text></g>
-          <g class="arch-svg-node"><rect x="470" y="496" width="125" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="532" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">STG</text><text x="532" y="530" text-anchor="middle" fill="#f5c87a" font-size="9">StorageGRID</text></g>
+          <g class="arch-svg-node"><rect x="40" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="105" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">ONTAP</text><text x="105" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">FAS / AFF</text></g>
+          <g class="arch-svg-node"><rect x="180" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="245" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">DXN / CXN</text><text x="245" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">分布式存储</text></g>
+          <g class="arch-svg-node"><rect x="320" y="496" width="140" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="390" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">PFS</text><text x="390" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">GPFS / Lustre</text></g>
+          <g class="arch-svg-node"><rect x="470" y="496" width="125" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="532" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">STG</text><text x="532" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">StorageGRID</text></g>
 
-          <g class="arch-svg-node"><rect x="40" y="548" width="270" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="175" y="567" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Object / S3</text><text x="175" y="582" text-anchor="middle" fill="#f5c87a" font-size="9">对象存储</text></g>
-          <g class="arch-svg-node"><rect x="320" y="548" width="275" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="457" y="567" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">NFS / CIFS</text><text x="457" y="582" text-anchor="middle" fill="#f5c87a" font-size="9">文件存储 NAS</text></g>
+          <g class="arch-svg-node"><rect x="40" y="548" width="270" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="175" y="567" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Object / S3</text><text x="175" y="582" text-anchor="middle" fill="#f5c87a" font-size="11">对象存储</text></g>
+          <g class="arch-svg-node"><rect x="320" y="548" width="275" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="457" y="567" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">NFS / CIFS</text><text x="457" y="582" text-anchor="middle" fill="#f5c87a" font-size="11">文件存储 NAS</text></g>
 
-          <text x="315" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#9aa3c4">标准协议对接 · 独立元数据引擎 · 不依赖对象存储 Tag</text>
+          <text x="315" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="#9aa3c4">标准协议对接 · 独立元数据引擎 · 不依赖对象存储 Tag</text>
 
           <!-- On-Cloud -->
           <rect class="layer-bg" x="630" y="460" width="590" height="180" rx="14" fill="rgba(var(--cyan-rgb),.03)" stroke="rgba(var(--cyan-rgb),.2)"/>
-          <text x="650" y="482" font-family="JetBrains Mono" font-size="10" fill="#3df0ff" letter-spacing="2">STORAGE ON-CLOUD · 云端存储</text>
+          <text x="650" y="482" font-family="JetBrains Mono" font-size="12" fill="#3df0ff" letter-spacing="2">STORAGE ON-CLOUD · 云端存储</text>
 
-          <g class="arch-svg-node"><rect x="650" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="740" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Cloud Object (VE)</text><text x="740" y="530" text-anchor="middle" fill="#3df0ff" font-size="9">火山引擎</text></g>
-          <g class="arch-svg-node"><rect x="840" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="930" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Cloud Object</text><text x="930" y="530" text-anchor="middle" fill="#3df0ff" font-size="9">AWS / 阿里云</text></g>
-          <g class="arch-svg-node"><rect x="1030" y="496" width="175" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="1117" y="515" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Cloud File ONTAP</text><text x="1117" y="530" text-anchor="middle" fill="#3df0ff" font-size="9">VE / AWS</text></g>
+          <g class="arch-svg-node"><rect x="650" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="740" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud Object (VE)</text><text x="740" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">火山引擎</text></g>
+          <g class="arch-svg-node"><rect x="840" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="930" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud Object</text><text x="930" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">AWS / 阿里云</text></g>
+          <g class="arch-svg-node"><rect x="1030" y="496" width="175" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="1117" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud File ONTAP</text><text x="1117" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">VE / AWS</text></g>
 
-          <text x="925" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#9aa3c4">混合多云统一纳管 · On-Premise + On-Cloud</text>
+          <text x="925" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="#9aa3c4">混合多云统一纳管 · On-Premise + On-Cloud</text>
         </g>
 
         <!-- ===== Side annotations ===== -->
