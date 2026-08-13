@@ -899,6 +899,55 @@
     .func-subnav::-webkit-scrollbar{display:none}
   }
 
+  /* ====== config mini cards (精简版) ====== */
+  .cfg-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}
+  .cfg-mini{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--surface),var(--bg));overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+  .cfg-mini:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 8px 32px rgba(var(--cyan-rgb),.12)}
+  .cfg-mini-head{display:flex;align-items:baseline;justify-content:space-between;padding:20px 20px 14px;border-bottom:1px solid var(--line)}
+  .cfg-mini-logo{font-family:var(--ff-display);font-weight:800;font-size:18px;color:var(--ink)}
+  .cfg-mini-ver{font-family:var(--ff-mono);font-size:11px;color:var(--cyan);letter-spacing:.05em}
+  .cfg-mini-rows{padding:16px 20px 20px}
+  .cm-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .cm-row:last-child{border-bottom:none}
+  .cm-row span{color:var(--ink-dim);font-family:var(--ff-body)}
+  .cm-row b{color:var(--ink);font-family:var(--ff-num);font-weight:500}
+  .cfg-note{max-width:800px;margin:32px auto 0;text-align:center;padding:16px 24px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+  .cfg-note p{font-size:13px;color:var(--ink-dim);line-height:1.6}
+  @media (max-width:1100px){.cfg-cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.cfg-cards{grid-template-columns:1fr}}
+
+  /* ====== case cards (精简版) ====== */
+  .case-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .case-card{border:1px solid var(--line-strong);border-radius:20px;background:linear-gradient(180deg,rgba(20,26,46,.95),rgba(11,15,29,.95));padding:32px 28px;position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+  .case-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.6;transition:opacity .3s}
+  .case-card:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 12px 48px rgba(var(--cyan-rgb),.15)}
+  .case-card:hover::before{opacity:1}
+  .case-card-num{font-family:var(--ff-display);font-weight:800;font-size:36px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:16px}
+  .case-card h4{font-family:var(--ff-display);font-weight:700;font-size:18px;line-height:1.3;margin-bottom:20px;color:var(--ink)}
+  .case-card-block{margin-bottom:16px}
+  .case-card-block:last-child{margin-bottom:0}
+  .case-card-label{font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+  .case-card-block p{font-family:var(--ff-body);font-size:13px;line-height:1.6;color:var(--ink-dim)}
+  @media (max-width:960px){.case-cards{grid-template-columns:1fr}}
+
+  /* ====== function cards (精简版) ====== */
+  .func-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .func-card{display:block;text-decoration:none;border:1px solid var(--line-strong);border-radius:20px;background:linear-gradient(180deg,rgba(20,26,46,.95),rgba(11,15,29,.95));overflow:hidden;position:relative;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+  .func-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.6;transition:opacity .3s}
+  .func-card:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 12px 48px rgba(var(--cyan-rgb),.15)}
+  .func-card:hover::before{opacity:1}
+  .func-card-inner{padding:32px 28px 24px}
+  .func-card-num{font-family:var(--ff-display);font-weight:800;font-size:36px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:16px}
+  .func-card-title{font-family:var(--ff-display);font-weight:700;font-size:22px;line-height:1.2;margin-bottom:4px;color:var(--ink)}
+  .func-card-en{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:block}
+  .func-card-desc{font-family:var(--ff-body);font-size:13px;line-height:1.6;color:var(--ink-dim);margin-bottom:20px}
+  .func-card-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;color:var(--cyan);transition:gap .3s}
+  .func-card:hover .func-card-link{gap:12px}
+  .func-card-link .arrow{transition:transform .3s}
+  .func-card:hover .func-card-link .arrow{transform:translateX(4px)}
+  @media (max-width:960px){.func-cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.func-cards{grid-template-columns:1fr}}
+
   /* ====== function modules ====== */
   .func-module{border:1px solid var(--line-strong);border-radius:24px;background:linear-gradient(180deg,rgba(20,26,46,.95),rgba(11,15,29,.95));overflow:visible;margin-bottom:40px;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.4)}
   .func-module::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.6}
@@ -1698,9 +1747,7 @@
   <div class="product">
     <div class="product-text reveal">
       <p class="lead">LiSA（Lenovo Intelligent Storage Agent）—— 面向企业级本地、混合云与公有云的智能数据管理平台，无缝集成 ONTAP、DXN 及第三方非结构化数据存储。</p>
-      <p>它不介入客户对存储访问的 <b>IO 路径</b>，而是以独立的元数据索引引擎为中枢，将 <b>集中式、分布式、混合多云</b> 之上的文件与对象数据，统一纳管、统一检索、统一流转。</p>
-      <p>微服务 / 模块化架构，按需叠加数据服务：<b>异构存储统一纳管</b>（类 FSx 多厂商 GUI 控制台）、<b>文件/对象统一检索</b>、<b>拷贝/备份/归档/分层/复制</b> 一站式工具箱、<b>事件/策略驱动的工作流引擎</b> 自动化数据治理，以及元数据搜索、自动打标、图像压缩等能力。</p>
-      <p>兼容 NetApp AIDE，让数据 <b>AI-Ready</b>，无缝对接 nVidia AIDP / Matrix ONE 等AI引擎。</p>
+      <p>以独立的<b>元数据索引引擎</b>为中枢，不介入存储 IO 路径，将<b>集中式、分布式、混合多云</b>的文件与对象数据统一纳管、检索、流转。微服务模块化架构，按需叠加迁移、分层、归档、分析等数据服务，让数据 <b>AI-Ready</b>。</p>
     </div>
     <div class="product-visual reveal">
       <img src="assets/product-udm.svg" alt="LiSA UDM 统一数据管理方案" class="img-dark" />
@@ -1843,776 +1890,55 @@
       <div class="sec-tag"><span class="n">03</span> Core Functions</div>
       <h2 class="sec-title">五大核心功能<span class="accent"> 数据全生命周期治理</span></h2>
     </div>
-    <p class="sec-desc">智能数据迁移 · 数据智能分层 · 数据分析 · 工业质检数据处理 · 数据归档。源自 LiSA 整体方案架构，覆盖数据从产生、流转、分层、归档的全生命周期。</p>
+    <p class="sec-desc">智能数据迁移 · 数据智能分层 · 工业质检 · 数据分析 · 数据归档。点击卡片查看各功能模块详细架构与说明。</p>
   </div>
 
-  <!-- Function Tabs -->
-  <div class="section-tabs" role="tablist" aria-label="功能模块">
-    <button class="section-tab active" data-tab="func-migration" role="tab"><span class="sn-n">01</span>智能迁移</button>
-    <button class="section-tab" data-tab="func-tiering" role="tab"><span class="sn-n">02</span>数据分层</button>
-    <button class="section-tab" data-tab="func-dfs" role="tab"><span class="sn-n">03</span>工业质检 DFS</button>
-    <button class="section-tab" data-tab="func-analytics" role="tab"><span class="sn-n">04</span>数据分析</button>
-    <button class="section-tab" data-tab="func-archive" role="tab"><span class="sn-n">05</span>数据归档</button>
-  </div>
-
-  <!-- ===== Module 1: 智能数据迁移 ===== -->
-  <div class="section-tab-panel active" data-panel="func-migration">
-  <div class="func-module reveal" id="func-migration">
-    <div class="func-header">
-      <div class="func-num">01</div>
-      <div class="func-title">
-        <h3>智能数据迁移</h3>
-        <span class="func-en">Intelligent Data Migration</span>
+  <div class="func-cards reveal">
+    <a href="migration.html" class="func-card">
+      <div class="func-card-inner">
+        <div class="func-card-num">01</div>
+        <div class="func-card-title">智能数据迁移</div>
+        <span class="func-card-en">Intelligent Data Migration</span>
+        <p class="func-card-desc">对选定范围数据按生命周期自动执行迁移任务，支持并发传输、跨集群跨品牌异构统一迁移。</p>
+        <span class="func-card-link">查看详情 <span class="arrow">→</span></span>
       </div>
-    </div>
-    <div class="func-body">
-      <div class="func-arch">
-        <div class="case-arch">
-          <div class="ttl">架构图 · Architecture</div>
-          <div class="scroll-x">
-            <svg viewBox="-60 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="g-mig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3df0ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
-              </defs>
-
-              <!-- 左侧：源存储 -->
-              <rect x="14" y="40" width="200" height="320" rx="12" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.25)"/>
-              <text x="114" y="62" text-anchor="middle" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">SOURCE · 第三方异构存储（不限品牌）</text>
-              <g class="arch-svg-node"><rect x="34" y="78" width="74" height="32" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="71" y="97" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">H3C</text></g>
-              <g class="arch-svg-node"><rect x="102" y="78" width="74" height="32" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="139" y="97" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">EMC</text></g>
-              <g class="arch-svg-node"><rect x="34" y="122" width="74" height="32" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="71" y="141" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">XSKY</text></g>
-              <g class="arch-svg-node"><rect x="102" y="122" width="74" height="32" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.4)"/><text x="139" y="141" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">异构</text></g>
-              <g class="arch-svg-node"><rect x="34" y="166" width="74" height="32" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.4)"/><text x="71" y="185" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">ONTAP</text></g>
-              <g class="arch-svg-node"><rect x="102" y="166" width="74" height="32" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.4)"/><text x="139" y="185" text-anchor="middle" fill="#eef2ff" font-size="10" font-weight="600">DXN</text></g>
-              <text x="114" y="218" text-anchor="middle" font-size="16" fill="#f5c87a" font-weight="600" letter-spacing="3">· · ·</text>
-              <text x="114" y="260" text-anchor="middle" font-size="9" fill="#5d6685">异构品牌 · 混合多云</text>
-              <text x="114" y="286" text-anchor="middle" font-size="8" fill="#5d6685">CIFS / NFS / S3 / Lustre / GPFS</text>
-              <text x="114" y="302" text-anchor="middle" font-size="8" fill="#f5c87a">跨集群迁移源端</text>
-
-              <!-- 源 -> LiSA 数据流 -->
-              <path d="M214 120 H280" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <path d="M214 200 H280" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" repeatCount="indefinite" path="M214 120 H280"/></circle>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M214 200 H280"/></circle>
-
-              <!-- 中间：LiSA Migration Engine -->
-              <rect x="280" y="40" width="520" height="320" rx="12" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-              <text x="540" y="62" text-anchor="middle" font-size="11" fill="#3df0ff" font-family="Syne" font-weight="700">LiSA Migration Engine · 智能数据迁移引擎</text>
-              <g class="arch-svg-node"><rect x="298" y="78" width="240" height="48" rx="6" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="418" y="99" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">数据迁移引擎</text><text x="418" y="115" text-anchor="middle" fill="#3df0ff" font-size="8">生命周期数据流转</text></g>
-              <g class="arch-svg-node"><rect x="552" y="78" width="232" height="48" rx="6" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="668" y="99" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">源/目的存储</text><text x="668" y="115" text-anchor="middle" fill="#3df0ff" font-size="8">支持各类异构存储</text></g>
-              <g class="arch-svg-node"><rect x="298" y="140" width="148" height="44" rx="6" fill="rgba(245,200,122,.15)" stroke="var(--violet)"/><text x="372" y="159" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">并发传输</text><text x="372" y="173" text-anchor="middle" fill="#8b7bff" font-size="8">高性能迁移</text></g>
-              <g class="arch-svg-node"><rect x="456" y="140" width="148" height="44" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="530" y="159" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">精细化筛选</text><text x="530" y="173" text-anchor="middle" fill="#8b7bff" font-size="8">选定范围数据</text></g>
-              <g class="arch-svg-node"><rect x="614" y="140" width="170" height="44" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="699" y="159" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">灵活执行模式</text><text x="699" y="173" text-anchor="middle" fill="#8b7bff" font-size="8">执行模式 · 周期</text></g>
-              <g class="arch-svg-node"><rect x="298" y="194" width="240" height="44" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="418" y="213" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">丰富迁移策略</text><text x="418" y="227" text-anchor="middle" fill="#f5c87a" font-size="8">流控配置 · 灵活定制</text></g>
-              <g class="arch-svg-node"><rect x="552" y="194" width="232" height="44" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="668" y="213" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">易于部署使用</text><text x="668" y="227" text-anchor="middle" fill="#f5c87a" font-size="8">简单易用</text></g>
-              <text x="540" y="262" font-size="9" fill="#3df0ff" font-family="JetBrains Mono" text-anchor="middle">ENGINE ADVANTAGES · 引擎特性</text>
-              <text x="540" y="282" font-size="9" fill="#9aa3c4" text-anchor="middle">▎对选定范围数据，按生命周期自动执行迁移任务</text>
-              <text x="540" y="300" font-size="9" fill="#9aa3c4" text-anchor="middle">▎跨集群、跨存储品牌异构统一迁移</text>
-              <text x="480" y="318" font-size="9" fill="#9aa3c4" text-anchor="start">▎支持并发传输</text>
-              <text x="480" y="336" font-size="9" fill="#9aa3c4" text-anchor="start">▎丰富的迁移策略与流控配置</text>
-              <text x="480" y="354" font-size="9" fill="#9aa3c4" text-anchor="start">▎容易部署和使用</text>
-              <circle cx="540" cy="378" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-              <!-- LiSA -> 目标 数据流 -->
-              <path d="M800 120 H866" class="flow-line" stroke="var(--violet)" fill="none"/>
-              <path d="M800 200 H866" class="flow-line" stroke="var(--violet)" fill="none"/>
-              <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="2.2s" repeatCount="indefinite" path="M800 120 H866"/></circle>
-              <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="2.2s" begin="0.8s" repeatCount="indefinite" path="M800 200 H866"/></circle>
-
-              <!-- 右侧：目标存储 -->
-              <rect x="866" y="40" width="200" height="320" rx="12" fill="rgba(139,123,255,.05)" stroke="rgba(139,123,255,.25)"/>
-              <text x="966" y="62" text-anchor="middle" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">TARGET · 目标存储</text>
-              <g class="arch-svg-node"><rect x="886" y="78" width="160" height="44" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="966" y="97" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">DXN S3</text><text x="966" y="111" text-anchor="middle" fill="#8b7bff" font-size="9">对象存储</text></g>
-              <g class="arch-svg-node"><rect x="886" y="132" width="160" height="44" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="966" y="151" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">DXN Ultra</text><text x="966" y="165" text-anchor="middle" fill="#8b7bff" font-size="9">归档对象</text></g>
-              <g class="arch-svg-node"><rect x="886" y="186" width="160" height="44" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="966" y="205" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">Cloud Object</text><text x="966" y="219" text-anchor="middle" fill="#8b7bff" font-size="9">云端对象</text></g>
-              <g class="arch-svg-node"><rect x="886" y="240" width="160" height="44" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="966" y="259" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">ONTAP</text><text x="966" y="273" text-anchor="middle" fill="#8b7bff" font-size="9">文件存储</text></g>
-              <text x="966" y="310" text-anchor="middle" font-size="9" fill="#5d6685">跨集群目标端</text>
-              <text x="966" y="326" text-anchor="middle" font-size="8" fill="#5d6685">S3 / CIFS / NFS</text>
-              <text x="966" y="342" text-anchor="middle" font-size="8" fill="#8b7bff">异构统一迁移</text>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.3);border:1px solid var(--gold)"></span>源存储</div>
-            <div class="lg"><span class="sw" style="background:rgba(var(--cyan-rgb),.3);border:1px solid var(--cyan)"></span>LiSA 迁移引擎</div>
-            <div class="lg"><span class="sw" style="background:rgba(139,123,255,.3);border:1px solid var(--violet)"></span>目标存储</div>
-            <div class="lg"><span class="sw" style="background:#f5c87a"></span>源端数据流</div>
-            <div class="lg"><span class="sw" style="background:#8b7bff"></span>目标数据流</div>
-          </div>
-        </div>
+    </a>
+    <a href="tiering.html" class="func-card">
+      <div class="func-card-inner">
+        <div class="func-card-num">02</div>
+        <div class="func-card-title">数据智能分层</div>
+        <span class="func-card-en">Intelligent Data Tiering</span>
+        <p class="func-card-desc">基于元数据引擎精细化筛选，结合智能标签按生命周期打标，自动执行热-温-冷数据分层流转。</p>
+        <span class="func-card-link">查看详情 <span class="arrow">→</span></span>
       </div>
-      <div class="func-info">
-        <div class="func-block">
-          <div class="func-label">说明架构</div>
-          <p>LiSA 智能数据迁移引擎，对选定范围的数据，根据其不同的生命周期，自动执行相关数据操作任务。支持并发传输，提高数据迁移的效率。通过精细化筛选确定范围，可灵活增加新任务类型，灵活定义执行模式与周期。支持各类源存储和目的存储，丰富的迁移策略和流控配置，容易部署和使用。</p>
-        </div>
-        <div class="func-block">
-          <div class="func-label">优势</div>
-          <ul>
-            <li><b>并发传输</b>：支持并发传输，提高数据迁移的效率</li>
-            <li><b>跨存储迁移</b>：支持各类源存储和目的存储</li>
-            <li><b>精细化筛选</b>：通过精细化筛选确定数据范围</li>
-            <li><b>灵活扩展</b>：可灵活增加新任务类型</li>
-            <li><b>灵活执行</b>：灵活定义执行模式与周期</li>
-            <li><b>策略丰富</b>：丰富的迁移策略和流控配置</li>
-            <li><b>易于部署</b>：容易部署和使用</li>
-          </ul>
-        </div>
+    </a>
+    <a href="dfs.html" class="func-card">
+      <div class="func-card-inner">
+        <div class="func-card-num">03</div>
+        <div class="func-card-title">工业质检 DFS</div>
+        <span class="func-card-en">Industrial QC Data Processing</span>
+        <p class="func-card-desc">面向制造业工业质检的智能数据处理方案，高性能文件池与归档对象池融合，自管理机台 Agent。</p>
+        <span class="func-card-link">查看详情 <span class="arrow">→</span></span>
       </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- ===== Module 2: 数据智能分层 ===== -->
-  <div class="section-tab-panel" data-panel="func-tiering">
-  <div class="func-module reveal" id="func-tiering">
-    <div class="func-header">
-      <div class="func-num">02</div>
-      <div class="func-title">
-        <h3>数据智能分层</h3>
-        <span class="func-en">Intelligent Data Tiering</span>
+    </a>
+    <a href="analytics.html" class="func-card">
+      <div class="func-card-inner">
+        <div class="func-card-num">04</div>
+        <div class="func-card-title">数据分析</div>
+        <span class="func-card-en">Data Analysis</span>
+        <p class="func-card-desc">基于 ClickHouse 列式引擎与元数据采集 Agent，对文件/对象做多维度洞察与可视化分析。</p>
+        <span class="func-card-link">查看详情 <span class="arrow">→</span></span>
       </div>
-    </div>
-    <div class="func-body">
-      <div class="func-arch">
-        <div class="case-arch">
-          <div class="ttl">架构图 · Architecture</div>
-          <div class="scroll-x">
-            <svg viewBox="-60 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-        <!-- 左：热层 ONTAP NAS -->
-        <rect x="14" y="50" width="200" height="200" rx="12" fill="rgba(245,200,122,.06)" stroke="rgba(139,123,255,.3)"/>
-        <text x="114" y="74" text-anchor="middle" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">HOT TIER · 热数据层</text>
-        <g class="arch-svg-node"><rect x="34" y="90" width="160" height="56" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="114" y="113" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">ONTAP NAS</text><text x="114" y="130" text-anchor="middle" fill="#f5c87a" font-size="9">高性能文件</text></g>
-        <text x="114" y="170" text-anchor="middle" font-size="10" fill="#9aa3c4">近线 · 高频访问</text>
-        <text x="114" y="190" text-anchor="middle" font-size="9" fill="#5d6685">0 - 6 月</text>
-        <text x="114" y="214" text-anchor="middle" font-size="9" fill="#9aa3c4">可压缩 / 冷热管理</text>
-        <text x="114" y="234" text-anchor="middle" font-size="8" fill="#5d6685">实时检索 · 业务读写</text>
-
-        <!-- 中：LiSA Data Lifecycle Management -->
-        <rect x="320" y="50" width="440" height="200" rx="12" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-        <text x="540" y="74" text-anchor="middle" font-size="11" fill="#3df0ff" font-family="Syne" font-weight="700">LiSA · Data Lifecycle Management</text>
-        <g class="arch-svg-node"><rect x="340" y="92" width="190" height="48" rx="6" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="435" y="113" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">元数据 / 索引引擎</text><text x="435" y="128" text-anchor="middle" fill="#3df0ff" font-size="8">精细化筛选确定范围</text></g>
-        <g class="arch-svg-node"><rect x="550" y="92" width="190" height="48" rx="6" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="645" y="113" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">智能标签引擎</text><text x="645" y="128" text-anchor="middle" fill="#3df0ff" font-size="8">按生命周期打标</text></g>
-        <g class="arch-svg-node"><rect x="340" y="150" width="190" height="48" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--violet)"/><text x="435" y="171" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">迁移引擎</text><text x="435" y="186" text-anchor="middle" fill="#8b7bff" font-size="8">并发传输 · 灵活策略</text></g>
-        <g class="arch-svg-node"><rect x="550" y="150" width="190" height="48" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="645" y="171" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">工作流引擎</text><text x="645" y="186" text-anchor="middle" fill="#8b7bff" font-size="8">事件/策略驱动</text></g>
-        <text x="445" y="220" text-anchor="start" font-size="9" fill="#9aa3c4">▎对选定范围数据，按生命周期自动执行迁移/分层/归档任务</text>
-        <text x="445" y="238" text-anchor="start" font-size="9" fill="#5d6685">可灵活增加新任务类型 · 灵活定义执行模式与周期</text>
-        <circle cx="540" cy="252" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-        <!-- 热层 -> LiSA -->
-        <path d="M214 150 H320" class="flow-line" stroke="var(--cyan)" fill="none"/>
-        <circle r="3" fill="var(--cyan)" filter="drop-shadow(0 0 5px var(--cyan))"><animateMotion dur="1.8s" repeatCount="indefinite" path="M214 150 H320"/></circle>
-
-        <!-- 右：归档层 -->
-        <rect x="866" y="50" width="200" height="200" rx="12" fill="rgba(139,123,255,.06)" stroke="rgba(139,123,255,.3)"/>
-        <text x="966" y="74" text-anchor="middle" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">ARCHIVE · 归档层</text>
-        <g class="arch-svg-node"><rect x="886" y="90" width="160" height="44" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="966" y="108" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">DXN Object / SG</text><text x="966" y="123" text-anchor="middle" fill="#8b7bff" font-size="9">对象归档</text></g>
-        <g class="arch-svg-node"><rect x="886" y="142" width="160" height="44" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="966" y="160" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">电信云 / 公有云</text><text x="966" y="175" text-anchor="middle" fill="#3df0ff" font-size="9">云端归档</text></g>
-        <text x="966" y="208" text-anchor="middle" font-size="9" fill="#5d6685">生命周期流转</text>
-        <text x="966" y="226" text-anchor="middle" font-size="8" fill="#9aa3c4">低成本长期留存</text>
-
-        <!-- LiSA -> 归档（分层/归档流） -->
-        <path d="M760 130 H866" class="flow-line" stroke="var(--gold)" fill="none"/>
-        <path d="M760 174 H866" class="flow-line" stroke="var(--violet)" fill="none"/>
-        <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" repeatCount="indefinite" path="M760 130 H866"/></circle>
-        <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M760 174 H866"/></circle>
-
-        <!-- 底部：数据流转时间线 -->
-        <text x="20" y="290" font-size="10" fill="#3df0ff" font-family="JetBrains Mono">DATA FLOW · 数据流转时间线</text>
-        <rect x="20" y="300" width="1040" height="44" rx="8" fill="rgba(139,123,255,.05)" stroke="rgba(255,255,255,.1)"/>
-        <g class="arch-svg-node"><rect x="40" y="310" width="200" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="140" y="326" text-anchor="middle" font-size="9" fill="#f5c87a">近线存储</text></g>
-        <g class="arch-svg-node"><rect x="280" y="310" width="240" height="24" rx="5" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="400" y="326" text-anchor="middle" font-size="9" fill="#3df0ff">DXN 高性能文件池</text></g>
-        <g class="arch-svg-node"><rect x="560" y="310" width="240" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="680" y="326" text-anchor="middle" font-size="9" fill="#8b7bff">1年+ 云端归档</text></g>
-        <g class="arch-svg-node"><rect x="840" y="310" width="200" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(255,255,255,.2)"/><text x="940" y="326" text-anchor="middle" font-size="9" fill="#9aa3c4">带库归档（规划中）</text></g>
-        <path d="M240 322 H280" class="flow-line" stroke="var(--cyan)" fill="none"/>
-        <path d="M520 322 H560" class="flow-line" stroke="var(--gold)" fill="none"/>
-        <path d="M800 322 H840" class="flow-line" stroke="var(--violet)" fill="none"/>
-      </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.3);border:1px solid var(--gold)"></span>热层 ONTAP</div>
-            <div class="lg"><span class="sw" style="background:rgba(var(--cyan-rgb),.3);border:1px solid var(--cyan)"></span>LiSA 生命周期</div>
-            <div class="lg"><span class="sw" style="background:rgba(139,123,255,.3);border:1px solid var(--violet)"></span>归档层</div>
-            <div class="lg"><span class="sw" style="background:#3df0ff"></span>索引/筛选</div>
-            <div class="lg"><span class="sw" style="background:#f5c87a"></span>对象归档流</div>
-            <div class="lg"><span class="sw" style="background:#8b7bff"></span>云端归档流</div>
-          </div>
-        </div>
+    </a>
+    <a href="archive.html" class="func-card">
+      <div class="func-card-inner">
+        <div class="func-card-num">05</div>
+        <div class="func-card-title">数据归档</div>
+        <span class="func-card-en">Data Archiving</span>
+        <p class="func-card-desc">基于元数据引擎筛选归档范围，通过策略驱动的工作流引擎自动执行归档，支持对象/云端/带库归档。</p>
+        <span class="func-card-link">查看详情 <span class="arrow">→</span></span>
       </div>
-      <div class="func-info">
-        <div class="func-block">
-          <div class="func-label">说明架构</div>
-          <p>基于独立<b>元数据索引引擎</b>精细化筛选数据范围，结合<b>智能标签引擎</b>按生命周期打标，由<b>迁移引擎</b>与<b>工作流引擎</b>按事件/策略驱动，自动执行分层、迁移、归档任务。可灵活增加新任务类型，灵活定义执行模式与周期，实现热-温-冷数据的自动流转。</p>
-        </div>
-        <div class="func-block">
-          <div class="func-label">优势</div>
-          <ul>
-            <li><b>策略驱动</b>：事件/策略驱动的工作流引擎，自动执行复杂数据治理任务</li>
-            <li><b>热温冷分层</b>：按数据生命周期自动分层，兼顾性能与成本</li>
-            <li><b>可扩展任务</b>：可灵活增加新任务类型（迁移/归档/复制等）</li>
-            <li><b>灵活定义</b>：灵活定义执行模式与周期，按产线/数据集定制</li>
-            <li><b>元数据独立</b>：独立于存储的元数据引擎，不依赖对象存储 Tag</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- ===== Module 3: 工业质检数据处理 DFS ===== -->
-  <div class="section-tab-panel" data-panel="func-dfs">
-  <div class="func-module reveal" id="func-dfs">
-    <div class="func-header">
-      <div class="func-num">03</div>
-      <div class="func-title">
-        <h3>工业质检数据处理 DFS</h3>
-        <span class="func-en">Industrial QC Data Processing</span>
-      </div>
-    </div>
-    <div class="func-body">
-      <div class="func-arch">
-        <div class="case-arch">
-          <div class="ttl">架构图 · Architecture</div>
-          <div class="scroll-x">
-            <svg viewBox="-60 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="g-dfs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3df0ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
-              </defs>
-
-              <!-- 左侧：机台层 -->
-              <rect x="14" y="40" width="200" height="340" rx="12" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.25)"/>
-              <text x="114" y="62" text-anchor="middle" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">MACHINE LAYER · 机台层</text>
-              <g class="arch-svg-node"><rect x="34" y="78" width="160" height="48" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="114" y="98" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">老机台</text><text x="114" y="114" text-anchor="middle" fill="#f5c87a" font-size="9">CIFS 共享挂载</text></g>
-              <g class="arch-svg-node"><rect x="34" y="138" width="160" height="48" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="114" y="158" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">新机台</text><text x="114" y="174" text-anchor="middle" fill="#f5c87a" font-size="9">Agent · S3 上传</text></g>
-              <g class="arch-svg-node"><rect x="34" y="198" width="160" height="48" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="114" y="218" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">MES 系统</text><text x="114" y="234" text-anchor="middle" fill="#f5c87a" font-size="9">生产执行系统</text></g>
-              <text x="114" y="280" text-anchor="middle" font-size="9" fill="#5d6685">1000+ 机台接入</text>
-              <text x="114" y="298" text-anchor="middle" font-size="8" fill="#5d6685">自动配置 · 主动监控</text>
-              <circle cx="114" cy="358" r="4" class="pulse-node" fill="var(--gold)"/>
-
-              <!-- 机台 -> LiSA 数据流 -->
-              <path d="M214 120 H280" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <path d="M214 180 H280" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" repeatCount="indefinite" path="M214 120 H280"/></circle>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" begin="0.8s" repeatCount="indefinite" path="M214 180 H280"/></circle>
-
-              <!-- 中间：LiSA-DFS 引擎 -->
-              <rect x="280" y="40" width="520" height="340" rx="12" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-              <text x="540" y="62" text-anchor="middle" font-size="11" fill="#3df0ff" font-family="Syne" font-weight="700">LiSA-DFS Engine · 工业质检数据处理引擎</text>
-              <g class="arch-svg-node"><rect x="298" y="78" width="155" height="44" rx="6" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="375" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">元数据引擎</text><text x="375" y="111" text-anchor="middle" fill="#3df0ff" font-size="8">千亿秒级检索</text></g>
-              <g class="arch-svg-node"><rect x="465" y="78" width="155" height="44" rx="6" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="542" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">智能标签引擎</text><text x="542" y="111" text-anchor="middle" fill="#3df0ff" font-size="8">自定义标签</text></g>
-              <g class="arch-svg-node"><rect x="632" y="78" width="155" height="44" rx="6" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="709" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">监控告警引擎</text><text x="709" y="111" text-anchor="middle" fill="#3df0ff" font-size="8">主动告警</text></g>
-              <g class="arch-svg-node"><rect x="298" y="132" width="155" height="44" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--violet)"/><text x="375" y="151" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">Agent 管理</text><text x="375" y="165" text-anchor="middle" fill="#8b7bff" font-size="8">自管理配置</text></g>
-              <g class="arch-svg-node"><rect x="465" y="132" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="542" y="151" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">迁移引擎</text><text x="542" y="165" text-anchor="middle" fill="#8b7bff" font-size="8">多并发迁移</text></g>
-              <g class="arch-svg-node"><rect x="632" y="132" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="709" y="151" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">数据生命周期</text><text x="709" y="165" text-anchor="middle" fill="#8b7bff" font-size="8">分层 · 归档</text></g>
-              <g class="arch-svg-node"><rect x="298" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="375" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">高级检索</text><text x="375" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">全文 · 标签</text></g>
-              <g class="arch-svg-node"><rect x="465" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="542" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">图像处理引擎</text><text x="542" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">缩略图 · 水印</text></g>
-              <g class="arch-svg-node"><rect x="632" y="186" width="155" height="44" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="709" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">权限管理</text><text x="709" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">多租户 · RBAC</text></g>
-              <text x="460" y="252" text-anchor="start" font-size="9" fill="#3df0ff" font-family="JetBrains Mono">FUSION CLUSTER · 融合存储集群</text>
-              <text x="460" y="270" text-anchor="start" font-size="9" fill="#9aa3c4">▎高性能文件池 + 归档对象池融合部署</text>
-              <text x="460" y="288" text-anchor="start" font-size="9" fill="#9aa3c4">▎跨池跨集群千亿条目秒级检索</text>
-              <text x="460" y="306" text-anchor="start" font-size="9" fill="#9aa3c4">▎自管理 Agent 自动配置上传/备份/标签</text>
-              <text x="460" y="324" text-anchor="start" font-size="9" fill="#9aa3c4">▎可集成联想 AI 工业质检等增值服务</text>
-              <text x="460" y="342" text-anchor="start" font-size="9" fill="#9aa3c4">▎监控机台问题并主动告警</text>
-              <circle cx="540" cy="366" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-              <!-- LiSA -> 存储池 数据流 -->
-              <path d="M800 120 H866" class="flow-line" stroke="var(--cyan)" fill="none"/>
-              <path d="M800 220 H866" class="flow-line" stroke="var(--violet)" fill="none"/>
-              <circle r="3" fill="var(--cyan)" filter="drop-shadow(0 0 5px var(--cyan))"><animateMotion dur="2.2s" repeatCount="indefinite" path="M800 120 H866"/></circle>
-              <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="2.2s" begin="0.6s" repeatCount="indefinite" path="M800 220 H866"/></circle>
-
-              <!-- 右侧：存储池 -->
-              <rect x="866" y="40" width="200" height="340" rx="12" fill="rgba(139,123,255,.05)" stroke="rgba(139,123,255,.25)"/>
-              <text x="966" y="62" text-anchor="middle" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">STORAGE POOL · 存储池</text>
-              <g class="arch-svg-node"><rect x="886" y="78" width="160" height="56" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.45)"/><text x="966" y="98" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">DXN 高性能文件池</text><text x="966" y="114" text-anchor="middle" fill="#f5c87a" font-size="9">CIFS / NFS</text></g>
-              <g class="arch-svg-node"><rect x="886" y="144" width="160" height="56" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="966" y="164" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">DXN 归档对象池</text><text x="966" y="180" text-anchor="middle" fill="#8b7bff" font-size="9">S3 · 6月+</text></g>
-              <text x="966" y="226" text-anchor="middle" font-size="9" fill="#5d6685">融合部署</text>
-              <text x="966" y="244" text-anchor="middle" font-size="8" fill="#5d6685">性能 + 成本平衡</text>
-              <text x="966" y="268" text-anchor="middle" font-size="9" fill="#9aa3c4">大规模数据 · 多机台</text>
-              <text x="966" y="286" text-anchor="middle" font-size="8" fill="#9aa3c4">统一纳管</text>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.3);border:1px solid var(--gold)"></span>机台层</div>
-            <div class="lg"><span class="sw" style="background:rgba(var(--cyan-rgb),.3);border:1px solid var(--cyan)"></span>LiSA-DFS 引擎</div>
-            <div class="lg"><span class="sw" style="background:rgba(139,123,255,.3);border:1px solid var(--violet)"></span>存储池</div>
-            <div class="lg"><span class="sw" style="background:#f5c87a"></span>数据上传流</div>
-            <div class="lg"><span class="sw" style="background:#3df0ff"></span>文件池流</div>
-            <div class="lg"><span class="sw" style="background:#8b7bff"></span>对象归档流</div>
-          </div>
-        </div>
-      </div>
-      <div class="func-info">
-        <div class="func-block">
-          <div class="func-label">架构说明 · Architecture</div>
-          <p>LiSA-DFS 是面向制造业工业质检的智能数据处理方案。<b>高性能文件池</b>与<b>归档对象池</b>融合部署，兼顾性能与成本。元数据引擎实现跨池跨集群千亿条目秒级检索。自管理机台 Agent 自动配置上传/备份/标签任务，监控机台问题并主动告警。</p>
-        </div>
-        <div class="func-block">
-          <div class="func-label">核心优势 · Advantages</div>
-          <ul>
-            <li><b>融合部署</b>：高性能文件池 + 归档对象池融合，性能与成本最佳平衡</li>
-            <li><b>千亿秒级检索</b>：高性能索引库，跨池跨集群千亿条目秒级检索</li>
-            <li><b>智能标签引擎</b>：可灵活自定义的智能标签定义与构建</li>
-            <li><b>自管理 Agent</b>：自动配置上传/备份/标签，监控问题主动告警</li>
-            <li><b>可扩展集成</b>：可灵活集成其他增值服务（如联想 AI 工业质检）</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- ===== Module 4: 数据分析 ===== -->
-  <div class="section-tab-panel" data-panel="func-analytics">
-  <div class="func-module reveal" id="func-analytics">
-    <div class="func-header">
-      <div class="func-num">04</div>
-      <div class="func-title">
-        <h3>数据分析</h3>
-        <span class="func-en">Data Analysis</span>
-      </div>
-    </div>
-    <div class="func-body">
-      <div class="func-arch">
-        <!-- Data Analysis Web App -->
-        <div class="web-app">
-          <!-- Left Sidebar -->
-          <aside class="web-sidebar">
-            <div class="web-logo-row">
-              <div class="web-logo">欢迎页</div>
-              <div class="web-collapse" title="折叠">‹</div>
-            </div>
-            <div class="web-nav-group"><span>数据访问</span><em>▾</em></div>
-            <div class="web-nav-group"><span>数据流转</span><em>▾</em></div>
-            <div class="web-nav-group"><span>数据洞察</span><em>▾</em></div>
-            <div class="web-nav-item">智能标签</div>
-            <div class="web-nav-item">元数据检索</div>
-            <div class="web-nav-item active">数据分析</div>
-            <div class="web-nav-group"><span>监控管理</span><em>▾</em></div>
-            <div class="web-nav-group"><span>系统管理</span><em>▾</em></div>
-          </aside>
-
-          <!-- Main Content -->
-          <main class="web-main">
-            <!-- Header -->
-            <div class="web-header">
-              <div>分析目录：<span class="wb-val">/LN_NETIF</span></div>
-              <div>分析时间：<span class="wb-val">2026-04-12T22:12:54</span></div>
-            </div>
-
-            <!-- Tabs -->
-            <div class="data-tabs" role="tablist">
-              <button class="data-tab active" data-tab="asset" role="tab">资产概览</button>
-              <button class="data-tab" data-tab="time" role="tab">时间分析</button>
-              <button class="data-tab" data-tab="heat" role="tab">热度分析</button>
-            </div>
-
-            <!-- Asset Overview Panel -->
-            <div class="data-tab-panel active" data-panel="asset">
-              <!-- KPI Cards Row 1 -->
-              <div class="kpi-grid">
-                <div class="kpi-card"><div class="klbl">文件总数</div><div class="kval">10,000</div></div>
-                <div class="kpi-card v2"><div class="klbl">目录总数</div><div class="kval">120</div></div>
-                <div class="kpi-card v3"><div class="klbl">总容量</div><div class="kval">50.00 GB</div></div>
-                <div class="kpi-card v4"><div class="klbl">平均文件大小</div><div class="kval">5.12 MB</div></div>
-              </div>
-              <!-- KPI Cards Row 2 -->
-              <div class="kpi-grid">
-                <div class="kpi-card v5"><div class="klbl">最大文件</div><div class="kval">1.00 GB</div></div>
-                <div class="kpi-card v6"><div class="klbl">最小文件</div><div class="kval">0 B</div></div>
-                <div class="kpi-card date"><div class="klbl">最早创建时间</div><div class="kval">2023/12/31</div></div>
-                <div class="kpi-card date"><div class="klbl">最晚创建时间</div><div class="kval">2025/12/30</div></div>
-              </div>
-
-              <!-- Charts Row -->
-              <div class="chart-row">
-                <!-- Donut: Category Distribution -->
-                <div class="chart-card">
-                  <div class="c-hd"><span class="ctitle">文件类别分布</span>
-                    <span><span class="tab-hl">文件数量</span> · 文件大小</span>
-                  </div>
-                  <div class="chart-svg-wrap">
-                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(150 140)">
-                        <circle r="90" fill="rgba(245,200,122,.03)"/>
-                        <!-- 视频 500 4.76% 17.1° -->
-                        <path d="M0 -90 A90 90 0 0 1 26.3 85.9 Z" fill="rgba(139,123,255,.65)"/>
-                        <!-- 图片 3000 28.57% 102.9° -->
-                        <path d="M26.3 85.9 A90 90 0 0 1 -88.2 18 Z" fill="rgba(61,240,255,.55)"/>
-                        <!-- 压缩包 800 7.62% 27.4° -->
-                        <path d="M-88.2 18 A90 90 0 0 1 -82.3 -37.7 Z" fill="rgba(245,200,122,.6)"/>
-                        <!-- 文档 2500 23.81% 85.7° -->
-                        <path d="M-82.3 -37.7 A90 90 0 0 1 -14.3 -88.9 Z" fill="rgba(255,90,120,.55)"/>
-                        <!-- 音频 1500 14.29% 51.4° -->
-                        <path d="M-14.3 -88.9 A90 90 0 0 1 70.7 -54.5 Z" fill="rgba(100,220,180,.55)"/>
-                        <!-- 应用程序 200 1.9° 6.9° -->
-                        <path d="M70.7 -54.5 A90 90 0 0 1 79.5 -44.9 Z" fill="rgba(200,140,240,.5)"/>
-                        <!-- 其他 800 7.62% 27.4° -->
-                        <path d="M79.5 -44.9 A90 90 0 0 1 89.4 -12.1 Z" fill="rgba(140,160,200,.55)"/>
-                        <!-- 日志 1200 11.43% 41.1° -->
-                        <path d="M89.4 -12.1 A90 90 0 0 1 0 -90 Z" fill="rgba(180,200,230,.5)"/>
-                        <circle r="42" fill="rgba(7,9,18,.98)"/>
-                        <text y="-4" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">类别数</text>
-                        <text y="14" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700" font-family="Syne">10,500</text>
-                      </g>
-                    </svg>
-                  </div>
-                  <div class="chart-legend">
-                    <div class="l-item"><span class="l-sq" style="background:rgba(139,123,255,.65)"></span>视频 500</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.55)"></span>图片 3,000</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.6)"></span>压缩包 800</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.55)"></span>文档 2,500</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>音频 1,500</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(200,140,240,.5)"></span>应用程序 200</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(140,160,200,.55)"></span>其他 800</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(180,200,230,.5)"></span>日志 1,200</div>
-                  </div>
-                </div>
-
-                <!-- Pie: Size Distribution -->
-                <div class="chart-card">
-                  <div class="c-hd"><span class="ctitle v2">文件大小分布</span>
-                    <span><span class="tab-hl">文件大小</span></span>
-                  </div>
-                  <div class="chart-svg-wrap">
-                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(150 140)">
-                        <circle r="90" fill="rgba(245,200,122,.03)"/>
-                        <!-- 大文件 ~50% 180° -->
-                        <path d="M0 -90 A90 90 0 0 1 90 0 Z" fill="rgba(139,123,255,.7)"/>
-                        <!-- 超大文件 ~12% 44° -->
-                        <path d="M90 0 A90 90 0 0 1 63.3 63.3 Z" fill="rgba(61,240,255,.5)"/>
-                        <!-- 中等文件 ~9% 32° -->
-                        <path d="M63.3 63.3 A90 90 0 0 1 11.8 89.2 Z" fill="rgba(245,200,122,.55)"/>
-                        <!-- 空文件 ~25% 90° -->
-                        <path d="M11.8 89.2 A90 90 0 0 1 -90 0 Z" fill="rgba(180,190,210,.5)"/>
-                        <!-- 小文件 ~2% 7° -->
-                        <path d="M-90 0 A90 90 0 0 1 -82.3 -37.7 Z" fill="rgba(255,90,120,.55)"/>
-                        <!-- 极小文件 ~2% 7° -->
-                        <path d="M-82.3 -37.7 A90 90 0 0 1 -72.8 -54.5 Z" fill="rgba(100,220,180,.55)"/>
-                        <text y="4" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">总计</text>
-                        <text y="20" text-anchor="middle" font-size="15" fill="#eef2ff" font-weight="700" font-family="Syne">1,089.6 GB</text>
-                      </g>
-                    </svg>
-                  </div>
-                  <div class="chart-legend">
-                    <div class="l-item"><span class="l-sq" style="background:rgba(139,123,255,.7)"></span>大文件</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.5)"></span>超大文件</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.55)"></span>中等文件</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.55)"></span>小文件</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>极小文件</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(180,190,210,.5)"></span>空文件</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Top 10 Table -->
-              <div class="table-card">
-                <div class="tc-hd">最大文件 TOP 10
-                  <select style="background:transparent;border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--ink-dim);font-size:10px;font-family:var(--ff-mono)">
-                    <option>选择类别</option>
-                  </select>
-                </div>
-                <table>
-                  <thead><tr><th style="width:50px">排名</th><th>文件名</th><th style="width:80px">类型</th><th style="width:120px">大小</th><th>路径</th></tr></thead>
-                  <tbody>
-                    <tr><td class="rank">1</td><td class="fname">movie_4k.mp4</td><td class="ftype">mp4</td><td class="fsize">1.00 GB</td><td class="fpath">/storage/media/videos/hd/movie_4k.mp4</td></tr>
-                    <tr><td class="rank">2</td><td class="fname">installer.exe</td><td class="ftype">exe</td><td class="fsize">1.00 GB</td><td class="fpath">/storage/data/projects/it/bin/installer.exe</td></tr>
-                    <tr><td class="rank">3</td><td class="fname">backup_archive.zip</td><td class="ftype">zip</td><td class="fsize">512.00 MB</td><td class="fpath">/storage/data/projects/it/src/archives/backup_archive.zip</td></tr>
-                    <tr><td class="rank">4</td><td class="fname">os_image.iso</td><td class="ftype">iso</td><td class="fsize">512.00 MB</td><td class="fpath">/storage/data/projects/it/src/images/os_image.iso</td></tr>
-                    <tr><td class="rank">5</td><td class="fname">dataset_001.tar</td><td class="ftype">tar</td><td class="fsize">256.00 MB</td><td class="fpath">/storage/data/ml/datasets/dataset_001.tar</td></tr>
-                    <tr><td class="rank">6</td><td class="fname">model_weights.bin</td><td class="ftype">bin</td><td class="fsize">128.00 MB</td><td class="fpath">/storage/data/ml/models/model_weights.bin</td></tr>
-                    <tr><td class="rank">7</td><td class="fname">report_final.pdf</td><td class="ftype">pdf</td><td class="fsize">64.00 MB</td><td class="fpath">/storage/docs/reports/report_final.pdf</td></tr>
-                    <tr><td class="rank">8</td><td class="fname">audio_track.wav</td><td class="ftype">wav</td><td class="fsize">32.00 MB</td><td class="fpath">/storage/media/audio/tracks/audio_track.wav</td></tr>
-                    <tr><td class="rank">9</td><td class="fname">archive.tar.gz</td><td class="ftype">gz</td><td class="fsize">16.00 MB</td><td class="fpath">/storage/data/backups/archive.tar.gz</td></tr>
-                    <tr><td class="rank">10</td><td class="fname">config_backup</td><td class="ftype">bak</td><td class="fsize">8.00 MB</td><td class="fpath">/storage/etc/config_backup</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Time Analysis Panel -->
-            <div class="data-tab-panel" data-panel="time">
-              <div class="chart-controls">
-                <button class="cc-chip active">时间范围：全部</button>
-                <button class="cc-chip">单位：天</button>
-              </div>
-              <div class="chart-card">
-                <div class="c-hd"><span class="ctitle">文件创建趋势</span>
-                  <span><span style="display:inline-block;width:10px;height:10px;background:#8b7bff;border-radius:2px;margin-right:4px"></span>新增大小（柱状）
-                  <span style="display:inline-block;width:14px;height:2px;background:#f5c87a;margin:0 4px 0 10px"></span>累计大小（折线）</span>
-                </div>
-                <div class="chart-svg-wrap">
-                  <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Grid -->
-                    <line x1="50" y1="40" x2="870" y2="40" stroke="rgba(245,200,122,.1)"/>
-                    <line x1="50" y1="80" x2="870" y2="80" stroke="rgba(245,200,122,.08)"/>
-                    <line x1="50" y1="120" x2="870" y2="120" stroke="rgba(245,200,122,.08)"/>
-                    <line x1="50" y1="160" x2="870" y2="160" stroke="rgba(245,200,122,.08)"/>
-                    <line x1="50" y1="200" x2="870" y2="200" stroke="rgba(245,200,122,.08)"/>
-                    <line x1="50" y1="240" x2="870" y2="240" stroke="rgba(245,200,122,.12)"/>
-                    <!-- Left Y labels -->
-                    <text x="46" y="44" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">167.8</text>
-                    <text x="46" y="84" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">137.6</text>
-                    <text x="46" y="124" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">111.8</text>
-                    <text x="46" y="164" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">83.8</text>
-                    <text x="46" y="204" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">55.9</text>
-                    <text x="46" y="244" font-size="8" fill="#5d6685" text-anchor="end" font-family="JetBrains Mono">27.9</text>
-                    <!-- Right Y labels -->
-                    <text x="876" y="244" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">0 GB</text>
-                    <text x="876" y="164" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">11.2</text>
-                    <text x="876" y="84" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">14 GB</text>
-                    <!-- Bars: 12 months, bar width ~38 -->
-                    <!-- Mar: 2GB -->
-                    <rect x="70" y="236" width="30" height="8" fill="rgba(139,123,255,.5)" rx="1"/>
-                    <!-- Apr: 2.5GB -->
-                    <rect x="140" y="233" width="30" height="11" fill="rgba(139,123,255,.55)" rx="1"/>
-                    <!-- May: 3.5GB -->
-                    <rect x="210" y="223" width="30" height="21" fill="rgba(139,123,255,.55)" rx="1"/>
-                    <!-- Jun: 3GB -->
-                    <rect x="280" y="226" width="30" height="18" fill="rgba(139,123,255,.5)" rx="1"/>
-                    <!-- Jul: 5GB -->
-                    <rect x="350" y="206" width="30" height="38" fill="rgba(139,123,255,.6)" rx="1"/>
-                    <!-- Aug: 4GB -->
-                    <rect x="420" y="216" width="30" height="28" fill="rgba(139,123,255,.55)" rx="1"/>
-                    <!-- Sep: 7GB -->
-                    <rect x="490" y="188" width="30" height="56" fill="rgba(139,123,255,.65)" rx="1"/>
-                    <!-- Oct: 6GB -->
-                    <rect x="560" y="196" width="30" height="48" fill="rgba(139,123,255,.6)" rx="1"/>
-                    <!-- Nov: 8GB -->
-                    <rect x="630" y="176" width="30" height="68" fill="rgba(139,123,255,.65)" rx="1"/>
-                    <!-- Dec: 10GB -->
-                    <rect x="700" y="158" width="30" height="86" fill="rgba(139,123,255,.7)" rx="1"/>
-                    <!-- Jan: 12GB -->
-                    <rect x="770" y="140" width="30" height="104" fill="rgba(139,123,255,.75)" rx="1"/>
-                    <!-- Feb: 14GB -->
-                    <rect x="840" y="122" width="30" height="122" fill="rgba(139,123,255,.8)" rx="1"/>
-                    <!-- Line -->
-                    <polyline points="85,228 155,222 225,208 295,198 365,180 435,168 505,148 575,134 645,116 715,98 785,78 855,60" fill="none" stroke="#f5c87a" stroke-width="2" stroke-linejoin="round"/>
-                    <circle cx="85" cy="228" r="3" fill="#f5c87a"/>
-                    <circle cx="155" cy="222" r="3" fill="#f5c87a"/>
-                    <circle cx="225" cy="208" r="3" fill="#f5c87a"/>
-                    <circle cx="295" cy="198" r="3" fill="#f5c87a"/>
-                    <circle cx="365" cy="180" r="3" fill="#f5c87a"/>
-                    <circle cx="435" cy="168" r="3" fill="#f5c87a"/>
-                    <circle cx="505" cy="148" r="3" fill="#f5c87a"/>
-                    <circle cx="575" cy="134" r="3" fill="#f5c87a"/>
-                    <circle cx="645" cy="116" r="3" fill="#f5c87a"/>
-                    <circle cx="715" cy="98" r="3" fill="#f5c87a"/>
-                    <circle cx="785" cy="78" r="3" fill="#f5c87a"/>
-                    <circle cx="855" cy="60" r="4" fill="#f5c87a" filter="drop-shadow(0 0 6px rgba(245,200,122,.8))"/>
-                    <!-- X labels -->
-                    <text x="85" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-03</text>
-                    <text x="155" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-05</text>
-                    <text x="225" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-07</text>
-                    <text x="295" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-08</text>
-                    <text x="365" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-09</text>
-                    <text x="435" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-10</text>
-                    <text x="505" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-11</text>
-                    <text x="575" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2024-12</text>
-                    <text x="645" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-01</text>
-                    <text x="715" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-01</text>
-                    <text x="785" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-02</text>
-                    <text x="855" y="260" font-size="7" fill="#5d6685" text-anchor="middle" font-family="JetBrains Mono">2025-02</text>
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <!-- Heat Analysis Panel -->
-            <div class="data-tab-panel" data-panel="heat">
-              <div class="dual-chart">
-                <!-- Pie: Heat Distribution -->
-                <div class="chart-card">
-                  <div class="c-hd"><span class="ctitle v3">文件热度分布</span><span>热度等级</span></div>
-                  <div class="chart-svg-wrap">
-                    <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(130 130)">
-                        <circle r="108" fill="rgba(245,200,122,.03)"/>
-                        <!-- Cold 40% 144deg -->
-                        <path d="M0 -108 A108 108 0 0 1 63.5 87.4 Z" fill="rgba(61,240,255,.55)"/>
-                        <!-- Warm 20% 72deg -->
-                        <path d="M63.5 87.4 A108 108 0 0 1 -63.5 87.4 Z" fill="rgba(245,200,122,.55)"/>
-                        <!-- Archive 20% 72deg -->
-                        <path d="M-63.5 87.4 A108 108 0 0 1 -108 0 Z" fill="rgba(100,220,180,.55)"/>
-                        <!-- Hot 20% 72deg -->
-                        <path d="M-108 0 A108 108 0 0 1 0 -108 Z" fill="rgba(255,90,120,.6)"/>
-                        <circle r="54" fill="rgba(7,9,18,.98)"/>
-                        <text y="-8" text-anchor="middle" font-size="10" fill="#9aa3c4" font-family="JetBrains Mono">总容量</text>
-                        <text y="16" text-anchor="middle" font-size="22" fill="#eef2ff" font-weight="700" font-family="Syne">50 GB</text>
-                      </g>
-                    </svg>
-                  </div>
-                  <div class="chart-legend">
-                    <div class="l-item"><span class="l-sq" style="background:rgba(255,90,120,.6)"></span>热 10 GB</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(245,200,122,.55)"></span>温 10 GB</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(61,240,255,.55)"></span>冷 20 GB</div>
-                    <div class="l-item"><span class="l-sq" style="background:rgba(100,220,180,.55)"></span>沉 10 GB</div>
-                  </div>
-                </div>
-
-                <!-- Treemap: Directory Heat -->
-                <div class="chart-card">
-                  <div class="c-hd"><span class="ctitle v2">目录热度分布</span><span style="color:var(--ink-faint)">根目录 / storage</span></div>
-                  <div class="chart-svg-wrap">
-                    <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(8 8)">
-                        <!-- viewBox 可用: 504 x 212 (留出 margin 8+8=16, 下方总容量标签 12px) -->
-                        <!-- data 32.84GB ≈ 55%: 左列大区块 -->
-                        <rect x="0" y="0" width="300" height="170" rx="8" fill="rgba(255,90,120,.55)" stroke="rgba(255,90,120,.7)"/>
-                        <text x="150" y="88" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="600" font-family="Syne">data</text>
-                        <text x="150" y="112" text-anchor="middle" font-size="20" fill="#eef2ff" font-weight="700" font-family="Syne">32.84 GB</text>
-                        <!-- media 9.93GB ≈ 16.6%: 右上 -->
-                        <rect x="308" y="0" width="120" height="104" rx="8" fill="rgba(61,240,255,.55)" stroke="rgba(61,240,255,.7)"/>
-                        <text x="368" y="56" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">media</text>
-                        <text x="368" y="76" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" font-family="Syne">9.93 GB</text>
-                        <!-- installer 8.00GB ≈ 13.4%: 右中 -->
-                        <rect x="432" y="0" width="72" height="104" rx="8" fill="rgba(139,123,255,.55)" stroke="rgba(139,123,255,.7)"/>
-                        <text x="468" y="52" text-anchor="middle" font-size="10" fill="#eef2ff" font-weight="600" font-family="Syne">installer</text>
-                        <text x="468" y="72" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" font-family="Syne">8.00</text>
-                        <!-- archive 6.00GB ≈ 10%: 右中 -->
-                        <rect x="308" y="108" width="120" height="62" rx="8" fill="rgba(245,200,122,.55)" stroke="rgba(245,200,122,.7)"/>
-                        <text x="368" y="144" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="600" font-family="Syne">archive 6.00 GB</text>
-                        <!-- tools 1GB ≈ 1.7% -->
-                        <rect x="432" y="108" width="36" height="62" rx="6" fill="rgba(100,220,180,.55)" stroke="rgba(100,220,180,.7)"/>
-                        <text x="450" y="144" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">tools</text>
-                        <!-- logs 1GB ≈ 1.7% -->
-                        <rect x="472" y="108" width="32" height="62" rx="6" fill="rgba(200,140,240,.55)" stroke="rgba(200,140,240,.7)"/>
-                        <text x="488" y="144" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="600">logs</text>
-                        <!-- Total -->
-                        <text x="496" y="200" text-anchor="end" font-size="10" fill="#9aa3c4" font-family="JetBrains Mono">总容量：59.77 GB</text>
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </main>
-        </div>
-      </div>
-      <div class="func-info">
-        <div class="func-block">
-          <div class="func-label">架构说明 · Architecture</div>
-          <p>LiSA 数据分析模块基于 ClickHouse 列式引擎与元数据采集 Agent，对文件/对象做多维度洞察：<br><br>
-          <b>资产分析</b>（类别分布 · 大小分布 · Top10 大文件）<br>
-          <b>时间分析</b>（新增大小 · 累计大小趋势）<br>
-          <b>热度分析</b>（热·温·冷·沉四等级 · 目录热度分布）<br><br>
-          Agent 以标准协议扫描任意异构存储，采集的元数据写入 ClickHouse，支持 API / SDK 对接企业内部平台。</p>
-        </div>
-        <div class="func-block">
-          <div class="func-label">核心优势 · Advantages</div>
-          <ul>
-            <li><b>ClickHouse 引擎</b>：列式存储，千亿条目检索</li>
-            <li><b>全协议采集 Agent</b>：CIFS/NFS/S3/Lustre/GPFS 异构存储统一扫描</li>
-            <li><b>三维度洞察</b>：资产概览 · 时间分析 · 热度分析</li>
-            <li><b>API / SDK 开放</b>：对接企业内部平台</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- ===== Module 5: 数据归档 ===== -->
-  <div class="section-tab-panel" data-panel="func-archive">
-  <div class="func-module reveal" id="func-archive">
-    <div class="func-header">
-      <div class="func-num">05</div>
-      <div class="func-title">
-        <h3>数据归档</h3>
-        <span class="func-en">Data Archiving</span>
-      </div>
-    </div>
-    <div class="func-body">
-      <div class="func-arch">
-        <div class="case-arch">
-          <div class="ttl">架构图 · Architecture</div>
-          <div class="scroll-x">
-            <svg viewBox="-60 0 1200 450" overflow="visible" class="flow-svg" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="g-arc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5c87a"/><stop offset="1" stop-color="#8b7bff"/></linearGradient>
-              </defs>
-
-              <!-- 左侧：热数据 -->
-              <rect x="14" y="40" width="200" height="240" rx="12" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.25)"/>
-              <text x="114" y="62" text-anchor="middle" font-size="10" fill="#f5c87a" font-family="JetBrains Mono">HOT DATA · 热数据</text>
-              <g class="arch-svg-node"><rect x="34" y="78" width="160" height="56" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="114" y="100" text-anchor="middle" fill="#eef2ff" font-size="12" font-weight="600">ONTAP NAS</text><text x="114" y="116" text-anchor="middle" fill="#f5c87a" font-size="9">文件存储</text></g>
-              <text x="114" y="156" text-anchor="middle" font-size="9" fill="#9aa3c4">高频访问 · 业务读写</text>
-              <text x="114" y="174" text-anchor="middle" font-size="9" fill="#5d6685">0 - 6 月热数据</text>
-              <text x="114" y="196" text-anchor="middle" font-size="9" fill="#9aa3c4">可压缩 · 可分层</text>
-              <text x="114" y="214" text-anchor="middle" font-size="9" fill="#9aa3c4">实时检索 · 在线</text>
-              <text x="114" y="240" text-anchor="middle" font-size="8" fill="#f5c87a">归档源端</text>
-              <circle cx="114" cy="262" r="4" class="pulse-node" fill="var(--gold)"/>
-
-              <!-- 热数据 -> LiSA -->
-              <path d="M214 140 H280" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" repeatCount="indefinite" path="M214 140 H280"/></circle>
-
-              <!-- 中间：LiSA Archiving Engine -->
-              <rect x="280" y="40" width="380" height="240" rx="12" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-              <text x="470" y="62" text-anchor="middle" font-size="11" fill="#3df0ff" font-family="Syne" font-weight="700">LiSA Archiving Engine · 数据归档引擎</text>
-              <g class="arch-svg-node"><rect x="300" y="78" width="340" height="44" rx="6" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="470" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">元数据筛选</text><text x="470" y="111" text-anchor="middle" fill="#3df0ff" font-size="8">基于元数据引擎精确确定归档范围</text></g>
-              <g class="arch-svg-node"><rect x="300" y="132" width="340" height="44" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--violet)"/><text x="470" y="151" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">策略引擎</text><text x="470" y="165" text-anchor="middle" fill="#8b7bff" font-size="8">事件/策略驱动 · 生命周期自动归档</text></g>
-              <g class="arch-svg-node"><rect x="300" y="186" width="340" height="44" rx="6" fill="rgba(139,123,255,.15)" stroke="var(--gold)"/><text x="470" y="205" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">迁移服务</text><text x="470" y="219" text-anchor="middle" fill="#f5c87a" font-size="8">并发传输 · 灵活策略 · 易于部署</text></g>
-              <text x="410" y="250" text-anchor="start" font-size="9" fill="#9aa3c4">▎低成本长期留存 · 可检索归档</text>
-              <text x="410" y="268" text-anchor="start" font-size="9" fill="#9aa3c4">▎归档数据仍纳入元数据检索范围</text>
-              <circle cx="470" cy="286" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-              <!-- LiSA -> 归档目标 -->
-              <path d="M660 120 H726" class="flow-line" stroke="var(--cyan)" fill="none"/>
-              <path d="M660 160 H726" class="flow-line" stroke="var(--violet)" fill="none"/>
-              <path d="M660 200 H726" class="flow-line" stroke="var(--gold)" fill="none"/>
-              <circle r="3" fill="var(--cyan)" filter="drop-shadow(0 0 5px var(--cyan))"><animateMotion dur="2s" repeatCount="indefinite" path="M660 120 H726"/></circle>
-              <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="2s" begin="0.6s" repeatCount="indefinite" path="M660 160 H726"/></circle>
-              <circle r="3" fill="var(--gold)" filter="drop-shadow(0 0 5px var(--gold))"><animateMotion dur="2s" begin="1.2s" repeatCount="indefinite" path="M660 200 H726"/></circle>
-
-              <!-- 右侧：归档目标 -->
-              <rect x="726" y="40" width="340" height="240" rx="12" fill="rgba(139,123,255,.05)" stroke="rgba(139,123,255,.25)"/>
-              <text x="896" y="62" text-anchor="middle" font-size="10" fill="#8b7bff" font-family="JetBrains Mono">ARCHIVE TARGETS · 归档目标</text>
-              <g class="arch-svg-node"><rect x="746" y="78" width="300" height="48" rx="7" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="896" y="97" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">DXN Object / S3</text><text x="896" y="113" text-anchor="middle" fill="#8b7bff" font-size="9">对象存储归档</text></g>
-              <g class="arch-svg-node"><rect x="746" y="136" width="300" height="48" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="896" y="155" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">Cloud 云端归档</text><text x="896" y="171" text-anchor="middle" fill="#3df0ff" font-size="9">电信云 / AWS / 阿里云</text></g>
-              <g class="arch-svg-node"><rect x="746" y="194" width="300" height="48" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(255,255,255,.2)"/><text x="896" y="213" text-anchor="middle" fill="#eef2ff" font-size="11" font-weight="600">Tape Library 带库归档</text><text x="896" y="229" text-anchor="middle" fill="#9aa3c4" font-size="9">v2.0 规划中</text></g>
-              <text x="896" y="262" text-anchor="middle" font-size="9" fill="#9aa3c4">多目标归档 · 混合多云</text>
-              <text x="896" y="280" text-anchor="middle" font-size="8" fill="#8b7bff">On-Premise + On-Cloud</text>
-
-              <!-- 底部：归档时间线 -->
-              <text x="20" y="320" font-size="10" fill="#3df0ff" font-family="JetBrains Mono">ARCHIVE TIMELINE · 归档时间线</text>
-              <rect x="20" y="332" width="1040" height="44" rx="8" fill="rgba(139,123,255,.05)" stroke="rgba(255,255,255,.1)"/>
-              <g class="arch-svg-node"><rect x="40" y="342" width="240" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="160" y="358" text-anchor="middle" font-size="9" fill="#f5c87a">ONTAP 热数据</text></g>
-              <path d="M280 354 H320" class="flow-line" stroke="var(--cyan)" fill="none"/>
-              <g class="arch-svg-node"><rect x="320" y="342" width="240" height="24" rx="5" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="440" y="358" text-anchor="middle" font-size="9" fill="#3df0ff">DXN 对象归档</text></g>
-              <path d="M560 354 H600" class="flow-line" stroke="var(--violet)" fill="none"/>
-              <g class="arch-svg-node"><rect x="600" y="342" width="240" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="720" y="358" text-anchor="middle" font-size="9" fill="#8b7bff">1年+ 云端归档</text></g>
-              <path d="M840 354 H880" class="flow-line" stroke="rgba(255,255,255,.4)" fill="none"/>
-              <g class="arch-svg-node"><rect x="880" y="342" width="160" height="24" rx="5" fill="rgba(139,123,255,.12)" stroke="rgba(255,255,255,.2)"/><text x="960" y="358" text-anchor="middle" font-size="9" fill="#9aa3c4">带库归档(v2.0)</text></g>
-              <circle r="3" fill="var(--violet)" filter="drop-shadow(0 0 5px var(--violet))"><animateMotion dur="3s" repeatCount="indefinite" path="M280 354 H840"/></circle>
-            </svg>
-          </div>
-          <div class="arch-leg">
-            <div class="lg"><span class="sw" style="background:rgba(245,200,122,.3);border:1px solid var(--gold)"></span>热数据</div>
-            <div class="lg"><span class="sw" style="background:rgba(var(--cyan-rgb),.3);border:1px solid var(--cyan)"></span>LiSA 归档引擎</div>
-            <div class="lg"><span class="sw" style="background:rgba(139,123,255,.3);border:1px solid var(--violet)"></span>归档目标</div>
-            <div class="lg"><span class="sw" style="background:#8b7bff"></span>归档数据流</div>
-          </div>
-        </div>
-      </div>
-      <div class="func-info">
-        <div class="func-block">
-          <div class="func-label">架构说明 · Architecture</div>
-          <p>LiSA 数据归档基于<b>元数据引擎</b>筛选归档范围，通过<b>策略驱动的工作流引擎</b>自动执行归档任务。支持对象归档（DXN Object/S3）、云端归档（电信云/AWS/阿里云）、带库归档（v2.0 规划中）。低成本长期留存，同时保持可检索。</p>
-        </div>
-        <div class="func-block">
-          <div class="func-label">核心优势 · Advantages</div>
-          <ul>
-            <li><b>多目标归档</b>：对象存储归档、云端归档、带库归档（v2.0）全覆盖</li>
-            <li><b>可检索归档</b>：归档数据仍纳入元数据检索范围，"死数据"可查</li>
-            <li><b>策略驱动</b>：基于生命周期的自动归档策略</li>
-            <li><b>低成本留存</b>：冷数据流转至低成本存储，降低总体成本</li>
-            <li><b>混合多云</b>：On-Premise + On-Cloud 统一归档管理</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+    </a>
   </div>
 </section>
 
@@ -2660,692 +1986,103 @@
       <div class="sec-tag"><span class="n">05</span> Case Studies</div>
       <h2 class="sec-title">落地场景<span class="accent"> 实战验证</span></h2>
     </div>
-    <p class="sec-desc">从制造业工业质检到医疗影像、教育科研，LiSA 已在多行业千亿级数据规模的真实场景中连续稳定运行。</p>
+    <p class="sec-desc">从制造业工业质检到异构存储迁移，LiSA 在多行业千亿级数据规模的真实场景中连续稳定运行。</p>
   </div>
-  <div class="scenarios reveal">
-    <div class="section-tabs" role="tablist" aria-label="客户案例">
-      <button class="section-tab active" data-tab="case-1" role="tab"><span class="sn-n">01</span>案例一 · 工业质检</button>
-      <button class="section-tab" data-tab="case-2" role="tab"><span class="sn-n">02</span>案例二 · 多机台管理</button>
-      <button class="section-tab" data-tab="case-3" role="tab"><span class="sn-n">03</span>案例三 · 异构迁移</button>
-    </div>
-    <div class="section-tab-panel active" data-panel="case-1">
-    <div class="case">
+
+  <div class="case-cards reveal">
+    <div class="case-card">
+      <div class="case-card-num">01</div>
       <h4>工业质检数据全生命周期治理</h4>
-      <div class="pains">
-        <div class="lab">客户痛点</div>
+      <div class="case-card-block">
+        <div class="case-card-label">客户痛点</div>
         <p>多存储集群并存数据查找困难；产线多变数据规范差；需按生命周期流转降本。</p>
       </div>
-      <div class="pains">
-        <div class="lab">LiSA 方案</div>
+      <div class="case-card-block">
+        <div class="case-card-label">LiSA 方案</div>
         <p>On-Prem + Cloud 统一纳管，文件/对象统一检索，智能 Agent 监控数据规范，按生命周期自动分层流转。</p>
       </div>
-      <div class="case-arch">
-        <div class="ttl">方案架构</div>
-        <div class="scroll-x">
-          <svg viewBox="-72 0 700 340" class="flow-svg" style="max-width:720px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== ROW 1: 用户审计 + 机台 + MES/APP ===== -->
-            <g class="arch-svg-node">
-              <circle cx="42" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="42" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="47" y1="51" x2="53" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
-            </g>
-            <g class="arch-svg-node">
-              <circle cx="86" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="86" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="91" y1="51" x2="97" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
-            </g>
-            <g class="arch-svg-node">
-              <circle cx="130" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="130" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="135" y1="51" x2="141" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
-            </g>
-            <text x="86" y="76" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">用户审计</text>
-
-            <!-- 机台 -->
-            <g class="arch-svg-node">
-              <rect x="158" y="32" width="28" height="26" rx="3" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="162" y="36" width="8" height="8" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="173" y="36" width="8" height="8" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="162" y="46" width="20" height="6" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <text x="172" y="76" text-anchor="middle" font-size="8" fill="#f5c87a">机台</text>
-
-            <!-- MES / APP 区域 -->
-            <rect x="236" y="20" width="144" height="68" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
-            <g class="arch-svg-node">
-              <rect x="252" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="268" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">MES</text>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="292" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="308" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">APP</text>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="332" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="348" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">MES</text>
-            </g>
-
-            <!-- 连线（与案例二统一：虚线路径 + 虚线，无箭头） -->
-            <line x1="146" y1="46" x2="158" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
-            <line x1="186" y1="46" x2="236" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
-
-            <!-- 数据点 -->
-            <circle cx="146" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="186" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- ===== ROW 2: LiSA 平台 ===== -->
-            <rect x="30" y="100" width="460" height="32" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="1.2"/>
-            <text x="260" y="121" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA</text>
-            <path d="M308 90 L260 100" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
-
-            <!-- LiSA 数据点 -->
-            <circle cx="308" cy="90" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="260" cy="116" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- ===== ROW 3: 存储迁移时间线 ===== -->
-            <!-- XSKY sdk -->
-            <rect x="18" y="158" width="94" height="58" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.3)" stroke-dasharray="4 3"/>
-            <g class="arch-svg-node">
-              <rect x="30" y="166" width="24" height="12" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="32" y="168" width="18" height="2" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="32" y="172" width="8" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="30" y="184" width="24" height="12" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="32" y="186" width="18" height="2" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="32" y="190" width="8" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-            </g>
-            <text x="80" y="172" text-anchor="middle" font-size="7" fill="#f5c87a">XSKY</text>
-            <text x="80" y="190" text-anchor="middle" font-size="7" fill="#f5c87a">sdk</text>
-
-            <!-- 0-6个月 -->
-            <text x="64" y="226" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">0-6个月</text>
-
-            <!-- XSKY Clust1 -->
-            <g class="arch-svg-node">
-              <rect x="122" y="160" width="76" height="24" rx="4" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
-              <text x="160" y="177" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust1</text>
-            </g>
-            <!-- XSKY Clust2 -->
-            <g class="arch-svg-node">
-              <rect x="122" y="196" width="76" height="24" rx="4" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
-              <text x="160" y="213" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust2</text>
-            </g>
-
-            <!-- 连线（纯虚线 + 流动粒子，无箭头） -->
-            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
-            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
-
-            <!-- 数据点 -->
-            <circle cx="112" cy="190" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="122" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="122" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 6-12个月 -->
-            <text x="342" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">6-12个月</text>
-
-            <!-- DXN Ultra 存储集群 -->
-            <g class="arch-svg-node">
-              <rect x="252" y="168" width="180" height="52" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)" stroke-width="1.2"/>
-              <text x="342" y="200" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="700">DXN Ultra 存储集群</text>
-            </g>
-
-            <path d="M198 172 L252 172" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-            <path d="M198 208 L252 208" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-
-            <!-- DXN 数据点 -->
-            <circle cx="198" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="252" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="198" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="252" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 1年+ -->
-            <text x="528" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">1年+</text>
-
-            <!-- 电信云 -->
-            <g class="arch-svg-node">
-              <rect x="478" y="168" width="100" height="52" rx="8" fill="rgba(var(--cyan-rgb),.08)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2"/>
-              <path d="M500 188 Q500 176 516 176 Q524 166 540 170 Q556 170 560 186 Q572 188 572 202 Q572 214 560 214 L500 214 Q490 214 490 202 Q490 188 500 188 Z" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="528" y="222" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">电信云</text>
-            </g>
-
-            <path d="M432 194 L478 194" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-
-            <!-- 电信云数据点 -->
-            <circle cx="432" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="478" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- ===== ROW 4: 老机台 + Agent/S3 + CIFS ===== -->
-            <rect x="252" y="248" width="138" height="52" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
-            <g class="arch-svg-node">
-              <rect x="260" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="262" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="262" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="286" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="288" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="288" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <text x="324" y="274" text-anchor="middle" font-size="10" fill="#9aa3c4">…</text>
-            <g class="arch-svg-node">
-              <rect x="346" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="348" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="348" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <text x="321" y="290" text-anchor="middle" font-size="8" fill="#f5c87a">老机台</text>
-
-            <!-- Agent / S3 -->
-            <g>
-              <rect x="410" y="246" width="62" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="441" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">Agent / S3</text>
-            </g>
-            <!-- CIFS -->
-            <g>
-              <rect x="530" y="246" width="48" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="554" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">CIFS</text>
-            </g>
-
-            <!-- 连线: 老机台 → DXN Ultra (Agent/S3) （无箭头，纯路径+流动粒子） -->
-            <path d="M321 248 L321 234 L441 234 L441 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
-            <text x="376" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">Agent / S3</text>
-            <circle cx="321" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="441" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 连线: 老机台 → 电信云 (CIFS) （无箭头） -->
-            <path d="M372 248 L372 234 L554 234 L554 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
-            <text x="463" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">CIFS</text>
-            <circle cx="372" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="554" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 流动粒子（与案例二一致：6条线 × 节奏 3s/4s/5s） -->
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M146 46 L158 46"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M186 46 L236 46"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M308 90 L260 100"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M112 190 L122 190"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin=".7s" path="M112 190 L116 190 L116 172 L122 172"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.3s" path="M112 190 L116 190 L116 208 L122 208"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M198 172 L252 172"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M198 208 L252 208"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s" path="M432 194 L478 194"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="5s" repeatCount="indefinite" begin=".5s" path="M321 248 L321 234 L441 234 L441 220"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="5s" repeatCount="indefinite" begin="2s" path="M372 248 L372 234 L554 234 L554 220"/>
-            </circle>
-          </svg>
-        </div>
-      </div>
     </div>
-    </div>
-    <div class="section-tab-panel" data-panel="case-2">
-    <div class="case">
+    <div class="case-card">
+      <div class="case-card-num">02</div>
       <h4>多机台统一管理千亿秒级检索</h4>
-      <div class="pains">
-        <div class="lab">客户痛点</div>
+      <div class="case-card-block">
+        <div class="case-card-label">客户痛点</div>
         <p>历史数据杂乱查找困难；多机台数据无法统一管理；部分文件需留存 15 年。</p>
       </div>
-      <div class="pains">
-        <div class="lab">LiSA 方案</div>
+      <div class="case-card-block">
+        <div class="case-card-label">LiSA 方案</div>
         <p>智能标签解析规范元数据，汇总所有机台统一检索；提供 API 与企业内部平台对接，定时增量迁移与监控。</p>
       </div>
-      <div class="case-arch">
-        <div class="ttl">方案架构</div>
-        <div class="scroll-x">
-          <svg viewBox="-5 0 760 320" class="flow-svg" style="max-width:680px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== 上方：机台 + MES/APP ===== -->
-            <g class="arch-svg-node"><rect x="30" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="60" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="110" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="140" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="190" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="220" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <text x="275" y="76" font-size="14" fill="#9aa3c4">…</text>
-            <g class="arch-svg-node"><rect x="300" y="50" width="50" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="325" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台N</text></g>
-
-            <!-- MES / APP 区域 -->
-            <g class="arch-svg-node"><rect x="50" y="120" width="50" height="30" rx="5" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="75" y="140" text-anchor="middle" font-size="9" fill="#3df0ff">MES</text></g>
-            <g class="arch-svg-node"><rect x="120" y="120" width="50" height="30" rx="5" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="145" y="140" text-anchor="middle" font-size="9" fill="#3df0ff">APP</text></g>
-            <text x="195" y="140" font-size="12" fill="#9aa3c4">…</text>
-
-            <!-- ===== 中间：LiSA ===== -->
-            <g class="arch-svg-node"><rect x="380" y="100" width="120" height="80" rx="10" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="440" y="150" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700">LiSA</text></g>
-
-            <!-- ===== 右：ONTAP 存储集群 ===== -->
-            <g class="arch-svg-node"><rect x="560" y="110" width="160" height="60" rx="10" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="640" y="140" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="600">ONTAP 存储集群</text></g>
-
-            <!-- ===== 下方：CIFS共享 / 机台 / 迁移任务 ===== -->
-            <g class="arch-svg-node"><rect x="50" y="220" width="80" height="36" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="90" y="243" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">CIFS 共享</text></g>
-            <g class="arch-svg-node"><rect x="160" y="220" width="60" height="36" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="190" y="243" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="250" y="220" width="80" height="36" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="290" y="243" text-anchor="middle" font-size="10" fill="#8b7bff" font-weight="600">迁移任务</text></g>
-
-            <!-- 连接线：机台 → LiSA -->
-            <path d="M350 70 L380 70 L380 140" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <!-- 连接线：MES/APP → LiSA -->
-            <path d="M220 135 L380 135" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <!-- 连接线：LiSA → ONTAP -->
-            <path d="M500 140 H560" class="flow-line" stroke="var(--violet)" fill="none"/>
-            <!-- 连接线：下方组件 → LiSA -->
-            <path d="M130 238 Q200 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <path d="M220 238 Q260 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <path d="M330 238 Q340 210 380 180" class="flow-line" stroke="var(--gold)" fill="none"/>
-
-            <!-- 数据点 -->
-            <circle cx="350" cy="70" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="380" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="220" cy="135" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="500" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="560" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="130" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="220" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="330" cy="238" r="3" class="pulse-node" fill="var(--gold)"/>
-            <circle cx="380" cy="180" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 流动粒子 -->
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M350 70 L380 70 L380 140"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M220 135 L380 135"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M500 140 L560 140"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M130 238 Q200 200 380 180"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M220 238 Q260 200 380 180"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M330 238 Q340 210 380 180"/>
-            </circle>
-          </svg>
-        </div>
-      </div>
     </div>
-    </div>
-    <div class="section-tab-panel" data-panel="case-3">
-    <div class="case">
+    <div class="case-card">
+      <div class="case-card-num">03</div>
       <h4>异构对象存储迁移私有格式数据解析</h4>
-      <div class="pains">
-        <div class="lab">客户痛点</div>
-        <p>日立 HCP 存储停产过保，需尽快迁移至新存储；迁移中要同步迁移合同对象的多个版本；日立 HCP 私有格式不支持标准 S3 读取。</p>
+      <div class="case-card-block">
+        <div class="case-card-label">客户痛点</div>
+        <p>日立 HCP 存储停产过保，需尽快迁移至新存储；迁移中要同步迁移合同对象的多个版本；私有格式不支持标准 S3 读取。</p>
       </div>
-      <div class="pains">
-        <div class="lab">LiSA 方案</div>
-        <p>支持对象多版本的 S3 数据迁移；定制开发日立 HCP 私有格式数据解析功能；支持任意数量的元数据标签，灵活增加；优化标签检索性能。</p>
+      <div class="case-card-block">
+        <div class="case-card-label">LiSA 方案</div>
+        <p>支持对象多版本的 S3 数据迁移；定制开发私有格式数据解析功能；支持任意数量的元数据标签，灵活增加；优化标签检索性能。</p>
       </div>
-      <div class="case-arch">
-        <div class="ttl">方案架构</div>
-        <div class="scroll-x">
-          <svg viewBox="-20 0 500 200" class="flow-svg" style="max-width:600px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== 中间：LiSA ===== -->
-            <g class="arch-svg-node"><rect x="120" y="30" width="260" height="38" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="250" y="57" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700">LiSA</text></g>
-
-            <!-- ===== 左下：日立 HCP ===== -->
-            <g class="arch-svg-node"><rect x="30" y="120" width="110" height="48" rx="6" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="85" y="150" text-anchor="middle" font-size="11" fill="#8b7bff" font-weight="600">日立 HCP</text></g>
-
-            <!-- ===== 右下：DXN S3 存储集群 ===== -->
-            <g class="arch-svg-node"><rect x="280" y="115" width="150" height="55" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="355" y="149" text-anchor="middle" font-size="11" fill="#eef2ff" font-weight="600">DXN S3 存储集群</text></g>
-
-
-
-            <!-- 日立 HCP → LiSA (元数据解析) -->
-            <path d="M85 120 Q85 95 250 68" class="flow-line" stroke="var(--violet)" fill="none"/>
-            <text x="145" y="95" font-size="8" fill="#8b7bff" font-family="JetBrains Mono">元数据解析</text>
-
-            <!-- LiSA → DXN S3 -->
-            <path d="M320 68 Q320 90 355 115" class="flow-line" stroke="var(--cyan)" fill="none"/>
-          </svg>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
 </section>
 
-<!-- ============ DEPLOYMENT & LICENSE ============ -->
 <section id="configs-sec">
-  <!-- 典型配置四档 -->
   <div class="sec-head reveal" style="margin-top:24px">
     <div>
       <div class="sec-tag"><span class="n">06</span> Typical Configurations</div>
       <h2 class="sec-title">四档典配<span class="accent"> 弹性进阶</span></h2>
     </div>
+    <p class="sec-desc">从轻量到旗舰，覆盖 200T 到 50P+ 数据规模。支持物理机/虚机/存储合部灵活部署，按需进阶。</p>
   </div>
 
-  <div class="cfg-grid reveal">
-    <!-- Lite -->
-    <div class="cfg-card">
-      <div class="cfg-head">
-        <div class="cfg-logo">LiSA Lite</div>
-        <div class="cfg-ver">轻量版</div>
-      </div>
-      <div class="cfg-body">
-        <div class="cfg-sec">
-          <div class="cs-label">数据规模</div>
-          <div class="cs-row"><span>存量</span><b>200 ~ 500 T</b></div>
-          <div class="cs-row"><span>日增量</span><b>~ 300 G</b></div>
-          <div class="cs-row"><span>文件数</span><b>亿级</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">单节点配置</div>
-          <div class="cs-row"><span>CPU</span><b>8 core</b></div>
-          <div class="cs-row"><span>内存</span><b>32 GB</b></div>
-          <div class="cs-row"><span>索引盘</span><b>1 x 200 G</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">部署方式</div>
-          <div class="cs-row"><span>物理机</span><span class="no">✗</span></div>
-          <div class="cs-row"><span>虚机</span><span class="yes">✓</span></div>
-          <div class="cs-row"><span>存储合部</span><span class="yes">✓</span></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">性能指标</div>
-          <div class="cs-row"><span>元数据</span><b>1 ~ 3 亿</b></div>
-          <div class="cs-row"><span>并发迁移</span><b>5 个任务</b></div>
-          <div class="cs-row"><span>单任务并发</span><b><= 20</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">支持功能</div>
-          <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA UDM</span></div>
-        </div>
-      </div>
-      <div class="cfg-foot">
-        <div class="cf-row"><span>查询性能</span><b>1 亿秒级</b></div>
-        <div class="cf-row"><span>最大带宽</span><b>网卡上限</b></div>
+  <div class="cfg-cards reveal">
+    <div class="cfg-mini">
+      <div class="cfg-mini-head"><span class="cfg-mini-logo">LiSA Lite</span><span class="cfg-mini-ver">轻量版</span></div>
+      <div class="cfg-mini-rows">
+        <div class="cm-row"><span>数据规模</span><b>200 ~ 500 T</b></div>
+        <div class="cm-row"><span>文件数</span><b>亿级</b></div>
+        <div class="cm-row"><span>单节点</span><b>8C / 32G</b></div>
+        <div class="cm-row"><span>部署</span><b>虚机 / 存储合部</b></div>
+        <div class="cm-row"><span>元数据</span><b>1 ~ 3 亿</b></div>
       </div>
     </div>
-
-    <!-- Classic -->
-    <div class="cfg-card">
-      <div class="cfg-head">
-        <div class="cfg-logo">LiSA Classic</div>
-        <div class="cfg-ver">基础版</div>
-      </div>
-      <div class="cfg-body">
-        <div class="cfg-sec">
-          <div class="cs-label">数据规模</div>
-          <div class="cs-row"><span>存量</span><b>0.5 ~ 1 P</b></div>
-          <div class="cs-row"><span>日增量</span><b>~ 1 T</b></div>
-          <div class="cs-row"><span>文件数</span><b>10 亿级</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">单节点配置</div>
-          <div class="cs-row"><span>CPU</span><b>12 core</b></div>
-          <div class="cs-row"><span>内存</span><b>64 GB</b></div>
-          <div class="cs-row"><span>索引盘</span><b>1 x 500 G</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">部署方式</div>
-          <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
-          <div class="cs-row"><span>虚机</span><span class="yes">✓</span></div>
-          <div class="cs-row"><span>存储合部</span><span class="yes">✓</span></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">性能指标</div>
-          <div class="cs-row"><span>元数据</span><b>10 亿</b></div>
-          <div class="cs-row"><span>并发迁移</span><b>10 个任务</b></div>
-          <div class="cs-row"><span>单任务并发</span><b><= 40</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">支持功能</div>
-          <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA UDM</span></div>
-        </div>
-      </div>
-      <div class="cfg-foot">
-        <div class="cf-row"><span>查询性能</span><b>10 亿秒级</b></div>
-        <div class="cf-row"><span>最大带宽</span><b>网卡上限</b></div>
+    <div class="cfg-mini">
+      <div class="cfg-mini-head"><span class="cfg-mini-logo">LiSA Classic</span><span class="cfg-mini-ver">基础版</span></div>
+      <div class="cfg-mini-rows">
+        <div class="cm-row"><span>数据规模</span><b>0.5 ~ 1 P</b></div>
+        <div class="cm-row"><span>文件数</span><b>10 亿级</b></div>
+        <div class="cm-row"><span>单节点</span><b>12C / 64G</b></div>
+        <div class="cm-row"><span>部署</span><b>物理机 / 虚机</b></div>
+        <div class="cm-row"><span>元数据</span><b>5 ~ 10 亿</b></div>
       </div>
     </div>
-
-    <!-- Pro -->
-    <div class="cfg-card">
-      <div class="cfg-head">
-        <div class="cfg-logo">LiSA Pro</div>
-        <div class="cfg-ver">专业版</div>
-      </div>
-      <div class="cfg-body">
-        <div class="cfg-sec">
-          <div class="cs-label">数据规模</div>
-          <div class="cs-row"><span>存量</span><b>5 ~ 10 P</b></div>
-          <div class="cs-row"><span>日增量</span><b>~ 10 T</b></div>
-          <div class="cs-row"><span>文件数</span><b>百亿级</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">单节点配置</div>
-          <div class="cs-row"><span>CPU</span><b>16 core</b></div>
-          <div class="cs-row"><span>内存</span><b>64 GB</b></div>
-          <div class="cs-row"><span>索引盘</span><b>1 x 1.92 T</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">部署方式</div>
-          <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
-          <div class="cs-row"><span>虚机</span><span class="no">✗</span></div>
-          <div class="cs-row"><span>存储合部</span><span class="no">✗</span></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">性能指标</div>
-          <div class="cs-row"><span>元数据</span><b>百亿</b></div>
-          <div class="cs-row"><span>并发迁移</span><b>15 个任务</b></div>
-          <div class="cs-row"><span>单任务并发</span><b><= 80</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">支持功能</div>
-          <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA UDM</span></div>
-        </div>
-      </div>
-      <div class="cfg-foot">
-        <div class="cf-row"><span>查询性能</span><b>百亿秒级</b></div>
-        <div class="cf-row"><span>最大带宽</span><b>网卡上限</b></div>
+    <div class="cfg-mini">
+      <div class="cfg-mini-head"><span class="cfg-mini-logo">LiSA Pro</span><span class="cfg-mini-ver">增强版</span></div>
+      <div class="cfg-mini-rows">
+        <div class="cm-row"><span>数据规模</span><b>1 ~ 5 P</b></div>
+        <div class="cm-row"><span>文件数</span><b>百亿级</b></div>
+        <div class="cm-row"><span>单节点</span><b>16C / 128G</b></div>
+        <div class="cm-row"><span>部署</span><b>物理机 / 虚机</b></div>
+        <div class="cm-row"><span>元数据</span><b>10 ~ 50 亿</b></div>
       </div>
     </div>
-
-    <!-- Max -->
-    <div class="cfg-card">
-      <div class="cfg-head">
-        <div class="cfg-logo">LiSA Max</div>
-        <div class="cfg-ver">旗舰版</div>
-      </div>
-      <div class="cfg-body">
-        <div class="cfg-sec">
-          <div class="cs-label">数据规模</div>
-          <div class="cs-row"><span>存量</span><b>50 ~ 100 P</b></div>
-          <div class="cs-row"><span>日增量</span><b>~ 100 T</b></div>
-          <div class="cs-row"><span>文件数</span><b>千亿级</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">单节点配置</div>
-          <div class="cs-row"><span>CPU</span><b>24 core</b></div>
-          <div class="cs-row"><span>内存</span><b>128 GB</b></div>
-          <div class="cs-row"><span>索引盘</span><b>3 x 3.84 T</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">部署方式</div>
-          <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
-          <div class="cs-row"><span>虚机</span><span class="no">✗</span></div>
-          <div class="cs-row"><span>存储合部</span><span class="no">✗</span></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">性能指标</div>
-          <div class="cs-row"><span>元数据</span><b>千亿</b></div>
-          <div class="cs-row"><span>并发迁移</span><b>20 个任务</b></div>
-          <div class="cs-row"><span>单任务并发</span><b><= 80</b></div>
-        </div>
-        <div class="cfg-sec">
-          <div class="cs-label">支持功能</div>
-          <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
-          <div class="cs-row"><span class="yes">✓ LiSA UDM</span></div>
-        </div>
-      </div>
-      <div class="cfg-foot">
-        <div class="cf-row"><span>查询性能</span><b>千亿秒级</b></div>
-        <div class="cf-row"><span>最大带宽</span><b>网卡上限</b></div>
+    <div class="cfg-mini">
+      <div class="cfg-mini-head"><span class="cfg-mini-logo">LiSA Max</span><span class="cfg-mini-ver">旗舰版</span></div>
+      <div class="cfg-mini-rows">
+        <div class="cm-row"><span>数据规模</span><b>5 ~ 50 P+</b></div>
+        <div class="cm-row"><span>文件数</span><b>千亿级</b></div>
+        <div class="cm-row"><span>单节点</span><b>32C / 256G</b></div>
+        <div class="cm-row"><span>部署</span><b>物理机集群</b></div>
+        <div class="cm-row"><span>元数据</span><b>50 ~ 1000 亿</b></div>
       </div>
     </div>
   </div>
 
   <div class="cfg-note reveal">
-    <b>注：</b>配置部分为单节点参考，仅列出 CPU、内存、NVMe 索引盘；存储集群 >= 8 节点需按项目定制，仅 DXN。
-  </div>
-
-  <!-- DFS 部署要求 & 推荐硬件 -->
-  <div class="accordion-wrap reveal" style="margin-top:40px">
-    <div class="accordion-card">
-      <div class="accordion-head">
-        <div>
-          <div class="ah-title">DFS 部署要求</div>
-          <div class="ah-meta">Deployment Requirements</div>
-        </div>
-        <div class="ah-icon">+</div>
-      </div>
-      <div class="accordion-body">
-        <div class="dc-row"><span>部署模式</span><b>最小 3 节点 · 最大 32 节点</b></div>
-        <div class="dc-row"><span>部署方式</span><b>纯软部署（Rocky 9.4 OS + bin）</b></div>
-        <div class="dc-row"><span>元数据副本</span><b>2 副本 · 宕机 1 节点不影响业务</b></div>
-        <div class="dc-row"><span>单节点 CPU</span><b>最低 8 core</b></div>
-        <div class="dc-row"><span>单节点内存</span><b>最低 32G</b></div>
-        <div class="dc-row"><span>OS 盘</span><b>150G</b></div>
-        <div class="dc-row"><span>索引盘</span><b>200G</b></div>
-        <div class="dc-row"><span>前端网</span><b>10G × 2 port</b></div>
-        <div class="dc-row"><span>后端网</span><b>10G × 2 port（建议独立交换机）</b></div>
-        <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
-        <div class="dc-row"><span>能力基线</span><b>1 亿索引 · 50 agent · 5 并发迁移</b></div>
-      </div>
-    </div>
-    <div class="accordion-card">
-      <div class="accordion-head">
-        <div>
-          <div class="ah-title">DFS 推荐硬件</div>
-          <div class="ah-meta">Recommended Hardware · DXN2000 G3</div>
-        </div>
-        <div class="ah-icon">+</div>
-      </div>
-      <div class="accordion-body">
-        <div class="dc-row"><span>型号</span><b>DXN2000 G3 (7DM5)</b></div>
-        <div class="dc-row"><span>CPU</span><b>Intel Xeon Silver 4514Y 16C 150W 2.0GHz ×1</b></div>
-        <div class="dc-row"><span>内存</span><b>64GB</b></div>
-        <div class="dc-row"><span>OS 盘</span><b>480G SATA SSD ×2</b></div>
-        <div class="dc-row"><span>索引盘</span><b>1.92T NVMe ×1</b></div>
-        <div class="dc-row"><span>前端网</span><b>10G/25G × 2 port</b></div>
-        <div class="dc-row"><span>后端网</span><b>10G/25G × 2 port</b></div>
-        <div class="dc-row"><span>管理网</span><b>1G OCP</b></div>
-        <div class="dc-row"><span>网络说明</span><b>前端接入业务网，后端建议独立交换机</b></div>
-        <div class="dc-row"><span>管理网</span><b>无特殊要求</b></div>
-        <div class="dc-row" style="border-top:1px solid var(--line);margin-top:8px;padding-top:12px;justify-content:center">
-          <a href="https://www.lenovonetapp.com/products/sds/nas/dxn2000-dxn3000.html" target="_blank" rel="noopener" style="color:var(--cyan);font-size:12px;text-decoration:none;font-weight:500">点击跳转联想凌拓官网了解产品信息 →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- 许可模式 -->
-  <div class="sec-head reveal" style="margin-top:50px">
-    <div>
-      <div class="sec-tag"><span class="n">06</span> License Model</div>
-      <h2 class="sec-title">许可模式<span class="accent"> 基础 + 功能</span></h2>
-    </div>
-    <p class="sec-desc">LiSA 基础软件授权许可（必选）按节点配，最少 3 节点起配。功能模块许可按需选择，DFS 按集群授权。</p>
-  </div>
-  <div class="accordion-wrap reveal">
-    <div class="accordion-card open">
-      <div class="accordion-head">
-        <div>
-          <div class="ah-title">LiSA 基础软件授权许可</div>
-          <div class="ah-meta">Essential Base License · 必选 · 按节点</div>
-        </div>
-        <div class="ah-icon">+</div>
-      </div>
-      <div class="accordion-body">
-        <div class="dc-row"><span>4HT7B10778</span><b>LiSA Essential Base License 1 Node 3Y</b></div>
-        <div class="dc-row"><span>说明</span><b>基础软件许可授权 1 个节点，3 年服务</b></div>
-        <div class="dc-row"><span>最少配置</span><b>3 节点起配</b></div>
-        <div class="dc-row"><span>4HT7B10779</span><b>LiSA Essential Base License 1Y Expansion</b></div>
-        <div class="dc-row"><span>说明</span><b>基础软件 1 个节点 1 年延保服务</b></div>
-        <div class="dc-row"><span>计费方式</span><b>LiSA Basic 按节点（3 个起配）</b></div>
-      </div>
-    </div>
-    <div class="accordion-card">
-      <div class="accordion-head">
-        <div>
-          <div class="ah-title">LiSA 功能模块许可</div>
-          <div class="ah-meta">Function Module License · 按需选择 · 按集群</div>
-        </div>
-        <div class="ah-icon">+</div>
-      </div>
-      <div class="accordion-body">
-        <div class="dc-row"><span>DFS License</span><b>Lenovo LiSA for DFS License 3Y (100agents)</b></div>
-        <div class="dc-row"><span>说明</span><b>工业质检数据处理，1000 机台 agent，100 亿文件</b></div>
-        <div class="dc-row"><span>DFS 延保</span><b>LiSA for DFS License 1Y Expansion SRV</b></div>
-        <div class="dc-row"><span>原厂服务</span><b>LiSA Onsite SRV 1time（现场 1 人天）</b></div>
-        <div class="dc-row"><span>定制开发</span><b>LiSA custom Develop rate（人天报价）</b></div>
-        <div class="dc-row"><span>计费方式</span><b>DFS 功能许可按集群</b></div>
-      </div>
-    </div>
-    <div class="accordion-card">
-      <div class="accordion-head">
-        <div>
-          <div class="ah-title">许可对照</div>
-          <div class="ah-meta">Feature Matrix · LiSA Basic / DFS / UDM · ✓ 支持，– 不支持</div>
-        </div>
-        <div class="ah-icon">+</div>
-      </div>
-      <div class="accordion-body">
-        <div class="feat-matrix feat-matrix-inline">
-          <table>
-            <thead>
-              <tr><th>Area</th><th>Function</th><th>LiSA Basic</th><th>LiSA DFS</th><th>LiSA UDM (POC)</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>存储管理 (SRM)</td><td>基础管理（连通性、数据浏览）</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>高级管理（告警接入、容量监控、性能监控）</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>定制管理（资源管理、Quota, QoS）</td><td class="dash">–</td><td class="dash">–</td><td class="chk">✓</td></tr>
-              <tr><td>数据管理</td><td>数据浏览、下载</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>全局检索</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>数据迁移</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>数据归档（带库、云）</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>数据备份</td><td class="dash">–</td><td class="dash">–</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>数据分层</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>数据生命周期管理</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td></td><td>统计报表</td><td class="dash">–</td><td class="chk">✓</td><td class="chk">✓</td></tr>
-              <tr><td>智能标签</td><td>智能标签引擎</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td></td><td>标签管理</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td></td><td>标签检索</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td>机台 Agent</td><td>数据上传</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td></td><td>机台监控</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td>图像处理</td><td>缩略图、预览、编辑</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td></td><td>水印</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-              <tr><td></td><td>图像压缩（标准算法）</td><td class="dash">–</td><td class="chk">✓</td><td class="dash">–</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <p>基础软件授权许可按节点配，最少 3 节点起配。功能模块（DFS / UDM 等）按需选择，DFS 按集群授权。</p>
   </div>
 </section>
 
@@ -3359,18 +2096,18 @@
     <p class="sec-desc">LiSA 智能存储平台各功能模块的实际操作界面，涵盖数据访问、数据流转、数据分析、监控管理等核心页面。</p>
   </div>
   <div class="shot-grid" id="shotGrid">
-    <div class="shot-card" data-index="0" data-src="截屏2026-08-06 11.56.53.png" data-caption="数据首页概览 · Dashboard"><div class="shot-img-wrap"><img src="截屏2026-08-06 11.56.53.png" alt="数据首页概览"></div><div class="shot-meta"><span class="shot-label">数据首页概览</span><span class="shot-tag">Dashboard</span></div></div>
-    <div class="shot-card" data-index="1" data-src="截屏2026-08-12 11.14.34.png" data-caption="数据访问 · Access"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.14.34.png" alt="数据访问"></div><div class="shot-meta"><span class="shot-label">数据访问</span><span class="shot-tag">Access</span></div></div>
-    <div class="shot-card" data-index="2" data-src="截屏2026-08-12 11.16.38.png" data-caption="数据流转 · Flow"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.16.38.png" alt="数据流转"></div><div class="shot-meta"><span class="shot-label">数据流转</span><span class="shot-tag">Flow</span></div></div>
-    <div class="shot-card" data-index="3" data-src="截屏2026-08-12 11.17.11.png" data-caption="数据采集 · Agent"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.11.png" alt="数据采集"></div><div class="shot-meta"><span class="shot-label">数据采集</span><span class="shot-tag">Agent</span></div></div>
-    <div class="shot-card" data-index="4" data-src="截屏2026-08-12 11.17.30.png" data-caption="数据迁移 · Migration"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.30.png" alt="数据迁移"></div><div class="shot-meta"><span class="shot-label">数据迁移</span><span class="shot-tag">Migration</span></div></div>
-    <div class="shot-card" data-index="5" data-src="截屏2026-08-12 11.17.48.png" data-caption="智能标签 · Tagging"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.17.48.png" alt="智能标签"></div><div class="shot-meta"><span class="shot-label">智能标签</span><span class="shot-tag">Tagging</span></div></div>
-    <div class="shot-card" data-index="6" data-src="截屏2026-08-12 11.18.05.png" data-caption="告警 · Alert"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.05.png" alt="告警"></div><div class="shot-meta"><span class="shot-label">告警</span><span class="shot-tag">Alert</span></div></div>
-    <div class="shot-card" data-index="7" data-src="截屏2026-08-12 11.18.14.png" data-caption="操作记录 · Log"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.14.png" alt="操作记录"></div><div class="shot-meta"><span class="shot-label">操作记录</span><span class="shot-tag">Log</span></div></div>
-    <div class="shot-card" data-index="8" data-src="截屏2026-08-12 11.18.25.png" data-caption="节点列表 · Node"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.25.png" alt="节点列表"></div><div class="shot-meta"><span class="shot-label">节点列表</span><span class="shot-tag">Node</span></div></div>
-    <div class="shot-card" data-index="9" data-src="截屏2026-08-12 11.18.35.png" data-caption="账户管理 · Account"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.35.png" alt="账户管理"></div><div class="shot-meta"><span class="shot-label">账户管理</span><span class="shot-tag">Account</span></div></div>
-    <div class="shot-card" data-index="10" data-src="截屏2026-08-12 11.18.46.png" data-caption="监控管理 · Monitor"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.46.png" alt="监控管理"></div><div class="shot-meta"><span class="shot-label">监控管理</span><span class="shot-tag">Monitor</span></div></div>
-    <div class="shot-card" data-index="11" data-src="截屏2026-08-12 11.19.53.png" data-caption="元数据检索 · Search"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.19.53.png" alt="元数据检索"></div><div class="shot-meta"><span class="shot-label">元数据检索</span><span class="shot-tag">Search</span></div></div>
+    <div class="shot-card" data-index="0" data-src="截屏2026-08-06 11.56.53.png" data-caption="数据首页概览 · Dashboard"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-06 11.56.53.jpg" alt="数据首页概览" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">数据首页概览</span><span class="shot-tag">Dashboard</span></div></div>
+    <div class="shot-card" data-index="1" data-src="截屏2026-08-12 11.14.34.png" data-caption="数据访问 · Access"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.14.34.jpg" alt="数据访问" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">数据访问</span><span class="shot-tag">Access</span></div></div>
+    <div class="shot-card" data-index="2" data-src="截屏2026-08-12 11.16.38.png" data-caption="数据流转 · Flow"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.16.38.jpg" alt="数据流转" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">数据流转</span><span class="shot-tag">Flow</span></div></div>
+    <div class="shot-card" data-index="3" data-src="截屏2026-08-12 11.17.11.png" data-caption="数据采集 · Agent"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.17.11.jpg" alt="数据采集" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">数据采集</span><span class="shot-tag">Agent</span></div></div>
+    <div class="shot-card" data-index="4" data-src="截屏2026-08-12 11.17.30.png" data-caption="数据迁移 · Migration"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.17.30.jpg" alt="数据迁移" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">数据迁移</span><span class="shot-tag">Migration</span></div></div>
+    <div class="shot-card" data-index="5" data-src="截屏2026-08-12 11.17.48.png" data-caption="智能标签 · Tagging"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.17.48.jpg" alt="智能标签" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">智能标签</span><span class="shot-tag">Tagging</span></div></div>
+    <div class="shot-card" data-index="6" data-src="截屏2026-08-12 11.18.05.png" data-caption="告警 · Alert"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.18.05.jpg" alt="告警" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">告警</span><span class="shot-tag">Alert</span></div></div>
+    <div class="shot-card" data-index="7" data-src="截屏2026-08-12 11.18.14.png" data-caption="操作记录 · Log"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.18.14.jpg" alt="操作记录" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">操作记录</span><span class="shot-tag">Log</span></div></div>
+    <div class="shot-card" data-index="8" data-src="截屏2026-08-12 11.18.25.png" data-caption="节点列表 · Node"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.18.25.jpg" alt="节点列表" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">节点列表</span><span class="shot-tag">Node</span></div></div>
+    <div class="shot-card" data-index="9" data-src="截屏2026-08-12 11.18.35.png" data-caption="账户管理 · Account"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.18.35.jpg" alt="账户管理" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">账户管理</span><span class="shot-tag">Account</span></div></div>
+    <div class="shot-card" data-index="10" data-src="截屏2026-08-12 11.18.46.png" data-caption="监控管理 · Monitor"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.18.46.jpg" alt="监控管理" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">监控管理</span><span class="shot-tag">Monitor</span></div></div>
+    <div class="shot-card" data-index="11" data-src="截屏2026-08-12 11.19.53.png" data-caption="元数据检索 · Search"><div class="shot-img-wrap"><img src="thumb/截屏2026-08-12 11.19.53.jpg" alt="元数据检索" loading="lazy" decoding="async"></div><div class="shot-meta"><span class="shot-label">元数据检索</span><span class="shot-tag">Search</span></div></div>
   </div>
 </section>
 
