@@ -272,7 +272,7 @@
   .product-text p{color:var(--ink-dim);font-size:17px;line-height:1.9;margin-bottom:24px}
   .product-text p b{color:var(--ink);font-weight:500}
   .product-text .lead{font-family:"Noto Serif SC",serif;font-size:22px;line-height:1.7;color:var(--ink);margin-bottom:32px;border-left:2px solid var(--cyan);padding-left:26px}
-  .product-visual{position:relative;display:grid;place-items:center;margin-top:-40px}
+  .product-visual{position:relative;display:grid;place-items:center;margin-top:-72px}
   .product-visual img{width:100%;max-width:520px;height:auto}
   .product-visual .img-light{display:none}
   [data-theme="light"] .product-visual .img-dark{display:none}
@@ -1428,6 +1428,28 @@
   .cfg-foot{padding:12px 16px;border-top:1px solid var(--line);background:rgba(var(--cyan-rgb),.03)}
   .cfg-foot .cf-row{font-size:11px;color:var(--ink-dim);line-height:1.6;display:flex;justify-content:space-between}
   .cfg-foot .cf-row b{color:var(--gold);font-weight:600}
+
+  /* collapsed state: hide sec 3-5 (部署方式/性能指标/支持功能) */
+  .cfg-grid.collapsed .cfg-sec.collapsible{display:none}
+  .cfg-grid.collapsed .cfg-card{transition:transform .3s ease}
+  .cfg-grid:not(.collapsed) .cfg-sec.collapsible{animation:cfgFadeIn .35s ease both}
+  @keyframes cfgFadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+  /* expand toggle button */
+  .cfg-toggle-wrap{display:flex;justify-content:center;margin-top:28px}
+  .cfg-toggle-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 28px;border-radius:999px;
+    border:1px solid var(--line-strong);
+    background:linear-gradient(180deg,var(--surface),var(--surface-2));
+    color:var(--ink);font-size:13px;font-family:var(--ff-body);font-weight:500;
+    cursor:pointer;transition:all .25s ease;letter-spacing:.04em;
+  }
+  .cfg-toggle-btn:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px rgba(var(--cyan-rgb),.12)}
+  .cfg-toggle-btn .chev{transition:transform .3s ease;font-size:14px}
+  .cfg-toggle-btn.open .chev{transform:rotate(180deg)}
+  [data-theme="light"] .cfg-toggle-btn{background:#fff;color:#1a1a2e}
+  [data-theme="light"] .cfg-toggle-btn:hover{color:#0071e3;border-color:#0071e3;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
   .cfg-note{margin-top:18px;font-size:11px;color:var(--ink-faint);line-height:1.6;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 
   /* deployment & license */
@@ -1688,11 +1710,10 @@
 <!-- ============ PRODUCT ============ -->
 <section id="product">
   <div class="sec-head reveal">
-    <div>
+    <div style="flex:1">
       <div class="sec-tag"><span class="n">01</span> What is LiSA</div>
       <h2 class="sec-title">不只是存储管理<br>而是<span style="color:var(--cyan);font-style:normal">数据的智能代理</span></h2>
     </div>
-    <p class="sec-desc">面向本地、混合云与公有云的智能数据管理平台。独立于存储集群本身，以标准协议对接任意存储，把分散、异构、沉默的海量数据，统一纳入一个可检索、可流转、可治理的智能平面。</p>
   </div>
 
   <div class="product">
@@ -1714,7 +1735,7 @@
   <div class="sec-head reveal">
     <div>
       <div class="sec-tag"><span class="n">02</span> Architecture</div>
-      <h2 class="sec-title"><span class="accent">智能数据平台</span></h2>
+      <h2 class="sec-title"><span class="accent">LISA</span>智能数据平台架构</h2>
       <p class="sec-desc">垂直行业解决方案 → LiSA 智能数据层 + 存储功能层 → 异构存储（On-Premise + On-Cloud）。三层解耦，让数据在任何存储之上都能被管理、检索、流转。</p>
     </div>
   </div>
@@ -3032,7 +3053,7 @@
     </div>
   </div>
 
-  <div class="cfg-grid reveal">
+  <div class="cfg-grid collapsed reveal">
     <!-- Lite -->
     <div class="cfg-card">
       <div class="cfg-head">
@@ -3052,19 +3073,19 @@
           <div class="cs-row"><span>内存</span><b>32 GB</b></div>
           <div class="cs-row"><span>索引盘</span><b>1 x 200 G</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">部署方式</div>
           <div class="cs-row"><span>物理机</span><span class="no">✗</span></div>
           <div class="cs-row"><span>虚机</span><span class="yes">✓</span></div>
           <div class="cs-row"><span>存储合部</span><span class="yes">✓</span></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">性能指标</div>
           <div class="cs-row"><span>元数据</span><b>1 ~ 3 亿</b></div>
           <div class="cs-row"><span>并发迁移</span><b>5 个任务</b></div>
           <div class="cs-row"><span>单任务并发</span><b><= 20</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">支持功能</div>
           <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
           <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
@@ -3096,19 +3117,19 @@
           <div class="cs-row"><span>内存</span><b>64 GB</b></div>
           <div class="cs-row"><span>索引盘</span><b>1 x 500 G</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">部署方式</div>
           <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
           <div class="cs-row"><span>虚机</span><span class="yes">✓</span></div>
           <div class="cs-row"><span>存储合部</span><span class="yes">✓</span></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">性能指标</div>
           <div class="cs-row"><span>元数据</span><b>10 亿</b></div>
           <div class="cs-row"><span>并发迁移</span><b>10 个任务</b></div>
           <div class="cs-row"><span>单任务并发</span><b><= 40</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">支持功能</div>
           <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
           <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
@@ -3140,19 +3161,19 @@
           <div class="cs-row"><span>内存</span><b>64 GB</b></div>
           <div class="cs-row"><span>索引盘</span><b>1 x 1.92 T</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">部署方式</div>
           <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
           <div class="cs-row"><span>虚机</span><span class="no">✗</span></div>
           <div class="cs-row"><span>存储合部</span><span class="no">✗</span></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">性能指标</div>
           <div class="cs-row"><span>元数据</span><b>百亿</b></div>
           <div class="cs-row"><span>并发迁移</span><b>15 个任务</b></div>
           <div class="cs-row"><span>单任务并发</span><b><= 80</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">支持功能</div>
           <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
           <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
@@ -3184,19 +3205,19 @@
           <div class="cs-row"><span>内存</span><b>128 GB</b></div>
           <div class="cs-row"><span>索引盘</span><b>3 x 3.84 T</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">部署方式</div>
           <div class="cs-row"><span>物理机</span><span class="yes">✓</span></div>
           <div class="cs-row"><span>虚机</span><span class="no">✗</span></div>
           <div class="cs-row"><span>存储合部</span><span class="no">✗</span></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">性能指标</div>
           <div class="cs-row"><span>元数据</span><b>千亿</b></div>
           <div class="cs-row"><span>并发迁移</span><b>20 个任务</b></div>
           <div class="cs-row"><span>单任务并发</span><b><= 80</b></div>
         </div>
-        <div class="cfg-sec">
+        <div class="cfg-sec collapsible">
           <div class="cs-label">支持功能</div>
           <div class="cs-row"><span class="yes">✓ LiSA Basic</span></div>
           <div class="cs-row"><span class="yes">✓ LiSA DFS</span></div>
@@ -3208,6 +3229,13 @@
         <div class="cf-row"><span>最大带宽</span><b>网卡上限</b></div>
       </div>
     </div>
+  </div>
+
+  <div class="cfg-toggle-wrap">
+    <button class="cfg-toggle-btn" id="cfgToggle">
+      <span class="cfg-toggle-text">展开查看全部</span>
+      <span class="chev">▼</span>
+    </button>
   </div>
 
   <div class="cfg-note reveal">
@@ -3899,6 +3927,30 @@
 
   fixSvgViewBoxes();
   window.addEventListener('load',fixSvgViewBoxes);
+
+  // cfg collapse/expand toggle
+  const cfgGrid=document.querySelector('.cfg-grid');
+  const cfgToggle=document.getElementById('cfgToggle');
+  if(cfgGrid && cfgToggle){
+    const cfgText=cfgToggle.querySelector('.cfg-toggle-text');
+    const cfgChev=cfgToggle.querySelector('.chev');
+    cfgToggle.addEventListener('click',()=>{
+      const collapsed=cfgGrid.classList.toggle('collapsed');
+      cfgToggle.classList.toggle('open',!collapsed);
+      cfgText.textContent=collapsed?'展开查看全部':'收起';
+      cfgChev.textContent=collapsed?'▼':'▲';
+      if(!collapsed){
+        setTimeout(()=>{
+          const sec=document.getElementById('configs-sec');
+          if(sec){
+            const navH=document.getElementById('nav').offsetHeight;
+            const top=sec.getBoundingClientRect().top+window.pageYOffset-navH-20;
+            window.scrollTo({top,behavior:'smooth'});
+          }
+        },50);
+      }
+    });
+  }
 </script>
 </body>
 </html>
