@@ -392,6 +392,22 @@
   .shot-meta{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line)}
   .shot-label{font-family:var(--ff-mono);font-size:12px;color:var(--ink-dim);letter-spacing:.05em}
   .shot-tag{font-family:var(--ff-mono);font-size:10px;color:var(--cyan);border:1px solid var(--cyan);padding:2px 8px;border-radius:4px}
+  .shot-grid.collapsed .shot-card:nth-child(n+7){display:none}
+  .shot-grid:not(.collapsed) .shot-card:nth-child(n+7){animation:cfgFadeIn .35s ease both}
+  .shot-toggle-wrap{display:flex;justify-content:center;margin-top:28px}
+  .shot-toggle-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 22px;border-radius:999px;
+    border:1px solid var(--line-strong);
+    background:linear-gradient(180deg,var(--surface),var(--surface-2));
+    color:var(--ink-faint);font-size:12px;font-family:var(--ff-body);font-weight:500;
+    cursor:pointer;transition:all .25s ease;letter-spacing:.04em;
+  }
+  .shot-toggle-btn:hover{border-color:var(--ink-faint);color:var(--ink-dim);box-shadow:none}
+  .shot-toggle-btn .chev{transition:transform .3s ease;font-size:11px;color:inherit}
+  .shot-toggle-btn.open .chev{transform:rotate(180deg)}
+  [data-theme="light"] .shot-toggle-btn{background:#fff;color:#9ca3af;border-color:#e5e7eb}
+  [data-theme="light"] .shot-toggle-btn:hover{color:#6b7280;border-color:#d1d5db;box-shadow:none}
   @media (max-width:980px){.shot-grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:600px){.shot-grid{grid-template-columns:1fr}}
 
@@ -920,6 +936,8 @@
   .section-tab:last-child{border-right:none}
   .section-tab:hover{color:var(--ink);background:rgba(var(--cyan-rgb),.04)}
   .section-tab.active{color:var(--cyan);background:rgba(var(--cyan-rgb),.08);font-weight:700}
+  #scenarios .section-tab{font-size:12px;padding:12px 14px}
+  #scenarios .section-tab .sn-n{font-size:11px;margin-right:6px}
   .section-tab .sn-n{font-family:var(--ff-num);font-size:13px;margin-right:8px;opacity:.7}
   .section-tab.active .sn-n{opacity:1}
   .section-tab-panel{display:none;height:950px;overflow:hidden}
@@ -1555,11 +1573,223 @@
   [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.35)"]{stroke:rgba(67,64,194,.6)!important;stroke-width:1.5!important}
   [data-theme="light"] .flow-svg [stroke="rgba(139,123,255,.25)"]{stroke:rgba(67,64,194,.55)!important;stroke-width:1.4!important}
   [data-theme="light"] .flow-svg [stroke="rgba(255,255,255,.4)"]{stroke:rgba(0,0,0,.2)!important}
+  /* ====== light mode .case-arch svg 浅色模式适配（案例五 等硬编码亮色架构图）—— 中间档：可见但不暗沉 ====== */
+  [data-theme="light"] .case-arch svg rect[fill="#fff"],[data-theme="light"] .case-arch svg polygon[fill="#fff"],[data-theme="light"] .case-arch svg path[fill="#fff"]{fill:rgba(60,80,120,.035)!important}
+  [data-theme="light"] .case-arch svg text[fill="#fff"]{fill:#3a3f55!important;font-weight:600!important}
+  [data-theme="light"] .case-arch svg [fill="#f5f5fa"]{fill:rgba(60,80,120,.045)!important}
+  [data-theme="light"] .case-arch svg [fill="#e5e7eb"]{fill:rgba(60,80,120,.07)!important}
+  [data-theme="light"] .case-arch svg [fill="#ccc"]{fill:rgba(60,80,120,.18)!important}
+  [data-theme="light"] .case-arch svg [fill="#a0a0b0"]{fill:rgba(60,80,120,.22)!important}
+  [data-theme="light"] .case-arch svg [fill="#b0b0c0"],[data-theme="light"] .case-arch svg [fill="#c8c8d8"]{fill:rgba(60,80,120,.16)!important}
+  /* 半透明填充（蓝/绿/金） */
+  [data-theme="light"] .case-arch svg [fill="rgba(80,160,240,.06)"]{fill:rgba(60,120,200,.1)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(80,160,240,.15)"]{fill:rgba(60,120,200,.18)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(80,160,240,.2)"]{fill:rgba(60,120,200,.24)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(80,160,240,.3)"]{fill:rgba(60,120,200,.32)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(80,160,240,.4)"]{fill:rgba(60,120,200,.4)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(120,200,120,.55)"]{fill:rgba(70,145,90,.5)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(120,200,120,.3)"]{fill:rgba(70,145,90,.32)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(74,157,74,.5)"]{fill:rgba(70,145,90,.48)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(245,200,122,.05)"]{fill:rgba(205,155,70,.08)!important}
+  [data-theme="light"] .case-arch svg [fill="rgba(245,200,122,.3)"]{fill:rgba(205,155,70,.28)!important}
+  [data-theme="light"] .case-arch svg [fill="#e8a25e"]{fill:rgba(200,135,50,.85)!important}
+  /* 文字 —— 比过淡版深一档，不用纯黑 */
+  [data-theme="light"] .case-arch svg [fill="#222"],[data-theme="light"] .case-arch svg [fill="#333"]{fill:#242a42!important;font-weight:500!important}
+  [data-theme="light"] .case-arch svg [fill="#444"],[data-theme="light"] .case-arch svg [fill="#555"]{fill:#3a3f55!important}
+  [data-theme="light"] .case-arch svg [fill="#666"],[data-theme="light"] .case-arch svg [fill="#888"],[data-theme="light"] .case-arch svg [fill="#999"]{fill:#555e7a!important}
+  [data-theme="light"] .case-arch svg [fill="#4a5268"]{fill:#242a42!important;font-weight:500!important}
+  /* 边框/连线 —— 比过淡版深一档，线宽 1.35 左右 */
+  [data-theme="light"] .case-arch svg [stroke="#fff"]{stroke:rgba(60,80,120,.15)!important}
+  [data-theme="light"] .case-arch svg [stroke="#c8c8d8"],[data-theme="light"] .case-arch svg [stroke="#a0a0b0"]{stroke:rgba(60,80,120,.3)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [stroke="#808090"],[data-theme="light"] .case-arch svg [stroke="#606070"]{stroke:rgba(60,80,120,.38)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [stroke="#333"],[data-theme="light"] .case-arch svg [stroke="#444"],[data-theme="light"] .case-arch svg [stroke="#555"]{stroke:rgba(60,80,120,.55)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [stroke="#999"]{stroke:rgba(60,80,120,.42)!important;stroke-width:1.35!important}
+  /* 浅灰弧线 */
+  [data-theme="light"] .case-arch svg [stroke="rgba(180,180,200,.6)"]{stroke:rgba(60,80,120,.36)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(180,180,200,.5)"]{stroke:rgba(60,80,120,.32)!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(180,180,200,.4)"]{stroke:rgba(60,80,120,.28)!important}
+  /* 蓝虚线边框 */
+  [data-theme="light"] .case-arch svg [stroke="rgba(80,160,240,.4)"]{stroke:rgba(50,110,190,.62)!important;stroke-width:1.45!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(80,160,240,.5)"]{stroke:rgba(50,110,190,.68)!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(80,160,240,.6)"]{stroke:rgba(50,110,190,.74)!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(80,160,240,.7)"]{stroke:rgba(50,110,190,.82)!important}
+  /* 金虚线 */
+  [data-theme="light"] .case-arch svg [stroke="rgba(245,200,122,.4)"]{stroke:rgba(205,155,70,.6)!important;stroke-width:1.45!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(245,200,122,.45)"]{stroke:rgba(205,155,70,.66)!important;stroke-width:1.45!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(245,200,122,.6)"]{stroke:rgba(205,155,70,.76)!important;stroke-width:1.45!important}
+  /* 紫虚线 */
+  [data-theme="light"] .case-arch svg [stroke="rgba(139,123,255,.45)"]{stroke:rgba(90,80,195,.72)!important;stroke-width:1.45!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(139,123,255,.5)"]{stroke:rgba(90,80,195,.78)!important;stroke-width:1.45!important}
+  /* cyan 半透 */
+  [data-theme="light"] .case-arch svg [stroke="rgba(var(--cyan-rgb),.85)"]{stroke:rgba(50,110,190,.78)!important;stroke-width:1.45!important}
+  /* 绿色实线/虚线 */
+  [data-theme="light"] .case-arch svg [stroke="#4a9d4a"]{stroke:rgba(70,145,90,.82)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [fill="#4a9d4a"]{fill:rgba(70,145,90,.82)!important}
+  [data-theme="light"] .case-arch svg [stroke="rgba(120,200,120,.55)"]{stroke:rgba(70,145,90,.7)!important;stroke-width:1.45!important}
+  [data-theme="light"] .case-arch svg [stroke="#2d6b2d"]{stroke:rgba(70,145,90,.82)!important}
+  [data-theme="light"] .case-arch svg [fill="#2d6b2d"]{fill:#3f8c3f!important;font-weight:500!important}
+  /* 橘色系 */
+  [data-theme="light"] .case-arch svg [stroke="#e08a3c"]{stroke:#d07a2c!important}
+  [data-theme="light"] .case-arch svg [stroke="#e08a3c"][stroke-width="2.5"]{stroke:#d07a2c!important;stroke-width:2.5!important}
+  [data-theme="light"] .case-arch svg [stroke="#c56a20"]{stroke:rgba(200,135,50,.88)!important;stroke-width:1.35!important}
+  [data-theme="light"] .case-arch svg [fill="#c56a20"]{fill:#b55f1a!important;font-weight:500!important}
+  [data-theme="light"] .case-arch svg [fill="#e08a3c"]{fill:#d07a2c!important}
+  /* 蓝色文字/边框 */
+  [data-theme="light"] .case-arch svg [fill="#3178c6"]{fill:#2669b0!important;font-weight:600!important}
+  [data-theme="light"] .case-arch svg [fill="#0078d4"]{fill:#1b6bb8!important;font-weight:600!important}
+  [data-theme="light"] .case-arch svg [fill="#5090d0"]{fill:#2669b0!important;font-weight:600!important}
+  [data-theme="light"] .case-arch svg [stroke="#5090d0"]{stroke:rgba(50,110,190,.65)!important;stroke-width:1.45!important}
+  /* 亮青/紫文字线 */
+  [data-theme="light"] .case-arch svg [stroke="#3df0ff"]{stroke:#2669b0!important}
+  [data-theme="light"] .case-arch svg [fill="#3df0ff"]{fill:#2669b0!important}
+  [data-theme="light"] .case-arch svg [fill="#8b7bff"]{fill:#564bb8!important;font-weight:600!important}
+  /* 粉红 / 红 */
+  [data-theme="light"] .case-arch svg [fill="#d6336c"]{fill:#bc2c60!important;font-weight:500!important}
+  [data-theme="light"] .case-arch svg [stroke="#d6336c"]{stroke:rgba(200,45,95,.9)!important;stroke-width:1.4!important}
+  [data-theme="light"] .case-arch svg [stroke="#ef4444"]{stroke:rgba(220,55,55,.9)!important;stroke-width:1.4!important}
+  /* polygon 箭头 */
+  [data-theme="light"] .case-arch svg polygon[fill="#333"],[data-theme="light"] .case-arch svg polygon[fill="#444"],[data-theme="light"] .case-arch svg polygon[fill="#555"]{fill:rgba(60,80,120,.6)!important}
   [data-theme="light"] .feat-matrix th{background:var(--surface-2)}
   [data-theme="light"] body{cursor:auto}
   [data-theme="light"] .cursor,[data-theme="light"] .cursor-dot{display:none!important}
   [data-theme="light"] .btn{cursor:pointer}
   [data-theme="light"] .arch-node,[data-theme="light"] .arch-svg-node{cursor:pointer}
+
+  /* ====== DARK MODE SVG overrides (默认 dark) — 仅黑白灰反向，保留原彩色配色 ====== */
+  /* ========== 案例一~四：.flow-svg 深色模式适配 ========== */
+  /* 白底/半透明白填充 → 深色半透明底 */
+  .flow-svg [fill^="rgba(255,255,255,.14)"]{fill:rgba(255,255,255,.14)!important}
+  .flow-svg [fill^="rgba(255,255,255,.2)"]{fill:rgba(255,255,255,.18)!important}
+  .flow-svg [fill^="rgba(255,255,255,.25)"]{fill:rgba(255,255,255,.22)!important}
+  .flow-svg [fill="rgba(255,255,255,.1)"]{fill:rgba(255,255,255,.08)!important}
+  .flow-svg [fill="rgba(255,255,255,.4)"]{fill:rgba(255,255,255,.22)!important}
+  .flow-svg [fill^="rgba(245,200,122"]{/* 金色系fill保持，黑底上本就可见 */}
+  .flow-svg [fill="rgba(7,9,18,.95)"]{fill:rgba(255,255,255,.95)!important}
+  .flow-svg [fill="rgba(7,9,18,.98)"]{fill:rgba(255,255,255,.98)!important}
+  /* 金色半透明虚线边框 — 黑底上加粗加深，不要发白看不见 */
+  .flow-svg [stroke="rgba(245,200,122,.15)"]{stroke:rgba(245,200,122,.5)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(245,200,122,.3)"]{stroke:rgba(245,200,122,.6)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(245,200,122,.35)"]{stroke:rgba(245,200,122,.65)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(245,200,122,.4)"]{stroke:rgba(245,200,122,.72)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(245,200,122,.45)"]{stroke:rgba(245,200,122,.78)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(245,200,122,.6)"]{stroke:rgba(245,200,122,.88)!important;stroke-width:1.5!important}
+  /* 紫色半透明虚线边框 */
+  .flow-svg [stroke="rgba(139,123,255,.25)"]{stroke:rgba(139,123,255,.62)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(139,123,255,.35)"]{stroke:rgba(139,123,255,.7)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(139,123,255,.4)"]{stroke:rgba(139,123,255,.78)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(139,123,255,.45)"]{stroke:rgba(139,123,255,.85)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(139,123,255,.5)"]{stroke:rgba(139,123,255,.9)!important;stroke-width:1.5!important}
+  /* cyan 半透明虚线边框 */
+  .flow-svg [stroke="rgba(var(--cyan-rgb),.2)"]{stroke:rgba(var(--cyan-rgb),.52)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(var(--cyan-rgb),.3)"]{stroke:rgba(var(--cyan-rgb),.6)!important;stroke-width:1.4!important}
+  .flow-svg [stroke="rgba(var(--cyan-rgb),.35)"]{stroke:rgba(var(--cyan-rgb),.7)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(var(--cyan-rgb),.4)"]{stroke:rgba(var(--cyan-rgb),.8)!important;stroke-width:1.5!important}
+  .flow-svg [stroke="rgba(var(--cyan-rgb),.85)"]{stroke:rgba(var(--cyan-rgb),.95)!important;stroke-width:1.5!important}
+  /* 白色半透明边框/连线 */
+  .flow-svg [stroke="rgba(255,255,255,.1)"]{stroke:rgba(255,255,255,.28)!important}
+  .flow-svg [stroke="rgba(255,255,255,.14)"]{stroke:rgba(255,255,255,.32)!important}
+  .flow-svg [stroke="rgba(255,255,255,.2)"]{stroke:rgba(255,255,255,.4)!important}
+  .flow-svg [stroke="rgba(255,255,255,.4)"]{stroke:rgba(255,255,255,.5)!important}
+  /* 亮青色实线 */
+  .flow-svg [stroke="#3df0ff"]{stroke:var(--cyan)!important;stroke-width:1.2!important}
+  .flow-svg [fill="#3df0ff"]{fill:var(--cyan)!important}
+  /* 亮金色/紫色文字 */
+  .flow-svg [fill="#f5c87a"]{fill:var(--gold)!important}
+  .flow-svg [fill="#8b7bff"]{fill:var(--violet)!important}
+  .flow-svg [fill="#eef2ff"]{fill:var(--ink)!important}
+  .flow-svg [fill="#9aa3c4"]{fill:var(--ink-dim)!important}
+  .flow-svg [fill="#5d6685"]{fill:var(--ink-faint)!important}
+  .flow-svg text[fill="#3df0ff"]{fill:var(--cyan)!important;font-weight:700!important}
+  .flow-svg text[fill="#f5c87a"]{fill:var(--gold)!important;font-weight:700!important}
+  .flow-svg text[fill="#8b7bff"]{fill:var(--violet)!important;font-weight:700!important}
+  .flow-svg text[fill="#9aa3c4"]{fill:var(--ink-dim)!important;font-weight:500!important}
+  .flow-svg text[fill="#5d6685"]{fill:var(--ink-faint)!important}
+  .flow-svg .dim{fill:var(--ink-dim)!important}
+  .flow-svg .faint{fill:var(--ink-faint)!important}
+  .flow-svg text{fill:var(--ink)!important}
+  /* 红色/绿色虚线 */
+  .flow-svg [stroke="#ef4444"]{stroke:#ff6b6b!important;stroke-width:1.5!important}
+  .flow-svg [stroke="#4a9d4a"]{stroke:#5fd85f!important;stroke-width:1.4!important}
+
+  /* ========== 案例五+功能架构图：.case-arch svg 深色模式补全 ========== */
+  /* 白底/浅灰底 → 深色半透明底（注意：text[fill="#fff"]是白字写在彩底上，如LiSA，保持白字可见） */
+  .case-arch svg rect[fill="#fff"],.case-arch svg polygon[fill="#fff"],.case-arch svg path[fill="#fff"]{fill:rgba(255,255,255,.06)!important}
+  .case-arch svg text[fill="#fff"]{fill:#fff!important;font-weight:800!important}
+  .case-arch svg [fill="#f5f5fa"]{fill:rgba(255,255,255,.06)!important}
+  .case-arch svg [fill="#e5e7eb"]{fill:rgba(255,255,255,.05)!important}
+  .case-arch svg [fill="#ccc"]{fill:rgba(255,255,255,.18)!important}
+  .case-arch svg [fill="#a0a0b0"]{fill:rgba(255,255,255,.22)!important}
+  .case-arch svg [fill="#b0b0c0"],.case-arch svg [fill="#c8c8d8"]{fill:rgba(255,255,255,.12)!important}
+  /* 深色文字 → 浅色 */
+  .case-arch svg [fill="#222"],.case-arch svg [fill="#333"]{fill:#eef2ff!important}
+  .case-arch svg [fill="#444"],.case-arch svg [fill="#555"]{fill:#c8cde0!important}
+  .case-arch svg [fill="#666"],.case-arch svg [fill="#888"],.case-arch svg [fill="#999"]{fill:#9aa3c4!important}
+  .case-arch svg [fill="#4a5268"]{fill:#eef2ff!important;font-weight:600!important}
+  /* 灰色边框 → 浅色边框 */
+  .case-arch svg [stroke="#fff"]{stroke:rgba(255,255,255,.18)!important}
+  .case-arch svg [stroke="#c8c8d8"],.case-arch svg [stroke="#a0a0b0"]{stroke:rgba(255,255,255,.25)!important}
+  .case-arch svg [stroke="#808090"],.case-arch svg [stroke="#606070"]{stroke:rgba(255,255,255,.3)!important}
+  /* 深灰连线 → 浅灰连线 */
+  .case-arch svg [stroke="#333"],.case-arch svg [stroke="#444"],.case-arch svg [stroke="#555"]{stroke:rgba(255,255,255,.55)!important}
+  .case-arch svg [stroke="#999"]{stroke:rgba(255,255,255,.4)!important}
+  /* 箭头 polygon */
+  .case-arch svg polygon[fill="#333"],.case-arch svg polygon[fill="#444"],.case-arch svg polygon[fill="#555"]{fill:rgba(255,255,255,.6)!important}
+  /* ============ 补：半透明彩色虚/实线(之前漏覆盖的) ============ */
+  /* 浅灰弧线：rgba(180,180,200,.6) — 最关键的看不见！ */
+  .case-arch svg [stroke="rgba(180,180,200,.6)"]{stroke:rgba(255,255,255,.5)!important;stroke-width:1.4!important}
+  .case-arch svg [stroke="rgba(180,180,200,.5)"]{stroke:rgba(255,255,255,.42)!important}
+  .case-arch svg [stroke="rgba(180,180,200,.4)"]{stroke:rgba(255,255,255,.35)!important}
+  /* 浅蓝半透明边框：rgba(80,160,240,.4) */
+  .case-arch svg [stroke="rgba(80,160,240,.4)"]{stroke:rgba(90,176,255,.7)!important;stroke-width:1.5!important}
+  .case-arch svg [stroke="rgba(80,160,240,.5)"]{stroke:rgba(90,176,255,.75)!important}
+  .case-arch svg [stroke="rgba(80,160,240,.6)"]{stroke:rgba(90,176,255,.82)!important}
+  .case-arch svg [stroke="rgba(80,160,240,.7)"]{stroke:rgba(90,176,255,.9)!important}
+  /* 浅蓝半透明填充：rgba(80,160,240,.06/.15/.2/.3) */
+  .case-arch svg [fill="rgba(80,160,240,.06)"]{fill:rgba(90,176,255,.08)!important}
+  .case-arch svg [fill="rgba(80,160,240,.15)"]{fill:rgba(90,176,255,.16)!important}
+  .case-arch svg [fill="rgba(80,160,240,.2)"]{fill:rgba(90,176,255,.22)!important}
+  .case-arch svg [fill="rgba(80,160,240,.3)"]{fill:rgba(90,176,255,.28)!important}
+  .case-arch svg [fill="rgba(80,160,240,.4)"]{fill:rgba(90,176,255,.32)!important}
+  /* 金色半透明虚线：rgba(245,200,122,.4/.45/.6) */
+  .case-arch svg [stroke="rgba(245,200,122,.4)"]{stroke:rgba(245,200,122,.75)!important;stroke-width:1.5!important}
+  .case-arch svg [stroke="rgba(245,200,122,.45)"]{stroke:rgba(245,200,122,.8)!important;stroke-width:1.5!important}
+  .case-arch svg [stroke="rgba(245,200,122,.6)"]{stroke:rgba(245,200,122,.9)!important;stroke-width:1.5!important}
+  .case-arch svg [fill="rgba(245,200,122,.05)"]{fill:rgba(245,200,122,.06)!important}
+  .case-arch svg [fill="rgba(245,200,122,.3)"]{fill:rgba(245,200,122,.22)!important}
+  /* 紫色半透明虚线：rgba(139,123,255,.45/.5) */
+  .case-arch svg [stroke="rgba(139,123,255,.45)"]{stroke:rgba(139,123,255,.8)!important;stroke-width:1.5!important}
+  .case-arch svg [stroke="rgba(139,123,255,.5)"]{stroke:rgba(139,123,255,.88)!important;stroke-width:1.5!important}
+  /* cyan 半透明 */
+  .case-arch svg [stroke="rgba(var(--cyan-rgb),.85)"]{stroke:rgba(var(--cyan-rgb),.95)!important;stroke-width:1.5!important}
+  /* 绿色实线/虚线：#4a9d4a / rgba(120,200,120,.55) / rgba(120,200,120,.3) / rgba(74,157,74,.5) */
+  .case-arch svg [stroke="#4a9d4a"]{stroke:#5fd85f!important;stroke-width:1.4!important}
+  .case-arch svg [fill="#4a9d4a"]{fill:#5fd85f!important}
+  .case-arch svg [stroke="rgba(120,200,120,.55)"]{stroke:#5fd85f!important;stroke-width:1.5!important}
+  .case-arch svg [fill="rgba(120,200,120,.55)"]{fill:rgba(95,216,95,.35)!important}
+  .case-arch svg [fill="rgba(120,200,120,.3)"]{fill:rgba(95,216,95,.22)!important}
+  .case-arch svg [fill="rgba(74,157,74,.5)"]{fill:rgba(95,216,95,.4)!important}
+  /* 橘色：#e08a3c / #c56a20 / #e8a25e */
+  .case-arch svg [stroke="#e08a3c"]{stroke:var(--gold)!important}
+  .case-arch svg [stroke="#e08a3c"][stroke-width="2.5"]{stroke:var(--gold)!important;stroke-width:2.5!important}
+  .case-arch svg [stroke="#c56a20"]{stroke:rgba(245,200,122,.85)!important;stroke-width:1.4!important}
+  .case-arch svg [fill="#c56a20"]{fill:var(--gold)!important}
+  .case-arch svg [fill="#e8a25e"]{fill:rgba(245,200,122,.8)!important}
+  .case-arch svg [fill="#e08a3c"]{fill:var(--gold)!important}
+  /* 亮蓝/亮青：#3178c6 / #0078d4 / #3df0ff */
+  .case-arch svg [fill="#3178c6"]{fill:var(--cyan)!important;font-weight:700!important}
+  .case-arch svg [fill="#0078d4"]{fill:var(--cyan)!important;font-weight:700!important}
+  .case-arch svg [stroke="#3df0ff"]{stroke:var(--cyan)!important}
+  .case-arch svg [fill="#3df0ff"]{fill:var(--cyan)!important}
+  /* 深绿文字：#2d6b2d */
+  .case-arch svg [fill="#2d6b2d"]{fill:#5fd85f!important;font-weight:600!important}
+  .case-arch svg [stroke="#2d6b2d"]{stroke:#5fd85f!important}
+  /* 粉红：#d6336c */
+  .case-arch svg [fill="#d6336c"]{fill:var(--violet)!important;font-weight:600!important}
+  .case-arch svg [stroke="#d6336c"]{stroke:var(--violet)!important;stroke-width:1.5!important}
+  /* 红：#ef4444 */
+  .case-arch svg [stroke="#ef4444"]{stroke:#ff6b6b!important;stroke-width:1.5!important}
+  /* 紫色：#8b7bff */
+  .case-arch svg [fill="#8b7bff"]{fill:var(--violet)!important;font-weight:700!important}
 
   /* ========== 移动端适配 Mobile (≤640px) ========== */
   @media (max-width:640px){
@@ -2682,360 +2912,1652 @@
       <div class="sec-tag"><span class="n">05</span> Case Studies</div>
       <h2 class="sec-title">落地场景<span class="accent"> 实战验证</span></h2>
     </div>
-    <p class="sec-desc">从制造业工业质检到医疗影像、教育科研，LiSA 已在多行业千亿级数据规模的真实场景中连续稳定运行。</p>
+    <p class="sec-desc">从工业质检到 AI 数据平台，LiSA 已在多行业千亿级数据规模的真实场景中连续稳定运行。</p>
   </div>
   <div class="scenarios reveal">
     <div class="section-tabs" role="tablist" aria-label="客户案例">
-      <button class="section-tab active" data-tab="case-1" role="tab"><span class="sn-n">01</span>案例一 · 工业质检</button>
-      <button class="section-tab" data-tab="case-2" role="tab"><span class="sn-n">02</span>案例二 · 多机台管理</button>
-      <button class="section-tab" data-tab="case-3" role="tab"><span class="sn-n">03</span>案例三 · 异构迁移</button>
+      <button class="section-tab active" data-tab="case-1" role="tab"><span class="sn-n">01</span>案例一 · 工业质检 DFS</button>
+      <button class="section-tab" data-tab="case-2" role="tab"><span class="sn-n">02</span>案例二 · 光学电子 DFS</button>
+      <button class="section-tab" data-tab="case-3" role="tab"><span class="sn-n">03</span>案例三 · 异构存储生命周期</button>
+      <button class="section-tab" data-tab="case-4" role="tab"><span class="sn-n">04</span>案例四 · AI 数据平台</button>
+      <button class="section-tab" data-tab="case-5" role="tab"><span class="sn-n">05</span>案例五 · AI 智能数据治理</button>
     </div>
+
+    <!-- ============ CASE 1: 工业质检 DFS ============ -->
     <div class="section-tab-panel active" data-panel="case-1">
     <div class="case">
       <h4>工业质检数据全生命周期治理</h4>
       <div class="pains">
         <div class="lab">客户痛点</div>
-        <p>多存储集群并存数据查找困难；产线多变数据规范差；需按生命周期流转降本。</p>
+        <p>多存储集群并存数据查找困难；产线多变数据规范差；需按生命周期流转降本增效。</p>
       </div>
       <div class="pains">
         <div class="lab">LiSA 方案</div>
-        <p>On-Prem + Cloud 统一纳管，文件/对象统一检索，智能 Agent 监控数据规范，按生命周期自动分层流转。</p>
+        <p>LiSA-DFS 统一纳管，文件/对象统一检索，智能 Agent 监控数据规范，按生命周期自动分层流转至低成本存储。</p>
       </div>
       <div class="case-arch">
         <div class="ttl">方案架构</div>
         <div class="scroll-x">
-          <svg viewBox="-72 0 700 340" class="flow-svg" style="max-width:720px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== ROW 1: 用户审计 + 机台 + MES/APP ===== -->
+          <svg viewBox="-20 0 680 500" class="flow-svg" style="max-width:720px" xmlns="http://www.w3.org/2000/svg">
+            <!-- ===== ROW 1: Admin / Users → LiSA-DFS  (y:20..180) ===== -->
             <g class="arch-svg-node">
-              <circle cx="42" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="42" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="47" y1="51" x2="53" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
-            </g>
-            <g class="arch-svg-node">
-              <circle cx="86" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="86" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="91" y1="51" x2="97" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="40" cy="46" r="14" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
+              <circle cx="40" cy="46" r="6" fill="none" stroke="var(--cyan)" stroke-width="1.3"/>
+              <line x1="44" y1="50" x2="50" y2="56" stroke="var(--cyan)" stroke-width="1.3" stroke-linecap="round"/>
             </g>
             <g class="arch-svg-node">
-              <circle cx="130" cy="46" r="16" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
-              <circle cx="130" cy="46" r="7" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
-              <line x1="135" y1="51" x2="141" y2="57" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="82" cy="46" r="14" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
+              <circle cx="82" cy="46" r="6" fill="none" stroke="var(--cyan)" stroke-width="1.3"/>
+              <line x1="86" y1="50" x2="92" y2="56" stroke="var(--cyan)" stroke-width="1.3" stroke-linecap="round"/>
             </g>
-            <text x="86" y="76" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">用户审计</text>
+            <text x="60" y="74" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">Admin / Users</text>
 
-            <!-- 机台 -->
+            <line x1="100" y1="46" x2="180" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+            <circle cx="100" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="180" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
+
+            <rect x="190" y="20" width="450" height="160" rx="10" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <text x="415" y="42" text-anchor="middle" font-size="13" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA-DFS Platform</text>
+
+            <g class="arch-svg-node"><rect x="208" y="52" width="90" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="253" y="67" text-anchor="middle" font-size="8" fill="#3df0ff">Agent Management</text></g>
+            <g class="arch-svg-node"><rect x="304" y="52" width="80" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="344" y="67" text-anchor="middle" font-size="8" fill="#3df0ff">Advanced Search</text></g>
+            <g class="arch-svg-node"><rect x="390" y="52" width="72" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="426" y="67" text-anchor="middle" font-size="8" fill="#3df0ff">Batch Download</text></g>
+            <g class="arch-svg-node"><rect x="468" y="52" width="68" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="502" y="67" text-anchor="middle" font-size="8" fill="#3df0ff">Image Compress</text></g>
+            <g class="arch-svg-node"><rect x="540" y="52" width="84" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="582" y="67" text-anchor="middle" font-size="8" fill="#3df0ff">Thumbnail Browse</text></g>
+
+            <g class="arch-svg-node"><rect x="208" y="80" width="84" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="250" y="95" text-anchor="middle" font-size="8" fill="#3df0ff">Image Watermark</text></g>
+            <g class="arch-svg-node"><rect x="298" y="80" width="72" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="334" y="95" text-anchor="middle" font-size="8" fill="#3df0ff">Tag Scanning</text></g>
+            <g class="arch-svg-node"><rect x="376" y="80" width="76" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="414" y="95" text-anchor="middle" font-size="8" fill="#3df0ff">Lifecycle</text></g>
+            <g class="arch-svg-node"><rect x="458" y="80" width="82" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="499" y="95" text-anchor="middle" font-size="8" fill="#3df0ff">Permission Mgmt</text></g>
+            <g class="arch-svg-node"><rect x="546" y="80" width="80" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="586" y="95" text-anchor="middle" font-size="8" fill="#3df0ff">Storage Resource</text></g>
+
+            <g class="arch-svg-node"><rect x="208" y="110" width="108" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="262" y="125" text-anchor="middle" font-size="8" fill="#8b7bff">Intelligent Label Engine</text></g>
+            <g class="arch-svg-node"><rect x="322" y="110" width="92" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="368" y="125" text-anchor="middle" font-size="8" fill="#8b7bff">Monitor Engine</text></g>
+            <g class="arch-svg-node"><rect x="420" y="110" width="108" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="474" y="125" text-anchor="middle" font-size="8" fill="#8b7bff">Migration Engine</text></g>
+            <g class="arch-svg-node"><rect x="532" y="110" width="92" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="578" y="125" text-anchor="middle" font-size="8" fill="#8b7bff">Image Proc Engine</text></g>
+
+            <rect x="208" y="142" width="416" height="30" rx="6" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.6)" stroke-width="1"/>
+            <text x="416" y="161" text-anchor="middle" font-size="10" fill="#8b7bff" font-weight="700" letter-spacing="2">Metadata Engine</text>
+
+            <!-- ===== ROW 2: Storage Pools  (y:220..340, h=120, gap 40 from ROW1) ===== -->
+            <!-- DXN Archive Object Pool -->
+            <rect x="30" y="220" width="290" height="120" rx="8" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.4)" stroke-dasharray="4 3"/>
+            <g transform="translate(42,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <g transform="translate(118,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <g transform="translate(194,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <line x1="90" y1="256" x2="166" y2="256" stroke="#3df0ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5"/>
+            <line x1="166" y1="256" x2="242" y2="256" stroke="#3df0ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5"/>
+            <text x="175" y="308" text-anchor="middle" font-size="9" fill="#f5c87a" font-weight="600">DXN Archive Object Pool</text>
+            <text x="175" y="322" text-anchor="middle" font-size="7" fill="#9aa3c4" font-family="JetBrains Mono">低成本归档 · 海量对象存储</text>
+
+            <!-- DXN High-Performance File Pool -->
+            <rect x="350" y="220" width="290" height="120" rx="8" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.4)" stroke-dasharray="4 3"/>
+            <g transform="translate(362,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <g transform="translate(438,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <g transform="translate(514,232)">
+              <rect x="0" y="0" width="48" height="48" rx="3" fill="#141420" stroke="#2a2a44" stroke-width="0.5"/>
+              <circle cx="3" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="3" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="8" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="13" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="18" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="23" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="28" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="9" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="15" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="21" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="27" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="33" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="39" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="45" cy="33" r="1.5" fill="#0a0a14" opacity="0.6"/>
+              <circle cx="3" cy="42" r="1.2" fill="#3df0ff"/>
+              <circle cx="7" cy="42" r="1.2" fill="#f5c87a"/>
+              <circle cx="11" cy="42" r="1.2" fill="#4ade80"/>
+              <rect x="36" y="39" width="11" height="7" rx="1" fill="#1e1e32"/>
+              <text x="41.5" y="44.3" text-anchor="middle" font-size="3.5" fill="#c0c8e0" font-weight="700">DXN</text>
+            </g>
+            <line x1="410" y1="256" x2="486" y2="256" stroke="#3df0ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5"/>
+            <line x1="486" y1="256" x2="562" y2="256" stroke="#3df0ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5"/>
+            <text x="495" y="308" text-anchor="middle" font-size="9" fill="#f5c87a" font-weight="600">DXN High-Performance File Pool</text>
+            <text x="495" y="322" text-anchor="middle" font-size="7" fill="#9aa3c4" font-family="JetBrains Mono">高性能文件 · 产线直连</text>
+
+            <!-- LiSA Platform (y=180) → Pools (y=220) -->
+            <path d="M415 180 L175 232" stroke="var(--cyan)" stroke-width="1.3" class="flow-line" fill="none"/>
+            <path d="M415 180 L495 232" stroke="var(--cyan)" stroke-width="1.3" class="flow-line" fill="none"/>
+
+            <!-- Lifecycle between pools -->
+            <path d="M320 286 L350 286" stroke="var(--gold)" stroke-width="1.5" fill="none" class="flow-line" stroke-dasharray="4 3"/>
+            <text x="335" y="280" text-anchor="middle" font-size="8" fill="#f5c87a" font-family="JetBrains Mono">Lifecycle</text>
+
+            <!-- ===== ROW 3: Agents + Old Equipment  (y:380..460) ===== -->
+            <rect x="30" y="380" width="290" height="80" rx="8" fill="rgba(var(--cyan-rgb),.04)" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="4 3"/>
             <g class="arch-svg-node">
-              <rect x="158" y="32" width="28" height="26" rx="3" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="162" y="36" width="8" height="8" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="173" y="36" width="8" height="8" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="162" y="46" width="20" height="6" rx="1" fill="rgba(245,200,122,.2)"/>
+              <circle cx="70" cy="406" r="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/>
+              <rect x="85" y="398" width="28" height="14" rx="2" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
+              <rect x="120" y="398" width="28" height="14" rx="2" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
+              <rect x="155" y="398" width="28" height="14" rx="2" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
+              <text x="200" y="408" font-size="10" fill="#9aa3c4">…</text>
+              <rect x="220" y="398" width="28" height="14" rx="2" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
             </g>
-            <text x="172" y="76" text-anchor="middle" font-size="8" fill="#f5c87a">机台</text>
+            <text x="175" y="444" text-anchor="middle" font-size="8" fill="#3df0ff">LiSA Agents</text>
 
-            <!-- MES / APP 区域 -->
-            <rect x="236" y="20" width="144" height="68" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
+            <path d="M175 380 L175 350" stroke="var(--cyan)" stroke-width="1.1" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <text x="187" y="366" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">S3</text>
+
+            <rect x="350" y="380" width="290" height="80" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.45)" stroke-width="1.2" stroke-dasharray="5 3"/>
             <g class="arch-svg-node">
-              <rect x="252" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="268" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">MES</text>
+              <rect x="380" y="400" width="32" height="18" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
+              <rect x="422" y="400" width="32" height="18" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
+              <rect x="464" y="400" width="32" height="18" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
+              <text x="514" y="413" font-size="10" fill="#9aa3c4">…</text>
+              <rect x="540" y="400" width="32" height="18" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
+              <rect x="582" y="400" width="32" height="18" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
             </g>
-            <g class="arch-svg-node">
-              <rect x="292" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="308" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">APP</text>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="332" y="36" width="32" height="22" rx="3" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/>
-              <text x="348" y="52" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">MES</text>
-            </g>
+            <text x="495" y="446" text-anchor="middle" font-size="9" fill="#f5c87a" font-weight="600">Old Equipment</text>
 
-            <!-- 连线（与案例二统一：虚线路径 + 虚线，无箭头） -->
-            <line x1="146" y1="46" x2="158" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
-            <line x1="186" y1="46" x2="236" y2="46" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+            <path d="M495 380 L495 350" stroke="rgba(245,200,122,.6)" stroke-width="1.1" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <text x="507" y="366" font-size="7" fill="#f5c87a" font-family="JetBrains Mono">CIFS/NFS</text>
 
-            <!-- 数据点 -->
-            <circle cx="146" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="186" cy="46" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <line x1="320" y1="408" x2="350" y2="408" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+            <circle cx="320" cy="408" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="350" cy="408" r="3" class="pulse-node" fill="var(--cyan)"/>
 
-            <!-- ===== ROW 2: LiSA 平台 ===== -->
-            <rect x="30" y="100" width="460" height="32" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="1.2"/>
-            <text x="260" y="121" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700" letter-spacing="2">LiSA</text>
-            <path d="M308 90 L260 100" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <path d="M175 340 L175 365 L155 365 L155 380" stroke="var(--cyan)" stroke-width="1.1" class="flow-line" fill="none" stroke-dasharray="3 3"/>
 
-            <!-- LiSA 数据点 -->
-            <circle cx="308" cy="90" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="260" cy="116" r="4" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- ===== ROW 3: 存储迁移时间线 ===== -->
-            <!-- XSKY sdk -->
-            <rect x="18" y="158" width="94" height="58" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.3)" stroke-dasharray="4 3"/>
-            <g class="arch-svg-node">
-              <rect x="30" y="166" width="24" height="12" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="32" y="168" width="18" height="2" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="32" y="172" width="8" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="30" y="184" width="24" height="12" rx="2" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="32" y="186" width="18" height="2" rx="1" fill="rgba(245,200,122,.3)"/>
-              <rect x="32" y="190" width="8" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-            </g>
-            <text x="80" y="172" text-anchor="middle" font-size="7" fill="#f5c87a">XSKY</text>
-            <text x="80" y="190" text-anchor="middle" font-size="7" fill="#f5c87a">sdk</text>
-
-            <!-- 0-6个月 -->
-            <text x="64" y="226" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">0-6个月</text>
-
-            <!-- XSKY Clust1 -->
-            <g class="arch-svg-node">
-              <rect x="122" y="160" width="76" height="24" rx="4" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
-              <text x="160" y="177" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust1</text>
-            </g>
-            <!-- XSKY Clust2 -->
-            <g class="arch-svg-node">
-              <rect x="122" y="196" width="76" height="24" rx="4" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)"/>
-              <text x="160" y="213" text-anchor="middle" font-size="8" fill="#f5c87a" font-weight="600">XSKY Clust2</text>
-            </g>
-
-            <!-- 连线（纯虚线 + 流动粒子，无箭头） -->
-            <path d="M112 190 L122 190" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-            <path d="M112 190 L116 190 L116 172 L122 172" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
-            <path d="M112 190 L116 190 L116 208 L122 208" stroke="var(--cyan)" stroke-width="1.2" fill="none" class="flow-line"/>
-
-            <!-- 数据点 -->
-            <circle cx="112" cy="190" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="122" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="122" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 6-12个月 -->
-            <text x="342" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">6-12个月</text>
-
-            <!-- DXN Ultra 存储集群 -->
-            <g class="arch-svg-node">
-              <rect x="252" y="168" width="180" height="52" rx="6" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)" stroke-width="1.2"/>
-              <text x="342" y="200" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="700">DXN Ultra 存储集群</text>
-            </g>
-
-            <path d="M198 172 L252 172" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-            <path d="M198 208 L252 208" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-
-            <!-- DXN 数据点 -->
-            <circle cx="198" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="252" cy="172" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="198" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="252" cy="208" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 1年+ -->
-            <text x="528" y="232" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">1年+</text>
-
-            <!-- 电信云 -->
-            <g class="arch-svg-node">
-              <rect x="478" y="168" width="100" height="52" rx="8" fill="rgba(var(--cyan-rgb),.08)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2"/>
-              <path d="M500 188 Q500 176 516 176 Q524 166 540 170 Q556 170 560 186 Q572 188 572 202 Q572 214 560 214 L500 214 Q490 214 490 202 Q490 188 500 188 Z" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="528" y="222" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">电信云</text>
-            </g>
-
-            <path d="M432 194 L478 194" stroke="var(--cyan)" stroke-width="1.4" class="flow-line" fill="none"/>
-
-            <!-- 电信云数据点 -->
-            <circle cx="432" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="478" cy="194" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- ===== ROW 4: 老机台 + Agent/S3 + CIFS ===== -->
-            <rect x="252" y="248" width="138" height="52" rx="8" fill="rgba(245,200,122,.04)" stroke="rgba(245,200,122,.25)" stroke-dasharray="4 3"/>
-            <g class="arch-svg-node">
-              <rect x="260" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="262" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="262" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <g class="arch-svg-node">
-              <rect x="286" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="288" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="288" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <text x="324" y="274" text-anchor="middle" font-size="10" fill="#9aa3c4">…</text>
-            <g class="arch-svg-node">
-              <rect x="346" y="262" width="22" height="16" rx="2" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/>
-              <rect x="348" y="264" width="16" height="2" rx="1" fill="rgba(245,200,122,.25)"/>
-              <rect x="348" y="268" width="10" height="2" rx="1" fill="rgba(245,200,122,.2)"/>
-            </g>
-            <text x="321" y="290" text-anchor="middle" font-size="8" fill="#f5c87a">老机台</text>
-
-            <!-- Agent / S3 -->
-            <g>
-              <rect x="410" y="246" width="62" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="441" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">Agent / S3</text>
-            </g>
-            <!-- CIFS -->
-            <g>
-              <rect x="530" y="246" width="48" height="20" rx="4" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="0.9"/>
-              <text x="554" y="260" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="600">CIFS</text>
-            </g>
-
-            <!-- 连线: 老机台 → DXN Ultra (Agent/S3) （无箭头，纯路径+流动粒子） -->
-            <path d="M321 248 L321 234 L441 234 L441 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
-            <text x="376" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">Agent / S3</text>
-            <circle cx="321" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="441" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 连线: 老机台 → 电信云 (CIFS) （无箭头） -->
-            <path d="M372 248 L372 234 L554 234 L554 220" stroke="var(--cyan)" stroke-width="1.4" fill="none" class="flow-line"/>
-            <text x="463" y="230" text-anchor="middle" font-size="7" fill="#3df0ff" font-family="JetBrains Mono">CIFS</text>
-            <circle cx="372" cy="248" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="554" cy="220" r="3" class="pulse-node" fill="var(--cyan)"/>
-
-            <!-- 流动粒子（与案例二一致：6条线 × 节奏 3s/4s/5s） -->
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M146 46 L158 46"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M186 46 L236 46"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M308 90 L260 100"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M112 190 L122 190"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin=".7s" path="M112 190 L116 190 L116 172 L122 172"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.3s" path="M112 190 L116 190 L116 208 L122 208"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M198 172 L252 172"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M198 208 L252 208"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s" path="M432 194 L478 194"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="5s" repeatCount="indefinite" begin=".5s" path="M321 248 L321 234 L441 234 L441 220"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="5s" repeatCount="indefinite" begin="2s" path="M372 248 L372 234 L554 234 L554 220"/>
-            </circle>
+            <!-- Flow particles -->
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" path="M100 46 L180 46"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M180 46 L190 46 L253 63"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M415 180 L175 232"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M415 180 L495 232"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3.5s" repeatCount="indefinite" begin="0s" path="M320 286 L350 286"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin=".8s" path="M175 340 L175 365 L155 365 L155 380"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M320 408 L350 408"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin=".5s" path="M175 380 L175 350"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M495 380 L495 350"/></circle>
           </svg>
         </div>
       </div>
     </div>
     </div>
+
+    <!-- ============ CASE 2: 光学电子 DFS ============ -->
     <div class="section-tab-panel" data-panel="case-2">
     <div class="case">
-      <h4>多机台统一管理千亿秒级检索</h4>
+      <h4>光学电子多机台数据统一管理</h4>
       <div class="pains">
         <div class="lab">客户痛点</div>
-        <p>历史数据杂乱查找困难；多机台数据无法统一管理；部分文件需留存 15 年。</p>
+        <p>历史数据杂乱查找困难；多机台数据无法统一检索；影像文件需长期留存。</p>
       </div>
       <div class="pains">
         <div class="lab">LiSA 方案</div>
-        <p>智能标签解析规范元数据，汇总所有机台统一检索；提供 API 与企业内部平台对接，定时增量迁移与监控。</p>
+        <p>LiSA-DFS 智能标签解析元数据，汇总所有存储统一检索；定时增量迁移与健康监控。</p>
       </div>
       <div class="case-arch">
         <div class="ttl">方案架构</div>
         <div class="scroll-x">
-          <svg viewBox="-5 0 760 320" class="flow-svg" style="max-width:680px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== 上方：机台 + MES/APP ===== -->
-            <g class="arch-svg-node"><rect x="30" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="60" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="110" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="140" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="190" y="50" width="60" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="220" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <text x="275" y="76" font-size="14" fill="#9aa3c4">…</text>
-            <g class="arch-svg-node"><rect x="300" y="50" width="50" height="40" rx="6" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="325" y="75" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台N</text></g>
+                                        <svg viewBox="-30 0 760 600" class="flow-svg" style="max-width:720px" xmlns="http://www.w3.org/2000/svg">
+            <!-- ===== ROW 1: Admin + Users → LiSA-DFS Platform ===== -->
+            <g class="arch-svg-node">
+              <circle cx="40" cy="56" r="14" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
+              <circle cx="40" cy="56" r="6" fill="none" stroke="var(--cyan)" stroke-width="1.3"/>
+              <line x1="44" y1="60" x2="50" y2="66" stroke="var(--cyan)" stroke-width="1.3" stroke-linecap="round"/>
+            </g>
+            <g class="arch-svg-node">
+              <circle cx="84" cy="56" r="14" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)" stroke-width="1.3"/>
+              <circle cx="84" cy="56" r="6" fill="none" stroke="var(--cyan)" stroke-width="1.3"/>
+              <line x1="88" y1="60" x2="94" y2="66" stroke="var(--cyan)" stroke-width="1.3" stroke-linecap="round"/>
+            </g>
+            <text x="62" y="84" text-anchor="middle" font-size="8" fill="#9aa3c4" font-family="JetBrains Mono">Admin / Users</text>
+            <line x1="100" y1="56" x2="190" y2="56" stroke="var(--cyan)" stroke-width="1.2" stroke-dasharray="3 3" class="flow-line"/>
+            <circle cx="100" cy="56" r="3" class="pulse-node" fill="var(--cyan)"/>
+            <circle cx="190" cy="56" r="3" class="pulse-node" fill="var(--cyan)"/>
 
-            <!-- MES / APP 区域 -->
-            <g class="arch-svg-node"><rect x="50" y="120" width="50" height="30" rx="5" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="75" y="140" text-anchor="middle" font-size="9" fill="#3df0ff">MES</text></g>
-            <g class="arch-svg-node"><rect x="120" y="120" width="50" height="30" rx="5" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="145" y="140" text-anchor="middle" font-size="9" fill="#3df0ff">APP</text></g>
-            <text x="195" y="140" font-size="12" fill="#9aa3c4">…</text>
+            <!-- LiSA-DFS 平台 大虚线框 -->
+            <rect x="200" y="22" width="420" height="200" rx="10" fill="rgba(var(--cyan-rgb),.1)" stroke="var(--cyan)" stroke-width="1.3" stroke-dasharray="4 3"/>
 
-            <!-- ===== 中间：LiSA ===== -->
-            <g class="arch-svg-node"><rect x="380" y="100" width="120" height="80" rx="10" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="440" y="150" text-anchor="middle" font-size="18" fill="#eef2ff" font-weight="700">LiSA</text></g>
+            <!-- LiSA-DFS 标题 + 红波浪线（平台中心 x=410） -->
+            <text x="411" y="40" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="800">LiSA-DFS</text>
+            <path d="M378 44 Q383 40 388 44 Q393 48 398 44 Q403 40 408 44 Q413 48 418 44 Q423 40 428 44 Q433 48 438 44 Q443 40 448 44" stroke="#ef4444" stroke-width="1.5" fill="none"/>
 
-            <!-- ===== 右：ONTAP 存储集群 ===== -->
-            <g class="arch-svg-node"><rect x="560" y="110" width="160" height="60" rx="10" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="640" y="140" text-anchor="middle" font-size="12" fill="#8b7bff" font-weight="600">ONTAP 存储集群</text></g>
+            <!-- 左大块: Agent Management -->
+            <g class="arch-svg-node">
+              <rect x="212" y="52" width="92" height="112" rx="8" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.2"/>
+              <text x="258.0" y="106.0" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Agent</text>
+              <text x="258.0" y="120.0" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
+            <!-- 右大块: Storage Resource Management -->
+            <g class="arch-svg-node">
+              <rect x="528" y="52" width="84" height="112" rx="8" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.2"/>
+              <text x="570.0" y="98.0" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Storage</text>
+              <text x="570.0" y="112.0" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Resource</text>
+              <text x="570.0" y="126.0" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
 
-            <!-- ===== 下方：CIFS共享 / 机台 / 迁移任务 ===== -->
-            <g class="arch-svg-node"><rect x="50" y="220" width="80" height="36" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="90" y="243" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">CIFS 共享</text></g>
-            <g class="arch-svg-node"><rect x="160" y="220" width="60" height="36" rx="6" fill="rgba(245,200,122,.1)" stroke="rgba(245,200,122,.4)"/><text x="190" y="243" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">机台</text></g>
-            <g class="arch-svg-node"><rect x="250" y="220" width="80" height="36" rx="6" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="290" y="243" text-anchor="middle" font-size="10" fill="#8b7bff" font-weight="600">迁移任务</text></g>
+            <!-- 中间 4行2列 青色模块 (同案例一) -->
+            <g class="arch-svg-node"><rect x="312" y="52" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="361.0" y="66.0" text-anchor="middle" font-size="8" fill="#3df0ff">Advanced Search</text></g>
+            <g class="arch-svg-node"><rect x="418" y="52" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="467.0" y="66.0" text-anchor="middle" font-size="8" fill="#3df0ff">Batch Download</text></g>
+            <g class="arch-svg-node"><rect x="312" y="82" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="361.0" y="96.0" text-anchor="middle" font-size="8" fill="#3df0ff">Image Compressing</text></g>
+            <g class="arch-svg-node"><rect x="418" y="82" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="467.0" y="96.0" text-anchor="middle" font-size="8" fill="#3df0ff">Thumbnail browsing</text></g>
+            <g class="arch-svg-node"><rect x="312" y="112" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="361.0" y="126.0" text-anchor="middle" font-size="8" fill="#3df0ff">Image Watermark</text></g>
+            <g class="arch-svg-node"><rect x="418" y="112" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="467.0" y="126.0" text-anchor="middle" font-size="8" fill="#3df0ff">Tag scanning</text></g>
+            <g class="arch-svg-node"><rect x="312" y="142" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="361.0" y="156.0" text-anchor="middle" font-size="8" fill="#3df0ff">Lifecycle</text></g>
+            <g class="arch-svg-node"><rect x="418" y="142" width="98" height="22" rx="4" fill="rgba(var(--cyan-rgb),.12)" stroke="var(--cyan)"/><text x="467.0" y="156.0" text-anchor="middle" font-size="8" fill="#3df0ff">Permission Management</text></g>
+            <g class="arch-svg-node"><rect x="212" y="170" width="108" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="266.0" y="184.0" text-anchor="middle" font-size="8" fill="#8b7bff">Intelligent Label Engine</text></g>
+            <g class="arch-svg-node"><rect x="328" y="170" width="92" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="374.0" y="184.0" text-anchor="middle" font-size="8" fill="#8b7bff">Monitor Engine</text></g>
+            <g class="arch-svg-node"><rect x="428" y="170" width="92" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="474.0" y="184.0" text-anchor="middle" font-size="8" fill="#8b7bff">Migration Engine</text></g>
+            <g class="arch-svg-node"><rect x="428" y="170" width="100" height="22" rx="4" fill="rgba(139,123,255,.1)" stroke="rgba(139,123,255,.5)"/><text x="478.0" y="184.0" text-anchor="middle" font-size="8" fill="#8b7bff">Image Processing Engine</text></g>
+            <rect x="212" y="200" width="400" height="20" rx="6" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.6)" stroke-width="1"/>
+            <text x="411" y="214.0" text-anchor="middle" font-size="10" fill="#8b7bff" font-weight="700" letter-spacing="2">Metadata Engine</text>
 
-            <!-- 连接线：机台 → LiSA -->
-            <path d="M350 70 L380 70 L380 140" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <!-- 连接线：MES/APP → LiSA -->
-            <path d="M220 135 L380 135" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <!-- 连接线：LiSA → ONTAP -->
-            <path d="M500 140 H560" class="flow-line" stroke="var(--violet)" fill="none"/>
-            <!-- 连接线：下方组件 → LiSA -->
-            <path d="M130 238 Q200 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <path d="M220 238 Q260 200 380 180" class="flow-line" stroke="var(--cyan)" fill="none"/>
-            <path d="M330 238 Q340 210 380 180" class="flow-line" stroke="var(--gold)" fill="none"/>
+            <!-- 3 个向上箭头: Image (灰/蓝) / Task (红) / Task (红) / Image (青) → 调整为不与标签重叠 -->
+            <text x="230" y="242" text-anchor="middle" font-size="7.5" fill="#9aa3c4" font-weight="600">Image</text>
+            <path d="M230 238 L230 226 L226 230 M230 226 L234 230" stroke="#9aa3c4" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <text x="322" y="242" text-anchor="middle" font-size="7.5" fill="#ef4444" font-weight="600">Task</text>
+            <path d="M322 238 L322 226 L318 230 M322 226 L326 230" stroke="#ef4444" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <text x="431" y="242" text-anchor="middle" font-size="7.5" fill="#ef4444" font-weight="600">Task</text>
+            <path d="M431 238 L431 226 L427 230 M431 226 L435 230" stroke="#ef4444" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <text x="594" y="242" text-anchor="middle" font-size="7.5" fill="#3df0ff" font-weight="600">Image</text>
+            <path d="M594 238 L594 226 L590 230 M594 226 L598 230" stroke="var(--cyan)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
 
-            <!-- 数据点 -->
-            <circle cx="350" cy="70" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="380" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="220" cy="135" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="500" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="560" cy="140" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="130" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="220" cy="238" r="3" class="pulse-node" fill="var(--cyan)"/>
-            <circle cx="330" cy="238" r="3" class="pulse-node" fill="var(--gold)"/>
-            <circle cx="380" cy="180" r="4" class="pulse-node" fill="var(--cyan)"/>
+            <!-- Data Flow 标签块 居中 -->
+            <rect x="377" y="240" width="68" height="18" rx="3" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.52)"/>
+            <text x="411" y="252" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600" font-family="JetBrains Mono">Data Flow</text>
 
-            <!-- 流动粒子 -->
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M350 70 L380 70 L380 140"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M220 135 L380 135"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M500 140 L560 140"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M130 238 Q200 200 380 180"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M220 238 Q260 200 380 180"/>
-            </circle>
-            <circle class="flow-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M330 238 Q340 210 380 180"/>
-            </circle>
+            <!-- ===== ROW 2: H3C / FAS50 对称存储 ===== -->
+            <g transform="translate(146,270)">
+              <rect x="0" y="0" width="200" height="88" rx="8" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.4)" stroke-dasharray="4 3"/>
+              <rect x="8" y="10" width="184" height="58" rx="4" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.8"/>
+              <rect x="8" y="24" width="5" height="40" fill="#c8102e"/>
+              <rect x="16" y="16" width="85" height="18" rx="1.8" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <rect x="19" y="19" width="79" height="2" fill="#1e1e30"/>
+              <rect x="19" y="23" width="79" height="2" fill="#1e1e30"/>
+              <circle cx="21" cy="30" r="1.3" fill="#ef4444"/>
+              <rect x="109" y="16" width="83" height="18" rx="1.8" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <rect x="112" y="19" width="77" height="2" fill="#1e1e30"/>
+              <rect x="112" y="23" width="77" height="2" fill="#1e1e30"/>
+              <circle cx="114" cy="30" r="1.3" fill="#ef4444"/>
+              <rect x="16" y="38" width="85" height="18" rx="1.8" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <rect x="19" y="41" width="79" height="2" fill="#1e1e30"/>
+              <rect x="19" y="45" width="79" height="2" fill="#1e1e30"/>
+              <circle cx="21" cy="52" r="1.3" fill="#ef4444"/>
+              <rect x="109" y="38" width="83" height="18" rx="1.8" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <rect x="112" y="41" width="77" height="2" fill="#1e1e30"/>
+              <rect x="112" y="45" width="77" height="2" fill="#1e1e30"/>
+              <circle cx="114" cy="52" r="1.3" fill="#ef4444"/>
+              <text x="100.0" y="76" text-anchor="middle" font-size="10" fill="#f5c87a" font-weight="600">H3C X10000</text>
+              <text x="100.0" y="84" text-anchor="middle" font-size="7" fill="#9aa3c4" font-family="JetBrains Mono">历史存储</text>
+            </g>
+
+<g transform="translate(476,270)">
+              <rect x="0" y="0" width="200" height="88" rx="8" fill="rgba(139,123,255,.08)" stroke="rgba(139,123,255,.5)" stroke-dasharray="4 3"/>
+              <rect x="8" y="10" width="184" height="58" rx="4" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.8"/>
+              <rect x="12" y="16" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="16" cy="26" r="1" fill="#3b82f6"/>
+              <circle cx="20" cy="26" r="1" fill="#22c55e"/>
+              <rect x="56" y="16" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="60" cy="26" r="1" fill="#3b82f6"/>
+              <circle cx="64" cy="26" r="1" fill="#22c55e"/>
+              <rect x="100" y="16" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="104" cy="26" r="1" fill="#3b82f6"/>
+              <circle cx="108" cy="26" r="1" fill="#22c55e"/>
+              <rect x="144" y="16" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="148" cy="26" r="1" fill="#3b82f6"/>
+              <circle cx="152" cy="26" r="1" fill="#22c55e"/>
+              <rect x="12" y="40" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="16" cy="50" r="1" fill="#3b82f6"/>
+              <circle cx="20" cy="50" r="1" fill="#22c55e"/>
+              <rect x="56" y="40" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="60" cy="50" r="1" fill="#3b82f6"/>
+              <circle cx="64" cy="50" r="1" fill="#22c55e"/>
+              <rect x="100" y="40" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="104" cy="50" r="1" fill="#3b82f6"/>
+              <circle cx="108" cy="50" r="1" fill="#22c55e"/>
+              <rect x="144" y="40" width="40" height="20" rx="1.5" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.7"/>
+              <circle cx="148" cy="50" r="1" fill="#3b82f6"/>
+              <circle cx="152" cy="50" r="1" fill="#22c55e"/>
+              <text x="100.0" y="76" text-anchor="middle" font-size="10" fill="#8b7bff" font-weight="600">NetApp FAS50</text>
+              <text x="100.0" y="84" text-anchor="middle" font-size="7" fill="#9aa3c4" font-family="JetBrains Mono">新存储 · 长期留存</text>
+            </g>
+
+            <!-- Data Flow 红色虚线: LiSA 底部 → 两台存储顶部 (新落点 246/576) -->
+            <path d="M411 258 L246 270" stroke="#ef4444" stroke-width="1.6" fill="none" class="flow-line" stroke-dasharray="5 3"/>
+            <polygon points="246,270 250,265 242,265" fill="#ef4444"/>
+            <path d="M411 258 L576 270" stroke="#ef4444" stroke-width="1.6" fill="none" class="flow-line" stroke-dasharray="5 3"/>
+            <polygon points="576,270 580,265 572,265" fill="#ef4444"/>
+
+            <!-- Migration Task: 完全在两存储之间空隙 (346..476, 宽130) 居中 -->
+            <path d="M346 314 L476 314" stroke="#ef4444" stroke-width="2.4" fill="none" class="flow-line"/>
+            <polygon points="476,314 464,306 464,322" fill="#ef4444"/>
+            <rect x="346" y="328" width="130" height="18" rx="4" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.55)"/>
+            <text x="411" y="340" text-anchor="middle" font-size="8.5" fill="#ef4444" font-weight="700">Migration Task</text>
+
+            <!-- CIFS: Agents → 两个存储底部 (新中心 246/576, 存储底部 y=358) -->
+            <path d="M246 430 L246 358" stroke="rgba(var(--cyan-rgb),.85)" stroke-width="1.4" class="flow-line" fill="none" stroke-dasharray="4 3"/>
+            <polygon points="246,358 250,363 242,363" fill="rgba(var(--cyan-rgb),.9)"/>
+            <path d="M576 430 L576 358" stroke="rgba(var(--cyan-rgb),.85)" stroke-width="1.4" class="flow-line" fill="none" stroke-dasharray="4 3"/>
+            <polygon points="576,358 580,363 572,363" fill="rgba(var(--cyan-rgb),.9)"/>
+            <rect x="389" y="384" width="44" height="18" rx="3" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="0.8"/>
+            <text x="411" y="396" text-anchor="middle" font-size="8" fill="#3df0ff" font-weight="700" font-family="JetBrains Mono">CIFS</text>
+
+            <!-- Flow particles -->
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" path="M100 56 L190 56"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M411 258 L246 270"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M411 258 L576 270"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M346 314 L464 314"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" begin="0s" path="M246 430 L246 358"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" begin="1.2s" path="M576 430 L576 358"/></circle>
+          
+            <!-- ===== ROW 3: LiSA Agents 车间工作站 ===== -->
+            <g transform="translate(171,385)">
+              <rect x="0" y="0" width="480" height="120" rx="8" fill="rgba(var(--cyan-rgb),.05)" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="4 3"/>
+              <rect x="46" y="52" width="20" height="38" rx="1.5" fill="#e5e7eb" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="48" y="55" width="16" height="5" fill="#d1d5db" stroke="none"/>
+              <circle cx="52" cy="66" r="1.1" fill="#22c55e"/>
+              <circle cx="56" cy="66" r="1.1" fill="#f59e0b"/>
+              <rect x="48" y="72" width="16" height="17" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.5"/>
+              <line x1="50" y1="79" x2="64" y2="79" stroke="#1e1e30" stroke-width="0.5"/>
+              <rect x="10" y="44" width="34" height="26" rx="2" fill="#f3f4f6" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="12" y="46" width="30" height="22" fill="#0b1e3f"/>
+              <rect x="16" y="49" width="8" height="8" fill="#00a4ef" opacity="0.9"/>
+              <rect x="26" y="49" width="8" height="8" fill="#00a4ef" opacity="0.75"/>
+              <rect x="16" y="59" width="8" height="8" fill="#00a4ef" opacity="0.6"/>
+              <rect x="26" y="59" width="8" height="8" fill="#00a4ef" opacity="0.45"/>
+              <line x1="27" y1="70" x2="27" y2="80" stroke="#9aa3c4" stroke-width="1"/>
+              <rect x="20" y="80" width="14" height="2" fill="#d1d5db" stroke="none"/>
+              <ellipse cx="15" cy="34" rx="15" ry="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.8"/>
+              <ellipse cx="22" cy="36" rx="10" ry="6" fill="rgba(var(--cyan-rgb),.12)" stroke="none"/>
+              <text x="18" y="37" text-anchor="middle" font-size="5" fill="#3df0ff" font-weight="700">LiSA</text>
+              <path d="M18 42 Q20 48 27 44" stroke="var(--cyan)" stroke-width="0.7" class="flow-line" fill="none" stroke-dasharray="2 2"/>
+              <circle cx="18" cy="42" r="1" fill="#3df0ff" class="pulse-node"/>
+              <rect x="142" y="52" width="20" height="38" rx="1.5" fill="#e5e7eb" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="144" y="55" width="16" height="5" fill="#d1d5db" stroke="none"/>
+              <circle cx="148" cy="66" r="1.1" fill="#22c55e"/>
+              <circle cx="152" cy="66" r="1.1" fill="#f59e0b"/>
+              <rect x="144" y="72" width="16" height="17" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.5"/>
+              <line x1="146" y1="79" x2="160" y2="79" stroke="#1e1e30" stroke-width="0.5"/>
+              <rect x="106" y="44" width="34" height="26" rx="2" fill="#f3f4f6" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="108" y="46" width="30" height="22" fill="#0b1e3f"/>
+              <rect x="112" y="49" width="8" height="8" fill="#00a4ef" opacity="0.9"/>
+              <rect x="122" y="49" width="8" height="8" fill="#00a4ef" opacity="0.75"/>
+              <rect x="112" y="59" width="8" height="8" fill="#00a4ef" opacity="0.6"/>
+              <rect x="122" y="59" width="8" height="8" fill="#00a4ef" opacity="0.45"/>
+              <line x1="123" y1="70" x2="123" y2="80" stroke="#9aa3c4" stroke-width="1"/>
+              <rect x="116" y="80" width="14" height="2" fill="#d1d5db" stroke="none"/>
+              <rect x="238" y="52" width="20" height="38" rx="1.5" fill="#e5e7eb" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="240" y="55" width="16" height="5" fill="#d1d5db" stroke="none"/>
+              <circle cx="244" cy="66" r="1.1" fill="#22c55e"/>
+              <circle cx="248" cy="66" r="1.1" fill="#f59e0b"/>
+              <rect x="240" y="72" width="16" height="17" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.5"/>
+              <line x1="242" y1="79" x2="256" y2="79" stroke="#1e1e30" stroke-width="0.5"/>
+              <rect x="202" y="44" width="34" height="26" rx="2" fill="#f3f4f6" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="204" y="46" width="30" height="22" fill="#0b1e3f"/>
+              <rect x="208" y="49" width="8" height="8" fill="#00a4ef" opacity="0.9"/>
+              <rect x="218" y="49" width="8" height="8" fill="#00a4ef" opacity="0.75"/>
+              <rect x="208" y="59" width="8" height="8" fill="#00a4ef" opacity="0.6"/>
+              <rect x="218" y="59" width="8" height="8" fill="#00a4ef" opacity="0.45"/>
+              <line x1="219" y1="70" x2="219" y2="80" stroke="#9aa3c4" stroke-width="1"/>
+              <rect x="212" y="80" width="14" height="2" fill="#d1d5db" stroke="none"/>
+              <ellipse cx="207" cy="34" rx="15" ry="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.8"/>
+              <ellipse cx="214" cy="36" rx="10" ry="6" fill="rgba(var(--cyan-rgb),.12)" stroke="none"/>
+              <text x="210" y="37" text-anchor="middle" font-size="5" fill="#3df0ff" font-weight="700">LiSA</text>
+              <path d="M210 42 Q212 48 219 44" stroke="var(--cyan)" stroke-width="0.7" class="flow-line" fill="none" stroke-dasharray="2 2"/>
+              <circle cx="210" cy="42" r="1" fill="#3df0ff" class="pulse-node"/>
+              <text x="240.0" y="94" font-size="10" fill="#9aa3c4">…</text>
+              <rect x="334" y="52" width="20" height="38" rx="1.5" fill="#e5e7eb" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="336" y="55" width="16" height="5" fill="#d1d5db" stroke="none"/>
+              <circle cx="340" cy="66" r="1.1" fill="#22c55e"/>
+              <circle cx="344" cy="66" r="1.1" fill="#f59e0b"/>
+              <rect x="336" y="72" width="16" height="17" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.5"/>
+              <line x1="338" y1="79" x2="352" y2="79" stroke="#1e1e30" stroke-width="0.5"/>
+              <rect x="298" y="44" width="34" height="26" rx="2" fill="#f3f4f6" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="300" y="46" width="30" height="22" fill="#0b1e3f"/>
+              <rect x="304" y="49" width="8" height="8" fill="#00a4ef" opacity="0.9"/>
+              <rect x="314" y="49" width="8" height="8" fill="#00a4ef" opacity="0.75"/>
+              <rect x="304" y="59" width="8" height="8" fill="#00a4ef" opacity="0.6"/>
+              <rect x="314" y="59" width="8" height="8" fill="#00a4ef" opacity="0.45"/>
+              <line x1="315" y1="70" x2="315" y2="80" stroke="#9aa3c4" stroke-width="1"/>
+              <rect x="308" y="80" width="14" height="2" fill="#d1d5db" stroke="none"/>
+              <rect x="430" y="52" width="20" height="38" rx="1.5" fill="#e5e7eb" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="432" y="55" width="16" height="5" fill="#d1d5db" stroke="none"/>
+              <circle cx="436" cy="66" r="1.1" fill="#22c55e"/>
+              <circle cx="440" cy="66" r="1.1" fill="#f59e0b"/>
+              <rect x="432" y="72" width="16" height="17" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.5"/>
+              <line x1="434" y1="79" x2="448" y2="79" stroke="#1e1e30" stroke-width="0.5"/>
+              <rect x="394" y="44" width="34" height="26" rx="2" fill="#f3f4f6" stroke="#9aa3c4" stroke-width="0.6"/>
+              <rect x="396" y="46" width="30" height="22" fill="#0b1e3f"/>
+              <rect x="400" y="49" width="8" height="8" fill="#00a4ef" opacity="0.9"/>
+              <rect x="410" y="49" width="8" height="8" fill="#00a4ef" opacity="0.75"/>
+              <rect x="400" y="59" width="8" height="8" fill="#00a4ef" opacity="0.6"/>
+              <rect x="410" y="59" width="8" height="8" fill="#00a4ef" opacity="0.45"/>
+              <line x1="411" y1="70" x2="411" y2="80" stroke="#9aa3c4" stroke-width="1"/>
+              <rect x="404" y="80" width="14" height="2" fill="#d1d5db" stroke="none"/>
+              <ellipse cx="399" cy="34" rx="15" ry="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)" stroke-width="0.8"/>
+              <ellipse cx="406" cy="36" rx="10" ry="6" fill="rgba(var(--cyan-rgb),.12)" stroke="none"/>
+              <text x="402" y="37" text-anchor="middle" font-size="5" fill="#3df0ff" font-weight="700">LiSA</text>
+              <path d="M402 42 Q404 48 411 44" stroke="var(--cyan)" stroke-width="0.7" class="flow-line" fill="none" stroke-dasharray="2 2"/>
+              <circle cx="402" cy="42" r="1" fill="#3df0ff" class="pulse-node"/>
+              <text x="240.0" y="112" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="600">LiSA Agents · 车间工作站</text>
+            </g>
+
+</svg>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="section-tab-panel" data-panel="case-3">
+    <div class="case">
+      <h4>异构平台数据生命周期统一管理</h4>
+      <div class="pains">
+        <div class="lab">客户痛点</div>
+        <p>多品牌存储并存管理割裂；老设备数据无统一视图；需跨设备按标签快速检索。</p>
+      </div>
+      <div class="pains">
+        <div class="lab">LiSA 方案</div>
+        <p>LiSA-Lifecycle Management 统一纳管，跨厂商元数据统一视图，标签驱动快速检索。</p>
+      </div>
+      <div class="case-arch">
+        <div class="ttl">方案架构</div>
+        <div class="scroll-x">
+          <svg viewBox="-30 0 720 400" class="flow-svg" style="max-width:760px" xmlns="http://www.w3.org/2000/svg">
+            <!-- ===== ROW 1: Admin / Users ===== -->
+            <g class="arch-svg-node">
+              <circle cx="80" cy="38" r="9" fill="rgba(245,200,122,.2)" stroke="rgba(245,200,122,.6)" stroke-width="1.2"/>
+              <path d="M64 64 Q64 52 80 52 Q96 52 96 64" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)" stroke-width="1.1"/>
+            </g>
+            <text x="80" y="80" text-anchor="middle" font-size="8.5" fill="#9aa3c4" font-weight="600">Admin</text>
+
+            <g class="arch-svg-node">
+              <circle cx="610" cy="38" r="9" fill="rgba(139,123,255,.2)" stroke="rgba(139,123,255,.6)" stroke-width="1.2"/>
+              <path d="M594 64 Q594 52 610 52 Q626 52 626 64" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.5)" stroke-width="1.1"/>
+            </g>
+            <text x="610" y="80" text-anchor="middle" font-size="8.5" fill="#9aa3c4" font-weight="600">Users</text>
+
+            <!-- Admin/Users → 平台连线 -->
+            <line x1="95" y1="52" x2="180" y2="92" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="3 3" class="flow-line"/>
+            <line x1="595" y1="52" x2="510" y2="92" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="3 3" class="flow-line"/>
+
+            <!-- ===== LiSA-Lifecycle Management 平台 ===== -->
+            <rect x="170" y="80" width="350" height="172" rx="10" fill="rgba(var(--cyan-rgb),.08)" stroke="var(--cyan)" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <text x="345" y="102" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" letter-spacing="1.5">LiSA-Lifecycle Management</text>
+            <path d="M285 106 Q290 102 295 106 Q300 110 305 106 Q310 102 315 106 Q320 110 325 106 Q330 102 335 106 Q340 110 345 106 Q350 102 355 106 Q360 110 365 106 Q370 102 375 106 Q380 110 385 106 Q390 102 395 106 Q400 110 405 106" stroke="#ef4444" stroke-width="1.4" fill="none"/>
+
+            <!-- 左: Agent Management 大框 -->
+            <g class="arch-svg-node">
+              <rect x="182" y="114" width="82" height="54" rx="6" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.1"/>
+              <text x="223" y="140" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Agent</text>
+              <text x="223" y="154" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
+
+            <!-- 中间 4 个紫框 2x2 -->
+            <g class="arch-svg-node"><rect x="274" y="114" width="70" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="309" y="129" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Advanced Search</text></g>
+            <g class="arch-svg-node"><rect x="352" y="114" width="70" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="387" y="129" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Tag scanning</text></g>
+            <g class="arch-svg-node"><rect x="274" y="142" width="70" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="309" y="157" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Lifecycle Mgt</text></g>
+            <g class="arch-svg-node"><rect x="352" y="142" width="70" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="387" y="157" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Permission Mgmt</text></g>
+
+            <!-- 右: Storage Resource Management 大框 -->
+            <g class="arch-svg-node">
+              <rect x="432" y="114" width="82" height="54" rx="6" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.1"/>
+              <text x="473" y="136" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Storage</text>
+              <text x="473" y="149" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Resource</text>
+              <text x="473" y="162" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
+
+            <!-- Engine 行 (3个) -->
+            <g class="arch-svg-node"><rect x="182" y="176" width="104" height="20" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="234" y="190" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Intelligent Label Engine</text></g>
+            <g class="arch-svg-node"><rect x="292" y="176" width="96" height="20" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="340" y="190" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Monitor Engine</text></g>
+            <g class="arch-svg-node"><rect x="394" y="176" width="96" height="20" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="442" y="190" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Migration Engine</text></g>
+
+            <!-- Metadata Engine 通栏 -->
+            <g class="arch-svg-node">
+              <rect x="182" y="204" width="332" height="22" rx="4" fill="rgba(139,123,255,.22)" stroke="rgba(139,123,255,.7)" stroke-width="1.1"/>
+              <text x="348" y="219" text-anchor="middle" font-size="8.5" fill="#8b7bff" font-weight="700" letter-spacing="1">Metadata Engine</text>
+            </g>
+
+            <!-- ===== 平台 → 存储连线 ===== -->
+            <!-- NAS File (左) -->
+            <path d="M220 252 Q180 260 130 272" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <polygon points="130,272 134,266 126,266" fill="rgba(var(--cyan-rgb),.9)"/>
+            <text x="130" y="262" text-anchor="middle" font-size="7.5" fill="#3df0ff" font-weight="600">NAS File</text>
+
+            <!-- NAS File (右) -->
+            <path d="M470 252 Q510 260 560 272" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <polygon points="560,272 556,266 564,266" fill="rgba(var(--cyan-rgb),.9)"/>
+            <text x="560" y="262" text-anchor="middle" font-size="7.5" fill="#3df0ff" font-weight="600">NAS File</text>
+
+            <!-- ===== ROW 2: 两台存储 ===== -->
+            <!-- 左: NetApp A400 (旧存储, 金色, 1U) -->
+            <g transform="translate(30,272)">
+              <rect x="0" y="0" width="210" height="100" rx="6" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.4)" stroke-dasharray="4 3"/>
+              <rect x="8" y="6" width="194" height="74" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="6" width="4" height="74" fill="#f5c87a"/>
+              <!-- 4行 × 4列 盘位 -->
+              <rect x="14" y="12" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="19" r="1" fill="#ef4444"/><circle cx="22" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="60" y="12" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="64" cy="19" r="1" fill="#ef4444"/><circle cx="68" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="106" y="12" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="110" cy="19" r="1" fill="#ef4444"/><circle cx="114" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="152" y="12" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="156" cy="19" r="1" fill="#ef4444"/><circle cx="160" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="14" y="28" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="35" r="1" fill="#ef4444"/><circle cx="22" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="60" y="28" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="64" cy="35" r="1" fill="#ef4444"/><circle cx="68" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="106" y="28" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="110" cy="35" r="1" fill="#ef4444"/><circle cx="114" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="152" y="28" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="156" cy="35" r="1" fill="#ef4444"/><circle cx="160" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="14" y="44" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="51" r="1" fill="#ef4444"/><circle cx="22" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="60" y="44" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="64" cy="51" r="1" fill="#ef4444"/><circle cx="68" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="106" y="44" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="110" cy="51" r="1" fill="#ef4444"/><circle cx="114" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="152" y="44" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="156" cy="51" r="1" fill="#ef4444"/><circle cx="160" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="14" y="60" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="67" r="1" fill="#ef4444"/><circle cx="22" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="60" y="60" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="64" cy="67" r="1" fill="#ef4444"/><circle cx="68" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="106" y="60" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="110" cy="67" r="1" fill="#ef4444"/><circle cx="114" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="152" y="60" width="42" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="156" cy="67" r="1" fill="#ef4444"/><circle cx="160" cy="67" r="1" fill="#f59e0b"/>
+              <text x="105" y="88" text-anchor="middle" font-size="9" fill="#f5c87a" font-weight="600">EOS NetApp Storage, A400</text>
+            </g>
+
+            <!-- 右: NetApp DM7200F (新存储, 紫色, 2U叠放) -->
+            <g transform="translate(440,272)">
+              <rect x="0" y="0" width="250" height="100" rx="6" fill="rgba(139,123,255,.06)" stroke="rgba(139,123,255,.45)" stroke-dasharray="4 3"/>
+              <!-- 上 U -->
+              <rect x="8" y="6" width="234" height="34" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="6" width="4" height="34" fill="#8b7bff"/>
+              <rect x="14" y="10" width="60" height="10" rx="2" fill="rgba(139,123,255,.25)" stroke="rgba(139,123,255,.5)"/>
+              <text x="44" y="18" text-anchor="middle" font-size="6.5" fill="#8b7bff" font-weight="700">NetApp</text>
+              <rect x="80" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="83" cy="15" r="0.8" fill="#3b82f6"/><circle cx="87" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="100" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="103" cy="15" r="0.8" fill="#3b82f6"/><circle cx="107" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="120" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="123" cy="15" r="0.8" fill="#3b82f6"/><circle cx="127" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="140" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="143" cy="15" r="0.8" fill="#3b82f6"/><circle cx="147" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="160" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="163" cy="15" r="0.8" fill="#3b82f6"/><circle cx="167" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="180" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="183" cy="15" r="0.8" fill="#3b82f6"/><circle cx="187" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="200" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="203" cy="15" r="0.8" fill="#3b82f6"/><circle cx="207" cy="15" r="0.8" fill="#22c55e"/>
+              <rect x="220" y="10" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="223" cy="15" r="0.8" fill="#3b82f6"/><circle cx="227" cy="15" r="0.8" fill="#22c55e"/>
+              <!-- 下 U -->
+              <rect x="8" y="46" width="234" height="34" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="46" width="4" height="34" fill="#8b7bff"/>
+              <rect x="14" y="50" width="60" height="10" rx="2" fill="rgba(139,123,255,.25)" stroke="rgba(139,123,255,.5)"/>
+              <text x="44" y="58" text-anchor="middle" font-size="6.5" fill="#8b7bff" font-weight="700">NetApp</text>
+              <rect x="80" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="83" cy="55" r="0.8" fill="#3b82f6"/><circle cx="87" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="100" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="103" cy="55" r="0.8" fill="#3b82f6"/><circle cx="107" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="120" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="123" cy="55" r="0.8" fill="#3b82f6"/><circle cx="127" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="140" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="143" cy="55" r="0.8" fill="#3b82f6"/><circle cx="147" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="160" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="163" cy="55" r="0.8" fill="#3b82f6"/><circle cx="167" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="180" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="183" cy="55" r="0.8" fill="#3b82f6"/><circle cx="187" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="200" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="203" cy="55" r="0.8" fill="#3b82f6"/><circle cx="207" cy="55" r="0.8" fill="#22c55e"/>
+              <rect x="220" y="50" width="16" height="10" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="223" cy="55" r="0.8" fill="#3b82f6"/><circle cx="227" cy="55" r="0.8" fill="#22c55e"/>
+              <text x="125" y="88" text-anchor="middle" font-size="9" fill="#8b7bff" font-weight="600">Lenovo NetApp DM7200F</text>
+            </g>
+
+            <!-- ===== Data Flow + Migration Task ===== -->
+            <text x="340" y="302" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="700">Data Flow</text>
+            <path d="M240 320 L440 320" stroke="#ef4444" stroke-width="3" fill="none" class="flow-line"/>
+            <polygon points="440,320 428,312 428,328" fill="#ef4444"/>
+            <text x="340" y="340" text-anchor="middle" font-size="7.5" fill="#9aa3c4">(latest 1Y data)</text>
+            <text x="340" y="352" text-anchor="middle" font-size="8.5" fill="#ef4444" font-weight="700">Migration Task</text>
+
+            <!-- ===== Flow particles ===== -->
+            <circle class="flow-particle"><animateMotion dur="3.5s" repeatCount="indefinite" path="M95 52 L180 92"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3.5s" repeatCount="indefinite" begin="0.5s" path="M595 52 L510 92"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M220 252 Q180 260 130 272"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0.8s" path="M470 252 Q510 260 560 272"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M240 320 L428 320"/></circle>
           </svg>
         </div>
       </div>
     </div>
     </div>
-    <div class="section-tab-panel" data-panel="case-3">
+
+    <!-- ============ CASE 4: AI 数据平台 ============ -->
+    <div class="section-tab-panel" data-panel="case-4">
     <div class="case">
-      <h4>异构对象存储迁移私有格式数据解析</h4>
+      <h4>AI 数据平台参考架构</h4>
       <div class="pains">
         <div class="lab">客户痛点</div>
-        <p>日立 HCP 存储停产过保，需尽快迁移至新存储；迁移中要同步迁移合同对象的多个版本；日立 HCP 私有格式不支持标准 S3 读取。</p>
+        <p>AI 训练数据规模大管理复杂；多模态数据需统一纳管；AI 流水线与存储层割裂。</p>
       </div>
       <div class="pains">
         <div class="lab">LiSA 方案</div>
-        <p>支持对象多版本的 S3 数据迁移；定制开发日立 HCP 私有格式数据解析功能；支持任意数量的元数据标签，灵活增加；优化标签检索性能。</p>
+        <p>AI Data Platform 整合矩阵智能框架 + 加速基础设施 + LiSA 数据管理，提供 AI Ready 数据管道。</p>
       </div>
       <div class="case-arch">
         <div class="ttl">方案架构</div>
         <div class="scroll-x">
-          <svg viewBox="-20 0 500 200" class="flow-svg" style="max-width:600px" xmlns="http://www.w3.org/2000/svg">
-            <!-- ===== 中间：LiSA ===== -->
-            <g class="arch-svg-node"><rect x="120" y="30" width="260" height="38" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="250" y="57" text-anchor="middle" font-size="14" fill="#eef2ff" font-weight="700">LiSA</text></g>
+          <svg viewBox="-30 0 750 430" class="flow-svg" style="max-width:780px" xmlns="http://www.w3.org/2000/svg">
+            <!-- ===== ROW 1: Admin / Users ===== -->
+            <g class="arch-svg-node">
+              <circle cx="90" cy="42" r="10" fill="rgba(245,200,122,.2)" stroke="rgba(245,200,122,.6)" stroke-width="1.2"/>
+              <path d="M72 70 Q72 56 90 56 Q108 56 108 70" fill="rgba(245,200,122,.15)" stroke="rgba(245,200,122,.5)" stroke-width="1.1"/>
+            </g>
+            <text x="90" y="88" text-anchor="middle" font-size="9" fill="#9aa3c4" font-weight="600">Admin</text>
 
-            <!-- ===== 左下：日立 HCP ===== -->
-            <g class="arch-svg-node"><rect x="30" y="120" width="110" height="48" rx="6" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.45)"/><text x="85" y="150" text-anchor="middle" font-size="11" fill="#8b7bff" font-weight="600">日立 HCP</text></g>
+            <g class="arch-svg-node">
+              <circle cx="620" cy="42" r="10" fill="rgba(139,123,255,.2)" stroke="rgba(139,123,255,.6)" stroke-width="1.2"/>
+              <path d="M602 70 Q602 56 620 56 Q638 56 638 70" fill="rgba(139,123,255,.15)" stroke="rgba(139,123,255,.5)" stroke-width="1.1"/>
+            </g>
+            <text x="620" y="88" text-anchor="middle" font-size="9" fill="#9aa3c4" font-weight="600">Users</text>
 
-            <!-- ===== 右下：DXN S3 存储集群 ===== -->
-            <g class="arch-svg-node"><rect x="280" y="115" width="150" height="55" rx="8" fill="rgba(var(--cyan-rgb),.15)" stroke="var(--cyan)"/><text x="355" y="149" text-anchor="middle" font-size="11" fill="#eef2ff" font-weight="600">DXN S3 存储集群</text></g>
+            <!-- Admin/Users → Platform 连线 -->
+            <line x1="108" y1="62" x2="200" y2="100" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="3 3" class="flow-line"/>
+            <line x1="602" y1="62" x2="510" y2="100" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="3 3" class="flow-line"/>
+
+            <!-- ===== LiSA-Lifecycling Management 平台 ===== -->
+            <rect x="190" y="90" width="370" height="190" rx="10" fill="rgba(var(--cyan-rgb),.06)" stroke="var(--cyan)" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <text x="375" y="112" text-anchor="middle" font-size="12" fill="#eef2ff" font-weight="700" letter-spacing="1.5">LiSA-Lifecycling Management</text>
+            <path d="M305 116 Q310 112 315 116 Q320 120 325 116 Q330 112 335 116 Q340 120 345 116 Q350 112 355 116 Q360 120 365 116 Q370 112 375 116 Q380 120 385 116 Q390 112 395 116 Q400 120 405 116 Q410 112 415 116 Q420 120 425 116 Q430 112 435 116 Q440 120 445 116" stroke="#ef4444" stroke-width="1.4" fill="none"/>
+
+            <!-- 左: Agent Management 大框 -->
+            <g class="arch-svg-node">
+              <rect x="202" y="122" width="82" height="56" rx="6" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.1"/>
+              <text x="243" y="147" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Agent</text>
+              <text x="243" y="160" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
+
+            <!-- 中间 2x2 紫框 -->
+            <g class="arch-svg-node"><rect x="292" y="122" width="74" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="329" y="137" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Advanced Search</text></g>
+            <g class="arch-svg-node"><rect x="374" y="122" width="74" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="411" y="137" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Tag scanning</text></g>
+            <g class="arch-svg-node"><rect x="292" y="150" width="74" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="329" y="165" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Lifecycle Mgt</text></g>
+            <g class="arch-svg-node"><rect x="374" y="150" width="74" height="22" rx="4" fill="rgba(139,123,255,.14)" stroke="rgba(139,123,255,.55)"/><text x="411" y="165" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Permission Mgmt</text></g>
+
+            <!-- 右: Storage Resource Management 大框 -->
+            <g class="arch-svg-node">
+              <rect x="456" y="122" width="96" height="62" rx="6" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.1"/>
+              <text x="504" y="146" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Storage</text>
+              <text x="504" y="160" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Resource</text>
+              <text x="504" y="174" text-anchor="middle" font-size="9" fill="#3df0ff" font-weight="700">Management</text>
+            </g>
+
+            <!-- Engine 行 (3个) -->
+            <g class="arch-svg-node"><rect x="202" y="186" width="104" height="22" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="254" y="201" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Intelligent Label Engine</text></g>
+            <g class="arch-svg-node"><rect x="312" y="186" width="96" height="22" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="360" y="201" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Monitor Engine</text></g>
+            <g class="arch-svg-node"><rect x="414" y="186" width="96" height="22" rx="4" fill="rgba(139,123,255,.18)" stroke="rgba(139,123,255,.65)"/><text x="462" y="201" text-anchor="middle" font-size="8" fill="#8b7bff" font-weight="600">Migration Engine</text></g>
+
+            <!-- Metadata Engine 通栏 -->
+            <g class="arch-svg-node">
+              <rect x="202" y="214" width="308" height="22" rx="4" fill="rgba(139,123,255,.22)" stroke="rgba(139,123,255,.7)" stroke-width="1.1"/>
+              <text x="356" y="229" text-anchor="middle" font-size="8.5" fill="#8b7bff" font-weight="700" letter-spacing="1">Metadata Engine</text>
+            </g>
+
+            <!-- ===== 平台 → 存储连线 ===== -->
+            <!-- NAS File (左) -->
+            <path d="M240 280 Q200 290 140 300" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <polygon points="140,300 144,294 136,294" fill="rgba(var(--cyan-rgb),.9)"/>
+            <text x="140" y="290" text-anchor="middle" font-size="7.5" fill="#3df0ff" font-weight="600">NAS File</text>
+
+            <!-- NAS File (右) -->
+            <path d="M480 280 Q520 290 580 300" stroke="var(--cyan)" stroke-width="1.2" class="flow-line" fill="none" stroke-dasharray="3 3"/>
+            <polygon points="580,300 576,294 584,294" fill="rgba(var(--cyan-rgb),.9)"/>
+            <text x="580" y="290" text-anchor="middle" font-size="7.5" fill="#3df0ff" font-weight="600">NAS File</text>
+
+            <!-- Task (中间, 双向箭头) -->
+            <path d="M356 280 L356 300" stroke="#ef4444" stroke-width="1.5" fill="none" class="flow-line"/>
+            <polygon points="356,280 352,286 360,286" fill="#ef4444"/>
+            <polygon points="356,300 352,294 360,294" fill="#ef4444"/>
+            <text x="368" y="294" text-anchor="start" font-size="7.5" fill="#ef4444" font-weight="600">Task</text>
+
+            <!-- ===== ROW 2: 两台存储 ===== -->
+            <!-- 左: EMC Unity 400 (旧存储, 金色, 1U) -->
+            <g transform="translate(40,300)">
+              <rect x="0" y="0" width="220" height="100" rx="6" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.4)" stroke-dasharray="4 3"/>
+              <rect x="8" y="6" width="204" height="60" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="6" width="4" height="60" fill="#f5c87a"/>
+              <!-- 4行 × 4列 盘位 -->
+              <rect x="14" y="12" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="19" r="1" fill="#ef4444"/><circle cx="22" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="62" y="12" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="66" cy="19" r="1" fill="#ef4444"/><circle cx="70" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="110" y="12" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="114" cy="19" r="1" fill="#ef4444"/><circle cx="118" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="158" y="12" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="162" cy="19" r="1" fill="#ef4444"/><circle cx="166" cy="19" r="1" fill="#f59e0b"/>
+              <rect x="14" y="28" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="35" r="1" fill="#ef4444"/><circle cx="22" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="62" y="28" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="66" cy="35" r="1" fill="#ef4444"/><circle cx="70" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="110" y="28" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="114" cy="35" r="1" fill="#ef4444"/><circle cx="118" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="158" y="28" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="162" cy="35" r="1" fill="#ef4444"/><circle cx="166" cy="35" r="1" fill="#f59e0b"/>
+              <rect x="14" y="44" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="51" r="1" fill="#ef4444"/><circle cx="22" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="62" y="44" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="66" cy="51" r="1" fill="#ef4444"/><circle cx="70" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="110" y="44" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="114" cy="51" r="1" fill="#ef4444"/><circle cx="118" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="158" y="44" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="162" cy="51" r="1" fill="#ef4444"/><circle cx="166" cy="51" r="1" fill="#f59e0b"/>
+              <rect x="14" y="60" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="18" cy="67" r="1" fill="#ef4444"/><circle cx="22" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="62" y="60" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="66" cy="67" r="1" fill="#ef4444"/><circle cx="70" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="110" y="60" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="114" cy="67" r="1" fill="#ef4444"/><circle cx="118" cy="67" r="1" fill="#f59e0b"/>
+              <rect x="158" y="60" width="44" height="14" rx="1.2" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="162" cy="67" r="1" fill="#ef4444"/><circle cx="166" cy="67" r="1" fill="#f59e0b"/>
+              <text x="110" y="82" text-anchor="middle" font-size="9" fill="#f5c87a" font-weight="600">EMC Unity 400</text>
+            </g>
+
+            <!-- 右: NetApp AFF A30 (新存储, 紫色, 2U叠放) -->
+            <g transform="translate(470,300)">
+              <rect x="0" y="0" width="250" height="100" rx="6" fill="rgba(139,123,255,.06)" stroke="rgba(139,123,255,.45)" stroke-dasharray="4 3"/>
+              <!-- 上 U -->
+              <rect x="8" y="6" width="234" height="38" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="6" width="4" height="38" fill="#8b7bff"/>
+              <rect x="14" y="10" width="60" height="12" rx="2" fill="rgba(139,123,255,.25)" stroke="rgba(139,123,255,.5)"/>
+              <text x="44" y="19" text-anchor="middle" font-size="6.5" fill="#8b7bff" font-weight="700">NetApp</text>
+              <rect x="80" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="84" cy="16" r="0.8" fill="#3b82f6"/><circle cx="88" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="102" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="106" cy="16" r="0.8" fill="#3b82f6"/><circle cx="110" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="124" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="128" cy="16" r="0.8" fill="#3b82f6"/><circle cx="132" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="146" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="150" cy="16" r="0.8" fill="#3b82f6"/><circle cx="154" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="168" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="172" cy="16" r="0.8" fill="#3b82f6"/><circle cx="176" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="190" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="194" cy="16" r="0.8" fill="#3b82f6"/><circle cx="198" cy="16" r="0.8" fill="#22c55e"/>
+              <rect x="212" y="10" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="216" cy="16" r="0.8" fill="#3b82f6"/><circle cx="220" cy="16" r="0.8" fill="#22c55e"/>
+              <!-- 下 U -->
+              <rect x="8" y="50" width="234" height="38" rx="3" fill="#0f0f18" stroke="#2a2a44" stroke-width="0.6"/>
+              <rect x="8" y="50" width="4" height="38" fill="#8b7bff"/>
+              <rect x="14" y="54" width="60" height="12" rx="2" fill="rgba(139,123,255,.25)" stroke="rgba(139,123,255,.5)"/>
+              <text x="44" y="63" text-anchor="middle" font-size="6.5" fill="#8b7bff" font-weight="700">NetApp</text>
+              <rect x="80" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="84" cy="60" r="0.8" fill="#3b82f6"/><circle cx="88" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="102" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="106" cy="60" r="0.8" fill="#3b82f6"/><circle cx="110" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="124" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="128" cy="60" r="0.8" fill="#3b82f6"/><circle cx="132" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="146" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="150" cy="60" r="0.8" fill="#3b82f6"/><circle cx="154" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="168" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="172" cy="60" r="0.8" fill="#3b82f6"/><circle cx="176" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="190" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="194" cy="60" r="0.8" fill="#3b82f6"/><circle cx="198" cy="60" r="0.8" fill="#22c55e"/>
+              <rect x="212" y="54" width="18" height="12" rx="1" fill="#0a0a10" stroke="#2a2a3e" stroke-width="0.5"/>
+              <circle cx="216" cy="60" r="0.8" fill="#3b82f6"/><circle cx="220" cy="60" r="0.8" fill="#22c55e"/>
+              <text x="125" y="82" text-anchor="middle" font-size="9" fill="#8b7bff" font-weight="600">NetApp AFF A30</text>
+            </g>
+
+            <!-- ===== Data Flow + Migration Task ===== -->
+            <text x="345" y="312" text-anchor="middle" font-size="9" fill="#eef2ff" font-weight="700">Data Flow</text>
+            <path d="M260 332 L470 332" stroke="#ef4444" stroke-width="3" fill="none" class="flow-line"/>
+            <polygon points="470,332 458,324 458,340" fill="#ef4444"/>
+            <text x="345" y="352" text-anchor="middle" font-size="7.5" fill="#9aa3c4">(latest 1Y data)</text>
+            <text x="345" y="366" text-anchor="middle" font-size="8.5" fill="#ef4444" font-weight="700">Migration Task</text>
+
+            <!-- Flow particles -->
+            <circle class="flow-particle"><animateMotion dur="3.5s" repeatCount="indefinite" path="M108 62 L200 100"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3.5s" repeatCount="indefinite" begin="0.5s" path="M602 62 L510 100"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M240 280 Q200 290 140 300"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="0.8s" path="M480 280 Q520 290 580 300"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M260 332 L458 332"/></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- ============ CASE 5: AI 智能数据治理 ============ -->
+    <div class="section-tab-panel" data-panel="case-5">
+    <div class="case">
+      <h4>AI 数据治理与智能 Agent</h4>
+      <div class="pains">
+        <div class="lab">客户痛点</div>
+        <p>AI 数据生命周期管理缺失；跨存储数据无法统一治理；元数据与 AI 引擎对接困难。</p>
+      </div>
+      <div class="pains">
+        <div class="lab">LiSA 方案</div>
+        <p>统一元数据管理 + AI 数据治理 + Agent 自动化任务，对接主流 AI 框架。</p>
+      </div>
+      <div class="case-arch">
+        <div class="ttl">方案架构</div>
+        <div class="scroll-x">
+          <svg viewBox="0 0 1180 540" class="flow-svg" style="max-width:1220px" xmlns="http://www.w3.org/2000/svg">
+            <!-- ===== 左列: Client → Agent → IAM → Domain Model ===== -->
+            <text x="90" y="24" text-anchor="middle" font-size="11" fill="#9aa3c4" font-weight="600">Client applications</text>
+            <g class="arch-svg-node">
+              <rect x="24" y="36" width="132" height="96" rx="8" fill="rgba(245,245,250,.08)" stroke="rgba(180,180,200,.5)" stroke-width="1.2"/>
+              <rect x="34" y="46" width="112" height="76" rx="5" fill="#f5f5fa" stroke="#c8c8d8" stroke-width="1"/>
+              <rect x="62" y="60" width="56" height="40" rx="4" fill="rgba(var(--cyan-rgb),.2)" stroke="var(--cyan)" stroke-width="1.2"/>
+              <circle cx="90" cy="80" r="8" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+              <g stroke="#22c55e" stroke-width="1.6" stroke-linecap="round">
+                <line x1="90" y1="68" x2="90" y2="72"/>
+                <line x1="90" y1="88" x2="90" y2="92"/>
+                <line x1="78" y1="80" x2="82" y2="80"/>
+                <line x1="98" y1="80" x2="102" y2="80"/>
+              </g>
+              <text x="90" y="112" text-anchor="middle" font-size="12" fill="#4a5268" font-weight="700">Agent</text>
+            </g>
+
+            <line x1="90" y1="132" x2="90" y2="152" stroke="#333" stroke-width="1.6" class="flow-line"/>
+            <polygon points="90,152 85,144 95,144" fill="#333"/>
+            <text x="90" y="146" text-anchor="end" font-size="9" fill="#4a5268" dx="-6">Prompt</text>
+            <line x1="90" y1="224" x2="90" y2="204" stroke="#333" stroke-width="1.6" class="flow-line"/>
+            <polygon points="90,224 85,232 95,232" fill="#333"/>
+            <text x="90" y="232" text-anchor="start" font-size="9" fill="#4a5268" dx="6">Response</text>
+
+            <g class="arch-svg-node">
+              <rect x="38" y="152" width="104" height="52" rx="8" fill="rgba(245,245,250,.05)" stroke="rgba(180,180,200,.4)" stroke-width="1.2"/>
+              <circle cx="90" cy="164" r="6" fill="none" stroke="#222" stroke-width="1.8"/>
+              <rect x="84" y="164" width="12" height="14" rx="2" fill="none" stroke="#222" stroke-width="1.8"/>
+              <rect x="80" y="180" width="20" height="14" rx="2" fill="none" stroke="#222" stroke-width="1.4"/>
+            </g>
+            <text x="90" y="186" text-anchor="end" font-size="9" fill="#4a5268" font-weight="600" dx="-8">Identity &amp; Access Mgmt</text>
+
+            <g class="arch-svg-node">
+              <rect x="20" y="224" width="140" height="72" rx="18" fill="rgba(var(--cyan-rgb),.14)" stroke="var(--cyan)" stroke-width="1.4"/>
+              <text x="90" y="252" text-anchor="middle" font-size="11" fill="#0a8494" font-weight="700">Any domain-</text>
+              <text x="90" y="268" text-anchor="middle" font-size="11" fill="#0a8494" font-weight="700">specific model</text>
+              <text x="90" y="286" text-anchor="middle" font-size="9" fill="#4a5268" font-weight="600">Llama 3 / Nemotron</text>
+            </g>
+
+            <!-- ===== 搜索/ETL 列 ===== -->
+            <g class="arch-svg-node">
+              <rect x="186" y="248" width="90" height="52" rx="6" fill="#f5f5fa" stroke="#c8c8d8" stroke-width="1.2"/>
+              <circle cx="206" cy="266" r="6" fill="none" stroke="#888" stroke-width="1.6"/>
+              <line x1="210" y1="270" x2="216" y2="276" stroke="#888" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="216" y="276" width="44" height="6" rx="1.5" fill="#ccc"/>
+              <rect x="216" y="284" width="32" height="6" rx="1.5" fill="#ccc"/>
+              <text x="231" y="316" text-anchor="middle" font-size="10" fill="#4a5268" font-weight="600">Semantic Search</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="186" y="330" width="90" height="52" rx="6" fill="#f5f5fa" stroke="#c8c8d8" stroke-width="1.2"/>
+              <circle cx="206" cy="348" r="6" fill="none" stroke="#888" stroke-width="1.6"/>
+              <line x1="210" y1="352" x2="216" y2="358" stroke="#888" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="216" y="358" width="44" height="6" rx="1.5" fill="#ccc"/>
+              <rect x="216" y="366" width="32" height="6" rx="1.5" fill="#ccc"/>
+              <text x="231" y="398" text-anchor="middle" font-size="10" fill="#4a5268" font-weight="600">Keyword Search</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="186" y="412" width="90" height="52" rx="6" fill="#f5f5fa" stroke="#c8c8d8" stroke-width="1.2"/>
+              <circle cx="206" cy="430" r="6" fill="none" stroke="#888" stroke-width="1.6"/>
+              <line x1="210" y1="434" x2="216" y2="440" stroke="#888" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="216" y="440" width="44" height="6" rx="1.5" fill="#ccc"/>
+              <rect x="216" y="448" width="32" height="6" rx="1.5" fill="#ccc"/>
+              <text x="231" y="480" text-anchor="middle" font-size="10" fill="#4a5268" font-weight="600">Agentic ETL</text>
+            </g>
+
+            <!-- ===== 中间 AI Data Platform 大橙边框 ===== -->
+            <text x="620" y="50" text-anchor="middle" font-size="14" fill="#4a5268" font-weight="700">AI Data Platform</text>
+            <rect x="320" y="60" width="600" height="440" rx="30" ry="30" fill="none" stroke="#e08a3c" stroke-width="2.5" stroke-dasharray="8 5"/>
+
+            <!-- ROW A: MatrixOne Intelligence -->
+            <text x="620" y="82" text-anchor="middle" font-size="13" fill="#222" font-weight="700">MatrixOne Intelligence</text>
+            <rect x="340" y="90" width="560" height="68" rx="10" fill="rgba(80,160,240,.06)" stroke="rgba(80,160,240,.4)" stroke-width="1.4" stroke-dasharray="5 3"/>
+            <!-- 5个功能模块 中心 x: 400, 510, 620, 730, 840 间距110 -->
+            <g class="arch-svg-node">
+              <circle cx="400" cy="116" r="13" fill="none" stroke="#d6336c" stroke-width="1.6"/>
+              <circle cx="400" cy="116" r="4" fill="#d6336c"/>
+              <line x1="400" y1="103" x2="400" y2="107" stroke="#d6336c" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="400" y1="125" x2="400" y2="129" stroke="#d6336c" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="387" y1="116" x2="391" y2="116" stroke="#d6336c" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="409" y1="116" x2="413" y2="116" stroke="#d6336c" stroke-width="1.5" stroke-linecap="round"/>
+              <text x="400" y="146" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Multimodal Data</text>
+              <text x="400" y="156" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Pipeline</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="501" y="106" width="18" height="20" rx="2" fill="none" stroke="#d6336c" stroke-width="1.6"/>
+              <line x1="505" y1="112" x2="515" y2="112" stroke="#d6336c" stroke-width="1.2"/>
+              <line x1="505" y1="116" x2="515" y2="116" stroke="#d6336c" stroke-width="1.2"/>
+              <line x1="505" y1="120" x2="511" y2="120" stroke="#d6336c" stroke-width="1.2"/>
+              <path d="M521 106 L541 106 L541 116 L521 116 Z" fill="none" stroke="#d6336c" stroke-width="1.2"/>
+              <path d="M521 116 L541 116 L541 126 L521 126 Z" fill="none" stroke="#d6336c" stroke-width="1.2"/>
+              <text x="510" y="146" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Document</text>
+              <text x="510" y="156" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Intelligences</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="611" y="106" width="18" height="20" rx="2" fill="none" stroke="#d6336c" stroke-width="1.6"/>
+              <rect x="615" y="114" width="3" height="8" fill="#d6336c"/>
+              <rect x="619" y="110" width="3" height="12" fill="#d6336c"/>
+              <rect x="623" y="116" width="3" height="6" fill="#d6336c"/>
+              <circle cx="613" cy="103" r="2.5" fill="#d6336c"/>
+              <circle cx="619" cy="100" r="2.5" fill="#d6336c"/>
+              <circle cx="625" cy="103" r="2.5" fill="#d6336c"/>
+              <text x="620" y="146" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Data Synthesize</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="722" y="106" width="16" height="20" rx="2" fill="none" stroke="#d6336c" stroke-width="1.6"/>
+              <path d="M726 114 Q730 110 734 114 Q737 120 734 126" fill="none" stroke="#d6336c" stroke-width="1.2"/>
+              <circle cx="726" cy="112" r="1.5" fill="#d6336c"/>
+              <rect x="738" y="104" width="5" height="26" rx="1.5" fill="none" stroke="#d6336c" stroke-width="1.2"/>
+              <circle cx="740" cy="104" r="2" fill="#d6336c"/>
+              <text x="730" y="146" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">Agentic ETL</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="830" y="106" width="20" height="22" rx="2" fill="none" stroke="#d6336c" stroke-width="1.6"/>
+              <rect x="833" y="112" width="14" height="5" fill="#d6336c"/>
+              <rect x="833" y="119" width="14" height="5" fill="#d6336c"/>
+              <path d="M850 114 L858 110 L858 118 Z" fill="#d6336c"/>
+              <text x="840" y="146" text-anchor="middle" font-size="9" fill="#d6336c" font-weight="600">connector</text>
+            </g>
+
+            <!-- ROW B: NeMo 模型行（5个GPU立方体） 中心 x: 400,510,620,730,840 -->
+            <text x="620" y="180" text-anchor="middle" font-size="13" fill="#222" font-weight="700">NeMo Models</text>
+            <g class="arch-svg-node" transform="translate(374,190)">
+              <rect x="0" y="0" width="52" height="56" rx="4" fill="rgba(120,200,120,.2)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M26 -12 L52 2 L26 16 L0 2 Z" fill="rgba(120,200,120,.35)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M52 2 L52 58 L26 72 L26 16 Z" fill="rgba(120,200,120,.28)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <circle cx="14" cy="18" r="2.5" fill="#4a9d4a"/>
+              <circle cx="26" cy="18" r="2.5" fill="#4a9d4a"/>
+              <circle cx="38" cy="18" r="2.5" fill="#4a9d4a"/>
+              <circle cx="18" cy="32" r="2.5" fill="#4a9d4a"/>
+              <circle cx="34" cy="32" r="2.5" fill="#4a9d4a"/>
+              <line x1="14" y1="18" x2="18" y2="32" stroke="#4a9d4a" stroke-width=".8"/>
+              <line x1="26" y1="18" x2="18" y2="32" stroke="#4a9d4a" stroke-width=".8"/>
+              <line x1="26" y1="18" x2="34" y2="32" stroke="#4a9d4a" stroke-width=".8"/>
+              <line x1="38" y1="18" x2="34" y2="32" stroke="#4a9d4a" stroke-width=".8"/>
+              <circle cx="26" cy="44" r="3" fill="#4a9d4a"/>
+            </g>
+            <text x="400" y="278" text-anchor="middle" font-size="9" fill="#4a9d4a" font-weight="600">NIM LLM Inference</text>
+
+            <g class="arch-svg-node" transform="translate(484,190)">
+              <rect x="0" y="0" width="52" height="56" rx="4" fill="rgba(120,200,120,.2)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M26 -12 L52 2 L26 16 L0 2 Z" fill="rgba(120,200,120,.35)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M52 2 L52 58 L26 72 L26 16 Z" fill="rgba(120,200,120,.28)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <circle cx="16" cy="20" r="2.5" fill="#4a9d4a"/>
+              <circle cx="26" cy="16" r="2.5" fill="#4a9d4a"/>
+              <circle cx="36" cy="20" r="2.5" fill="#4a9d4a"/>
+              <circle cx="26" cy="36" r="2.5" fill="#4a9d4a"/>
+              <line x1="16" y1="20" x2="26" y2="36" stroke="#4a9d4a" stroke-width=".8"/>
+              <line x1="26" y1="16" x2="26" y2="36" stroke="#4a9d4a" stroke-width=".8"/>
+              <line x1="36" y1="20" x2="26" y2="36" stroke="#4a9d4a" stroke-width=".8"/>
+              <text x="26" y="48" text-anchor="middle" font-size="8" fill="#4a9d4a" font-weight="700">RL</text>
+            </g>
+            <text x="510" y="278" text-anchor="middle" font-size="9" fill="#4a9d4a" font-weight="600">NeMo RL</text>
+
+            <g class="arch-svg-node" transform="translate(594,190)">
+              <rect x="0" y="0" width="52" height="56" rx="4" fill="rgba(120,200,120,.2)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M26 -12 L52 2 L26 16 L0 2 Z" fill="rgba(120,200,120,.35)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M52 2 L52 58 L26 72 L26 16 Z" fill="rgba(120,200,120,.28)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <rect x="6" y="14" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="16" y="14" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+              <rect x="26" y="14" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="36" y="14" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+              <rect x="6" y="24" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+              <rect x="16" y="24" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="26" y="24" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+              <rect x="36" y="24" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="6" y="34" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="16" y="34" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+              <rect x="26" y="34" width="8" height="8" fill="#4a9d4a"/>
+              <rect x="36" y="34" width="8" height="8" fill="rgba(74,157,74,.5)"/>
+            </g>
+            <text x="620" y="278" text-anchor="middle" font-size="9" fill="#4a9d4a" font-weight="600">NVIDIA cuVS Index</text>
+
+            <g class="arch-svg-node" transform="translate(704,190)">
+              <rect x="0" y="0" width="52" height="56" rx="4" fill="rgba(120,200,120,.2)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M26 -12 L52 2 L26 16 L0 2 Z" fill="rgba(120,200,120,.35)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M52 2 L52 58 L26 72 L26 16 Z" fill="rgba(120,200,120,.28)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <rect x="6" y="16" width="6" height="32" fill="rgba(74,157,74,.5)"/>
+              <rect x="14" y="20" width="6" height="28" fill="#4a9d4a"/>
+              <rect x="22" y="14" width="6" height="34" fill="rgba(74,157,74,.5)"/>
+              <rect x="30" y="24" width="6" height="24" fill="#4a9d4a"/>
+              <rect x="38" y="18" width="6" height="30" fill="rgba(74,157,74,.5)"/>
+            </g>
+            <text x="730" y="278" text-anchor="middle" font-size="9" fill="#4a9d4a" font-weight="600">NIM Nv Embed</text>
+
+            <g class="arch-svg-node" transform="translate(814,190)">
+              <rect x="0" y="0" width="52" height="56" rx="4" fill="rgba(120,200,120,.2)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M26 -12 L52 2 L26 16 L0 2 Z" fill="rgba(120,200,120,.35)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <path d="M52 2 L52 58 L26 72 L26 16 Z" fill="rgba(120,200,120,.28)" stroke="#4a9d4a" stroke-width="1.6"/>
+              <circle cx="26" cy="16" r="3" fill="#4a9d4a"/>
+              <line x1="26" y1="19" x2="14" y2="27" stroke="#4a9d4a" stroke-width="1"/>
+              <line x1="26" y1="19" x2="26" y2="27" stroke="#4a9d4a" stroke-width="1"/>
+              <line x1="26" y1="19" x2="38" y2="27" stroke="#4a9d4a" stroke-width="1"/>
+              <circle cx="14" cy="29" r="2.5" fill="#4a9d4a"/>
+              <circle cx="26" cy="29" r="2.5" fill="#4a9d4a"/>
+              <circle cx="38" cy="29" r="2.5" fill="#4a9d4a"/>
+              <rect x="10" y="36" width="10" height="3" fill="#4a9d4a"/>
+              <rect x="21" y="36" width="10" height="3" fill="#4a9d4a"/>
+              <rect x="32" y="36" width="10" height="3" fill="#4a9d4a"/>
+              <rect x="10" y="42" width="14" height="3" fill="rgba(74,157,74,.5)"/>
+              <rect x="28" y="42" width="14" height="3" fill="rgba(74,157,74,.5)"/>
+            </g>
+            <text x="840" y="278" text-anchor="middle" font-size="9" fill="#4a9d4a" font-weight="600">NeMo Parse</text>
+
+            <!-- 模型行间箭头 -->
+            <!-- NIM Nv Embed → NVIDIA cuVS Index 虚线 -->
+            <line x1="704" y1="218" x2="646" y2="218" stroke="#4a9d4a" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="646,218 652,214 652,222" fill="#4a9d4a"/>
+            <!-- NeMo Parse → NIM Nv Embed 虚线 -->
+            <line x1="814" y1="218" x2="756" y2="218" stroke="#4a9d4a" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="756,218 762,214 762,222" fill="#4a9d4a"/>
+
+            <!-- ROW C: Accelerated Infrastructure -->
+            <rect x="340" y="296" width="560" height="44" rx="8" fill="rgba(120,200,120,.3)" stroke="#4a9d4a" stroke-width="1.6"/>
+            <text x="380" y="322" text-anchor="middle" font-size="11" fill="#2d6b2d" font-weight="700">Accelerated Infrastructure</text>
+            <g class="arch-svg-node">
+              <rect x="560" y="304" width="36" height="28" rx="3" fill="#fff" stroke="#4a9d4a" stroke-width="1.2"/>
+              <rect x="565" y="309" width="26" height="18" rx="1.5" fill="rgba(120,200,120,.3)" stroke="#4a9d4a" stroke-width="1"/>
+              <text x="578" y="356" text-anchor="middle" font-size="10" fill="#2d6b2d" font-weight="600">GPU</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="660" y="304" width="36" height="28" rx="3" fill="#fff" stroke="#4a9d4a" stroke-width="1.2"/>
+              <rect x="665" y="308" width="26" height="6" fill="#4a9d4a"/>
+              <rect x="665" y="316" width="26" height="6" fill="#4a9d4a"/>
+              <rect x="665" y="324" width="26" height="5" fill="rgba(74,157,74,.5)"/>
+              <text x="678" y="356" text-anchor="middle" font-size="10" fill="#2d6b2d" font-weight="600">Networking</text>
+            </g>
+            <g class="arch-svg-node">
+              <rect x="780" y="304" width="36" height="28" rx="3" fill="#fff" stroke="#4a9d4a" stroke-width="1.2"/>
+              <rect x="785" y="308" width="26" height="16" rx="1.5" fill="#4a9d4a"/>
+              <rect x="785" y="308" width="4" height="16" fill="#fff"/>
+              <text x="798" y="356" text-anchor="middle" font-size="10" fill="#2d6b2d" font-weight="600">Storage</text>
+            </g>
+
+            <!-- ROW D: MatrixOne 存储层 -->
+            <text x="330" y="390" text-anchor="end" font-size="10" fill="#666" font-weight="600" dx="-6">Storage</text>
+            <line x1="330" y1="400" x2="330" y2="470" stroke="#999" stroke-width="1.6"/>
+            <rect x="334" y="396" width="80" height="20" rx="4" fill="#e5e7eb" stroke="#a0a0b0" stroke-width="1.2"/>
+            <text x="374" y="410" text-anchor="middle" font-size="9" fill="#333" font-weight="600">Access control</text>
+            <rect x="334" y="438" width="80" height="20" rx="4" fill="#e5e7eb" stroke="#a0a0b0" stroke-width="1.2"/>
+            <text x="374" y="452" text-anchor="middle" font-size="9" fill="#333" font-weight="600">Agentic API</text>
+
+            <g transform="translate(420,388)">
+              <rect x="0" y="0" width="440" height="86" rx="10" fill="rgba(80,160,240,.06)" stroke="rgba(80,160,240,.4)" stroke-width="1.4"/>
+              <!-- 5 个数据库列 中心 x: 44, 132, 220, 308, 396 间距88 -->
+              <g class="arch-svg-node">
+                <ellipse cx="44" cy="14" rx="18" ry="5" fill="#e08a3c" stroke="#c56a20" stroke-width="1.2"/>
+                <rect x="26" y="14" width="36" height="30" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <ellipse cx="44" cy="44" rx="18" ry="5" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <text x="44" y="72" text-anchor="middle" font-size="9" fill="#c56a20" font-weight="600">Vector Data</text>
+              </g>
+              <g class="arch-svg-node">
+                <ellipse cx="132" cy="14" rx="18" ry="5" fill="#e08a3c" stroke="#c56a20" stroke-width="1.2"/>
+                <rect x="114" y="14" width="36" height="30" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <ellipse cx="132" cy="44" rx="18" ry="5" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <text x="132" y="72" text-anchor="middle" font-size="9" fill="#c56a20" font-weight="600">Feature/Parquet</text>
+              </g>
+              <g class="arch-svg-node">
+                <ellipse cx="220" cy="14" rx="18" ry="5" fill="#e08a3c" stroke="#c56a20" stroke-width="1.2"/>
+                <rect x="202" y="14" width="36" height="30" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <ellipse cx="220" cy="44" rx="18" ry="5" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <text x="220" y="72" text-anchor="middle" font-size="9" fill="#c56a20" font-weight="600">Object Storage</text>
+              </g>
+              <g class="arch-svg-node">
+                <ellipse cx="308" cy="14" rx="18" ry="5" fill="#e08a3c" stroke="#c56a20" stroke-width="1.2"/>
+                <rect x="290" y="14" width="36" height="30" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <ellipse cx="308" cy="44" rx="18" ry="5" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <text x="308" y="72" text-anchor="middle" font-size="9" fill="#c56a20" font-weight="600">Document Metadata</text>
+              </g>
+              <g class="arch-svg-node">
+                <ellipse cx="396" cy="14" rx="18" ry="5" fill="#e08a3c" stroke="#c56a20" stroke-width="1.2"/>
+                <rect x="378" y="14" width="36" height="30" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <ellipse cx="396" cy="44" rx="18" ry="5" fill="#e8a25e" stroke="#c56a20" stroke-width="1.2"/>
+                <text x="396" y="72" text-anchor="middle" font-size="9" fill="#c56a20" font-weight="600">Data Lakehouse</text>
+              </g>
+              <text x="396" y="10" text-anchor="end" font-size="11" fill="#222" font-weight="700">MatrixOne</text>
+              <path d="M62 56 Q62 62 68 62 L300 62 Q306 62 306 56" fill="none" stroke="rgba(180,180,200,.6)" stroke-width="1.2" stroke-dasharray="4 2"/>
+              <text x="80" y="80" text-anchor="start" font-size="9" fill="#888" font-weight="600">Management</text>
+              <text x="290" y="80" text-anchor="end" font-size="9" fill="#888" font-weight="600">Data Resiliency</text>
+            </g>
+
+            <!-- ===== 右列：LiSA + Meta API + 外部存储 ===== -->
+            <!-- LiSA Server Component（右移10px，远离左边框） -->
+            <g class="arch-svg-node" transform="translate(930,150)">
+              <rect x="0" y="0" width="64" height="200" rx="10" fill="rgba(120,200,120,.55)" stroke="#4a9d4a" stroke-width="1.8"/>
+              <text x="32" y="100" text-anchor="middle" font-size="12" fill="#fff" font-weight="800">LiSA</text>
+              <text x="32" y="116" text-anchor="middle" font-size="11" fill="#fff" font-weight="800">Server /</text>
+              <text x="32" y="132" text-anchor="middle" font-size="11" fill="#fff" font-weight="800">Component</text>
+            </g>
+
+            <!-- Meta data Moni toring API 分隔条（在LiSA右边，间距30px） -->
+            <g class="arch-svg-node">
+              <rect x="1034" y="60" width="24" height="400" rx="3" fill="#c8c8d8" stroke="#a0a0b0" stroke-width="1.2"/>
+              <text x="1046" y="80" text-anchor="middle" font-size="8" fill="#333" font-weight="600">Meta</text>
+              <text x="1046" y="92" text-anchor="middle" font-size="8" fill="#333" font-weight="600">data</text>
+              <text x="1046" y="108" text-anchor="middle" font-size="8" fill="#333" font-weight="600">Moni</text>
+              <text x="1046" y="120" text-anchor="middle" font-size="8" fill="#333" font-weight="600">toring</text>
+              <text x="1046" y="136" text-anchor="middle" font-size="8" fill="#333" font-weight="600">API</text>
+            </g>
+            <!-- Meta data Moni toring API → MatrixOne Intelligence 顶部虚线 -->
+            <polyline points="1046,60 1046,28 620,28 620,90" fill="none" stroke="#555" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="620,90 614,84 624,84" fill="#555"/>
+            <text x="833" y="22" text-anchor="middle" font-size="9" fill="#555" font-weight="600">data</text>
+
+            <!-- Meta data Moni toring API → MatrixOne Storage 底部 metadata 线（从底部进入） -->
+            <polyline points="1046,460 1046,492 640,492 640,474" fill="none" stroke="#555" stroke-width="1.4" class="flow-line"/>
+            <polygon points="640,474 636,480 644,480" fill="#555"/>
+            <text x="843" y="505" text-anchor="middle" font-size="9" fill="#555" font-weight="600">metadata</text>
 
 
+            <!-- LiSA → 左边 AI Data Platform 两条连线（直接指到黄色边框上，不穿进框内） -->
+            <!-- 上层 Intelligence → 边框 x=920, y=158（边框右侧 x=320+600=920） -->
+            <line x1="920" y1="158" x2="930" y2="158" stroke="#555" stroke-width="1.4"/>
+            <polygon points="920,158 926,154 926,162" fill="#555"/>
+            <!-- 中层 Accelerated → 边框 x=920, y=318 -->
+            <line x1="920" y1="318" x2="930" y2="318" stroke="#555" stroke-width="1.4"/>
+            <polygon points="920,318 926,314 926,322" fill="#555"/>
+            <!-- 下层 Storage 左右连线已删（只保留上、中两层 LiSA 左右通路） -->
+            <!-- LiSA → 右边 Meta API 分隔条（仅上、中两条，下层Storage不连） -->
+            <line x1="994" y1="220" x2="1034" y2="220" stroke="#555" stroke-width="1.4"/>
+            <polygon points="1034,220 1028,216 1028,224" fill="#555"/>
+            <line x1="994" y1="340" x2="1034" y2="340" stroke="#555" stroke-width="1.4"/>
+            <polygon points="1034,340 1028,336 1028,344" fill="#555"/>
 
-            <!-- 日立 HCP → LiSA (元数据解析) -->
-            <path d="M85 120 Q85 95 250 68" class="flow-line" stroke="var(--violet)" fill="none"/>
-            <text x="145" y="95" font-size="8" fill="#8b7bff" font-family="JetBrains Mono">元数据解析</text>
+            <!-- Meta API → 右边三个模块的箭头（上、中两个；NetApp A90下层不连） -->
+            <line x1="1058" y1="220" x2="1088" y2="220" stroke="#555" stroke-width="1.4"/>
+            <polygon points="1088,220 1082,216 1082,224" fill="#55"/>
+            <line x1="1058" y1="340" x2="1088" y2="340" stroke="#555" stroke-width="1.4"/>
+            <polygon points="1088,340 1082,336 1082,344" fill="#55"/>
 
-            <!-- LiSA → DXN S3 -->
-            <path d="M320 68 Q320 90 355 115" class="flow-line" stroke="var(--cyan)" fill="none"/>
+            <!-- 右边三个外部模块 -->
+            <g class="arch-svg-node" transform="translate(1088,210)">
+              <rect x="0" y="0" width="60" height="80" rx="8" fill="rgba(80,160,240,.2)" stroke="rgba(80,160,240,.6)" stroke-width="1.4"/>
+              <rect x="8" y="10" width="16" height="14" fill="rgba(80,160,240,.3)" stroke="rgba(80,160,240,.7)" stroke-width="1"/>
+              <rect x="8" y="28" width="44" height="6" rx="1.5" fill="rgba(80,160,240,.4)"/>
+              <rect x="8" y="38" width="34" height="6" rx="1.5" fill="rgba(80,160,240,.3)"/>
+              <text x="30" y="60" text-anchor="middle" font-size="9" fill="#3178c6" font-weight="600">Any data</text>
+              <text x="30" y="72" text-anchor="middle" font-size="9" fill="#3178c6" font-weight="600">modality</text>
+            </g>
+
+            <g class="arch-svg-node" transform="translate(1088,310)">
+              <rect x="0" y="0" width="60" height="64" rx="6" fill="#fff" stroke="#c8c8d8" stroke-width="1.2"/>
+              <ellipse cx="30" cy="14" rx="16" ry="4" fill="#222"/>
+              <rect x="14" y="14" width="32" height="32" fill="#222"/>
+              <ellipse cx="30" cy="46" rx="16" ry="4" fill="#222"/>
+              <text x="30" y="60" text-anchor="middle" font-size="8" fill="#333" font-weight="600">External</text>
+            </g>
+
+            <g class="arch-svg-node" transform="translate(1088,400)">
+              <rect x="0" y="0" width="60" height="56" rx="6" fill="#fff" stroke="rgba(80,160,240,.7)" stroke-width="1.4"/>
+              <rect x="12" y="12" width="8" height="30" fill="#0078d4"/>
+              <rect x="12" y="12" width="36" height="5" fill="#0078d4"/>
+              <rect x="40" y="12" width="8" height="30" fill="#0078d4"/>
+              <rect x="6" y="46" width="48" height="5" rx="1.5" fill="rgba(0,120,212,.3)"/>
+              <text x="30" y="64" text-anchor="middle" font-size="8" fill="#0078d4" font-weight="700">NetApp ONTAP</text>
+              <text x="30" y="74" text-anchor="middle" font-size="8" fill="#0078d4" font-weight="700">AFF A90</text>
+            </g>
+
+            <!-- ===== 主连线 ===== -->
+            <!-- Client applications → Agent/Prompt/Response 已在左侧完成，不再指向 MatrixOne Intelligence -->
+            <!-- 三个搜索框 → Agentic API 虚线L形折线 -->
+            <!-- Semantic Search → Agentic API -->
+            <polyline points="186,274 230,274 230,438 334,438" fill="none" stroke="#333" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="334,438 328,432 328,442" fill="#333"/>
+            <!-- Keyword Search → Agentic API -->
+            <polyline points="186,356 250,356 250,438 334,438" fill="none" stroke="#333" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="334,438 328,432 328,442" fill="#333"/>
+            <!-- Agentic ETL → Agentic API -->
+            <polyline points="186,438 270,438 270,438 334,438" fill="none" stroke="#333" stroke-width="1.4" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="334,438 328,432 328,442" fill="#333"/>
+            <!-- NIM LLM Inference → Semantic Search 虚线L形折线 -->
+            <polyline points="400,278 400,242 231,242 231,248" fill="none" stroke="#444" stroke-width="1.2" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="231,248 227,242 235,242" fill="#444"/>
+
+            <!-- Access Control → MatrixOne -->
+            <line x1="374" y1="416" x2="420" y2="416" stroke="#999" stroke-width="1.4" class="flow-line"/>
+            <polygon points="420,416 414,412 414,420" fill="#999"/>
+            <!-- Agentic API → MatrixOne -->
+            <line x1="374" y1="458" x2="420" y2="458" stroke="#999" stroke-width="1.4" class="flow-line"/>
+            <polygon points="420,458 414,454 414,462" fill="#999"/>
+
+            <!-- Any domain-specific model → MatrixOne 从下面走 -->
+            <polyline points="90,296 90,488 640,488 640,474" fill="none" stroke="#444" stroke-width="1.2" stroke-dasharray="5 3" class="flow-line"/>
+            <polygon points="640,474 636,480 644,480" fill="#444"/>
+
+            <!-- NeMo 模型 → Accelerated Infrastructure 垂直连线 -->
+            <!-- NIM LLM Inference (x=400) → GPU (x=578) -->
+            <polyline points="400,278 400,290 578,290 578,304" fill="none" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <polygon points="578,304 574,298 582,298" fill="#4a9d4a"/>
+            <!-- NeMo RL (x=510) → GPU (x=578) -->
+            <polyline points="510,278 510,292 578,292 578,304" fill="none" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <polygon points="578,304 574,298 582,298" fill="#4a9d4a"/>
+            <!-- NVIDIA cuVS Index (x=620) → Networking (x=678) -->
+            <polyline points="620,278 620,292 678,292 678,304" fill="none" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <polygon points="678,304 674,298 682,298" fill="#4a9d4a"/>
+            <!-- NIM NV Embed (x=730) → Storage (x=798) -->
+            <polyline points="730,278 730,292 798,292 798,304" fill="none" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <polygon points="798,304 794,298 802,298" fill="#4a9d4a"/>
+            <!-- NeMo Parse (x=840) → Storage (x=798) -->
+            <polyline points="840,278 840,292 798,292 798,304" fill="none" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <polygon points="798,304 794,298 802,298" fill="#4a9d4a"/>
+
+            <!-- Accelerated Infrastructure → MatrixOne 存储层 -->
+            <!-- GPU (x=578) → Vector Data 列 -->
+            <line x1="578" y1="332" x2="578" y2="388" stroke="#2d6b2d" stroke-width="1.2" class="flow-line"/>
+            <polygon points="578,388 574,382 582,382" fill="#2d6b2d"/>
+            <!-- Networking (x=678) → Feature/Parquet 列 -->
+            <line x1="678" y1="332" x2="678" y2="388" stroke="#2d6b2d" stroke-width="1.2" class="flow-line"/>
+            <polygon points="678,388 674,382 682,382" fill="#2d6b2d"/>
+            <!-- Storage (x=798) → Object Storage 列 -->
+            <line x1="798" y1="332" x2="798" y2="388" stroke="#2d6b2d" stroke-width="1.2" class="flow-line"/>
+            <polygon points="798,388 794,382 802,382" fill="#2d6b2d"/>
+            <line x1="400" y1="158" x2="400" y2="178" stroke="#444" stroke-width="1.2" class="flow-line"/>
+            <polygon points="400,178 396,172 404,172" fill="#444"/>
+            <line x1="510" y1="158" x2="510" y2="178" stroke="#444" stroke-width="1.2" class="flow-line"/>
+            <polygon points="510,178 506,172 514,172" fill="#444"/>
+            <line x1="620" y1="158" x2="620" y2="178" stroke="#444" stroke-width="1.2" class="flow-line"/>
+            <polygon points="620,178 616,172 624,172" fill="#444"/>
+            <line x1="730" y1="158" x2="730" y2="178" stroke="#444" stroke-width="1.2" class="flow-line"/>
+            <polygon points="730,178 726,172 734,172" fill="#444"/>
+            <line x1="840" y1="158" x2="840" y2="178" stroke="#444" stroke-width="1.2" class="flow-line"/>
+            <polygon points="840,178 836,172 844,172" fill="#444"/>
+            <line x1="400" y1="262" x2="400" y2="296" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <line x1="510" y1="262" x2="510" y2="296" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <line x1="620" y1="262" x2="620" y2="296" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <line x1="730" y1="262" x2="730" y2="296" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <line x1="840" y1="262" x2="840" y2="296" stroke="#4a9d4a" stroke-width="1.2" class="flow-line"/>
+            <line x1="798" y1="340" x2="798" y2="388" stroke="#2d6b2d" stroke-width="1.4" class="flow-line"/>
+            <polygon points="798,388 793,382 803,382" fill="#2d6b2d"/>
+            <text x="808" y="368" text-anchor="start" font-size="9" fill="#2d6b2d" font-weight="600">Storage</text>
+
+            <!-- ===== Flow 粒子 ===== -->
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" path="M400 278 L400 242 L231 242 L231 248"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" begin="1.5s" path="M400 278 L400 242 L231 242 L231 248"/></circle>
+            <!-- 搜索框 → Agentic API 粒子 -->
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" path="M186 274 L230 274 L230 438 L334 438"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin=".8s" path="M186 356 L250 356 L250 438 L334 438"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin="1.6s" path="M186 438 L270 438 L270 438 L334 438"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" path="M400 158 L400 178"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin=".8s" path="M510 158 L510 178"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin="1.6s" path="M620 158 L620 178"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin="2.4s" path="M730 158 L730 178"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin="3.2s" path="M840 158 L840 178"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" path="M704 218 L646 218"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4.5s" repeatCount="indefinite" begin="1.8s" path="M814 218 L756 218"/></circle>
+            <!-- Access Control → MatrixOne 粒子 -->
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" path="M374 416 L420 416"/></circle>
+            <!-- Agentic API → MatrixOne 粒子 -->
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin=".8s" path="M374 458 L420 458"/></circle>
+            <!-- Any domain-specific model → MatrixOne 粒子 -->
+            <circle class="flow-particle"><animateMotion dur="6s" repeatCount="indefinite" path="M90 296 L90 488 L640 488 L640 474"/></circle>
+            <circle class="flow-particle"><animateMotion dur="6s" repeatCount="indefinite" begin="2s" path="M90 296 L90 488 L640 488 L640 474"/></circle>
+            <!-- Meta data Moni toring API → MatrixOne Intelligence 顶部虚线粒子 -->
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" path="M1046 60 L1046 28 L620 28 L620 90"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M1046 60 L1046 28 L620 28 L620 90"/></circle>
+            <!-- Meta data Moni toring API → MatrixOne Storage 底部 metadata 粒子 -->
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" path="M1046 460 L1046 492 L640 492 L640 474"/></circle>
+            <circle class="flow-particle"><animateMotion dur="5s" repeatCount="indefinite" begin="1.8s" path="M1046 460 L1046 492 L640 492 L640 474"/></circle>
+            <circle class="flow-particle"><animateMotion dur="4s" repeatCount="indefinite" path="M798 340 L798 388"/></circle>
+            <!-- Meta API → 右边两个模块 粒子（下层NetApp不连已删） -->
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" path="M1048 220 L1078 220"/></circle>
+            <circle class="flow-particle"><animateMotion dur="3s" repeatCount="indefinite" begin=".5s" path="M1048 340 L1078 340"/></circle>
           </svg>
         </div>
       </div>
@@ -3387,7 +4909,7 @@
     </div>
     <p class="sec-desc">LiSA 智能存储平台各功能模块的实际操作界面，涵盖数据访问、数据流转、数据分析、监控管理等核心页面。</p>
   </div>
-  <div class="shot-grid" id="shotGrid">
+  <div class="shot-grid collapsed" id="shotGrid">
     <div class="shot-card" data-index="0" data-src="截屏2026-08-06 11.56.53.png" data-caption="数据首页概览 · Dashboard"><div class="shot-img-wrap"><img src="截屏2026-08-06 11.56.53.png" alt="数据首页概览"></div><div class="shot-meta"><span class="shot-label">数据首页概览</span><span class="shot-tag">Dashboard</span></div></div>
     <div class="shot-card" data-index="1" data-src="截屏2026-08-12 11.14.34.png" data-caption="数据访问 · Access"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.14.34.png" alt="数据访问"></div><div class="shot-meta"><span class="shot-label">数据访问</span><span class="shot-tag">Access</span></div></div>
     <div class="shot-card" data-index="2" data-src="截屏2026-08-12 11.16.38.png" data-caption="数据流转 · Flow"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.16.38.png" alt="数据流转"></div><div class="shot-meta"><span class="shot-label">数据流转</span><span class="shot-tag">Flow</span></div></div>
@@ -3401,9 +4923,13 @@
     <div class="shot-card" data-index="10" data-src="截屏2026-08-12 11.18.46.png" data-caption="监控管理 · Monitor"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.18.46.png" alt="监控管理"></div><div class="shot-meta"><span class="shot-label">监控管理</span><span class="shot-tag">Monitor</span></div></div>
     <div class="shot-card" data-index="11" data-src="截屏2026-08-12 11.19.53.png" data-caption="元数据检索 · Search"><div class="shot-img-wrap"><img src="截屏2026-08-12 11.19.53.png" alt="元数据检索"></div><div class="shot-meta"><span class="shot-label">元数据检索</span><span class="shot-tag">Search</span></div></div>
   </div>
+  <div class="shot-toggle-wrap">
+    <button class="shot-toggle-btn" id="shotToggle">
+      <span class="shot-toggle-text">展开查看全部</span>
+      <span class="chev">▾</span>
+    </button>
+  </div>
 </section>
-
-<!-- ============ LIGHTBOX ============ -->
 <div class="lightbox" id="lightbox">
   <!-- SVG 大气磅礴流动光线层 -->
   <svg class="lb-svg-layer" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
@@ -3950,6 +5476,20 @@
           }
         },50);
       }
+    });
+  }
+
+  // screenshots collapse/expand toggle
+  const shotGrid=document.getElementById('shotGrid');
+  const shotToggle=document.getElementById('shotToggle');
+  if(shotGrid && shotToggle){
+    const shotText=shotToggle.querySelector('.shot-toggle-text');
+    const shotChev=shotToggle.querySelector('.chev');
+    shotToggle.addEventListener('click',()=>{
+      const collapsed=shotGrid.classList.toggle('collapsed');
+      shotToggle.classList.toggle('open',!collapsed);
+      shotText.textContent=collapsed?'展开查看全部':'收起';
+      shotChev.textContent=collapsed?'▾':'▴';
     });
   }
 </script>
