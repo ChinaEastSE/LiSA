@@ -170,8 +170,11 @@
 
   var scene=document.getElementById("scene");
   // Start entrance animation on next frame (ensure CSS is applied)
+  var entranceDone=false;
   requestAnimationFrame(function(){
     scene.classList.add("animate");
+    // Lock parallax until entrance animation finishes (2.5s)
+    setTimeout(function(){ entranceDone=true; },2600);
   });
 
   // ===== Throttled parallax with requestAnimationFrame =====
@@ -181,6 +184,7 @@
   var parallaxRunning=false;
 
   function onMove(e){
+    if(!entranceDone) return;
     targetMx=(e.clientX-window.innerWidth/2)/window.innerWidth;
     targetMy=(e.clientY-window.innerHeight/2)/window.innerHeight;
     if(!parallaxRunning){
