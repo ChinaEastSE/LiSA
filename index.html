@@ -177,19 +177,12 @@
   header.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 5vw 80px;overflow:hidden}
   header.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:180px;background:linear-gradient(180deg,transparent 0%,#050710 100%);z-index:1;pointer-events:none}
   [data-theme="light"] header.hero::after{background:linear-gradient(180deg,transparent 0%,#f1f4f9 100%)}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:#07091a overflow:hidden}
-  .hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 78% 50%,rgba(90,140,255,.12) 0%,transparent 55%),radial-gradient(ellipse 50% 50% at 70% 40%,rgba(139,123,255,.08) 0%,transparent 50%)}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.1) 0%,rgba(5,7,16,.35) 30%,rgba(6,8,18,.6) 60%,rgba(7,9,20,.8) 85%,#050710 100%)}
-  [data-theme="light"] .hero-bg{background:linear-gradient(135deg,#e8ecf5 0%,#d8dfe8 50%,#c8d0dc 100%)}
-  [data-theme="light"] .hero-bg::before{background:radial-gradient(ellipse 70% 80% at 78% 50%,rgba(90,140,255,.18) 0%,transparent 55%),radial-gradient(ellipse 50% 50% at 70% 40%,rgba(139,123,255,.12) 0%,transparent 50%)}
-  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(30,35,50,.25) 0%,rgba(25,30,45,.38) 30%,rgba(20,25,38,.55) 60%,rgba(15,18,28,.65) 85%,#f1f4f9 100%)}
-  .hero-svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
-  [data-theme="light"] .hero-svg .grid-lines{stroke:rgba(90,140,255,.08)}
-  [data-theme="light"] .hero-svg text{fill:rgba(40,50,80,.7)!important}
-  [data-theme="light"] .hero-svg .node-label{fill:rgba(40,50,80,.7)!important}
-  [data-theme="light"] .hero-svg .node-sub{fill:rgba(40,50,80,.45)!important}
-  [data-theme="light"] .hero-svg .hub-text{fill:rgba(255,255,255,.95)!important}
-  [data-theme="light"] .hero-svg .hub-sub{fill:rgba(255,255,255,.75)!important}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:url('assets/111-opt.jpg') center/cover no-repeat;filter:contrast(1.05) saturate(1.08) brightness(.72)}
+  .hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.02) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.015) 0%,transparent 55%)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,16,.15) 0%,rgba(5,7,16,.3) 25%,rgba(6,8,18,.5) 55%,rgba(8,10,24,.7) 80%,#050710 100%)}
+  [data-theme="light"] .hero-bg{filter:contrast(1.05) saturate(1.08) brightness(.9)}
+  [data-theme="light"] .hero-bg::before{background:radial-gradient(ellipse 80% 60% at 25% 55%,rgba(61,240,255,.05) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 75% 35%,rgba(139,123,255,.03) 0%,transparent 55%)}
+  [data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,rgba(20,20,30,.4) 0%,rgba(18,18,28,.52) 25%,rgba(15,15,24,.62) 55%,rgba(12,12,22,.72) 82%,rgba(12,12,22,.58) 90%,#f1f4f9 100%)}
   [data-theme="light"] .hero-cn{color:#fff;border-top-color:rgba(255,255,255,.35);text-shadow:0 2px 20px rgba(0,0,0,.55)}
   [data-theme="light"] .hero-sub{color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(0,0,0,.45)}
   [data-theme="light"] .hero-sub b{color:#fff}
@@ -277,10 +270,13 @@
   .product-text p b{color:var(--ink);font-weight:500}
   .product-text .lead{font-family:"Noto Serif SC",serif;font-size:22px;line-height:1.7;color:var(--ink);margin-bottom:32px;border-left:2px solid var(--cyan);padding-left:26px}
   .product-visual{position:relative;display:grid;place-items:center;margin-top:-72px}
-  .product-visual img{width:100%;max-width:520px;height:auto}
-  .product-visual .img-light{display:none}
-  [data-theme="light"] .product-visual .img-dark{display:none}
-  [data-theme="light"] .product-visual .img-light{display:block}
+  .product-visual svg{width:100%;max-width:560px;height:auto}
+  .product-visual .pv-label{font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em}
+  [data-theme="light"] .product-visual svg text{fill:rgba(40,50,80,.75)!important}
+  [data-theme="light"] .product-visual .pv-grid{stroke:rgba(90,140,255,.12)!important}
+  [data-theme="light"] .product-visual svg circle[stroke="#5a8cff"]{stroke:#5a8cff!important;stroke-opacity:.6!important}
+  [data-theme="light"] .product-visual svg circle[stroke="#8b7aff"]{stroke:#8b7aff!important;stroke-opacity:.6!important}
+  [data-theme="light"] .product-visual svg circle[stroke="#f5c87a"]{stroke:#d4a84a!important;stroke-opacity:.6!important}
   .ring{position:absolute;border-radius:50%;border:1px solid var(--line);inset:0}
   .ring.r2{inset:14%}.ring.r3{inset:28%}.ring.r4{inset:42%}
   .ring.spin{animation:spin 40s linear infinite;border-style:dashed;border-color:var(--line-strong)}
@@ -1952,224 +1948,6 @@
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-bg"></div>
-  <svg class="hero-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#5a8cff" stop-opacity=".45"/>
-        <stop offset="40%" stop-color="#8b7aff" stop-opacity=".25"/>
-        <stop offset="100%" stop-color="#00d4c0" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#00d4c0" stop-opacity=".6"/>
-        <stop offset="100%" stop-color="#00d4c0" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="nodeGlow2" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#8b7aff" stop-opacity=".55"/>
-        <stop offset="100%" stop-color="#8b7aff" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="nodeGlow3" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#f5c87a" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#f5c87a" stop-opacity="0"/>
-      </radialGradient>
-      <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#5a8cff" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#5a8cff" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#8b7aff" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#00d4c0" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#00d4c0" stop-opacity=".4"/>
-        <stop offset="100%" stop-color="#5a8cff" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="hubCore" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#6a9fff"/>
-        <stop offset="50%" stop-color="#8b7aff"/>
-        <stop offset="100%" stop-color="#00d4c0"/>
-      </linearGradient>
-      <linearGradient id="particleTrail" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#00d4c0" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#00d4c0" stop-opacity=".9"/>
-      </linearGradient>
-      <filter id="glow" x="-200%" y="-200%" width="400%" height="400%">
-        <feGaussianBlur stdDeviation="4" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="glowSm" x="-200%" y="-200%" width="400%" height="400%">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="hubBlur" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="18"/>
-      </filter>
-    </defs>
-
-    <!-- Grid subtle lines -->
-    <g opacity=".15" stroke="#5a8cff" stroke-width=".5">
-      <line x1="0" y1="200" x2="1600" y2="200"/>
-      <line x1="0" y1="400" x2="1600" y2="400"/>
-      <line x1="0" y1="600" x2="1600" y2="600"/>
-      <line x1="0" y1="800" x2="1600" y2="800"/>
-      <line x1="200" y1="0" x2="200" y2="900"/>
-      <line x1="400" y1="0" x2="400" y2="900"/>
-      <line x1="600" y1="0" x2="600" y2="900"/>
-      <line x1="800" y1="0" x2="800" y2="900"/>
-      <line x1="1000" y1="0" x2="1000" y2="900"/>
-      <line x1="1200" y1="0" x2="1200" y2="900"/>
-      <line x1="1400" y1="0" x2="1400" y2="900"/>
-    </g>
-
-    <!-- Concentric rings around hub -->
-    <g transform="translate(1100 480)" fill="none" stroke="#5a8cff" stroke-width="1" opacity=".25">
-      <circle r="120"><animate attributeName="r" values="100;140;100" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;.12;.3" dur="6s" repeatCount="indefinite"/></circle>
-      <circle r="200"><animate attributeName="r" values="180;230;180" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;.08;.25" dur="8s" repeatCount="indefinite"/></circle>
-      <circle r="300"><animate attributeName="r" values="270;330;270" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values=".18;.05;.18" dur="10s" repeatCount="indefinite"/></circle>
-      <circle r="420"><animate attributeName="r" values="380;460;380" dur="12s" repeatCount="indefinite"/><animate attributeName="opacity" values=".12;.03;.12" dur="12s" repeatCount="indefinite"/></circle>
-    </g>
-
-    <!-- Hub glow behind -->
-    <circle cx="1100" cy="480" r="180" fill="url(#hubGlow)" filter="url(#hubBlur)"/>
-
-    <!-- Connection lines from hub to storage tiers -->
-    <g stroke="url(#lineGrad1)" stroke-width="1.2" fill="none" opacity=".45">
-      <!-- Hot storage (top) -->
-      <path d="M1100,480 Q1050,380 900,250"><animate attributeName="opacity" values=".25;.55;.25" dur="4s" repeatCount="indefinite"/></path>
-      <!-- Warm storage -->
-      <path d="M1100,480 Q980,430 820,420"><animate attributeName="opacity" values=".3;.6;.3" dur="3.5s" repeatCount="indefinite"/></path>
-      <!-- Cold/Archive -->
-      <path d="M1100,480 Q1020,580 880,720"><animate attributeName="opacity" values=".2;.5;.2" dur="5s" repeatCount="indefinite"/></path>
-      <!-- Left data source -->
-      <path d="M1100,480 Q900,350 550,380"><animate attributeName="opacity" values=".3;.55;.3" dur="4.5s" repeatCount="indefinite"/></path>
-      <!-- Cloud -->
-      <path d="M1100,480 Q1200,350 1400,280"><animate attributeName="opacity" values=".25;.5;.25" dur="4.2s" repeatCount="indefinite"/></path>
-      <!-- Tape -->
-      <path d="M1100,480 Q1200,600 1400,650"><animate attributeName="opacity" values=".2;.45;.2" dur="5.5s" repeatCount="indefinite"/></path>
-      <!-- Bottom data flow -->
-      <path d="M1100,480 Q950,600 680,700"><animate attributeName="opacity" values=".22;.48;.22" dur="4.8s" repeatCount="indefinite"/></path>
-    </g>
-
-    <!-- Hub center: AI metadata engine -->
-    <g transform="translate(1100 480)">
-      <circle r="50" fill="url(#hubCore)" filter="url(#glow)"><animate attributeName="r" values="48;54;48" dur="3s" repeatCount="indefinite"/></circle>
-      <circle r="32" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><animate attributeName="r" values="30;38;30" dur="3s" repeatCount="indefinite"/></circle>
-      <circle r="18" fill="rgba(255,255,255,.3)"><animate attributeName="r" values="16;22;16" dur="3s" repeatCount="indefinite"/></circle>
-      <text y="6" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="var(--ff-mono)" letter-spacing=".1em">LiSA</text>
-      <text y="22" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="8" font-family="var(--ff-mono)" letter-spacing=".08em">META ENGINE</text>
-    </g>
-
-    <!-- Storage nodes -->
-    <!-- 1. Hot Storage (ONTAP) -->
-    <g transform="translate(900 250)">
-      <circle r="28" fill="url(#nodeGlow)" transform="scale(2.2)"/><circle r="28" fill="#0a0e22" stroke="#5a8cff" stroke-width="1.5" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="3s" repeatCount="indefinite"/></circle>
-      <circle r="12" fill="#5a8cff" opacity=".7"><animate attributeName="r" values="10;14;10" dur="3s" repeatCount="indefinite"/></circle>
-      <text y="-40" text-anchor="middle" fill="rgba(200,220,255,.85)" font-size="10" font-weight="600" font-family="var(--ff-mono)">HOT · ONTAP</text>
-      <text y="-28" text-anchor="middle" fill="rgba(200,220,255,.5)" font-size="7" font-family="var(--ff-mono)">Flash Storage</text>
-    </g>
-
-    <!-- 2. Warm Storage (DXN) -->
-    <g transform="translate(820 420)">
-      <circle r="22" fill="url(#nodeGlow2)" transform="scale(2.2)"/><circle r="22" fill="#0a0e22" stroke="#8b7aff" stroke-width="1.5" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="3.5s" repeatCount="indefinite"/></circle>
-      <circle r="9" fill="#8b7aff" opacity=".7"><animate attributeName="r" values="7;11;7" dur="3.5s" repeatCount="indefinite"/></circle>
-      <text y="-34" text-anchor="middle" fill="rgba(210,200,255,.85)" font-size="10" font-weight="600" font-family="var(--ff-mono)">WARM · DXN</text>
-      <text y="-22" text-anchor="middle" fill="rgba(210,200,255,.5)" font-size="7" font-family="var(--ff-mono)">Hybrid Storage</text>
-    </g>
-
-    <!-- 3. Cold Storage -->
-    <g transform="translate(880 720)">
-      <circle r="24" fill="url(#nodeGlow3)" transform="scale(2.2)"/><circle r="24" fill="#0a0e22" stroke="#f5c87a" stroke-width="1.5" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="4s" repeatCount="indefinite"/></circle>
-      <circle r="10" fill="#f5c87a" opacity=".7"><animate attributeName="r" values="8;12;8" dur="4s" repeatCount="indefinite"/></circle>
-      <text y="-36" text-anchor="middle" fill="rgba(255,220,180,.85)" font-size="10" font-weight="600" font-family="var(--ff-mono)">COLD · S3</text>
-      <text y="-24" text-anchor="middle" fill="rgba(255,220,180,.5)" font-size="7" font-family="var(--ff-mono)">Object Storage</text>
-    </g>
-
-    <!-- 4. Data Source (Factory) -->
-    <g transform="translate(550 380)">
-      <circle r="20" fill="url(#nodeGlow)" transform="scale(2)"/><circle r="20" fill="#0a0e22" stroke="#00d4c0" stroke-width="1.2" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".3;.7;.3" dur="2.8s" repeatCount="indefinite"/></circle>
-      <circle r="8" fill="#00d4c0" opacity=".6"><animate attributeName="r" values="6;10;6" dur="2.8s" repeatCount="indefinite"/></circle>
-      <text y="-30" text-anchor="middle" fill="rgba(180,240,230,.85)" font-size="9" font-weight="600" font-family="var(--ff-mono)">DATA SOURCE</text>
-      <text y="-20" text-anchor="middle" fill="rgba(180,240,230,.5)" font-size="6" font-family="var(--ff-mono)">Files / Objects</text>
-    </g>
-
-    <!-- 5. Cloud -->
-    <g transform="translate(1400 280)">
-      <circle r="18" fill="url(#nodeGlow2)" transform="scale(2)"/><circle r="18" fill="#0a0e22" stroke="#8b7aff" stroke-width="1.2" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".3;.7;.3" dur="3.2s" repeatCount="indefinite"/></circle>
-      <circle r="7" fill="#8b7aff" opacity=".6"><animate attributeName="r" values="5;9;5" dur="3.2s" repeatCount="indefinite"/></circle>
-      <text y="-28" text-anchor="middle" fill="rgba(210,200,255,.85)" font-size="9" font-weight="600" font-family="var(--ff-mono)">CLOUD</text>
-      <text y="-18" text-anchor="middle" fill="rgba(210,200,255,.5)" font-size="6" font-family="var(--ff-mono)">AWS / Azure</text>
-    </g>
-
-    <!-- 6. Tape Library -->
-    <g transform="translate(1400 650)">
-      <circle r="18" fill="url(#nodeGlow3)" transform="scale(2)"/><circle r="18" fill="#0a0e22" stroke="#f5c87a" stroke-width="1.2" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".3;.7;.3" dur="4.5s" repeatCount="indefinite"/></circle>
-      <circle r="7" fill="#f5c87a" opacity=".6"><animate attributeName="r" values="5;9;5" dur="4.5s" repeatCount="indefinite"/></circle>
-      <text y="-28" text-anchor="middle" fill="rgba(255,220,180,.85)" font-size="9" font-weight="600" font-family="var(--ff-mono)">TAPE</text>
-      <text y="-18" text-anchor="middle" fill="rgba(255,220,180,.5)" font-size="6" font-family="var(--ff-mono)">Archive</text>
-    </g>
-
-    <!-- 7. Edge/Bottom node -->
-    <g transform="translate(680 700)">
-      <circle r="18" fill="url(#nodeGlow)" transform="scale(2)"/><circle r="18" fill="#0a0e22" stroke="#00d4c0" stroke-width="1.2" filter="url(#glowSm)"><animate attributeName="stroke-opacity" values=".3;.7;.3" dur="3.6s" repeatCount="indefinite"/></circle>
-      <circle r="7" fill="#00d4c0" opacity=".6"><animate attributeName="r" values="5;9;5" dur="3.6s" repeatCount="indefinite"/></circle>
-      <text y="-28" text-anchor="middle" fill="rgba(180,240,230,.85)" font-size="9" font-weight="600" font-family="var(--ff-mono)">EDGE</text>
-      <text y="-18" text-anchor="middle" fill="rgba(180,240,230,.5)" font-size="6" font-family="var(--ff-mono)">Smart Agent</text>
-    </g>
-
-    <!-- Animated particles flowing along connections -->
-    <!-- Particle 1: hot path -->
-    <g fill="#00d4c0" filter="url(#glowSm)">
-      <circle r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M900,250 Q1050,380 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="4s" repeatCount="indefinite" begin="-1s" path="M900,250 Q1050,380 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
-      <circle r="2.5"><animateMotion dur="4s" repeatCount="indefinite" begin="-2s" path="M900,250 Q1050,380 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 2: warm path -->
-    <g fill="#8b7aff" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="3.5s" repeatCount="indefinite" path="M820,420 Q980,430 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3.5s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="3.5s" repeatCount="indefinite" begin="-1.2s" path="M820,420 Q980,430 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3.5s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 3: cold/archive path -->
-    <g fill="#f5c87a" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="5s" repeatCount="indefinite" path="M880,720 Q1020,580 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="5s" repeatCount="indefinite" begin="-1.5s" path="M880,720 Q1020,580 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 4: data source -->
-    <g fill="#00d4c0" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="4.5s" repeatCount="indefinite" path="M550,380 Q900,350 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.5s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s" path="M550,380 Q900,350 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.5s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-3s" path="M550,380 Q900,350 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.5s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 5: cloud bidirectional -->
-    <g fill="#8b7aff" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="4.2s" repeatCount="indefinite" path="M1400,280 Q1200,350 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.2s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="4.2s" repeatCount="indefinite" begin="-2s" path="M1100,480 Q1200,350 1400,280"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.2s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 6: tape archive -->
-    <g fill="#f5c87a" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="5.5s" repeatCount="indefinite" path="M1400,650 Q1200,600 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5.5s" repeatCount="indefinite"/></circle>
-    </g>
-    <!-- Particle 7: edge -->
-    <g fill="#00d4c0" filter="url(#glowSm)">
-      <circle r="2.5"><animateMotion dur="4.8s" repeatCount="indefinite" path="M680,700 Q950,600 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.8s" repeatCount="indefinite"/></circle>
-      <circle r="2"><animateMotion dur="4.8s" repeatCount="indefinite" begin="-1.6s" path="M680,700 Q950,600 1100,480"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.8s" repeatCount="indefinite"/></circle>
-    </g>
-
-    <!-- Small orbiting dots around hub -->
-    <g transform="translate(1100 480)">
-      <circle r="2" fill="#00d4c0" filter="url(#glowSm)"><animateMotion dur="12s" repeatCount="indefinite" path="M0,-200 A200,200 0 1,1 -200,0 A200,200 0 1,1 0,-200"/></circle>
-      <circle r="1.5" fill="#8b7aff" filter="url(#glowSm)"><animateMotion dur="15s" repeatCount="indefinite" path="M0,-240 A240,240 0 1,1 -240,0 A240,240 0 1,1 0,-240"/></circle>
-      <circle r="1.5" fill="#f5c87a" filter="url(#glowSm)"><animateMotion dur="18s" repeatCount="indefinite" path="M0,-160 A160,160 0 1,0 160,0 A160,160 0 1,0 0,-160"/></circle>
-    </g>
-
-    <!-- Floating micro particles -->
-    <g opacity=".5">
-      <circle cx="300" cy="150" r="1.5" fill="#5a8cff"><animate attributeName="cy" values="150;120;150" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;.8;.3" dur="8s" repeatCount="indefinite"/></circle>
-      <circle cx="200" cy="500" r="1" fill="#00d4c0"><animate attributeName="cy" values="500;460;500" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;.6;.2" dur="10s" repeatCount="indefinite"/></circle>
-      <circle cx="350" cy="750" r="1.2" fill="#8b7aff"><animate attributeName="cy" values="750;710;750" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;.7;.25" dur="9s" repeatCount="indefinite"/></circle>
-      <circle cx="1350" cy="150" r="1" fill="#00d4c0"><animate attributeName="cy" values="150;125;150" dur="11s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;.65;.2" dur="11s" repeatCount="indefinite"/></circle>
-      <circle cx="1500" cy="500" r="1.5" fill="#5a8cff"><animate attributeName="cy" values="500;470;500" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;.75;.3" dur="7s" repeatCount="indefinite"/></circle>
-      <circle cx="1450" cy="800" r="1" fill="#f5c87a"><animate attributeName="cy" values="800;770;800" dur="12s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;.55;.2" dur="12s" repeatCount="indefinite"/></circle>
-      <circle cx="100" cy="300" r="1" fill="#8b7aff"><animate attributeName="cy" values="300;275;300" dur="9.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;.6;.25" dur="9.5s" repeatCount="indefinite"/></circle>
-      <circle cx="500" cy="100" r="1.3" fill="#00d4c0"><animate attributeName="cy" values="100;80;100" dur="8.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;.7;.3" dur="8.5s" repeatCount="indefinite"/></circle>
-    </g>
-  </svg>
   <div class="hero-inner">
     <h1 class="title">
       <span class="l">L</span><span class="i">i</span><span class="sa">SA</span>
@@ -2206,8 +1984,120 @@
       <p>兼容 NetApp AIDE，让数据 <b>AI-Ready</b>，无缝对接 nVidia AIDP / Matrix ONE 等AI引擎。</p>
     </div>
     <div class="product-visual reveal">
-      <img src="assets/product-udm.svg" alt="LiSA UDM 统一数据管理方案" class="img-dark" />
-      <img src="assets/product-udm-light.svg" alt="LiSA UDM 统一数据管理方案" class="img-light" />
+      <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="pHubGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#5a8cff" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#00d4c0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="pHubCore" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6a9fff"/>
+            <stop offset="50%" stop-color="#8b7aff"/>
+            <stop offset="100%" stop-color="#00d4c0"/>
+          </linearGradient>
+          <filter id="pGlow" x="-200%" y="-200%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="pGlowSm" x="-200%" y="-200%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="1.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="pHubBlur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12"/>
+          </filter>
+        </defs>
+
+        <!-- Background grid -->
+        <g opacity=".08" stroke="currentColor" stroke-width=".5" class="pv-grid">
+          <line x1="0" y1="100" x2="600" y2="100"/>
+          <line x1="0" y1="200" x2="600" y2="200"/>
+          <line x1="0" y1="300" x2="600" y2="300"/>
+          <line x1="0" y1="400" x2="600" y2="400"/>
+          <line x1="100" y1="0" x2="100" y2="500"/>
+          <line x1="200" y1="0" x2="200" y2="500"/>
+          <line x1="300" y1="0" x2="300" y2="500"/>
+          <line x1="400" y1="0" x2="400" y2="500"/>
+          <line x1="500" y1="0" x2="500" y2="500"/>
+        </g>
+
+        <!-- Concentric rings -->
+        <g transform="translate(340 260)" fill="none" stroke="#5a8cff" stroke-width=".8" opacity=".35">
+          <circle r="80"><animate attributeName="r" values="70;95;70" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.15;.4" dur="5s" repeatCount="indefinite"/></circle>
+          <circle r="130"><animate attributeName="r" values="115;150;115" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;.1;.3" dur="7s" repeatCount="indefinite"/></circle>
+          <circle r="190"><animate attributeName="r" values="170;210;170" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;.06;.2" dur="9s" repeatCount="indefinite"/></circle>
+        </g>
+
+        <!-- Hub glow -->
+        <circle cx="340" cy="260" r="100" fill="url(#pHubGlow)" filter="url(#pHubBlur)"/>
+
+        <!-- Connection lines -->
+        <g stroke="#5a8cff" stroke-width="1" fill="none" opacity=".35">
+          <path d="M340,260 Q280,180 180,130"><animate attributeName="opacity" values=".2;.5;.2" dur="4s" repeatCount="indefinite"/></path>
+          <path d="M340,260 Q300,250 220,250"><animate attributeName="opacity" values=".25;.55;.25" dur="3.5s" repeatCount="indefinite"/></path>
+          <path d="M340,260 Q290,330 210,380"><animate attributeName="opacity" values=".2;.45;.2" dur="5s" repeatCount="indefinite"/></path>
+          <path d="M340,260 Q400,200 490,170"><animate attributeName="opacity" values=".2;.45;.2" dur="4.2s" repeatCount="indefinite"/></path>
+          <path d="M340,260 Q400,320 480,370"><animate attributeName="opacity" values=".2;.4;.2" dur="5.5s" repeatCount="indefinite"/></path>
+        </g>
+
+        <!-- Hub center: AI Engine -->
+        <g transform="translate(340 260)">
+          <circle r="32" fill="url(#pHubCore)" filter="url(#pGlow)"><animate attributeName="r" values="30;34;30" dur="3s" repeatCount="indefinite"/></circle>
+          <circle r="20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2"><animate attributeName="r" values="18;22;18" dur="3s" repeatCount="indefinite"/></circle>
+          <text y="4" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="var(--ff-mono)">LiSA</text>
+          <text y="16" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="6" font-family="var(--ff-mono)" class="pv-label">META ENGINE</text>
+        </g>
+
+        <!-- Node 1: Hot Storage (left-top) -->
+        <g transform="translate(180 130)">
+          <circle r="18" fill="#0a0e22" stroke="#5a8cff" stroke-width="1.2" filter="url(#pGlowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="3s" repeatCount="indefinite"/></circle>
+          <circle r="7" fill="#5a8cff" opacity=".7"><animate attributeName="r" values="5;9;5" dur="3s" repeatCount="indefinite"/></circle>
+          <text y="-24" text-anchor="middle" fill="currentColor" font-size="7" font-weight="600" font-family="var(--ff-mono)" class="pv-label">HOT · ONTAP</text>
+        </g>
+
+        <!-- Node 2: Warm Storage (left) -->
+        <g transform="translate(220 250)">
+          <circle r="14" fill="#0a0e22" stroke="#8b7aff" stroke-width="1.2" filter="url(#pGlowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="3.5s" repeatCount="indefinite"/></circle>
+          <circle r="5" fill="#8b7aff" opacity=".7"><animate attributeName="r" values="4;7;4" dur="3.5s" repeatCount="indefinite"/></circle>
+          <text y="-20" text-anchor="middle" fill="currentColor" font-size="6" font-weight="600" font-family="var(--ff-mono)" class="pv-label">WARM · DXN</text>
+        </g>
+
+        <!-- Node 3: Cold Storage (left-bottom) -->
+        <g transform="translate(210 380)">
+          <circle r="15" fill="#0a0e22" stroke="#f5c87a" stroke-width="1.2" filter="url(#pGlowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="4s" repeatCount="indefinite"/></circle>
+          <circle r="6" fill="#f5c87a" opacity=".7"><animate attributeName="r" values="4;8;4" dur="4s" repeatCount="indefinite"/></circle>
+          <text y="-22" text-anchor="middle" fill="currentColor" font-size="6" font-weight="600" font-family="var(--ff-mono)" class="pv-label">COLD · S3</text>
+        </g>
+
+        <!-- Node 4: Cloud (right-top) -->
+        <g transform="translate(490 170)">
+          <circle r="14" fill="#0a0e22" stroke="#8b7aff" stroke-width="1.2" filter="url(#pGlowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="3.2s" repeatCount="indefinite"/></circle>
+          <circle r="5" fill="#8b7aff" opacity=".7"><animate attributeName="r" values="4;7;4" dur="3.2s" repeatCount="indefinite"/></circle>
+          <text y="-20" text-anchor="middle" fill="currentColor" font-size="6" font-weight="600" font-family="var(--ff-mono)" class="pv-label">CLOUD</text>
+        </g>
+
+        <!-- Node 5: Tape/Archive (right-bottom) -->
+        <g transform="translate(480 370)">
+          <circle r="14" fill="#0a0e22" stroke="#f5c87a" stroke-width="1.2" filter="url(#pGlowSm)"><animate attributeName="stroke-opacity" values=".4;.8;.4" dur="4.5s" repeatCount="indefinite"/></circle>
+          <circle r="5" fill="#f5c87a" opacity=".7"><animate attributeName="r" values="4;7;4" dur="4.5s" repeatCount="indefinite"/></circle>
+          <text y="-20" text-anchor="middle" fill="currentColor" font-size="6" font-weight="600" font-family="var(--ff-mono)" class="pv-label">TAPE</text>
+        </g>
+
+        <!-- Animated particles -->
+        <g filter="url(#pGlowSm)">
+          <circle r="2" fill="#5a8cff"><animateMotion dur="4s" repeatCount="indefinite" path="M180,130 Q280,180 340,260"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
+          <circle r="1.5" fill="#8b7aff"><animateMotion dur="3.5s" repeatCount="indefinite" path="M220,250 Q300,250 340,260"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3.5s" repeatCount="indefinite"/></circle>
+          <circle r="1.5" fill="#f5c87a"><animateMotion dur="5s" repeatCount="indefinite" path="M210,380 Q290,330 340,260"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5s" repeatCount="indefinite"/></circle>
+          <circle r="1.5" fill="#8b7aff"><animateMotion dur="4.2s" repeatCount="indefinite" path="M490,170 Q400,200 340,260"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.2s" repeatCount="indefinite"/></circle>
+          <circle r="1.5" fill="#f5c87a"><animateMotion dur="5.5s" repeatCount="indefinite" path="M480,370 Q400,320 340,260"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5.5s" repeatCount="indefinite"/></circle>
+        </g>
+
+        <!-- Orbiting dot -->
+        <g transform="translate(340 260)">
+          <circle r="1.5" fill="#00d4c0" filter="url(#pGlowSm)"><animateMotion dur="14s" repeatCount="indefinite" path="M0,-110 A110,110 0 1,1 -110,0 A110,110 0 1,1 0,-110"/></circle>
+          <circle r="1" fill="#8b7aff" filter="url(#pGlowSm)"><animateMotion dur="10s" repeatCount="indefinite" path="M0,-80 A80,80 0 1,0 80,0 A80,80 0 1,0 0,-80"/></circle>
+        </g>
+      </svg>
     </div>
   </div>
 </section>
