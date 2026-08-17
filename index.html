@@ -1980,181 +1980,404 @@
       <p>兼容 NetApp AIDE，让数据 <b>AI-Ready</b>，无缝对接 nVidia AIDP / Matrix ONE 等AI引擎。</p>
     </div>
     <div class="product-visual reveal">
-      <svg viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="pvHubCore" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="var(--pv-hub1)"/>
-            <stop offset="50%" stop-color="var(--pv-hub2)"/>
-            <stop offset="100%" stop-color="var(--pv-hub3)"/>
+          <!-- ===== Sci-Fi hex grid pattern (科技感六边形背景，稀疏克制) ===== -->
+          <pattern id="pvHex" x="0" y="0" width="56" height="48.5" patternUnits="userSpaceOnUse">
+            <path d="M28 0 L56 16 L56 32.5 L28 48.5 L0 32.5 L0 16 Z" fill="none" stroke="var(--pv-grid)" stroke-width="0.6"/>
+          </pattern>
+          <rect id="pvHexBg" x="0" y="0" width="800" height="700" fill="url(#pvHex)" opacity=".35"/>
+
+          <!-- ===== Gradients ===== -->
+          <radialGradient id="pvCoreGlow" cx="50%" cy="40%" r="65%">
+            <stop offset="0%"  stop-color="#ffe4a8" stop-opacity=".6"/>
+            <stop offset="35%" stop-color="var(--pv-line3)" stop-opacity=".4"/>
+            <stop offset="70%" stop-color="var(--pv-line2)" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="var(--pv-hub1)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="pvCoreBall" x1="20%" y1="10%" x2="80%" y2="90%">
+            <stop offset="0%"  stop-color="#fff5d8"/>
+            <stop offset="28%" stop-color="var(--pv-orange)"/>
+            <stop offset="58%" stop-color="var(--pv-line2)"/>
+            <stop offset="100%" stop-color="var(--pv-hub1)"/>
           </linearGradient>
-          <filter id="pvShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="var(--pv-hub1)" flood-opacity=".15"/>
+          <linearGradient id="pvCardFace" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"  stop-color="var(--pv-card)"/>
+            <stop offset="100%" stop-color="var(--pv-card2, var(--pv-card))"/>
+          </linearGradient>
+
+          <!-- ===== Glow filters for sci-fi energy lines ===== -->
+          <filter id="pvNeonLine" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="2.4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
+          <filter id="pvNeonCore" x="-160%" y="-160%" width="420%" height="420%">
+            <feGaussianBlur stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="pvCard3D" x="-10%" y="-10%" width="130%" height="140%">
+            <feDropShadow dx="3" dy="5" stdDeviation="6" flood-color="#000" flood-opacity=".18"/>
+          </filter>
+
+          <!-- ===== 3D card thickness: offset dark + bottom bevel ===== -->
+          <symbol id="pvCard3D">
+            <!-- painted by caller with x,y,w,h,corner,color args via transform/use + style override -->
+          </symbol>
         </defs>
 
-        <!-- ========== TOP: DATA SOURCES (非结构化数据 only) ========== -->
+        <!-- ======== LAYER 0: Sci-Fi hex backdrop ======== -->
+        <use href="#pvHexBg"/>
+        <!-- soft vignette to frame architecture (very subtle) -->
+        <radialGradient id="pvVign" cx="50%" cy="52%" r="70%">
+          <stop offset="60%" stop-color="rgba(0,0,0,0)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,.05)"/>
+        </radialGradient>
+        <rect x="0" y="0" width="800" height="700" fill="url(#pvVign)" pointer-events="none"/>
+
+        <!-- ================================================================ -->
+        <!--  TOP: DATA SOURCES  (3 cards with 3D thickness + corner accents)  -->
+        <!-- ================================================================ -->
+        <!-- FILES -->
         <g>
-          <rect x="60" y="40" width="180" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvShadow)"/>
+          <!-- 3D bottom+right thickness -->
+          <rect x="64" y="45" width="180" height="100" rx="12" fill="rgba(0,0,0,.12)"/>
+          <!-- face -->
+          <rect x="60" y="40" width="180" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvCard3D)"/>
+          <!-- accent bar (left) + sci-fi corner mark -->
           <rect x="60" y="40" width="5" height="100" rx="2" fill="var(--pv-line)"/>
-          <text x="150" y="75" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">FILES</text>
-          <text x="150" y="102" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">NAS / SMB / NFS</text>
-          <text x="150" y="125" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">分布式文件</text>
+          <path d="M60 40 L78 40 M60 40 L60 58" stroke="var(--pv-line)" stroke-width="2" fill="none" opacity=".75"/>
+          <path d="M240 140 L222 140 M240 140 L240 122" stroke="var(--pv-line)" stroke-width="2" fill="none" opacity=".75"/>
+          <!-- icon: file stack -->
+          <g transform="translate(88 58)" opacity=".9">
+            <rect width="14" height="18" rx="2" fill="var(--pv-line)" opacity=".25" stroke="var(--pv-line)" stroke-width="1"/>
+            <rect x="2.5" y="2.5" width="14" height="18" rx="2" fill="var(--pv-card)" stroke="var(--pv-line)" stroke-width="1"/>
+            <rect x="5" y="7.5" width="9" height="1.2" fill="var(--pv-line)"/>
+            <rect x="5" y="10.5" width="7" height="1.2" fill="var(--pv-line)" opacity=".7"/>
+          </g>
+          <text x="150" y="76" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">FILES</text>
+          <text x="150" y="103" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">NAS / SMB / NFS</text>
+          <text x="150" y="126" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">分布式文件</text>
         </g>
+
+        <!-- OBJECTS -->
         <g>
-          <rect x="280" y="40" width="180" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvShadow)"/>
+          <rect x="284" y="45" width="180" height="100" rx="12" fill="rgba(0,0,0,.12)"/>
+          <rect x="280" y="40" width="180" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvCard3D)"/>
           <rect x="280" y="40" width="5" height="100" rx="2" fill="var(--pv-line2)"/>
-          <text x="370" y="75" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">OBJECTS</text>
-          <text x="370" y="102" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">S3 / SWIFT</text>
-          <text x="370" y="125" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">对象存储</text>
+          <path d="M280 40 L298 40 M280 40 L280 58" stroke="var(--pv-line2)" stroke-width="2" fill="none" opacity=".75"/>
+          <path d="M460 140 L442 140 M460 140 L460 122" stroke="var(--pv-line2)" stroke-width="2" fill="none" opacity=".75"/>
+          <!-- icon: hex object node -->
+          <g transform="translate(306 58)" opacity=".92">
+            <path d="M7 0 L14 4 L14 12 L7 16 L0 12 L0 4 Z" fill="rgba(139,122,255,.25)" stroke="var(--pv-line2)" stroke-width="1"/>
+            <circle cx="7" cy="8" r="1.8" fill="var(--pv-line2)"/>
+          </g>
+          <text x="370" y="76" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">OBJECTS</text>
+          <text x="370" y="103" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">S3 / SWIFT</text>
+          <text x="370" y="126" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">对象存储</text>
         </g>
+
+        <!-- IMAGES -->
         <g>
-          <rect x="500" y="40" width="190" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvShadow)"/>
+          <rect x="504" y="45" width="190" height="100" rx="12" fill="rgba(0,0,0,.12)"/>
+          <rect x="500" y="40" width="190" height="100" rx="12" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.2" filter="url(#pvCard3D)"/>
           <rect x="500" y="40" width="5" height="100" rx="2" fill="var(--pv-orange)"/>
-          <text x="595" y="75" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">IMAGES</text>
-          <text x="595" y="102" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">图片 / 视频 / 文档</text>
-          <text x="595" y="125" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">质检 / 非结构化</text>
+          <path d="M500 40 L518 40 M500 40 L500 58" stroke="var(--pv-orange)" stroke-width="2" fill="none" opacity=".8"/>
+          <path d="M690 140 L672 140 M690 140 L690 122" stroke="var(--pv-orange)" stroke-width="2" fill="none" opacity=".8"/>
+          <!-- icon: image aperture -->
+          <g transform="translate(526 58)" opacity=".92">
+            <rect width="16" height="16" rx="2" fill="rgba(232,149,96,.2)" stroke="var(--pv-orange)" stroke-width="1"/>
+            <circle cx="8" cy="9" r="3.2" fill="none" stroke="var(--pv-orange)" stroke-width="1"/>
+            <path d="M8 2 L8 5 M14 9 L11 9 M12.3 3.7 L10.3 5.1 M3.7 3.7 L5.7 5.1" stroke="var(--pv-orange)" stroke-width="1"/>
+          </g>
+          <text x="595" y="76" text-anchor="middle" fill="var(--pv-text)" font-size="19" font-weight="700" font-family="var(--ff-mono)">IMAGES</text>
+          <text x="595" y="103" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">图片 / 视频 / 文档</text>
+          <text x="595" y="126" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">质检 / 非结构化</text>
         </g>
 
-        <!-- Simple arrows: SOURCES → ENGINE (static straight lines) -->
-        <g stroke="var(--pv-line)" stroke-width="1.4" fill="none" opacity=".55">
-          <line x1="150" y1="140" x2="290" y2="255"/>
-          <line x1="370" y1="140" x2="380" y2="255"/>
-          <line x1="595" y1="140" x2="470" y2="255"/>
+        <!-- ======== SOURCES → ENGINE : glowing energy beams (3 条克制的发光能量线) ======== -->
+        <g filter="url(#pvNeonLine)" fill="none" stroke-width="2">
+          <path d="M150,140 C200,185 240,220 290,250" stroke="var(--pv-line)"  opacity=".7"/>
+          <path d="M370,140 C370,185 370,220 380,250" stroke="var(--pv-line2)" opacity=".7"/>
+          <path d="M595,140 C545,185 505,220 470,250" stroke="var(--pv-orange)" opacity=".75"/>
         </g>
-        <g fill="var(--pv-line)" opacity=".7">
-          <polygon points="285,250 279,242 291,242"/>
-          <polygon points="380,250 374,242 386,242"/>
-          <polygon points="475,250 469,242 481,242"/>
+        <g fill="var(--pv-line)" opacity=".85" filter="url(#pvNeonLine)">
+          <polygon points="287,247 280,240 294,240"/>
+        </g>
+        <g fill="var(--pv-line2)" opacity=".85" filter="url(#pvNeonLine)">
+          <polygon points="380,247 373,240 387,240"/>
+        </g>
+        <g fill="var(--pv-orange)" opacity=".9" filter="url(#pvNeonLine)">
+          <polygon points="473,247 466,240 480,240"/>
         </g>
 
-        <!-- ========== CENTER: LISA META ENGINE ========== -->
-        <!-- Engine card -->
-        <rect x="235" y="255" width="290" height="140" rx="16" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.5" filter="url(#pvShadow)"/>
+        <!-- ================================================================ -->
+        <!--  CENTER : LiSA META ENGINE  (立体光球 + 双能量环 + 脉冲)          -->
+        <!-- ================================================================ -->
+        <!-- 3D Engine card -->
+        <g>
+          <rect x="240" y="258" width="290" height="140" rx="16" fill="rgba(0,0,0,.14)"/>
+          <rect x="235" y="252" width="290" height="140" rx="16" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.5" filter="url(#pvCard3D)"/>
+          <!-- frame accent -->
+          <path d="M235 252 L258 252 M235 252 L235 275" stroke="var(--pv-line3)" stroke-width="2.2" fill="none" opacity=".85"/>
+          <path d="M525 392 L502 392 M525 392 L525 369" stroke="var(--pv-line3)" stroke-width="2.2" fill="none" opacity=".85"/>
+        </g>
 
-        <!-- Engine label top -->
-        <text x="380" y="248" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)" letter-spacing=".14" font-weight="600">LENOVO INTELLIGENT STORAGE AGENT</text>
+        <text x="380" y="246" text-anchor="middle" fill="var(--pv-text2)" font-size="12.5" font-family="var(--ff-mono)" letter-spacing=".16" font-weight="600">LENOVO INTELLIGENT STORAGE AGENT</text>
 
-        <!-- Hub core (simple single circle) -->
+        <!-- core halo (立体发光晕) -->
         <g transform="translate(380 302)">
-          <circle r="42" fill="url(#pvHubCore)" opacity=".95"/>
-          <circle r="28" fill="rgba(255,255,255,.22)"/>
-          <text y="4" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="var(--ff-mono)">LiSA</text>
-          <text y="24" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="12" font-weight="700" font-family="var(--ff-mono)" letter-spacing=".06">META ENGINE</text>
+          <ellipse cx="0" cy="2" rx="95" ry="55" fill="url(#pvCoreGlow)"/>
+          <!-- outer rotating energy ring (elliptical 3D) -->
+          <g opacity=".55">
+            <ellipse rx="70" ry="20" fill="none" stroke="var(--pv-line3)" stroke-width="1.4">
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite"/>
+            </ellipse>
+            <ellipse rx="60" ry="18" fill="none" stroke="var(--pv-orange)" stroke-width="1" transform="rotate(60)" opacity=".7">
+              <animateTransform attributeName="transform" type="rotate" from="60" to="-300" dur="36s" repeatCount="indefinite"/>
+            </ellipse>
+          </g>
+          <!-- 3D layered core ball -->
+          <circle r="46" fill="url(#pvCoreBall)" filter="url(#pvNeonCore)"/>
+          <circle r="36" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.4"/>
+          <circle r="22" fill="rgba(255,255,255,.26)"/>
+          <!-- 高光点 -->
+          <circle cx="-12" cy="-14" r="5.5" fill="rgba(255,255,255,.55)"/>
+          <circle cx="-18" cy="-19" r="2.4" fill="rgba(255,255,255,.85)"/>
+          <!-- 呼吸微动画 -->
+          <circle r="48" fill="none" stroke="var(--pv-line3)" stroke-width=".8" opacity=".5">
+            <animate attributeName="r" values="46;52;46" dur="3.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".2;.55;.2" dur="3.6s" repeatCount="indefinite"/>
+          </circle>
+          <!-- LiSA text -->
+          <text y="5" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="var(--ff-mono)" filter="url(#pvNeonCore)">LiSA</text>
+          <text y="26" text-anchor="middle" fill="rgba(255,255,255,.92)" font-size="12" font-weight="700" font-family="var(--ff-mono)" letter-spacing=".08">META ENGINE</text>
         </g>
 
-        <!-- Engine modules row -->
-        <g transform="translate(255 365)">
-          <rect width="74" height="32" rx="7" fill="rgba(90,140,255,.15)" stroke="var(--pv-line)" stroke-width="1"/>
-          <text x="37" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">TAG</text>
+        <!-- Engine modules: TAG / SEARCH / AI  (立体标签 + 微发光) -->
+        <g transform="translate(252 364)">
+          <rect width="78" height="34" rx="8" fill="rgba(90,140,255,.18)" stroke="var(--pv-line)" stroke-width="1.2" filter="url(#pvCard3D)"/>
+          <path d="M0 0 L12 0 M0 0 L0 12"  stroke="var(--pv-line)" stroke-width="1.6" opacity=".7"/>
+          <path d="M78 34 L66 34 M78 34 L78 22" stroke="var(--pv-line)" stroke-width="1.6" opacity=".7"/>
+          <text x="39" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">TAG</text>
         </g>
-        <g transform="translate(344 365)">
-          <rect width="86" height="32" rx="7" fill="rgba(139,122,255,.15)" stroke="var(--pv-line2)" stroke-width="1"/>
-          <text x="43" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">SEARCH</text>
+        <g transform="translate(343 364)">
+          <rect width="90" height="34" rx="8" fill="rgba(139,122,255,.18)" stroke="var(--pv-line2)" stroke-width="1.2" filter="url(#pvCard3D)"/>
+          <path d="M0 0 L12 0 M0 0 L0 12"  stroke="var(--pv-line2)" stroke-width="1.6" opacity=".7"/>
+          <path d="M90 34 L78 34 M90 34 L90 22" stroke="var(--pv-line2)" stroke-width="1.6" opacity=".7"/>
+          <text x="45" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">SEARCH</text>
         </g>
-        <g transform="translate(444 365)">
-          <rect width="66" height="32" rx="7" fill="rgba(0,212,192,.15)" stroke="var(--pv-hub3)" stroke-width="1"/>
-          <text x="33" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">AI</text>
-        </g>
-
-        <!-- ========== LEFT: DATA SERVICES ========== -->
-        <g>
-          <rect x="40" y="230" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="230" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
-          <text x="115" y="252" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">MIGRATION</text>
-          <text x="115" y="272" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">跨存储迁移</text>
-        </g>
-        <g>
-          <rect x="40" y="288" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="288" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
-          <text x="115" y="310" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">BACKUP</text>
-          <text x="115" y="330" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">统一备份</text>
-        </g>
-        <g>
-          <rect x="40" y="346" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="346" width="5" height="48" rx="2" fill="var(--pv-line3)"/>
-          <text x="115" y="368" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
-          <text x="115" y="388" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">分层归档</text>
-        </g>
-        <g>
-          <rect x="40" y="404" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="404" width="5" height="48" rx="2" fill="var(--pv-line)"/>
-          <text x="115" y="426" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">TIERING</text>
-          <text x="115" y="446" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">自动分层</text>
+        <g transform="translate(447 364)">
+          <rect width="70" height="34" rx="8" fill="rgba(245,200,122,.2)" stroke="var(--pv-line3)" stroke-width="1.2" filter="url(#pvCard3D)"/>
+          <path d="M0 0 L12 0 M0 0 L0 12"  stroke="var(--pv-line3)" stroke-width="1.6" opacity=".85"/>
+          <path d="M70 34 L58 34 M70 34 L70 22" stroke="var(--pv-line3)" stroke-width="1.6" opacity=".85"/>
+          <text x="35" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">AI</text>
         </g>
 
-        <!-- Engine → Services (short horizontal dashes) -->
-        <g stroke="var(--pv-orange)" stroke-width="1" fill="none" opacity=".5" stroke-dasharray="4 3">
-          <line x1="235" y1="254" x2="185" y2="254"/>
-          <line x1="235" y1="312" x2="185" y2="312"/>
-          <line x1="235" y1="370" x2="185" y2="370"/>
-          <line x1="235" y1="428" x2="185" y2="428"/>
+        <!-- ================================================================ -->
+        <!--  LEFT : DATA SERVICES  (4 cards: MIGRATION / BACKUP / ARCHIVE / TIERING) -->
+        <!-- ================================================================ -->
+        <g transform="translate(0 0)">
+          <g>
+            <rect x="44" y="233" width="145" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="40" y="228" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="40" y="228" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
+            <text x="115" y="250" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">MIGRATION</text>
+            <text x="115" y="270" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">跨存储迁移</text>
+          </g>
+          <g>
+            <rect x="44" y="291" width="145" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="40" y="286" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="40" y="286" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
+            <text x="115" y="308" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">BACKUP</text>
+            <text x="115" y="328" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">统一备份</text>
+          </g>
+          <g>
+            <rect x="44" y="349" width="145" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="40" y="344" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="40" y="344" width="5" height="48" rx="2" fill="var(--pv-line3)"/>
+            <text x="115" y="366" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
+            <text x="115" y="386" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">分层归档</text>
+          </g>
+          <g>
+            <rect x="44" y="407" width="145" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="40" y="402" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="40" y="402" width="5" height="48" rx="2" fill="var(--pv-line)"/>
+            <text x="115" y="424" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">TIERING</text>
+            <text x="115" y="444" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">自动分层</text>
+          </g>
+
+          <!-- Engine → Services 发光虚线 -->
+          <g stroke="var(--pv-orange)" stroke-width="1.4" fill="none" opacity=".65" stroke-dasharray="5 4" filter="url(#pvNeonLine)">
+            <line x1="235" y1="252" x2="185" y2="252"/>
+            <line x1="235" y1="310" x2="185" y2="310"/>
+            <line x1="235" y1="368" x2="185" y2="368"/>
+            <line x1="235" y1="426" x2="185" y2="426"/>
+          </g>
         </g>
 
-        <!-- ========== RIGHT: AI / ANALYTICS ========== -->
+        <!-- ================================================================ -->
+        <!--  RIGHT : AI / ANALYTICS  (3 cards: AI READY / ANALYTICS / GOV)   -->
+        <!-- ================================================================ -->
         <g>
-          <rect x="615" y="230" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="230" width="5" height="48" rx="2" fill="var(--pv-hub3)"/>
-          <text x="692" y="252" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">AI READY</text>
-          <text x="692" y="272" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">NVIDIA / MATRIX ONE</text>
-        </g>
-        <g>
-          <rect x="615" y="288" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="288" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
-          <text x="692" y="310" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ANALYTICS</text>
-          <text x="692" y="330" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据洞察</text>
-        </g>
-        <g>
-          <rect x="615" y="346" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="346" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
-          <text x="692" y="368" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">GOVERNANCE</text>
-          <text x="692" y="388" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据治理</text>
+          <g>
+            <rect x="619" y="233" width="150" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="615" y="228" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="615" y="228" width="5" height="48" rx="2" fill="var(--pv-hub3)"/>
+            <text x="692" y="250" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">AI READY</text>
+            <text x="692" y="270" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">NVIDIA / MATRIX ONE</text>
+          </g>
+          <g>
+            <rect x="619" y="291" width="150" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="615" y="286" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="615" y="286" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
+            <text x="692" y="308" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ANALYTICS</text>
+            <text x="692" y="328" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据洞察</text>
+          </g>
+          <g>
+            <rect x="619" y="349" width="150" height="48" rx="9" fill="rgba(0,0,0,.12)"/>
+            <rect x="615" y="344" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1" filter="url(#pvCard3D)"/>
+            <rect x="615" y="344" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
+            <text x="692" y="366" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">GOVERNANCE</text>
+            <text x="692" y="386" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据治理</text>
+          </g>
+
+          <!-- Engine → Right 发光虚线 -->
+          <g stroke="var(--pv-line2)" stroke-width="1.4" fill="none" opacity=".65" stroke-dasharray="5 4" filter="url(#pvNeonLine)">
+            <line x1="525" y1="252" x2="615" y2="252"/>
+            <line x1="525" y1="310" x2="615" y2="310"/>
+            <line x1="525" y1="368" x2="615" y2="368"/>
+          </g>
         </g>
 
-        <!-- Engine → Right (short horizontal dashes) -->
-        <g stroke="var(--pv-line2)" stroke-width="1" fill="none" opacity=".5" stroke-dasharray="4 3">
-          <line x1="525" y1="254" x2="615" y2="254"/>
-          <line x1="525" y1="312" x2="615" y2="312"/>
-          <line x1="525" y1="370" x2="615" y2="370"/>
+        <!-- ================================================================ -->
+        <!--  BOTTOM : STORAGE TIERS  (立体卡片 + 3D 立方体存储堆叠装饰)      -->
+        <!-- ================================================================ -->
+
+        <!-- HOT TIER -->
+        <g>
+          <rect x="49" y="494" width="170" height="110" rx="14" fill="rgba(0,0,0,.14)"/>
+          <rect x="45" y="488" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line)" stroke-width="1.8" filter="url(#pvCard3D)"/>
+          <!-- 3D cube stack icon (SSD) -->
+          <g transform="translate(62 512)" opacity=".95">
+            <!-- iso cube: flash array -->
+            <g stroke="var(--pv-line)" stroke-width="1.1" fill="none">
+              <polygon points="0,6 6,0 18,0 24,6 24,16 18,22 6,22 0,16" fill="rgba(90,140,255,.25)"/>
+              <polyline points="0,6 6,0 18,0 24,6"/>
+              <line x1="6" y1="0" x2="6" y2="22"/>
+              <line x1="18" y1="0" x2="18" y2="22"/>
+              <line x1="0" y1="16" x2="24" y2="16"/>
+            </g>
+            <!-- led indicator -->
+            <circle cx="10" cy="11" r="1.2" fill="var(--pv-orange)"/>
+            <circle cx="14" cy="11" r="1.2" fill="var(--pv-line)"/>
+          </g>
+          <text x="130" y="526" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">HOT TIER</text>
+          <text x="130" y="550" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Flash / All-Flash</text>
+          <text x="130" y="586" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">ONTAP · DXN</text>
         </g>
 
-        <!-- ========== BOTTOM: STORAGE TIERS (simplified, no disk grid) ========== -->
+        <!-- WARM TIER -->
         <g>
-          <rect x="45" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="130" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">HOT TIER</text>
-          <text x="130" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Flash / All-Flash</text>
-          <text x="130" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">ONTAP · DXN</text>
-        </g>
-        <g>
-          <rect x="228" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line2)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="313" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">WARM TIER</text>
-          <text x="313" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">HDD / Hybrid</text>
-          <text x="313" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">DXN · E-Series</text>
-        </g>
-        <g>
-          <rect x="411" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line3)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="496" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">COLD TIER</text>
-          <text x="496" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Object / Erasure</text>
-          <text x="496" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">S3 · CEPH</text>
-        </g>
-        <g>
-          <rect x="594" y="500" width="165" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-orange)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="676" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
-          <text x="676" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Tape / Long-term</text>
-          <text x="676" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">Tape Library</text>
+          <rect x="232" y="494" width="170" height="110" rx="14" fill="rgba(0,0,0,.14)"/>
+          <rect x="228" y="488" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line2)" stroke-width="1.8" filter="url(#pvCard3D)"/>
+          <g transform="translate(245 512)" opacity=".95">
+            <g stroke="var(--pv-line2)" stroke-width="1.1" fill="none">
+              <polygon points="0,6 6,0 18,0 24,6 24,16 18,22 6,22 0,16" fill="rgba(139,122,255,.22)"/>
+              <polyline points="0,6 6,0 18,0 24,6"/>
+              <line x1="6" y1="0" x2="6" y2="22"/>
+              <line x1="18" y1="0" x2="18" y2="22"/>
+              <line x1="0" y1="16" x2="24" y2="16"/>
+            </g>
+            <!-- HDD spindle -->
+            <circle cx="12" cy="11" r="2.4" fill="none" stroke="var(--pv-line2)" stroke-width="1"/>
+            <circle cx="12" cy="11" r="0.8" fill="var(--pv-line2)"/>
+          </g>
+          <text x="313" y="526" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">WARM TIER</text>
+          <text x="313" y="550" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">HDD / Hybrid</text>
+          <text x="313" y="586" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">DXN · E-Series</text>
         </g>
 
-        <!-- Engine → Storage (static lines + arrows) -->
-        <g stroke="var(--pv-line)" stroke-width="1.2" fill="none" opacity=".55">
-          <line x1="300" y1="395" x2="130" y2="500"/>
-          <line x1="350" y1="395" x2="313" y2="500"/>
-          <line x1="415" y1="395" x2="496" y2="500"/>
-          <line x1="465" y1="395" x2="676" y2="500"/>
+        <!-- COLD TIER -->
+        <g>
+          <rect x="415" y="494" width="170" height="110" rx="14" fill="rgba(0,0,0,.14)"/>
+          <rect x="411" y="488" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line3)" stroke-width="1.8" filter="url(#pvCard3D)"/>
+          <g transform="translate(428 512)" opacity=".95">
+            <!-- erasure coded object cubes -->
+            <g stroke="var(--pv-line3)" stroke-width="1.1" fill="none">
+              <polygon points="0,9 4,4 14,4 18,9 18,17 14,22 4,22 0,17" fill="rgba(245,200,122,.22)"/>
+              <polyline points="0,9 4,4 14,4 18,9"/>
+              <line x1="4" y1="4" x2="4" y2="22"/>
+              <line x1="14" y1="4" x2="14" y2="22"/>
+            </g>
+            <g stroke="var(--pv-line3)" stroke-width="1.1" fill="none" transform="translate(9 -4)">
+              <polygon points="0,9 4,4 14,4 18,9 18,17 14,22 4,22 0,17" fill="rgba(245,200,122,.15)"/>
+              <polyline points="0,9 4,4 14,4 18,9"/>
+              <line x1="4" y1="4" x2="4" y2="22"/>
+              <line x1="14" y1="4" x2="14" y2="22"/>
+            </g>
+          </g>
+          <text x="496" y="526" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">COLD TIER</text>
+          <text x="496" y="550" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Object / Erasure</text>
+          <text x="496" y="586" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">S3 · CEPH</text>
         </g>
-        <g fill="var(--pv-line)" opacity=".65">
-          <polygon points="144,491 140,484 148,484"/>
-          <polygon points="315,489 311,482 319,482"/>
-          <polygon points="491,489 487,482 495,482"/>
-          <polygon points="658,491 654,484 662,484"/>
+
+        <!-- ARCHIVE TIER -->
+        <g>
+          <rect x="598" y="494" width="165" height="110" rx="14" fill="rgba(0,0,0,.14)"/>
+          <rect x="594" y="488" width="165" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-orange)" stroke-width="1.8" filter="url(#pvCard3D)"/>
+          <g transform="translate(611 512)" opacity=".95">
+            <!-- tape reel -->
+            <g stroke="var(--pv-orange)" stroke-width="1.1" fill="rgba(232,149,96,.2)">
+              <circle cx="6"  cy="11" r="5"/>
+              <circle cx="18" cy="11" r="5"/>
+              <circle cx="6"  cy="11" r="1.2" fill="var(--pv-orange)"/>
+              <circle cx="18" cy="11" r="1.2" fill="var(--pv-orange)"/>
+            </g>
+            <rect x="1" y="17" width="22" height="4" rx="1" fill="none" stroke="var(--pv-orange)" stroke-width="1"/>
+          </g>
+          <text x="676" y="526" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
+          <text x="676" y="550" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Tape / Long-term</text>
+          <text x="676" y="586" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">Tape Library</text>
+        </g>
+
+        <!-- ====== ENGINE → STORAGE 发光能量线（4条，克制不花哨） ====== -->
+        <g filter="url(#pvNeonLine)" fill="none" stroke-width="2">
+          <path d="M300,395 C240,435 170,468 130,488" stroke="var(--pv-line)"  opacity=".72"/>
+          <path d="M350,395 C340,435 325,468 313,488" stroke="var(--pv-line2)" opacity=".72"/>
+          <path d="M415,395 C455,435 485,468 496,488" stroke="var(--pv-line3)" opacity=".76"/>
+          <path d="M465,395 C535,435 620,468 676,488" stroke="var(--pv-orange)" opacity=".76"/>
+        </g>
+        <g fill="var(--pv-line)" opacity=".85" filter="url(#pvNeonLine)">
+          <polygon points="135,482 130,475 140,475"/>
+        </g>
+        <g fill="var(--pv-line2)" opacity=".85" filter="url(#pvNeonLine)">
+          <polygon points="316,482 311,475 321,475"/>
+        </g>
+        <g fill="var(--pv-line3)" opacity=".9" filter="url(#pvNeonLine)">
+          <polygon points="499,482 494,475 504,475"/>
+        </g>
+        <g fill="var(--pv-orange)" opacity=".9" filter="url(#pvNeonLine)">
+          <polygon points="680,482 675,475 685,475"/>
+        </g>
+
+        <!-- ===== 4 颗克制的能量微粒子（沿主路径慢流） ===== -->
+        <g opacity=".9">
+          <circle r="2.4" fill="var(--pv-line)"  filter="url(#pvNeonLine)">
+            <animateMotion dur="5s" repeatCount="indefinite" path="M150,140 C200,185 240,220 290,250"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="2.2" fill="var(--pv-line2)" filter="url(#pvNeonLine)">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M370,140 C370,185 370,220 380,250"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="6s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="2.2" fill="var(--pv-orange)" filter="url(#pvNeonLine)">
+            <animateMotion dur="7s" begin="1.2s" repeatCount="indefinite" path="M465,395 C535,435 620,468 676,488"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="7s" begin="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="2.2" fill="var(--pv-line3)" filter="url(#pvNeonLine)">
+            <animateMotion dur="6.5s" begin="2.4s" repeatCount="indefinite" path="M415,395 C455,435 485,468 496,488"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="6.5s" begin="2.4s" repeatCount="indefinite"/>
+          </circle>
         </g>
       </svg>
     </div>
@@ -2179,110 +2402,548 @@
       <div class="lg"><span class="sw" style="background:rgba(245,200,122,.12);border:1px solid var(--line-strong)"></span>异构存储 On-Premise / On-Cloud</div>
     </div>
     <div class="arch-svg-box">
-      <svg viewBox="0 0 1240 660" xmlns="http://www.w3.org/2000/svg" class="flow-svg">
+      <svg viewBox="0 0 1240 660" xmlns="http://www.w3.org/2000/svg" class="flow-svg" style="--a-bg:#0a0e22;--a-grid:rgba(90,140,255,.12);--a-gold:#f5c87a;--a-cyan:#3df0ff;--a-violet:#8b7bff;--a-text:#e8eefc;--a-text2:#8896b8;--a-text3:#9aa3c4;--a-card:rgba(20,25,50,.55);--a-card-stroke:rgba(90,140,255,.28);--a-shadow:rgba(0,0,0,.16)">
+        <style>
+          [data-theme="light"] .flow-svg{--a-bg:#eef1f7;--a-grid:rgba(90,140,255,.1);--a-text:#2a3555;--a-text2:#5a6a8a;--a-text3:#667296;--a-card:rgba(255,255,255,.82);--a-card-stroke:rgba(90,140,255,.22);--a-shadow:rgba(40,60,120,.12)}
+        </style>
         <defs>
-          <linearGradient id="g-cyan2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3df0ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
-          <linearGradient id="g-violet2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7bff"/><stop offset="1" stop-color="#5a4bd1"/></linearGradient>
-          <linearGradient id="g-gold2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5c87a"/><stop offset="1" stop-color="#c9952f"/></linearGradient>
-          <filter id="glow2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <!-- ===== Sci-Fi hex grid pattern ===== -->
+          <pattern id="aHex" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+            <path d="M30 0 L60 17.3 L60 34.7 L30 52 L0 34.7 L0 17.3 Z" fill="none" stroke="var(--a-grid)" stroke-width="0.6"/>
+          </pattern>
+
+          <!-- ===== Gradients ===== -->
+          <linearGradient id="aG-cyan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa6ff"/><stop offset="1" stop-color="#00b3d6"/></linearGradient>
+          <linearGradient id="aG-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a89bff"/><stop offset="1" stop-color="#5a4bd1"/></linearGradient>
+          <linearGradient id="aG-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe4a8"/><stop offset="1" stop-color="#c9952f"/></linearGradient>
+          <linearGradient id="aG-banner" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"  stop-color="#5a8cff" stop-opacity=".18"/>
+            <stop offset="50%" stop-color="#8b7bff" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#f5c87a" stop-opacity=".18"/>
+          </linearGradient>
+          <linearGradient id="aG-bannerText" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#5a9fff"/>
+            <stop offset="50%" stop-color="#b0a5ff"/>
+            <stop offset="100%" stop-color="#ffe4a8"/>
+          </linearGradient>
+
+          <!-- ===== Glow / 3D filters ===== -->
+          <filter id="aGlow" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="aGlowSoft" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="1.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="aCard3D" x="-6%" y="-8%" width="116%" height="124%">
+            <feDropShadow dx="3" dy="5" stdDeviation="6" flood-color="#000" flood-opacity=".18"/>
+          </filter>
         </defs>
+
+        <!-- ===== Layer 0: Sci-Fi Hex Backdrop ===== -->
+        <rect x="0" y="0" width="1240" height="660" fill="url(#aHex)" opacity=".45"/>
+        <radialGradient id="aVign" cx="50%" cy="52%" r="74%">
+          <stop offset="62%" stop-color="rgba(0,0,0,0)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,.05)"/>
+        </radialGradient>
+        <rect x="0" y="0" width="1240" height="660" fill="url(#aVign)" pointer-events="none"/>
 
         <!-- ===== Layer 1: 垂直行业解决方案 ===== -->
         <g class="arch-layer">
-          <rect class="layer-bg" x="20" y="20" width="1200" height="96" rx="14" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.3)"/>
-          <text x="40" y="42" font-family="JetBrains Mono" font-size="12" fill="#f5c87a" letter-spacing="2">VERTICAL INDUSTRIES · 垂直行业解决方案</text>
-          <g class="arch-svg-node"><rect x="40" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="182" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Manufacture - DFS</text><text x="182" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">制造业 · 工业质检数据处理</text></g>
-          <g class="arch-svg-node"><rect x="340" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="482" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Education / Research</text><text x="482" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">教育科研 · HPC / AI</text></g>
-          <g class="arch-svg-node"><rect x="640" y="54" width="285" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="782" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">Health Care</text><text x="782" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">医疗 · DR / BR / HA</text></g>
-          <g class="arch-svg-node"><rect x="940" y="54" width="260" height="52" rx="8" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.45)"/><text x="1070" y="76" text-anchor="middle" fill="#eef2ff" font-size="16" font-weight="600">AI Training &amp; Inference</text><text x="1070" y="94" text-anchor="middle" fill="#f5c87a" font-size="12">AI 训练与推理</text></g>
+          <!-- 3D layer thickness + corner marks -->
+          <rect x="24" y="24" width="1200" height="96" rx="14" fill="var(--a-shadow)"/>
+          <rect class="layer-bg" x="20" y="20" width="1200" height="96" rx="14" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.32)" filter="url(#aCard3D)"/>
+          <path d="M20 20 L44 20 M20 20 L20 44" stroke="var(--a-gold)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <path d="M1220 116 L1196 116 M1220 116 L1220 92" stroke="var(--a-gold)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <text x="40" y="42" font-family="JetBrains Mono" font-size="12" fill="var(--a-gold)" letter-spacing="2" font-weight="600">VERTICAL INDUSTRIES · 垂直行业解决方案</text>
+          <!-- Corner decorative hex -->
+          <g transform="translate(1180 26)" opacity=".45">
+            <path d="M14 0 L28 8 L28 22 L14 30 L0 22 L0 8 Z" fill="none" stroke="var(--a-gold)" stroke-width="1"/>
+          </g>
+
+          <!-- Manufacture -->
+          <g class="arch-svg-node">
+            <rect x="44" y="58" width="285" height="52" rx="8" fill="var(--a-shadow)"/>
+            <rect x="40" y="54" width="285" height="52" rx="8" fill="var(--a-card)" stroke="rgba(245,200,122,.45)" stroke-width="1.3" filter="url(#aCard3D)"/>
+            <rect x="40" y="54" width="4" height="52" rx="2" fill="var(--a-gold)"/>
+            <path d="M40 54 L58 54 M40 54 L40 72" stroke="var(--a-gold)" stroke-width="1.6" fill="none" opacity=".7"/>
+            <!-- chip icon -->
+            <g transform="translate(58 68)" opacity=".88">
+              <rect width="16" height="16" rx="2" fill="rgba(245,200,122,.2)" stroke="var(--a-gold)" stroke-width="1"/>
+              <rect x="3" y="3" width="10" height="10" rx="1" fill="none" stroke="var(--a-gold)" stroke-width=".8"/>
+              <line x1="-2" y1="6" x2="0" y2="6" stroke="var(--a-gold)" stroke-width="1"/><line x1="-2" y1="10" x2="0" y2="10" stroke="var(--a-gold)" stroke-width="1"/>
+              <line x1="16" y1="6" x2="18" y2="6" stroke="var(--a-gold)" stroke-width="1"/><line x1="16" y1="10" x2="18" y2="10" stroke="var(--a-gold)" stroke-width="1"/>
+              <line x1="6" y1="-2" x2="6" y2="0" stroke="var(--a-gold)" stroke-width="1"/><line x1="10" y1="-2" x2="10" y2="0" stroke="var(--a-gold)" stroke-width="1"/>
+              <line x1="6" y1="16" x2="6" y2="18" stroke="var(--a-gold)" stroke-width="1"/><line x1="10" y1="16" x2="10" y2="18" stroke="var(--a-gold)" stroke-width="1"/>
+            </g>
+            <text x="182" y="76" text-anchor="middle" fill="var(--a-text)" font-size="16" font-weight="700">Manufacture - DFS</text>
+            <text x="182" y="96" text-anchor="middle" fill="var(--a-gold)" font-size="12">制造业 · 工业质检数据处理</text>
+          </g>
+          <!-- Education -->
+          <g class="arch-svg-node">
+            <rect x="344" y="58" width="285" height="52" rx="8" fill="var(--a-shadow)"/>
+            <rect x="340" y="54" width="285" height="52" rx="8" fill="var(--a-card)" stroke="rgba(245,200,122,.45)" stroke-width="1.3" filter="url(#aCard3D)"/>
+            <rect x="340" y="54" width="4" height="52" rx="2" fill="var(--a-gold)"/>
+            <path d="M340 54 L358 54 M340 54 L340 72" stroke="var(--a-gold)" stroke-width="1.6" fill="none" opacity=".7"/>
+            <g transform="translate(358 68)" opacity=".88">
+              <path d="M8 1 L15 4.5 V10.5 L8 14 L1 10.5 V4.5 Z" fill="rgba(245,200,122,.18)" stroke="var(--a-gold)" stroke-width="1"/>
+              <path d="M1 4.5 L8 8 L15 4.5" fill="none" stroke="var(--a-gold)" stroke-width=".9"/>
+              <path d="M5 12 V15 H11 V12" fill="none" stroke="var(--a-gold)" stroke-width=".9"/>
+            </g>
+            <text x="482" y="76" text-anchor="middle" fill="var(--a-text)" font-size="16" font-weight="700">Education / Research</text>
+            <text x="482" y="96" text-anchor="middle" fill="var(--a-gold)" font-size="12">教育科研 · HPC / AI</text>
+          </g>
+          <!-- Health Care -->
+          <g class="arch-svg-node">
+            <rect x="644" y="58" width="285" height="52" rx="8" fill="var(--a-shadow)"/>
+            <rect x="640" y="54" width="285" height="52" rx="8" fill="var(--a-card)" stroke="rgba(245,200,122,.45)" stroke-width="1.3" filter="url(#aCard3D)"/>
+            <rect x="640" y="54" width="4" height="52" rx="2" fill="var(--a-gold)"/>
+            <path d="M640 54 L658 54 M640 54 L640 72" stroke="var(--a-gold)" stroke-width="1.6" fill="none" opacity=".7"/>
+            <g transform="translate(658 68)" opacity=".88">
+              <rect width="16" height="16" rx="8" fill="rgba(245,200,122,.18)" stroke="var(--a-gold)" stroke-width="1"/>
+              <path d="M8 4 V12 M4 8 H12" fill="none" stroke="var(--a-gold)" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+            <text x="782" y="76" text-anchor="middle" fill="var(--a-text)" font-size="16" font-weight="700">Health Care</text>
+            <text x="782" y="96" text-anchor="middle" fill="var(--a-gold)" font-size="12">医疗 · DR / BR / HA</text>
+          </g>
+          <!-- AI Training -->
+          <g class="arch-svg-node">
+            <rect x="944" y="58" width="260" height="52" rx="8" fill="var(--a-shadow)"/>
+            <rect x="940" y="54" width="260" height="52" rx="8" fill="var(--a-card)" stroke="rgba(245,200,122,.45)" stroke-width="1.3" filter="url(#aCard3D)"/>
+            <rect x="940" y="54" width="4" height="52" rx="2" fill="var(--a-gold)"/>
+            <path d="M940 54 L958 54 M940 54 L940 72" stroke="var(--a-gold)" stroke-width="1.6" fill="none" opacity=".7"/>
+            <g transform="translate(958 68)" opacity=".88">
+              <path d="M0 12 L4 4 L8 8 L12 2 L16 12" fill="none" stroke="var(--a-gold)" stroke-width="1.1"/>
+              <circle cx="4" cy="4" r="1.2" fill="var(--a-gold)"/><circle cx="12" cy="2" r="1.2" fill="var(--a-gold)"/>
+            </g>
+            <text x="1070" y="76" text-anchor="middle" fill="var(--a-text)" font-size="16" font-weight="700">AI Training &amp; Inference</text>
+            <text x="1070" y="96" text-anchor="middle" fill="var(--a-gold)" font-size="12">AI 训练与推理</text>
+          </g>
         </g>
 
-        <!-- connectors L1->LiSA -->
-        <g stroke="rgba(var(--cyan-rgb),.3)" stroke-dasharray="3 4" fill="none">
-          <path d="M182 116 V146"/><path d="M482 116 V146"/><path d="M782 116 V146"/><path d="M1070 116 V146"/>
+        <!-- connectors L1 -> LiSA banner : glowing energy beams -->
+        <g stroke-width="2" fill="none" filter="url(#aGlowSoft)" opacity=".85">
+          <path d="M182 116 C182 128 182 138 182 146" stroke="var(--a-cyan)"/>
+          <path d="M482 116 C482 128 482 138 482 146" stroke="var(--a-cyan)"/>
+          <path d="M782 116 C782 128 782 138 782 146" stroke="var(--a-cyan)"/>
+          <path d="M1070 116 C1070 128 1070 138 1070 146" stroke="var(--a-cyan)"/>
         </g>
-        <circle r="3.5" fill="var(--cyan)" filter="drop-shadow(0 0 6px var(--cyan))"><animateMotion dur="2.5s" repeatCount="indefinite" path="M182 146 V116"/></circle>
-        <circle r="3.5" fill="var(--cyan)" filter="drop-shadow(0 0 6px var(--cyan))"><animateMotion dur="2.5s" begin="0.6s" repeatCount="indefinite" path="M482 146 V116"/></circle>
-        <circle r="3.5" fill="var(--cyan)" filter="drop-shadow(0 0 6px var(--cyan))"><animateMotion dur="2.5s" begin="1.2s" repeatCount="indefinite" path="M782 146 V116"/></circle>
-        <circle r="3.5" fill="var(--cyan)" filter="drop-shadow(0 0 6px var(--cyan))"><animateMotion dur="2.5s" begin="1.8s" repeatCount="indefinite" path="M1070 146 V116"/></circle>
+        <!-- subtle data particles (克制：4颗，慢流) -->
+        <g opacity=".9">
+          <circle r="2.4" fill="var(--a-cyan)" filter="url(#aGlowSoft)"><animateMotion dur="3.2s" repeatCount="indefinite" path="M182 146 V116"/></circle>
+          <circle r="2.4" fill="var(--a-cyan)" filter="url(#aGlowSoft)"><animateMotion dur="3.2s" begin=".8s" repeatCount="indefinite" path="M482 146 V116"/></circle>
+          <circle r="2.4" fill="var(--a-cyan)" filter="url(#aGlowSoft)"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite" path="M782 146 V116"/></circle>
+          <circle r="2.4" fill="var(--a-cyan)" filter="url(#aGlowSoft)"><animateMotion dur="3.2s" begin="2.4s" repeatCount="indefinite" path="M1070 146 V116"/></circle>
+        </g>
 
-        <!-- ===== LiSA Platform Banner ===== -->
-        <rect x="20" y="146" width="1200" height="38" rx="8" fill="url(#g-cyan2)" opacity=".15" stroke="var(--cyan)" stroke-width="1.2"/>
-        <text x="620" y="170" text-anchor="middle" font-family="Syne" font-size="18" fill="#3df0ff" font-weight="800" letter-spacing="3" filter="url(#glow2)">Lenovo Intelligent Storage Agent — LiSA</text>
-        <text x="1200" y="170" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#3df0ff" opacity=".7">EMPOWER CLIENT TO MANAGE DATA &amp; MAKE DATA AI-READY</text>
+        <!-- ===== LiSA Platform Banner : 立体发光横幅 ===== -->
+        <g>
+          <rect x="24" y="150" width="1200" height="38" rx="8" fill="var(--a-shadow)"/>
+          <rect x="20" y="146" width="1200" height="38" rx="8" fill="url(#aG-banner)" stroke="var(--a-cyan)" stroke-width="1.3" filter="url(#aCard3D)"/>
+          <!-- banner corner accent -->
+          <path d="M20 146 L40 146 M20 146 L20 166" stroke="var(--a-cyan)" stroke-width="2" fill="none" opacity=".8"/>
+          <path d="M1220 184 L1200 184 M1220 184 L1220 164" stroke="var(--a-gold)" stroke-width="2" fill="none" opacity=".8"/>
+          <!-- small rotating hex decorations -->
+          <g transform="translate(60 165)" opacity=".45">
+            <path d="M8 0 L16 4.6 L16 13.9 L8 18.5 L0 13.9 L0 4.6 Z" fill="none" stroke="var(--a-cyan)" stroke-width=".9">
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="22s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          <g transform="translate(1180 165)" opacity=".45">
+            <path d="M8 0 L16 4.6 L16 13.9 L8 18.5 L0 13.9 L0 4.6 Z" fill="none" stroke="var(--a-gold)" stroke-width=".9">
+              <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="28s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          <text x="620" y="171" text-anchor="middle" font-family="Syne" font-size="18" font-weight="800" letter-spacing="3" fill="url(#aG-bannerText)" filter="url(#aGlowSoft)">Lenovo Intelligent Storage Agent — LiSA</text>
+        </g>
 
-        <!-- ===== Layer 2A: Data Layer (Intelligent log, Tag, Search, Workflow engine, Meta data, RAG, Inference Engine) ===== -->
+        <!-- ===== Layer 2A: Data Layer ===== -->
         <g class="arch-layer">
-          <rect class="layer-bg" x="20" y="194" width="1200" height="100" rx="14" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.3)"/>
-          <text x="40" y="216" font-family="JetBrains Mono" font-size="12" fill="#3df0ff" letter-spacing="2">DATA LAYER · 数据层</text>
-          <text x="1200" y="216" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#9aa3c4">Intelligent log · Tag · Search · Workflow engine · Meta data · RAG · Inference Engine</text>
+          <rect x="24" y="198" width="1200" height="100" rx="14" fill="var(--a-shadow)"/>
+          <rect class="layer-bg" x="20" y="194" width="1200" height="100" rx="14" fill="rgba(var(--cyan-rgb),.05)" stroke="rgba(var(--cyan-rgb),.32)" filter="url(#aCard3D)"/>
+          <path d="M20 194 L44 194 M20 194 L20 218" stroke="var(--a-cyan)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <path d="M1220 294 L1196 294 M1220 294 L1220 270" stroke="var(--a-cyan)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <text x="40" y="216" font-family="JetBrains Mono" font-size="12" fill="var(--a-cyan)" letter-spacing="2" font-weight="600">DATA LAYER · 数据层</text>
+          <text x="1200" y="216" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="var(--a-text3)">Intelligent log · Tag · Search · Workflow engine · Meta data · RAG · Inference Engine</text>
 
-          <g class="arch-svg-node"><rect x="40" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="119" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Intelligent log</text><text x="119" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能日志</text><circle cx="119" cy="252" r="3" class="pulse-node" fill="var(--cyan)"/></g>
-          <g class="arch-svg-node"><rect x="212" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="291" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Tag</text><text x="291" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能标签</text></g>
-          <g class="arch-svg-node"><rect x="384" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="463" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Search</text><text x="463" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">智能检索</text></g>
-          <g class="arch-svg-node"><rect x="556" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="635" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Workflow engine</text><text x="635" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">工作流引擎</text></g>
-          <g class="arch-svg-node"><rect x="728" y="228" width="158" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="807" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Meta data</text><text x="807" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">元数据 / 索引</text></g>
-          <g class="arch-svg-node"><rect x="900" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="972" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">RAG</text><text x="972" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">检索增强生成</text></g>
-          <g class="arch-svg-node"><rect x="1059" y="228" width="145" height="50" rx="7" fill="rgba(var(--cyan-rgb),.12)" stroke="rgba(var(--cyan-rgb),.4)"/><text x="1131" y="250" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Inference Engine</text><text x="1131" y="266" text-anchor="middle" fill="#3df0ff" font-size="11">推理引擎</text></g>
+          <!-- 7 data layer cards -->
+          <g>
+            <!-- Intelligent log -->
+            <g class="arch-svg-node">
+              <rect x="44" y="232" width="158" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="40" y="228" width="158" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="40" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M40 228 L56 228 M40 228 L40 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(56 242)" opacity=".85">
+                <path d="M0 10 L2 4 L5 8 L8 2 L11 8 L14 4 L16 10" fill="none" stroke="var(--a-cyan)" stroke-width="1"/>
+              </g>
+              <text x="119" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Intelligent log</text>
+              <text x="119" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">智能日志</text>
+            </g>
+            <!-- Tag -->
+            <g class="arch-svg-node">
+              <rect x="216" y="232" width="158" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="212" y="228" width="158" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="212" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M212 228 L228 228 M212 228 L212 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(228 242)" opacity=".85">
+                <path d="M0 2 L10 2 L14 6 L10 10 L0 10 Z" fill="rgba(90,140,255,.2)" stroke="var(--a-cyan)" stroke-width="1"/>
+                <circle cx="11" cy="6" r="1" fill="var(--a-cyan)"/>
+              </g>
+              <text x="291" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Tag</text>
+              <text x="291" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">智能标签</text>
+            </g>
+            <!-- Search -->
+            <g class="arch-svg-node">
+              <rect x="388" y="232" width="158" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="384" y="228" width="158" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="384" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M384 228 L400 228 M384 228 L384 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(400 242)" opacity=".85">
+                <circle cx="5" cy="5" r="4.5" fill="none" stroke="var(--a-cyan)" stroke-width="1"/>
+                <path d="M8.5 8.5 L13 13" stroke="var(--a-cyan)" stroke-width="1"/>
+              </g>
+              <text x="463" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Search</text>
+              <text x="463" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">智能检索</text>
+            </g>
+            <!-- Workflow -->
+            <g class="arch-svg-node">
+              <rect x="560" y="232" width="158" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="556" y="228" width="158" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="556" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M556 228 L572 228 M556 228 L556 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(572 242)" opacity=".85">
+                <circle cx="2" cy="6" r="1.6" fill="var(--a-cyan)"/>
+                <line x1="5" y1="6" x2="8" y2="6" stroke="var(--a-cyan)" stroke-width="1"/>
+                <path d="M8 6 L11 3 L11 9 Z" fill="var(--a-cyan)"/>
+                <line x1="13" y1="6" x2="15" y2="6" stroke="var(--a-cyan)" stroke-width="1"/>
+                <circle cx="17" cy="6" r="1.6" fill="var(--a-cyan)"/>
+              </g>
+              <text x="635" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Workflow</text>
+              <text x="635" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">工作流引擎</text>
+            </g>
+            <!-- Metadata -->
+            <g class="arch-svg-node">
+              <rect x="732" y="232" width="158" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="728" y="228" width="158" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="728" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M728 228 L744 228 M728 228 L728 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(744 242)" opacity=".85">
+                <rect x="2" y="1" width="13" height="3" rx="1" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+                <rect x="2" y="5.5" width="13" height="3" rx="1" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+                <rect x="2" y="10" width="10" height="2.5" rx="1" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+              </g>
+              <text x="807" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Meta data</text>
+              <text x="807" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">元数据 / 索引</text>
+            </g>
+            <!-- RAG -->
+            <g class="arch-svg-node">
+              <rect x="904" y="232" width="145" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="900" y="228" width="145" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="900" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M900 228 L916 228 M900 228 L900 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(916 241)" opacity=".85">
+                <path d="M2 0 A7 7 0 0 1 2 14" fill="none" stroke="var(--a-cyan)" stroke-width="1"/>
+                <path d="M5 2 A4.5 4.5 0 0 1 5 12" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+                <path d="M8 4 A2 2 0 0 1 8 10" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+              </g>
+              <text x="972" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">RAG</text>
+              <text x="972" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">检索增强生成</text>
+            </g>
+            <!-- Inference -->
+            <g class="arch-svg-node">
+              <rect x="1063" y="232" width="145" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="1059" y="228" width="145" height="50" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.42)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="1059" y="228" width="4" height="50" rx="2" fill="var(--a-cyan)"/>
+              <path d="M1059 228 L1075 228 M1059 228 L1059 244" stroke="var(--a-cyan)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(1075 241)" opacity=".85">
+                <path d="M8 0 L13 7 L10 7 L10 14 L6 14 L6 7 L3 7 Z" fill="rgba(90,140,255,.22)" stroke="var(--a-cyan)" stroke-width="1"/>
+              </g>
+              <text x="1131" y="250" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Inference</text>
+              <text x="1131" y="268" text-anchor="middle" fill="var(--a-cyan)" font-size="11">推理引擎</text>
+            </g>
+          </g>
         </g>
 
-        <!-- connectors L2A->L2B -->
-        <g stroke="rgba(245,200,122,.3)" stroke-dasharray="2 4" fill="none">
-          <path d="M200 294 V320"/><path d="M463 294 V320"/><path d="M807 294 V320"/><path d="M1131 294 V320"/>
+        <!-- L2A -> L2B connectors : soft energy beams -->
+        <g stroke-width="2" fill="none" filter="url(#aGlowSoft)" opacity=".8">
+          <path d="M200 294 C200 303 200 312 200 320" stroke="var(--a-gold)"/>
+          <path d="M463 294 C463 303 463 312 463 320" stroke="var(--a-gold)"/>
+          <path d="M807 294 C807 303 807 312 807 320" stroke="var(--a-gold)"/>
+          <path d="M1131 294 C1131 303 1131 312 1131 320" stroke="var(--a-gold)"/>
         </g>
 
-        <!-- ===== Layer 2B: Storage Feature Layer (Resource mgt., Operation service, Global name space, Backup & Recovery, Tiering, Replication) ===== -->
+        <!-- ===== Layer 2B: Storage Feature Layer ===== -->
         <g class="arch-layer">
-          <rect class="layer-bg" x="20" y="320" width="1200" height="100" rx="14" fill="rgba(245,200,122,.05)" stroke="rgba(245,200,122,.3)"/>
-          <text x="40" y="342" font-family="JetBrains Mono" font-size="12" fill="#8b7bff" letter-spacing="2">STORAGE FEATURE LAYER · 存储功能层</text>
-          <text x="1200" y="342" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#9aa3c4">Resource mgt. · Operation service · Global name space · Backup &amp; Recovery · Tiering · Replication</text>
+          <rect x="24" y="324" width="1200" height="100" rx="14" fill="var(--a-shadow)"/>
+          <rect class="layer-bg" x="20" y="320" width="1200" height="100" rx="14" fill="rgba(139,123,255,.05)" stroke="rgba(139,123,255,.35)" filter="url(#aCard3D)"/>
+          <path d="M20 320 L44 320 M20 320 L20 344" stroke="var(--a-violet)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <path d="M1220 420 L1196 420 M1220 420 L1220 396" stroke="var(--a-violet)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <text x="40" y="342" font-family="JetBrains Mono" font-size="12" fill="var(--a-violet)" letter-spacing="2" font-weight="600">STORAGE FEATURE LAYER · 存储功能层</text>
+          <text x="1200" y="342" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="var(--a-text3)">Resource mgt. · Operation service · Global name space · Backup &amp; Recovery · Tiering · Replication</text>
 
-          <g class="arch-svg-node"><rect x="40" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="133" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Resource mgt.</text><text x="133" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">资源管理</text></g>
-          <g class="arch-svg-node"><rect x="240" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="333" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Operation service</text><text x="333" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">运维服务</text></g>
-          <g class="arch-svg-node"><rect x="440" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="533" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Global name space</text><text x="533" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">全局名字空间</text></g>
-          <g class="arch-svg-node"><rect x="640" y="354" width="186" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="733" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Backup &amp; Recovery</text><text x="733" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">备份恢复</text></g>
-          <g class="arch-svg-node"><rect x="840" y="354" width="175" height="50" rx="7" fill="rgba(245,200,122,.12)" stroke="rgba(245,200,122,.4)"/><text x="927" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Tiering</text><text x="927" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">分层</text></g>
-          <g class="arch-svg-node"><rect x="1031" y="354" width="173" height="50" rx="7" fill="rgba(139,123,255,.12)" stroke="rgba(139,123,255,.4)"/><text x="1117" y="376" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Replication</text><text x="1117" y="392" text-anchor="middle" fill="#8b7bff" font-size="11">复制</text></g>
+          <!-- 6 feature cards -->
+          <g>
+            <!-- Resource mgt -->
+            <g class="arch-svg-node">
+              <rect x="44" y="358" width="186" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="40" y="354" width="186" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.45)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="40" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M40 354 L56 354 M40 354 L40 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(56 368)" opacity=".85">
+                <rect x="2" y="1" width="6" height="4" rx="1" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+                <rect x="10" y="1" width="6" height="4" rx="1" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+                <rect x="2" y="7" width="6" height="4" rx="1" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+                <rect x="10" y="7" width="6" height="4" rx="1" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+              </g>
+              <text x="133" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Resource mgt.</text>
+              <text x="133" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">资源管理</text>
+            </g>
+            <!-- Operation -->
+            <g class="arch-svg-node">
+              <rect x="244" y="358" width="186" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="240" y="354" width="186" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.45)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="240" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M240 354 L256 354 M240 354 L240 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(256 368)" opacity=".85">
+                <circle cx="8" cy="6" r="5" fill="none" stroke="var(--a-violet)" stroke-width="1"/>
+                <path d="M8 2 V6 L11 9" fill="none" stroke="var(--a-violet)" stroke-width="1" stroke-linecap="round"/>
+              </g>
+              <text x="333" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Operation</text>
+              <text x="333" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">运维服务</text>
+            </g>
+            <!-- Global NS -->
+            <g class="arch-svg-node">
+              <rect x="444" y="358" width="186" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="440" y="354" width="186" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.45)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="440" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M440 354 L456 354 M440 354 L440 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(456 368)" opacity=".85">
+                <circle cx="4" cy="6" r="3.5" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+                <circle cx="12" cy="6" r="3.5" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+                <path d="M7.5 4 C9 3 10.5 3 12 4 M7.5 8 C9 9 10.5 9 12 8" fill="none" stroke="var(--a-violet)" stroke-width=".8"/>
+              </g>
+              <text x="533" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Global NS</text>
+              <text x="533" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">全局名字空间</text>
+            </g>
+            <!-- Backup -->
+            <g class="arch-svg-node">
+              <rect x="644" y="358" width="186" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="640" y="354" width="186" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.45)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="640" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M640 354 L656 354 M640 354 L640 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(656 368)" opacity=".85">
+                <path d="M3 0 L13 0 L15 3 L15 12 L1 12 L1 3 Z" fill="none" stroke="var(--a-violet)" stroke-width="1"/>
+                <path d="M6 0 V5 H10 V0" fill="none" stroke="var(--a-violet)" stroke-width=".9"/>
+              </g>
+              <text x="733" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Backup &amp; Rec.</text>
+              <text x="733" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">备份恢复</text>
+            </g>
+            <!-- Tiering -->
+            <g class="arch-svg-node">
+              <rect x="844" y="358" width="175" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="840" y="354" width="175" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.45)" stroke-width="1.2" filter="url(#aCard3D)"/>
+              <rect x="840" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M840 354 L856 354 M840 354 L840 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(856 368)" opacity=".85">
+                <path d="M2 2 L14 2 L14 5 L9 5 L9 9 L14 9 L14 12 L2 12 Z" fill="rgba(139,123,255,.2)" stroke="var(--a-violet)" stroke-width=".9"/>
+              </g>
+              <text x="927" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Tiering</text>
+              <text x="927" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">分层</text>
+            </g>
+            <!-- Replication -->
+            <g class="arch-svg-node">
+              <rect x="1035" y="358" width="173" height="50" rx="7" fill="var(--a-shadow)"/>
+              <rect x="1031" y="354" width="173" height="50" rx="7" fill="var(--a-card)" stroke="rgba(139,123,255,.5)" stroke-width="1.3" filter="url(#aCard3D)"/>
+              <rect x="1031" y="354" width="4" height="50" rx="2" fill="var(--a-violet)"/>
+              <path d="M1031 354 L1047 354 M1031 354 L1031 370" stroke="var(--a-violet)" stroke-width="1.4" opacity=".7"/>
+              <g transform="translate(1047 368)" opacity=".85">
+                <path d="M2 4 L8 1 L8 4 L14 1 L14 11 L8 8 L8 11 Z" fill="none" stroke="var(--a-violet)" stroke-width="1" fill-rule="evenodd"/>
+              </g>
+              <text x="1117" y="376" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Replication</text>
+              <text x="1117" y="394" text-anchor="middle" fill="var(--a-violet)" font-size="11">复制</text>
+            </g>
+          </g>
         </g>
 
-        <!-- connectors L2B->L3 (data access flowing down to storage) -->
-        <g stroke="rgba(245,200,122,.3)" stroke-dasharray="3 4" fill="none">
-          <path d="M133 420 V460"/><path d="M533 420 V460"/><path d="M927 420 V460"/><path d="M1117 420 V460"/>
+        <!-- L2B -> L3 : energy beams + particles -->
+        <g stroke-width="2" fill="none" filter="url(#aGlowSoft)" opacity=".85">
+          <path d="M133 420 C133 434 133 448 133 460" stroke="var(--a-gold)"/>
+          <path d="M533 420 C533 434 533 448 533 460" stroke="var(--a-gold)"/>
+          <path d="M927 420 C927 434 927 448 927 460" stroke="var(--a-gold)"/>
+          <path d="M1117 420 C1117 434 1117 448 1117 460" stroke="var(--a-cyan)"/>
         </g>
-        <circle r="3.5" fill="var(--gold)" filter="drop-shadow(0 0 6px var(--gold))"><animateMotion dur="2.8s" repeatCount="indefinite" path="M133 420 V460"/></circle>
-        <circle r="3.5" fill="var(--gold)" filter="drop-shadow(0 0 6px var(--gold))"><animateMotion dur="2.8s" begin="0.7s" repeatCount="indefinite" path="M533 420 V460"/></circle>
-        <circle r="3.5" fill="var(--gold)" filter="drop-shadow(0 0 6px var(--gold))"><animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" path="M927 420 V460"/></circle>
-        <circle r="3.5" fill="var(--gold)" filter="drop-shadow(0 0 6px var(--gold))"><animateMotion dur="2.8s" begin="2.1s" repeatCount="indefinite" path="M1117 420 V460"/></circle>
+        <g opacity=".9">
+          <circle r="2.4" fill="var(--a-gold)" filter="url(#aGlowSoft)"><animateMotion dur="3.6s" repeatCount="indefinite" path="M133 460 V420"/></circle>
+          <circle r="2.4" fill="var(--a-gold)" filter="url(#aGlowSoft)"><animateMotion dur="3.6s" begin=".9s" repeatCount="indefinite" path="M533 460 V420"/></circle>
+          <circle r="2.4" fill="var(--a-gold)" filter="url(#aGlowSoft)"><animateMotion dur="3.6s" begin="1.8s" repeatCount="indefinite" path="M927 460 V420"/></circle>
+          <circle r="2.4" fill="var(--a-cyan)" filter="url(#aGlowSoft)"><animateMotion dur="3.6s" begin="2.7s" repeatCount="indefinite" path="M1117 460 V420"/></circle>
+        </g>
 
-        <!-- ===== Layer 3: Heterogeneous Storage Devices ===== -->
+        <!-- ===== Layer 3: Heterogeneous Storage ===== -->
+        <!-- On-Premise -->
         <g class="arch-layer">
-          <!-- On-Premise -->
-          <rect class="layer-bg" x="20" y="460" width="590" height="180" rx="14" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.14)"/>
-          <text x="40" y="482" font-family="JetBrains Mono" font-size="12" fill="#9aa3c4" letter-spacing="2">STORAGE ON-PREMISE · 本地异构存储</text>
+          <rect x="24" y="464" width="590" height="180" rx="14" fill="var(--a-shadow)"/>
+          <rect class="layer-bg" x="20" y="460" width="590" height="180" rx="14" fill="rgba(245,200,122,.04)" stroke="rgba(255,255,255,.16)" filter="url(#aCard3D)"/>
+          <path d="M20 460 L44 460 M20 460 L20 484" stroke="var(--a-gold)" stroke-width="2.2" fill="none" opacity=".7"/>
+          <path d="M610 640 L586 640 M610 640 L610 616" stroke="var(--a-gold)" stroke-width="2.2" fill="none" opacity=".7"/>
+          <text x="40" y="482" font-family="JetBrains Mono" font-size="12" fill="var(--a-text3)" letter-spacing="2" font-weight="600">STORAGE ON-PREMISE · 本地异构存储</text>
+          <!-- iso storage rack decoration -->
+          <g transform="translate(564 466)" opacity=".5">
+            <g stroke="var(--a-gold)" stroke-width=".8" fill="none">
+              <polygon points="0,6 5,0 18,0 23,6 23,16 18,22 5,22 0,16" fill="rgba(245,200,122,.14)"/>
+              <polyline points="0,6 5,0 18,0 23,6"/>
+              <line x1="5" y1="0" x2="5" y2="22"/><line x1="18" y1="0" x2="18" y2="22"/>
+              <line x1="0" y1="16" x2="23" y2="16"/><line x1="0" y1="11" x2="23" y2="11"/>
+            </g>
+          </g>
 
-          <g class="arch-svg-node"><rect x="40" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="105" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">ONTAP</text><text x="105" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">FAS / AFF</text></g>
-          <g class="arch-svg-node"><rect x="180" y="496" width="130" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="245" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">DXN / CXN</text><text x="245" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">分布式存储</text></g>
-          <g class="arch-svg-node"><rect x="320" y="496" width="140" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="390" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">PFS</text><text x="390" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">GPFS / Lustre</text></g>
-          <g class="arch-svg-node"><rect x="470" y="496" width="125" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="532" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">STG</text><text x="532" y="530" text-anchor="middle" fill="#f5c87a" font-size="11">StorageGRID</text></g>
+          <!-- Row 1: 4 storage devices -->
+          <!-- ONTAP -->
+          <g class="arch-svg-node">
+            <rect x="44" y="500" width="130" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="40" y="496" width="130" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="40" y="496" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(54 508)" opacity=".86">
+              <rect width="14" height="20" rx="2" fill="rgba(245,200,122,.18)" stroke="var(--a-gold)" stroke-width=".9"/>
+              <line x1="2" y1="5" x2="12" y2="5" stroke="var(--a-gold)" stroke-width=".7"/>
+              <line x1="2" y1="8" x2="12" y2="8" stroke="var(--a-gold)" stroke-width=".7"/>
+              <line x1="2" y1="11" x2="12" y2="11" stroke="var(--a-gold)" stroke-width=".7"/>
+              <circle cx="3.5" cy="16" r="0.9" fill="var(--a-gold)"/>
+              <circle cx="6.5" cy="16" r="0.9" fill="var(--a-gold)" opacity=".6"/>
+            </g>
+            <text x="105" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">ONTAP</text>
+            <text x="105" y="534" text-anchor="middle" fill="var(--a-gold)" font-size="11">FAS / AFF</text>
+          </g>
+          <!-- DXN -->
+          <g class="arch-svg-node">
+            <rect x="184" y="500" width="130" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="180" y="496" width="130" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="180" y="496" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(194 508)" opacity=".86">
+              <g stroke="var(--a-gold)" stroke-width=".9" fill="none">
+                <polygon points="0,6 4,2 12,2 16,6 16,14 12,18 4,18 0,14" fill="rgba(245,200,122,.18)"/>
+                <polyline points="0,6 4,2 12,2 16,6"/>
+                <line x1="4" y1="2" x2="4" y2="18"/><line x1="12" y1="2" x2="12" y2="18"/>
+              </g>
+            </g>
+            <text x="245" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">DXN / CXN</text>
+            <text x="245" y="534" text-anchor="middle" fill="var(--a-gold)" font-size="11">分布式存储</text>
+          </g>
+          <!-- PFS -->
+          <g class="arch-svg-node">
+            <rect x="324" y="500" width="140" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="320" y="496" width="140" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="320" y="496" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(334 508)" opacity=".86">
+              <path d="M1 2 A6 6 0 0 1 1 14" fill="none" stroke="var(--a-gold)" stroke-width=".9"/>
+              <path d="M5 4 A3 3 0 0 1 5 12" fill="none" stroke="var(--a-gold)" stroke-width=".8"/>
+              <line x1="10" y1="3" x2="15" y2="3" stroke="var(--a-gold)" stroke-width=".9"/>
+              <line x1="10" y1="8" x2="15" y2="8" stroke="var(--a-gold)" stroke-width=".9"/>
+              <line x1="10" y1="13" x2="15" y2="13" stroke="var(--a-gold)" stroke-width=".9"/>
+            </g>
+            <text x="390" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">PFS</text>
+            <text x="390" y="534" text-anchor="middle" fill="var(--a-gold)" font-size="11">GPFS / Lustre</text>
+          </g>
+          <!-- STG -->
+          <g class="arch-svg-node">
+            <rect x="474" y="500" width="125" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="470" y="496" width="125" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="470" y="496" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(484 508)" opacity=".86">
+              <g stroke="var(--a-gold)" stroke-width=".9" fill="none">
+                <polygon points="0,9 3,4 10,4 13,9 13,15 10,20 3,20 0,15" fill="rgba(245,200,122,.18)"/>
+                <polyline points="0,9 3,4 10,4 13,9"/>
+              </g>
+            </g>
+            <text x="532" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">STG</text>
+            <text x="532" y="534" text-anchor="middle" fill="var(--a-gold)" font-size="11">StorageGRID</text>
+          </g>
 
-          <g class="arch-svg-node"><rect x="40" y="548" width="270" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="175" y="567" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Object / S3</text><text x="175" y="582" text-anchor="middle" fill="#f5c87a" font-size="11">对象存储</text></g>
-          <g class="arch-svg-node"><rect x="320" y="548" width="275" height="44" rx="7" fill="rgba(245,200,122,.08)" stroke="rgba(245,200,122,.35)"/><text x="457" y="567" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">NFS / CIFS</text><text x="457" y="582" text-anchor="middle" fill="#f5c87a" font-size="11">文件存储 NAS</text></g>
+          <!-- Row 2: 2 protocol cards -->
+          <!-- Object / S3 -->
+          <g class="arch-svg-node">
+            <rect x="44" y="552" width="270" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="40" y="548" width="270" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="40" y="548" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(56 560)" opacity=".86">
+              <path d="M10 0 L20 6 L20 14 L10 20 L0 14 L0 6 Z" fill="rgba(245,200,122,.2)" stroke="var(--a-gold)" stroke-width=".9"/>
+              <circle cx="10" cy="10" r="2.5" fill="none" stroke="var(--a-gold)" stroke-width=".9"/>
+            </g>
+            <text x="175" y="568" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Object / S3</text>
+            <text x="175" y="586" text-anchor="middle" fill="var(--a-gold)" font-size="11">对象存储</text>
+          </g>
+          <!-- NFS / CIFS -->
+          <g class="arch-svg-node">
+            <rect x="324" y="552" width="275" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="320" y="548" width="275" height="44" rx="7" fill="var(--a-card)" stroke="rgba(245,200,122,.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="320" y="548" width="4" height="44" rx="2" fill="var(--a-gold)"/>
+            <g transform="translate(336 560)" opacity=".86">
+              <rect x="0" y="3" width="9" height="14" rx="1" fill="rgba(245,200,122,.18)" stroke="var(--a-gold)" stroke-width=".9"/>
+              <rect x="11" y="0" width="9" height="14" rx="1" fill="rgba(245,200,122,.18)" stroke="var(--a-gold)" stroke-width=".9"/>
+              <line x1="11" y1="7" x2="20" y2="7" stroke="var(--a-gold)" stroke-width=".7"/>
+            </g>
+            <text x="457" y="568" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">NFS / CIFS</text>
+            <text x="457" y="586" text-anchor="middle" fill="var(--a-gold)" font-size="11">文件存储 NAS</text>
+          </g>
 
-          <text x="315" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="#9aa3c4">标准协议对接 · 独立元数据引擎 · 不依赖对象存储 Tag</text>
-
-          <!-- On-Cloud -->
-          <rect class="layer-bg" x="630" y="460" width="590" height="180" rx="14" fill="rgba(var(--cyan-rgb),.03)" stroke="rgba(var(--cyan-rgb),.2)"/>
-          <text x="650" y="482" font-family="JetBrains Mono" font-size="12" fill="#3df0ff" letter-spacing="2">STORAGE ON-CLOUD · 云端存储</text>
-
-          <g class="arch-svg-node"><rect x="650" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="740" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud Object (VE)</text><text x="740" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">火山引擎</text></g>
-          <g class="arch-svg-node"><rect x="840" y="496" width="180" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="930" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud Object</text><text x="930" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">AWS / 阿里云</text></g>
-          <g class="arch-svg-node"><rect x="1030" y="496" width="175" height="44" rx="7" fill="rgba(var(--cyan-rgb),.1)" stroke="rgba(var(--cyan-rgb),.35)"/><text x="1117" y="515" text-anchor="middle" fill="#eef2ff" font-size="14" font-weight="600">Cloud File ONTAP</text><text x="1117" y="530" text-anchor="middle" fill="#3df0ff" font-size="11">VE / AWS</text></g>
-
-          <text x="925" y="615" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="#9aa3c4">混合多云统一纳管 · On-Premise + On-Cloud</text>
+          <text x="315" y="617" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="var(--a-text3)" font-weight="500">标准协议对接 · 独立元数据引擎 · 不依赖对象存储 Tag</text>
         </g>
 
-        <!-- ===== Side annotations ===== -->
-                        
+        <!-- On-Cloud -->
+        <g class="arch-layer">
+          <rect x="634" y="464" width="590" height="180" rx="14" fill="var(--a-shadow)"/>
+          <rect class="layer-bg" x="630" y="460" width="590" height="180" rx="14" fill="rgba(var(--cyan-rgb),.04)" stroke="rgba(var(--cyan-rgb),.25)" filter="url(#aCard3D)"/>
+          <path d="M630 460 L654 460 M630 460 L630 484" stroke="var(--a-cyan)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <path d="M1220 640 L1196 640 M1220 640 L1220 616" stroke="var(--a-cyan)" stroke-width="2.2" fill="none" opacity=".75"/>
+          <text x="650" y="482" font-family="JetBrains Mono" font-size="12" fill="var(--a-cyan)" letter-spacing="2" font-weight="600">STORAGE ON-CLOUD · 云端存储</text>
+          <!-- cloud decoration -->
+          <g transform="translate(1174 466)" opacity=".5">
+            <g stroke="var(--a-cyan)" stroke-width=".9" fill="rgba(90,140,255,.14)">
+              <path d="M4 16 A5 5 0 0 1 8 7 A4 4 0 0 1 16 6 A4 4 0 0 1 20 14 A3 3 0 0 1 18 20 L5 20 A4 4 0 0 1 4 16 Z"/>
+            </g>
+          </g>
+
+          <!-- Cloud Object VE -->
+          <g class="arch-svg-node">
+            <rect x="654" y="500" width="180" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="650" y="496" width="180" height="44" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="650" y="496" width="4" height="44" rx="2" fill="var(--a-cyan)"/>
+            <g transform="translate(666 508)" opacity=".86">
+              <path d="M4 16 A5 5 0 0 1 8 7 A4 4 0 0 1 15 6 A4 4 0 0 1 18 13 A3 3 0 0 1 17 19 L5 19 A4 4 0 0 1 4 16 Z" fill="rgba(90,140,255,.2)" stroke="var(--a-cyan)" stroke-width=".9"/>
+            </g>
+            <text x="740" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Cloud Object (VE)</text>
+            <text x="740" y="534" text-anchor="middle" fill="var(--a-cyan)" font-size="11">火山引擎</text>
+          </g>
+          <!-- Cloud Object AWS -->
+          <g class="arch-svg-node">
+            <rect x="844" y="500" width="180" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="840" y="496" width="180" height="44" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="840" y="496" width="4" height="44" rx="2" fill="var(--a-cyan)"/>
+            <g transform="translate(856 508)" opacity=".86">
+              <ellipse cx="10" cy="10" rx="9" ry="6" fill="rgba(90,140,255,.18)" stroke="var(--a-cyan)" stroke-width=".9"/>
+              <path d="M1 10 A9 6 0 0 0 19 10" fill="none" stroke="var(--a-cyan)" stroke-width=".7" stroke-dasharray="1.5 1.5"/>
+            </g>
+            <text x="930" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Cloud Object</text>
+            <text x="930" y="534" text-anchor="middle" fill="var(--a-cyan)" font-size="11">AWS / 阿里云</text>
+          </g>
+          <!-- Cloud File ONTAP -->
+          <g class="arch-svg-node">
+            <rect x="1034" y="500" width="175" height="44" rx="7" fill="var(--a-shadow)"/>
+            <rect x="1030" y="496" width="175" height="44" rx="7" fill="var(--a-card)" stroke="rgba(var(--cyan-rgb),.4)" stroke-width="1.2" filter="url(#aCard3D)"/>
+            <rect x="1030" y="496" width="4" height="44" rx="2" fill="var(--a-cyan)"/>
+            <g transform="translate(1046 508)" opacity=".86">
+              <rect x="1" y="3" width="8" height="14" rx="1" fill="rgba(90,140,255,.18)" stroke="var(--a-cyan)" stroke-width=".9"/>
+              <rect x="11" y="0" width="8" height="14" rx="1" fill="rgba(90,140,255,.18)" stroke="var(--a-cyan)" stroke-width=".9"/>
+              <path d="M1 17 L4 20 L16 20 L19 17" fill="none" stroke="var(--a-cyan)" stroke-width=".9"/>
+            </g>
+            <text x="1117" y="516" text-anchor="middle" fill="var(--a-text)" font-size="14" font-weight="700">Cloud File ONTAP</text>
+            <text x="1117" y="534" text-anchor="middle" fill="var(--a-cyan)" font-size="11">VE / AWS</text>
+          </g>
+
+          <text x="925" y="617" text-anchor="middle" font-family="Noto Sans SC" font-size="12" fill="var(--a-text3)" font-weight="500">混合多云统一纳管 · On-Premise + On-Cloud</text>
+        </g>
       </svg>
     </div>
       </div>
