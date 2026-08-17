@@ -1482,15 +1482,41 @@
   .license-note{margin-top:16px;padding:14px 18px;background:rgba(245,200,122,.06);border:1px solid rgba(245,200,122,.2);border-radius:10px;font-size:13px;color:var(--ink-dim);line-height:1.7}
   .license-note b{color:var(--gold);font-weight:500}
   .feat-matrix{margin-top:20px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .feat-matrix table{width:100%;border-collapse:collapse;font-size:12px}
-  .feat-matrix th,.feat-matrix td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line)}
-  .feat-matrix th{background:var(--surface-2);font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint)}
-  .feat-matrix td{color:var(--ink-dim)}
-  .feat-matrix td.chk{text-align:center;color:var(--cyan);font-weight:600}
+  .feat-matrix table{width:100%;border-collapse:collapse;font-size:13px}
+  .feat-matrix th,.feat-matrix td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  .feat-matrix th{background:linear-gradient(135deg,rgba(0,180,180,.06),rgba(100,140,255,.06));font-family:var(--ff-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .feat-matrix td{color:var(--ink-dim);line-height:1.7}
+  .feat-matrix td.chk{text-align:center;color:var(--cyan);font-weight:700;font-size:14px;width:56px}
   .feat-matrix td.dash{text-align:center;color:var(--ink-faint)}
   .feat-matrix tr:last-child td{border-bottom:none}
   .feat-matrix td:first-child{color:var(--ink);font-weight:500}
+  .feat-matrix tbody tr{transition:background .25s ease}
+  .feat-matrix tbody tr:hover{background:linear-gradient(90deg,rgba(0,180,180,.04),rgba(100,140,255,.04))}
+  .feat-matrix td:nth-child(2){font-weight:600;color:var(--ink);white-space:nowrap;width:280px}
+  .feat-matrix td:nth-child(3){color:var(--ink-dim)}
   .feat-matrix-inline{margin-top:0;border:none;border-radius:0}
+
+  /* ====== license table ====== */
+  .license-table-wrap{margin-top:24px;padding:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 8px 32px rgba(30,40,60,.06);transition:box-shadow .3s ease}
+  .license-table-wrap:hover{box-shadow:0 12px 44px rgba(30,40,60,.1)}
+  .license-table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .license-table th{background:linear-gradient(135deg,rgba(0,195,180,.08),rgba(90,130,255,.08));padding:16px 24px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);border-bottom:2px solid var(--line-strong)}
+  .license-table td{padding:18px 24px;border-bottom:1px solid var(--line);vertical-align:top}
+  .license-table tr:last-child td{border-bottom:none}
+  .license-table tbody tr{transition:background .2s ease}
+  .license-table tbody tr:hover{background:linear-gradient(90deg,rgba(0,195,180,.03),rgba(90,130,255,.03))}
+  .license-table td.chk{text-align:center;font-weight:700;font-size:14px;color:var(--cyan);width:56px}
+  .license-table .license-name{font-weight:600;color:var(--ink);display:inline-block;margin-right:8px}
+  .license-table .desc{color:var(--ink-dim);line-height:1.7}
+  .license-table .badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600;letter-spacing:.04em;vertical-align:middle}
+  .license-table .badge-lite{background:rgba(130,130,150,.12);color:var(--ink-faint);border:1px solid rgba(130,130,150,.2)}
+  .license-table .badge-required{background:rgba(255,95,95,.12);color:#d9534f;border:1px solid rgba(255,95,95,.25)}
+  .license-table .badge-optional{background:rgba(0,195,180,.12);color:var(--cyan);border:1px solid rgba(0,195,180,.25)}
+
+  [data-theme="dark"] .license-table-wrap{background:var(--surface-2)}
+  [data-theme="dark"] .license-table .badge-lite{background:rgba(130,130,150,.18);color:#aaa}
+  [data-theme="dark"] .license-table .badge-required{background:rgba(255,95,95,.2);color:#ff7b7b}
+  [data-theme="dark"] .license-table .badge-optional{background:rgba(0,195,180,.2);color:#4fe5d4}
 
   /* ====== theme toggle ====== */
   .theme-toggle{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--ink-dim);cursor:pointer;transition:.3s;margin-left:14px;margin-top:2px;flex-shrink:0}
@@ -4595,21 +4621,43 @@
     </div>
     <p class="sec-desc">LiSA 许可授权分为入门试用（Lite）、集群必配基础（Basic）及三大功能模块（DFS / TDM / Archive），按需组合配置。</p>
   </div>
-  <div class="license-table-wrap reveal" style="padding:24px;background:rgba(255,255,255,.6);border-radius:16px;box-shadow:0 10px 40px rgba(30,40,60,.08);backdrop-filter:blur(8px)">
-    <div class="feat-matrix feat-matrix-inline" style="overflow-x:auto">
-      <table>
-        <thead>
-          <tr><th style="width:60px">No.</th><th style="width:260px">类型</th><th>描述</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="chk"><b>1</b></td><td><b>LiSA Lite 许可授权</b></td><td>入门级试用许可，适用于产品体验、POC 测试等；需升级为 Basic 基础授权才能上生产。</td></tr>
-          <tr><td class="chk"><b>2</b></td><td><b>LiSA Basic 基础许可授权（必配）</b></td><td>提供数据管理平台功能的使用授权，包括：存储基础操作、存储管理、数据管理和系统管理，元数据检索，数据迁移；每个 LiSA 集群必配。</td></tr>
-          <tr><td class="chk"><b>3</b></td><td><b>LiSA DFS 质检许可授权（选配）</b></td><td>工业产线质检图片处理，机台资源监控，智能数据标签，图片相关处理等。</td></tr>
-          <tr><td class="chk"><b>4</b></td><td><b>LiSA TDM 数据迁出（选配）</b></td><td>LiSA 管理的数据从联想存储迁移至第三方存储（非联想存储）配额，按迁移数据流量收费。</td></tr>
-          <tr><td class="chk"><b>5</b></td><td><b>LiSA Archive 冷存储归档（选配）</b></td><td>LiSA 将数据归档到 IBM 磁带库功能许可。</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="license-table-wrap reveal">
+    <table class="license-table">
+      <thead>
+        <tr>
+          <th style="width:56px">No.</th>
+          <th style="width:260px">类型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="chk"><b>1</b></td>
+          <td><span class="license-name">LiSA Lite 许可授权</span> <span class="badge badge-lite">试用</span></td>
+          <td class="desc">入门级试用许可，适用于产品体验、POC 测试等；需升级为 Basic 基础授权才能上生产。</td>
+        </tr>
+        <tr>
+          <td class="chk"><b>2</b></td>
+          <td><span class="license-name">LiSA Basic 基础许可授权</span> <span class="badge badge-required">必配</span></td>
+          <td class="desc">提供数据管理平台功能的使用授权，包括：存储基础操作、存储管理、数据管理和系统管理，元数据检索，数据迁移；每个 LiSA 集群必配。</td>
+        </tr>
+        <tr>
+          <td class="chk"><b>3</b></td>
+          <td><span class="license-name">LiSA DFS 质检许可授权</span> <span class="badge badge-optional">选配</span></td>
+          <td class="desc">工业产线质检图片处理，机台资源监控，智能数据标签，图片相关处理等。</td>
+        </tr>
+        <tr>
+          <td class="chk"><b>4</b></td>
+          <td><span class="license-name">LiSA TDM 数据迁出</span> <span class="badge badge-optional">选配</span></td>
+          <td class="desc">LiSA 管理的数据从联想存储迁移至第三方存储（非联想存储）配额，按迁移数据流量收费。</td>
+        </tr>
+        <tr>
+          <td class="chk"><b>5</b></td>
+          <td><span class="license-name">LiSA Archive 冷存储归档</span> <span class="badge badge-optional">选配</span></td>
+          <td class="desc">LiSA 将数据归档到 IBM 磁带库功能许可。</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
