@@ -20,8 +20,8 @@
   .layer-1{inset:-15%;width:130%;height:130%;z-index:1;transform:translateZ(0)}
   .layer-1 img{object-fit:cover}
 
-  /* Starship */
-  .layer-ship{z-index:5;width:800px;height:800px;left:20px;top:20px;transform:scale(.75) translateZ(0)}
+  /* Starship — responsive, top-left */
+  .layer-ship{z-index:5;width:min(60vmin,520px);height:min(60vmin,520px);left:3vmin;top:3vmin;transform:scale(.75) translateZ(0)}
   .layer-ship img{object-fit:contain}
 
   /* Layer 2 — Mars window */
@@ -34,8 +34,8 @@
   .lisa-title span{display:inline-block}
   .lisa-sub{margin-top:16px;color:rgba(255,255,255,.6);font-size:clamp(11px,1.4vw,16px);letter-spacing:.35em;text-transform:uppercase;font-weight:300;opacity:0}
 
-  /* Layer 3 — astronaut */
-  .layer-3{inset:-5%;width:110%;height:110%;top:calc(-5% + 150px);z-index:20;transform:translateZ(0)}
+  /* Layer 3 — astronaut, bottom */
+  .layer-3{left:-5%;right:-5%;bottom:-15%;height:70%;z-index:20;transform:translateZ(0)}
   .layer-3 img{object-fit:cover}
 
   /* ===== Optimized entrance animations (GPU-only: transform + opacity) ===== */
@@ -48,9 +48,9 @@
   .animate .lisa-sub{animation:fadeSub 1s 1.5s cubic-bezier(.4,0,.2,1) forwards}
 
   @keyframes z1{0%{transform:scale(1.3) translateZ(0)}100%{transform:scale(1) translateZ(0)}}
-  @keyframes zShip{0%{transform:scale(1.5) translateZ(0)}100%{transform:scale(.75) translateZ(0)}}
+  @keyframes zShip{0%{transform:scale(1.2) translateZ(0)}100%{transform:scale(.75) translateZ(0)}}
   @keyframes z2{0%{transform:scale(2.5) translateZ(0);opacity:.7}100%{transform:scale(1) translateZ(0);opacity:1}}
-  @keyframes z3{0%{transform:scale(8) translateZ(0);opacity:0}40%{opacity:.5}100%{transform:scale(1) translateZ(0);opacity:1}}
+  @keyframes z3{0%{transform:scale(2.5) translateZ(0);opacity:.0}100%{transform:scale(1) translateZ(0);opacity:1}}
   @keyframes zText{0%{transform:scale(2.5) translateZ(0);opacity:0}60%{opacity:.6}100%{transform:scale(1) translateZ(0);opacity:1}}
   @keyframes rot{0%{transform:rotateY(90deg) translateZ(0);opacity:0}50%{opacity:.6}100%{transform:rotateY(0) translateZ(0);opacity:1}}
   @keyframes fadeSub{0%{opacity:0;transform:translateY(10px) translateZ(0)}100%{opacity:1;transform:translateY(0) translateZ(0)}}

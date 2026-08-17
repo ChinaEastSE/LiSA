@@ -7,7 +7,7 @@
 <meta name="description" content="LiSA — 联想存储智能体。面向企业级本地、混合云与公有云的智能数据管理平台，无缝集成 ONTAP、DXN 及第三方非结构化数据存储，千亿条目秒级检索。">
 <script>
   // Prevent theme flash: apply saved theme before CSS renders
-  (function(){var t=localStorage.getItem('lisa-theme')||'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');})();
+  (function(){var t=localStorage.getItem('lisa-theme');if(!t){t='light';localStorage.setItem('lisa-theme','light');}document.documentElement.setAttribute('data-theme',t==='light'?'light':'');})();
 </script>
 <script>
   // Auth check: require login.html session before showing content
