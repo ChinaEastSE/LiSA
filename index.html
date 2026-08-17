@@ -1980,48 +1980,17 @@
       <p>兼容 NetApp AIDE，让数据 <b>AI-Ready</b>，无缝对接 nVidia AIDP / Matrix ONE 等AI引擎。</p>
     </div>
     <div class="product-visual reveal">
-      <svg viewBox="0 0 800 740" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="pvHubGlow" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stop-color="var(--pv-hub1)" stop-opacity=".35"/>
-            <stop offset="50%" stop-color="var(--pv-hub2)" stop-opacity=".2"/>
-            <stop offset="100%" stop-color="var(--pv-hub3)" stop-opacity="0"/>
-          </radialGradient>
           <linearGradient id="pvHubCore" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="var(--pv-hub1)"/>
             <stop offset="50%" stop-color="var(--pv-hub2)"/>
             <stop offset="100%" stop-color="var(--pv-hub3)"/>
           </linearGradient>
-          <filter id="pvGlow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="4" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="pvGlowSm" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="2" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
           <filter id="pvShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="var(--pv-hub1)" flood-opacity=".2"/>
+            <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="var(--pv-hub1)" flood-opacity=".15"/>
           </filter>
         </defs>
-
-        <!-- Background grid -->
-        <g stroke="var(--pv-grid)" stroke-width=".5">
-          <line x1="40" y1="80" x2="760" y2="80"/>
-          <line x1="40" y1="170" x2="760" y2="170"/>
-          <line x1="40" y1="260" x2="760" y2="260"/>
-          <line x1="40" y1="350" x2="760" y2="350"/>
-          <line x1="40" y1="440" x2="760" y2="440"/>
-          <line x1="40" y1="530" x2="760" y2="530"/>
-          <line x1="40" y1="620" x2="760" y2="620"/>
-          <line x1="40" y1="710" x2="760" y2="710"/>
-          <line x1="140" y1="40" x2="140" y2="710"/>
-          <line x1="260" y1="40" x2="260" y2="710"/>
-          <line x1="380" y1="40" x2="380" y2="710"/>
-          <line x1="500" y1="40" x2="500" y2="710"/>
-          <line x1="620" y1="40" x2="620" y2="710"/>
-          <line x1="740" y1="40" x2="740" y2="710"/>
-        </g>
 
         <!-- ========== TOP: DATA SOURCES (非结构化数据 only) ========== -->
         <g>
@@ -2046,206 +2015,146 @@
           <text x="595" y="125" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)">质检 / 非结构化</text>
         </g>
 
-        <!-- Connections: SOURCES → ENGINE -->
-        <g stroke="var(--pv-line)" stroke-width="1" fill="none" opacity=".5">
-          <path d="M150,140 Q190,200 260,265"><animate attributeName="opacity" values=".3;.6;.3" dur="3s" repeatCount="indefinite"/></path>
-          <path d="M370,140 Q370,200 370,265"><animate attributeName="opacity" values=".35;.65;.35" dur="2.8s" repeatCount="indefinite"/></path>
-          <path d="M595,140 Q555,200 490,265"><animate attributeName="opacity" values=".35;.65;.35" dur="3.2s" repeatCount="indefinite"/></path>
+        <!-- Simple arrows: SOURCES → ENGINE (static straight lines) -->
+        <g stroke="var(--pv-line)" stroke-width="1.4" fill="none" opacity=".55">
+          <line x1="150" y1="140" x2="290" y2="255"/>
+          <line x1="370" y1="140" x2="380" y2="255"/>
+          <line x1="595" y1="140" x2="470" y2="255"/>
         </g>
-
-        <!-- Arrow indicators -->
-        <g fill="var(--pv-line)" opacity=".55">
-          <polygon points="185,205 181,198 189,198"/>
-          <polygon points="370,205 366,198 374,198"/>
-          <polygon points="555,205 551,198 559,198"/>
+        <g fill="var(--pv-line)" opacity=".7">
+          <polygon points="285,250 279,242 291,242"/>
+          <polygon points="380,250 374,242 386,242"/>
+          <polygon points="475,250 469,242 481,242"/>
         </g>
 
         <!-- ========== CENTER: LISA META ENGINE ========== -->
-        <ellipse cx="380" cy="330" rx="180" ry="120" fill="url(#pvHubGlow)"/>
-        <g transform="translate(380 330)" fill="none" stroke="var(--pv-line)" stroke-width="1" opacity=".25">
-          <ellipse rx="220" ry="44"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite"/></ellipse>
-          <ellipse rx="180" ry="34" transform="rotate(25)"><animateTransform attributeName="transform" type="rotate" from="385" to="25" dur="45s" repeatCount="indefinite"/></ellipse>
-        </g>
-
         <!-- Engine card -->
-        <rect x="235" y="255" width="290" height="150" rx="16" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.5" filter="url(#pvShadow)"/>
+        <rect x="235" y="255" width="290" height="140" rx="16" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1.5" filter="url(#pvShadow)"/>
 
         <!-- Engine label top -->
         <text x="380" y="248" text-anchor="middle" fill="var(--pv-text2)" font-size="13" font-family="var(--ff-mono)" letter-spacing=".14" font-weight="600">LENOVO INTELLIGENT STORAGE AGENT</text>
 
-        <!-- Hub core -->
+        <!-- Hub core (simple single circle) -->
         <g transform="translate(380 302)">
-          <circle r="48" fill="url(#pvHubCore)" filter="url(#pvGlow)"><animate attributeName="r" values="46;50;46" dur="3s" repeatCount="indefinite"/></circle>
-          <circle r="33" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.4"><animate attributeName="r" values="31;35;31" dur="3s" repeatCount="indefinite"/></circle>
-          <circle r="19" fill="rgba(255,255,255,.28)"><animate attributeName="r" values="17;21;17" dur="3s" repeatCount="indefinite"/></circle>
-          <text y="4" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="var(--ff-mono)" filter="url(#pvGlowSm)">LiSA</text>
-          <text y="26" text-anchor="middle" fill="rgba(255,255,255,.88)" font-size="13" font-weight="700" font-family="var(--ff-mono)" letter-spacing=".08">META ENGINE</text>
+          <circle r="42" fill="url(#pvHubCore)" opacity=".95"/>
+          <circle r="28" fill="rgba(255,255,255,.22)"/>
+          <text y="4" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="var(--ff-mono)">LiSA</text>
+          <text y="24" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="12" font-weight="700" font-family="var(--ff-mono)" letter-spacing=".06">META ENGINE</text>
         </g>
 
         <!-- Engine modules row -->
-        <g transform="translate(255 372)">
-          <rect width="74" height="34" rx="7" fill="rgba(90,140,255,.15)" stroke="var(--pv-line)" stroke-width="1"/>
-          <text x="37" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">TAG</text>
+        <g transform="translate(255 365)">
+          <rect width="74" height="32" rx="7" fill="rgba(90,140,255,.15)" stroke="var(--pv-line)" stroke-width="1"/>
+          <text x="37" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">TAG</text>
         </g>
-        <g transform="translate(344 372)">
-          <rect width="86" height="34" rx="7" fill="rgba(139,122,255,.15)" stroke="var(--pv-line2)" stroke-width="1"/>
-          <text x="43" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">SEARCH</text>
+        <g transform="translate(344 365)">
+          <rect width="86" height="32" rx="7" fill="rgba(139,122,255,.15)" stroke="var(--pv-line2)" stroke-width="1"/>
+          <text x="43" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">SEARCH</text>
         </g>
-        <g transform="translate(444 372)">
-          <rect width="66" height="34" rx="7" fill="rgba(0,212,192,.15)" stroke="var(--pv-hub3)" stroke-width="1"/>
-          <text x="33" y="22" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">AI</text>
+        <g transform="translate(444 365)">
+          <rect width="66" height="32" rx="7" fill="rgba(0,212,192,.15)" stroke="var(--pv-hub3)" stroke-width="1"/>
+          <text x="33" y="21" text-anchor="middle" fill="var(--pv-text)" font-size="15" font-weight="700" font-family="var(--ff-mono)">AI</text>
         </g>
 
         <!-- ========== LEFT: DATA SERVICES ========== -->
         <g>
-          <rect x="40" y="250" width="145" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="250" width="5" height="54" rx="2" fill="var(--pv-orange)"/>
-          <text x="115" y="274" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">MIGRATION</text>
-          <text x="115" y="296" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">跨存储迁移</text>
+          <rect x="40" y="230" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="40" y="230" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
+          <text x="115" y="252" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">MIGRATION</text>
+          <text x="115" y="272" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">跨存储迁移</text>
         </g>
         <g>
-          <rect x="40" y="314" width="145" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="314" width="5" height="54" rx="2" fill="var(--pv-line2)"/>
-          <text x="115" y="338" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">BACKUP</text>
-          <text x="115" y="360" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">统一备份</text>
+          <rect x="40" y="288" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="40" y="288" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
+          <text x="115" y="310" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">BACKUP</text>
+          <text x="115" y="330" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">统一备份</text>
         </g>
         <g>
-          <rect x="40" y="378" width="145" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="378" width="5" height="54" rx="2" fill="var(--pv-line3)"/>
-          <text x="115" y="402" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
-          <text x="115" y="424" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">分层归档</text>
+          <rect x="40" y="346" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="40" y="346" width="5" height="48" rx="2" fill="var(--pv-line3)"/>
+          <text x="115" y="368" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
+          <text x="115" y="388" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">分层归档</text>
         </g>
         <g>
-          <rect x="40" y="442" width="145" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="40" y="442" width="5" height="54" rx="2" fill="var(--pv-line)"/>
-          <text x="115" y="466" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">TIERING</text>
-          <text x="115" y="488" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">自动分层</text>
+          <rect x="40" y="404" width="145" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="40" y="404" width="5" height="48" rx="2" fill="var(--pv-line)"/>
+          <text x="115" y="426" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">TIERING</text>
+          <text x="115" y="446" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">自动分层</text>
         </g>
 
-        <!-- Engine → Services connections -->
-        <g stroke="var(--pv-orange)" stroke-width=".9" fill="none" opacity=".55" stroke-dasharray="4 3">
-          <path d="M235,277 Q195,277 185,280"/><path d="M235,341 Q195,341 185,344"/>
-          <path d="M235,405 Q195,405 185,408"/><path d="M235,469 Q195,469 185,472"/>
+        <!-- Engine → Services (short horizontal dashes) -->
+        <g stroke="var(--pv-orange)" stroke-width="1" fill="none" opacity=".5" stroke-dasharray="4 3">
+          <line x1="235" y1="254" x2="185" y2="254"/>
+          <line x1="235" y1="312" x2="185" y2="312"/>
+          <line x1="235" y1="370" x2="185" y2="370"/>
+          <line x1="235" y1="428" x2="185" y2="428"/>
         </g>
 
         <!-- ========== RIGHT: AI / ANALYTICS ========== -->
         <g>
-          <rect x="615" y="250" width="150" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="250" width="5" height="54" rx="2" fill="var(--pv-hub3)"/>
-          <text x="692" y="274" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">AI READY</text>
-          <text x="692" y="296" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">NVIDIA / MATRIX ONE</text>
+          <rect x="615" y="230" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="615" y="230" width="5" height="48" rx="2" fill="var(--pv-hub3)"/>
+          <text x="692" y="252" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">AI READY</text>
+          <text x="692" y="272" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">NVIDIA / MATRIX ONE</text>
         </g>
         <g>
-          <rect x="615" y="314" width="150" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="314" width="5" height="54" rx="2" fill="var(--pv-line2)"/>
-          <text x="692" y="338" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ANALYTICS</text>
-          <text x="692" y="360" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据洞察</text>
+          <rect x="615" y="288" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="615" y="288" width="5" height="48" rx="2" fill="var(--pv-line2)"/>
+          <text x="692" y="310" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">ANALYTICS</text>
+          <text x="692" y="330" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据洞察</text>
         </g>
         <g>
-          <rect x="615" y="378" width="150" height="54" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
-          <rect x="615" y="378" width="5" height="54" rx="2" fill="var(--pv-orange)"/>
-          <text x="692" y="402" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">GOVERNANCE</text>
-          <text x="692" y="424" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据治理</text>
+          <rect x="615" y="346" width="150" height="48" rx="9" fill="var(--pv-card)" stroke="var(--pv-card-stroke)" stroke-width="1"/>
+          <rect x="615" y="346" width="5" height="48" rx="2" fill="var(--pv-orange)"/>
+          <text x="692" y="368" text-anchor="middle" fill="var(--pv-text)" font-size="16" font-weight="700" font-family="var(--ff-mono)">GOVERNANCE</text>
+          <text x="692" y="388" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">数据治理</text>
         </g>
 
-        <!-- Engine → Right connections -->
-        <g stroke="var(--pv-line2)" stroke-width=".9" fill="none" opacity=".55" stroke-dasharray="4 3">
-          <path d="M525,277 Q570,277 615,280"/><path d="M525,341 Q570,341 615,344"/>
-          <path d="M525,405 Q570,405 615,408"/>
+        <!-- Engine → Right (short horizontal dashes) -->
+        <g stroke="var(--pv-line2)" stroke-width="1" fill="none" opacity=".5" stroke-dasharray="4 3">
+          <line x1="525" y1="254" x2="615" y2="254"/>
+          <line x1="525" y1="312" x2="615" y2="312"/>
+          <line x1="525" y1="370" x2="615" y2="370"/>
         </g>
 
-        <!-- ========== BOTTOM: STORAGE TIERS ========== -->
+        <!-- ========== BOTTOM: STORAGE TIERS (simplified, no disk grid) ========== -->
         <g>
-          <rect x="45" y="535" width="170" height="130" rx="14" fill="var(--pv-card)" stroke="var(--pv-line)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="130" y="568" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">HOT TIER</text>
-          <text x="130" y="590" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Flash / All-Flash</text>
-          <line x1="65" y1="604" x2="195" y2="604" stroke="var(--pv-line)" stroke-width=".6" opacity=".4"/>
-          <g transform="translate(68 616)">
-            <rect width="20" height="11" rx="2.5" fill="var(--pv-line)" opacity=".75"/><rect x="27" width="20" height="11" rx="2.5" fill="var(--pv-line)" opacity=".6"/>
-            <rect x="54" width="20" height="11" rx="2.5" fill="var(--pv-line)" opacity=".5"/><rect x="81" width="20" height="11" rx="2.5" fill="var(--pv-line)" opacity=".4"/>
-            <rect x="108" width="20" height="11" rx="2.5" fill="var(--pv-line)" opacity=".3"/>
-          </g>
-          <text x="130" y="652" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">ONTAP · DXN</text>
+          <rect x="45" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line)" stroke-width="1.8" filter="url(#pvShadow)"/>
+          <text x="130" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">HOT TIER</text>
+          <text x="130" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Flash / All-Flash</text>
+          <text x="130" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">ONTAP · DXN</text>
         </g>
         <g>
-          <rect x="228" y="535" width="170" height="130" rx="14" fill="var(--pv-card)" stroke="var(--pv-line2)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="313" y="568" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">WARM TIER</text>
-          <text x="313" y="590" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">HDD / Hybrid</text>
-          <line x1="248" y1="604" x2="378" y2="604" stroke="var(--pv-line2)" stroke-width=".6" opacity=".4"/>
-          <g transform="translate(251 616)">
-            <rect width="20" height="11" rx="2.5" fill="var(--pv-line2)" opacity=".75"/><rect x="27" width="20" height="11" rx="2.5" fill="var(--pv-line2)" opacity=".6"/>
-            <rect x="54" width="20" height="11" rx="2.5" fill="var(--pv-line2)" opacity=".5"/><rect x="81" width="20" height="11" rx="2.5" fill="var(--pv-line2)" opacity=".4"/>
-            <rect x="108" width="20" height="11" rx="2.5" fill="var(--pv-line2)" opacity=".3"/>
-          </g>
-          <text x="313" y="652" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">DXN · E-Series</text>
+          <rect x="228" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line2)" stroke-width="1.8" filter="url(#pvShadow)"/>
+          <text x="313" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">WARM TIER</text>
+          <text x="313" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">HDD / Hybrid</text>
+          <text x="313" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">DXN · E-Series</text>
         </g>
         <g>
-          <rect x="411" y="535" width="170" height="130" rx="14" fill="var(--pv-card)" stroke="var(--pv-line3)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="496" y="568" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">COLD TIER</text>
-          <text x="496" y="590" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Object / Erasure</text>
-          <line x1="431" y1="604" x2="561" y2="604" stroke="var(--pv-line3)" stroke-width=".6" opacity=".4"/>
-          <g transform="translate(434 616)">
-            <rect width="20" height="11" rx="2.5" fill="var(--pv-line3)" opacity=".75"/><rect x="27" width="20" height="11" rx="2.5" fill="var(--pv-line3)" opacity=".6"/>
-            <rect x="54" width="20" height="11" rx="2.5" fill="var(--pv-line3)" opacity=".5"/><rect x="81" width="20" height="11" rx="2.5" fill="var(--pv-line3)" opacity=".4"/>
-            <rect x="108" width="20" height="11" rx="2.5" fill="var(--pv-line3)" opacity=".3"/>
-          </g>
-          <text x="496" y="652" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">S3 · CEPH</text>
+          <rect x="411" y="500" width="170" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-line3)" stroke-width="1.8" filter="url(#pvShadow)"/>
+          <text x="496" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">COLD TIER</text>
+          <text x="496" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Object / Erasure</text>
+          <text x="496" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">S3 · CEPH</text>
         </g>
         <g>
-          <rect x="594" y="535" width="165" height="130" rx="14" fill="var(--pv-card)" stroke="var(--pv-orange)" stroke-width="1.8" filter="url(#pvShadow)"/>
-          <text x="676" y="568" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
-          <text x="676" y="590" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Tape / Long-term</text>
-          <line x1="614" y1="604" x2="739" y2="604" stroke="var(--pv-orange)" stroke-width=".6" opacity=".4"/>
-          <g transform="translate(617 616)">
-            <rect width="20" height="11" rx="2.5" fill="var(--pv-orange)" opacity=".75"/><rect x="27" width="20" height="11" rx="2.5" fill="var(--pv-orange)" opacity=".6"/>
-            <rect x="54" width="20" height="11" rx="2.5" fill="var(--pv-orange)" opacity=".5"/><rect x="81" width="20" height="11" rx="2.5" fill="var(--pv-orange)" opacity=".4"/>
-          </g>
-          <text x="676" y="652" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">Tape Library</text>
+          <rect x="594" y="500" width="165" height="110" rx="14" fill="var(--pv-card)" stroke="var(--pv-orange)" stroke-width="1.8" filter="url(#pvShadow)"/>
+          <text x="676" y="538" text-anchor="middle" fill="var(--pv-text)" font-size="18" font-weight="700" font-family="var(--ff-mono)">ARCHIVE</text>
+          <text x="676" y="562" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)">Tape / Long-term</text>
+          <text x="676" y="598" text-anchor="middle" fill="var(--pv-text2)" font-size="12" font-family="var(--ff-mono)" font-weight="600">Tape Library</text>
         </g>
 
-        <!-- Engine → Storage connections -->
-        <g stroke="var(--pv-line)" stroke-width="1.2" fill="none" opacity=".45">
-          <path d="M300,405 Q225,470 130,535"><animate attributeName="opacity" values=".25;.55;.25" dur="4s" repeatCount="indefinite"/></path>
-          <path d="M340,405 Q325,470 313,535"><animate attributeName="opacity" values=".3;.6;.3" dur="3.5s" repeatCount="indefinite"/></path>
-          <path d="M420,405 Q475,470 496,535"><animate attributeName="opacity" values=".25;.5;.25" dur="4.5s" repeatCount="indefinite"/></path>
-          <path d="M460,405 Q575,470 676,535"><animate attributeName="opacity" values=".2;.45;.2" dur="5s" repeatCount="indefinite"/></path>
+        <!-- Engine → Storage (static lines + arrows) -->
+        <g stroke="var(--pv-line)" stroke-width="1.2" fill="none" opacity=".55">
+          <line x1="300" y1="395" x2="130" y2="500"/>
+          <line x1="350" y1="395" x2="313" y2="500"/>
+          <line x1="415" y1="395" x2="496" y2="500"/>
+          <line x1="465" y1="395" x2="676" y2="500"/>
         </g>
-        <g fill="var(--pv-line)" opacity=".5">
-          <polygon points="174,522 170,529 178,529"/>
-          <polygon points="313,522 309,529 317,529"/>
-          <polygon points="496,522 492,529 500,529"/>
-          <polygon points="640,522 636,529 644,529"/>
-        </g>
-
-        <!-- Animated particles: sources → engine -->
-        <g filter="url(#pvGlowSm)">
-          <circle r="3.5" fill="var(--pv-line)"><animateMotion dur="4s" repeatCount="indefinite" path="M150,140 Q190,200 260,265"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
-          <circle r="3" fill="var(--pv-line2)"><animateMotion dur="2.8s" repeatCount="indefinite" path="M370,140 Q370,200 370,265"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="2.8s" repeatCount="indefinite"/></circle>
-          <circle r="3" fill="var(--pv-orange)"><animateMotion dur="3.2s" repeatCount="indefinite" path="M595,140 Q555,200 490,265"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3.2s" repeatCount="indefinite"/></circle>
-        </g>
-
-        <!-- Animated particles: engine → storage -->
-        <g filter="url(#pvGlowSm)">
-          <circle r="3.5" fill="var(--pv-line)"><animateMotion dur="4s" repeatCount="indefinite" path="M260,265 Q225,470 130,535"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4s" repeatCount="indefinite"/></circle>
-          <circle r="3" fill="var(--pv-line2)"><animateMotion dur="3.5s" repeatCount="indefinite" path="M370,265 Q325,470 313,535"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3.5s" repeatCount="indefinite"/></circle>
-          <circle r="3" fill="var(--pv-line3)"><animateMotion dur="4.5s" repeatCount="indefinite" path="M490,265 Q475,470 496,535"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="4.5s" repeatCount="indefinite"/></circle>
-          <circle r="3" fill="var(--pv-orange)"><animateMotion dur="5s" repeatCount="indefinite" path="M490,265 Q575,470 676,535"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="5s" repeatCount="indefinite"/></circle>
-        </g>
-
-        <!-- Orbiting particles around hub -->
-        <g transform="translate(380 302)">
-          <circle r="3" fill="var(--pv-hub3)" filter="url(#pvGlowSm)"><animateMotion dur="16s" repeatCount="indefinite" path="M0,-135 A135,135 0 1,1 -135,0 A135,135 0 1,1 0,-135"/></circle>
-          <circle r="2.5" fill="var(--pv-line2)" filter="url(#pvGlowSm)"><animateMotion dur="12s" repeatCount="indefinite" path="M0,-115 A115,115 0 1,0 115,0 A115,115 0 1,0 0,-115"/></circle>
-          <circle r="2.5" fill="var(--pv-line)" filter="url(#pvGlowSm)"><animateMotion dur="20s" repeatCount="indefinite" path="M0,-155 A155,155 0 1,1 -155,0 A155,155 0 1,1 0,-155"/></circle>
-        </g>
-
-        <!-- Ambient floaters -->
-        <g opacity=".5">
-          <circle cx="80" cy="510" r="2" fill="var(--pv-line)"><animate attributeName="cy" values="510;490;510" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;.75;.35" dur="6s" repeatCount="indefinite"/></circle>
-          <circle cx="720" cy="510" r="2" fill="var(--pv-line2)"><animate attributeName="cy" values="510;493;510" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;.75;.35" dur="7s" repeatCount="indefinite"/></circle>
-          <circle cx="50" cy="710" r="1.5" fill="var(--pv-line3)"><animate attributeName="cy" values="710;695;710" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;.65;.25" dur="8s" repeatCount="indefinite"/></circle>
-          <circle cx="750" cy="710" r="1.5" fill="var(--pv-orange)"><animate attributeName="cy" values="710;690;710" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;.6;.25" dur="9s" repeatCount="indefinite"/></circle>
-          <circle cx="400" cy="510" r="1.8" fill="var(--pv-hub3)"><animate attributeName="cy" values="510;497;510" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;.85;.45" dur="5s" repeatCount="indefinite"/></circle>
+        <g fill="var(--pv-line)" opacity=".65">
+          <polygon points="144,491 140,484 148,484"/>
+          <polygon points="315,489 311,482 319,482"/>
+          <polygon points="491,489 487,482 495,482"/>
+          <polygon points="658,491 654,484 662,484"/>
         </g>
       </svg>
     </div>
